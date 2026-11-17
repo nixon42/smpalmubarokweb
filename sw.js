@@ -6,7 +6,7 @@
 const VERSI = 'v2';
 const CACHE_APP = 'smpit-app-' + VERSI;
 const CACHE_CDN = 'smpit-cdn-' + VERSI;
-const PRECACHE = ['/offline.html', '/logo.png'];
+const PRECACHE = ['offline.html', 'logo.png'];
 const CDN_BOLEH = ['cdnjs.cloudflare.com', 'cdn.jsdelivr.net'];
 
 self.addEventListener('install', function (e) {
@@ -56,7 +56,7 @@ self.addEventListener('fetch', function (e) {
         return res;
       }).catch(function () {
         return caches.match('/').then(function (hit) {
-          return hit || caches.match('/offline.html');
+          return hit || caches.match('offline.html');
         });
       })
     );
@@ -65,7 +65,7 @@ self.addEventListener('fetch', function (e) {
 
   // Aset satu domain
   if (url.origin === self.location.origin) {
-    if (url.pathname === '/sw.js') return;
+    if (url.pathname.endsWith('/sw.js')) return;
     e.respondWith(staleWhileRevalidate(req, CACHE_APP));
     return;
   }

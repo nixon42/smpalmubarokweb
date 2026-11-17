@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.smpitalmubarok.sch.id/sitemap.xml
+Sitemap: https://nixon42.github.io/smpalmubarokweb/sitemap.xml

@@ -27,7 +27,7 @@
   // 1) Service worker
   if ('serviceWorker' in navigator && location.protocol === 'https:' && !dalamIframe()) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js').catch(function () {});
+      navigator.serviceWorker.register('sw.js').catch(function () {});
     });
   }
 
@@ -64,7 +64,7 @@
     el.setAttribute('role', 'dialog');
     el.setAttribute('aria-label', 'Pasang aplikasi SMP IT Al Mubarok');
     el.innerHTML =
-      '<img src="/logo.png" alt="">' +
+      '<img src="logo.png" alt="">' +
       '<div class="pwa-teks"><div class="pwa-judul">Pasang Aplikasi Sekolah</div>' +
       '<div class="pwa-sub">Akses cepat dari layar utama HP Anda</div></div>' +
       '<button type="button" class="pwa-pasang">Pasang</button>' +

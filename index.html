@@ -22,12 +22,12 @@
 </script>
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="/logo.png">
-<link rel="shortcut icon" type="image/png" href="/logo.png">
-<link rel="apple-touch-icon" href="/logo.png">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="shortcut icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
 
 <!-- PWA: bisa dipasang / dipintas di layar utama HP -->
-<link rel="manifest" href="/manifest.webmanifest">
+<link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#1f287d">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -658,7 +658,7 @@ body.mode-gelap .ju-stop .ju-card.aktif{border-color:#b7860b}
 <!-- Tailwind versi build (file statis tailwind.css, ~10KB terkompresi). Dulu memakai skrip CDN Tailwind
      yang mengunduh ratusan KB JavaScript & mengompilasi CSS di browser tiap kunjungan.
      Kalau kelas Tailwind baru ditambahkan di halaman ini, file tailwind.css harus dibuat ulang. -->
-<link rel="stylesheet" href="/tailwind.css">
+<link rel="stylesheet" href="tailwind.css">
 
 <!-- Gaya khusus MODE CMS (?page=cms). Semua selektor diawali html.mode-cms / #cms-gate,
      jadi tidak berpengaruh sama sekali pada tampilan website publik. -->
@@ -2508,7 +2508,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 <div id="cms-gate" role="main" aria-label="Login CMS">
   <div class="cms-card">
     <div class="cms-head">
-      <img src="/logo.png" alt="Logo SMP IT Al Mubarok" class="cms-logo">
+      <img src="logo.png" alt="Logo SMP IT Al Mubarok" class="cms-logo">
       <h1>Login CMS</h1>
       <p>SMP IT Al Mubarok</p>
     </div>
@@ -5204,7 +5204,7 @@ const SECTION_JUDUL = {
 const JUDUL_WEBSITE_DASAR = document.title;
 // Domain resmi sekolah (dipakai untuk bikin link share yang rapi, BUKAN
 // link script.google.com yang panjang). Ganti kalau domainnya berubah.
-const SITE_URL = 'https://smpitalmubarok.sch.id';
+const SITE_URL = window.location.origin + window.location.pathname.replace(/\/$/, '') + '/';
 function _judulUntukSection_(name) {
   return SECTION_JUDUL[name] || (name ? (name.charAt(0).toUpperCase() + name.slice(1)) : '');
 }
@@ -7802,6 +7802,6 @@ setTimeout(function () {
 
 <div id="google_translate_element"></div>
 <script async src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script src="/pwa.js" defer></script>
+<script src="pwa.js" defer></script>
 </body>
 </html>

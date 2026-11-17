@@ -13,11 +13,11 @@
   "theme_color": "#1f287d",
   "categories": ["education"],
   "icons": [
-    { "src": "/logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+    { "src": "logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
   ],
   "shortcuts": [
-    { "name": "PPDB", "short_name": "PPDB", "url": "/?page=ppdb&source=pwa", "icons": [{ "src": "/logo.png", "sizes": "192x192" }] },
-    { "name": "Artikel & Berita", "short_name": "Berita", "url": "/?page=artikel&source=pwa", "icons": [{ "src": "/logo.png", "sizes": "192x192" }] }
+    { "name": "PPDB", "short_name": "PPDB", "url": "./?page=ppdb&source=pwa", "icons": [{ "src": "logo.png", "sizes": "192x192" }] },
+    { "name": "Artikel & Berita", "short_name": "Berita", "url": "./?page=artikel&source=pwa", "icons": [{ "src": "logo.png", "sizes": "192x192" }] }
   ]
 }
