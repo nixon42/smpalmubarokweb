@@ -244,6 +244,8 @@ function isiDemoData() {
       ["yayasan", "Yayasan Yambu'ul Qur'an"],
       ["status", "Swasta (Akreditasi B)"],
       ["sk_operasional", "414-44/2053/418.20/2023"],
+      ["logo", "https://nixon42.github.io/smpalmubarokweb/logo.png"],
+      ["splash_logo", "https://nixon42.github.io/smpalmubarokweb/splash-logo.webp"],
       ["splash_judul", "SMPI YAMBU'UL QUR'AN"],
       ["splash_tagline", "Mencetak Generasi Qur'ani & Berakhlak Mulia"]
     ]
