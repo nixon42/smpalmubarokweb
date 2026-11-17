@@ -198,6 +198,14 @@ function isiDemoData() {
       ["Upacara Bendera dan Pembinaan Karakter Santri", "Kesiswaan", "2026-10-25", "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"],
       ["Kompetisi Futsal Antar Kelas (Classmeeting)", "Olahraga", "2026-10-18", "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80"]
     ],
+    'Menu': [
+      ["SIAKAD & E-Rapor Santri", "https://wa.me/6281515777911?text=Halo%20Admin%20SIAKAD%20SMPI%20Yambu%27ul%20Qur%27an", "Sistem Informasi Akademik terpadu untuk rekapitulasi presensi, penilaian harian, kalender ujian, dan unduh e-rapor santri.", 1, "Ya"],
+      ["SIMTahfidz (Mutaba'ah Qur'an)", "https://wa.me/6281515777911?text=Halo%20Admin%20SIMTahfidz%20SMPI%20Yambu%27ul%20Qur%27an", "Monitoring setoran hafalan harian santri, penilaian tajwid & makhraj, capaian target juz, dan laporan berkala ke wali santri.", 2, "Ya"],
+      ["E-Learning & CBT Mandiri", "https://wa.me/6281515777911?text=Halo%20Admin%20CBT%20SMPI%20Yambu%27ul%20Qur%27an", "Portal ujian daring berbasis komputer (Computer Based Test), kuis interaktif, materi ajar digital, dan pengumpulan tugas santri.", 3, "Ya"],
+      ["Perpustakaan Digital (E-Library)", "https://wa.me/6281515777911?text=Halo%20Admin%20Perpustakaan%20SMPI%20Yambu%27ul%20Qur%27an", "Katalog buku teks pelajaran kurikulum nasional, referensi kitab kuning pesantren, dan koleksi literasi sains santri.", 4, "Ya"],
+      ["Portal PPDB Online", "https://wa.me/6281515777911?text=Halo%20Admin%20PPDB%20SMPI%20Yambu%27ul%20Qur%27an,%20saya%20ingin%20konsultasi%20pendaftaran", "Pendaftaran santri baru, unduh formulir registrasi, unggah berkas persyaratan, dan konsultasi panitia penerimaan.", 5, "Ya"],
+      ["Layanan Syahriyah & Keuangan", "https://wa.me/6281515777911?text=Halo%20Admin%20Keuangan%20SMPI%20Yambu%27ul%20Qur%27an,%20informasi%20syahriyah", "Layanan informasi pembayaran syahriyah (SPP) pesantren, donasi jariyah sarana pendidikan, dan konfirmasi transfer.", 6, "Ya"]
+    ],
     'Karya': [
       [
         "Lantunan Cahaya Kalam Ilahi",

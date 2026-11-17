@@ -3827,7 +3827,17 @@ function renderMenuAplikasi() {
   const btnSelengkapnya = document.getElementById('btn-aplikasi-selengkapnya');
   if (!el || !wrap) return;
 
-  let rows = (DB.menu || []).filter(function (m) {
+  const DEFAULT_APLIKASI_ = [
+    { nama_menu: 'SIAKAD & E-Rapor Santri', link: 'https://wa.me/6281515777911?text=Halo%20Admin%20SIAKAD%20SMPI%20Yambu%27ul%20Qur%27an', deskripsi: 'Sistem Informasi Akademik terpadu untuk rekapitulasi presensi, penilaian harian, kalender ujian, dan unduh e-rapor santri.', urutan: 1, tampil: 'Ya' },
+    { nama_menu: 'SIMTahfidz (Mutaba\'ah Qur\'an)', link: 'https://wa.me/6281515777911?text=Halo%20Admin%20SIMTahfidz%20SMPI%20Yambu%27ul%20Qur%27an', deskripsi: 'Monitoring setoran hafalan harian santri, penilaian tajwid & makhraj, capaian target juz, dan laporan berkala ke wali santri.', urutan: 2, tampil: 'Ya' },
+    { nama_menu: 'E-Learning & CBT Mandiri', link: 'https://wa.me/6281515777911?text=Halo%20Admin%20CBT%20SMPI%20Yambu%27ul%20Qur%27an', deskripsi: 'Portal ujian daring berbasis komputer (Computer Based Test), kuis interaktif, materi ajar digital, dan pengumpulan tugas santri.', urutan: 3, tampil: 'Ya' },
+    { nama_menu: 'Perpustakaan Digital (E-Library)', link: 'https://wa.me/6281515777911?text=Halo%20Admin%20Perpustakaan%20SMPI%20Yambu%27ul%20Qur%27an', deskripsi: 'Katalog buku teks pelajaran kurikulum nasional, referensi kitab kuning pesantren, dan koleksi literasi sains santri.', urutan: 4, tampil: 'Ya' },
+    { nama_menu: 'Portal PPDB Online', link: 'https://wa.me/6281515777911?text=Halo%20Admin%20PPDB%20SMPI%20Yambu%27ul%20Qur%27an,%20saya%20ingin%20konsultasi%20pendaftaran', deskripsi: 'Pendaftaran santri baru, unduh formulir registrasi, unggah berkas persyaratan, dan konsultasi panitia penerimaan.', urutan: 5, tampil: 'Ya' },
+    { nama_menu: 'Layanan Syahriyah & Keuangan', link: 'https://wa.me/6281515777911?text=Halo%20Admin%20Keuangan%20SMPI%20Yambu%27ul%20Qur%27an,%20informasi%20syahriyah', deskripsi: 'Layanan informasi pembayaran syahriyah (SPP) pesantren, donasi jariyah sarana pendidikan, dan konfirmasi transfer.', urutan: 6, tampil: 'Ya' }
+  ];
+
+  let rawList = (DB.menu && DB.menu.length) ? DB.menu : DEFAULT_APLIKASI_;
+  let rows = rawList.filter(function (m) {
     const t = (m.tampil || '').toString().toLowerCase();
     return t !== 'tidak' && t !== 'no' && t !== '0' && t !== 'false';
   });
