@@ -7,7 +7,7 @@ const VERSI = 'v3';
 const CACHE_APP = 'smpit-app-' + VERSI;
 const CACHE_CDN = 'smpit-cdn-' + VERSI;
 const PRECACHE = ['offline.html', 'logo.png'];
-const CDN_BOLEH = ['cdnjs.cloudflare.com', 'cdn.jsdelivr.net'];
+const CDN_BOLEH = ['cdnjs.cloudflare.com', 'cdn.jsdelivr.net', 'fonts.googleapis.com', 'fonts.gstatic.com'];
 
 self.addEventListener('install', function (e) {
   e.waitUntil(

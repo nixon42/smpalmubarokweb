@@ -725,10 +725,10 @@ body {
 }
 
 /* Major Third Typography Scale (1.25) */
-h1 { font-size: 2.441rem !important; line-height: 1.2 !important; }
-h2 { font-size: 1.953rem !important; line-height: 1.25 !important; }
-h3 { font-size: 1.563rem !important; line-height: 1.3 !important; }
-h4 { font-size: 1.25rem !important; line-height: 1.35 !important; }
+h1 { font-size: 2.441rem; line-height: 1.2; }
+h2 { font-size: 1.953rem; line-height: 1.25; }
+h3 { font-size: 1.563rem; line-height: 1.3; }
+h4 { font-size: 1.25rem; line-height: 1.35; }
 
 .font-arabic {
   font-family: var(--font-arabic);
@@ -803,8 +803,10 @@ footer .text-secondary,
 .shadow-2xl { box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.15) !important; }
 
 /* Clean Cards & Architectural Framing */
-.card-scholar {
+.card-scholar:not([class*="bg-"]) {
   background: #ffffff;
+}
+.card-scholar {
   border: 1px solid var(--theme-border);
   border-radius: 1.25rem;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
@@ -838,7 +840,7 @@ body.mode-gelap .bg-white {
 body.mode-gelap .bg-slate-50 {
   background-color: #091c13 !important;
 }
-body.mode-gelap .card-scholar {
+body.mode-gelap .card-scholar:not([class*="bg-"]) {
   background-color: #0f241a !important;
   border-color: rgba(195, 147, 40, 0.2) !important;
 }
@@ -925,7 +927,7 @@ body.mode-gelap .border-slate-100, body.mode-gelap .border-slate-200 {
       </div>
     </div>
 
-    <h1 id="splash-judul" class="text-white font-black text-2xl md:text-3xl tracking-tight">SMPI YAMBU&#39;UL QUR&#39;AN</h1>
+    <div id="splash-judul" class="text-white font-black text-2xl md:text-3xl tracking-tight">SMPI YAMBU&#39;UL QUR&#39;AN</div>
     <p id="splash-tagline" class="text-secondary text-[11px] md:text-xs font-bold uppercase tracking-[0.25em] mt-2.5">"Membentuk Generasi Qur'ani, Berakhlak Mulia &amp; Berprestasi"</p>
 
     <!-- Animasi loading: titik-titik yang menari bergantian (ganti dari garis progres lama) -->
@@ -993,7 +995,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
         <img id="navbar-logo-img" src="logo.png" alt="Logo SMPI Yambu'ul Qur'an" class="w-full h-full object-contain">
       </div>
       <div id="navbar-logo-text" class="leading-tight">
-        <h1 class="font-serif text-white font-bold text-base md:text-lg tracking-wide uppercase">SMPI Yambu'ul Qur'an</h1>
+        <div class="font-serif font-black text-sm sm:text-base md:text-lg text-white leading-tight tracking-tight">SMPI Yambu'ul Qur'an</div>
         <p class="text-secondary text-[10px] font-semibold uppercase tracking-widest mt-0.5">Pesantren Modern &bull; Kediri, Jawa Timur</p>
       </div>
     </a>
@@ -1156,7 +1158,19 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
             <div class="relative rounded-3xl p-2 sm:p-2.5 bg-white/5 border border-white/15 shadow-2xl backdrop-blur-md">
               <div class="overflow-hidden rounded-2xl aspect-[16/10] bg-primary-900" id="hero-viewport">
                 <!-- slide banner dirender oleh JS (renderHeroSlider) ke sini, dari sheet HeroBanner -->
-                <div id="hero-slides" class="flex transition-transform duration-700 ease-in-out"></div>
+                <div id="hero-slides" class="flex transition-transform duration-700 ease-in-out">
+                  <div class="hero-slide flex-shrink-0 w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-md bg-primary-900 relative flex items-center justify-center">
+                    <img src="splash-bg.webp" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" alt="Kampus SMPI Yambu'ul Qur'an" fetchpriority="high">
+                    <div class="relative z-10 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-t from-[#062116]/90 via-[#0b3323]/60 to-transparent w-full h-full">
+                      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/10 p-2.5 backdrop-blur-md border border-white/20 mb-3 shadow-xl">
+                        <img src="logo.png" alt="Logo SMPI Yambu'ul Qur'an" class="w-full h-full object-contain">
+                      </div>
+                      <p class="font-arabic text-xl md:text-2xl text-secondary font-bold">&#1610;&#1614;&#1606;&#1576;&#1615;&#1608;&#1593;&#1615; &#1575;&#1604;&#1602;&#1615;&#1585;&#1578;&#1575;&#1606;</p>
+                      <p class="font-serif text-white font-black text-base md:text-lg mt-1 tracking-tight">SMPI YAMBU'UL QUR'AN</p>
+                      <p class="text-white/70 text-xs font-sans mt-0.5 tracking-wider uppercase">Plosoklaten &bull; Kediri</p>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div id="hero-dots" class="flex items-center justify-center gap-2 mt-4 pb-1"></div>
             </div>
@@ -3593,7 +3607,24 @@ function renderHeroSlider() {
     .slice()
     .sort(function (a, b) { return (parseInt(a.urutan) || 0) - (parseInt(b.urutan) || 0); });
 
-  if (!rows.length) { heroSig_ = ''; wrap.innerHTML = ''; dotsWrap.innerHTML = ''; wrap.classList.add('hero-kosong'); return; }
+  if (!rows.length) {
+    heroSig_ = '';
+    if (!wrap.querySelector('.hero-slide')) {
+      wrap.innerHTML = '<div class="hero-slide flex-shrink-0 w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-md bg-primary-900 relative flex items-center justify-center">' +
+        '<img src="splash-bg.webp" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" alt="Kampus SMPI Yambu\'ul Qur\'an" fetchpriority="high">' +
+        '<div class="relative z-10 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-t from-[#062116]/90 via-[#0b3323]/60 to-transparent w-full h-full">' +
+        '<div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/10 p-2.5 backdrop-blur-md border border-white/20 mb-3 shadow-xl">' +
+        '<img src="logo.png" alt="Logo SMPI Yambu\'ul Qur\'an" class="w-full h-full object-contain">' +
+        '</div>' +
+        '<p class="font-arabic text-xl md:text-2xl text-secondary font-bold">&#1610;&#1614;&#1606;&#1576;&#1615;&#1608;&#1593;&#1615; &#1575;&#1604;&#1602;&#1615;&#1585;&#1578;&#1575;&#1606;</p>' +
+        '<p class="font-serif text-white font-black text-base md:text-lg mt-1 tracking-tight">SMPI YAMBU\'UL QUR\'AN</p>' +
+        '<p class="text-white/70 text-xs font-sans mt-0.5 tracking-wider uppercase">Plosoklaten &bull; Kediri</p>' +
+        '</div></div>';
+    }
+    dotsWrap.innerHTML = '';
+    wrap.classList.remove('hero-kosong');
+    return;
+  }
 
   // Satu baris HeroBanner bisa diisi lebih dari satu foto (upload
   // multi di panel Admin) -> pecah jadi beberapa slide terpisah,
@@ -5739,8 +5770,30 @@ function jalankanHasilCari_(i) {
   try { h.aksi(); } catch (e) { console.error(e); }
 }
 function scrollToId(id) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-function closeModal(id) { const el = document.getElementById(id); el.classList.add('hidden'); el.classList.remove('flex'); }
-function openModal(id) { const el = document.getElementById(id); el.classList.remove('hidden'); el.classList.add('flex'); }
+function closeModal(id) {
+  const el = document.getElementById(id);
+  if (el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+}
+function openModal(id) {
+  const el = document.getElementById(id);
+  if (el) { el.classList.remove('hidden'); el.classList.add('flex'); }
+}
+
+// Global Escape listener untuk menutup modal/dialog aktif demi aksesibilitas keyboard (WCAG 2.1)
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' || e.keyCode === 27) {
+    const a11yPanel = document.getElementById('a11y-panel');
+    if (a11yPanel && a11yPanel.classList.contains('tampil')) return; // ditangani oleh a11y-script
+
+    document.querySelectorAll('[id^="modal-"]:not(.hidden)').forEach(function (m) {
+      closeModal(m.id);
+    });
+    const cb = document.getElementById('chatbot-panel');
+    if (cb && !cb.classList.contains('hidden') && typeof toggleChatbot === 'function') {
+      toggleChatbot(false);
+    }
+  }
+});
 
 // ---------------------------------------------------------------
 // KARYA: BOOK READER + LIKE + KOMENTAR
