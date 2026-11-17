@@ -973,8 +973,8 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
   </div>
   <div class="flex items-center gap-6">
     <div class="flex items-center gap-4">
-      <span id="topbar-phone" class="hover:text-white transition-colors"><i class="fab fa-whatsapp text-secondary mr-1.5"></i> -</span>
-      <span id="topbar-email" class="hover:text-white transition-colors"><i class="fas fa-envelope text-secondary mr-1.5"></i> -</span>
+      <span id="topbar-phone" class="hover:text-white transition-colors"><i class="fab fa-whatsapp text-secondary mr-1.5"></i> 0815-1577-7911</span>
+      <span id="topbar-email" class="hover:text-white transition-colors"><i class="fas fa-envelope text-secondary mr-1.5"></i> smpiyaqu@gmail.com</span>
     </div>
     <div class="flex items-center gap-3">
       <div id="lang-switch-desktop"></div>
@@ -2266,7 +2266,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
           <p class="font-arabic text-secondary text-xs">يَنبُوعُ القُرآن</p>
         </div>
       </div>
-      <p class="text-xs text-white/70 leading-relaxed" id="footer-alamat">Alamat sekolah akan tampil di sini.</p>
+      <p class="text-xs text-white/70 leading-relaxed" id="footer-alamat">Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri</p>
       <div class="pt-2 text-[11px] text-white/50 space-y-1 border-t border-white/10 font-mono">
         <p>NPSN: 70003325 &bull; Akreditasi: B</p>
         <p>SK: 414-44/2053/418.20/2023</p>
@@ -2300,8 +2300,8 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     <div>
       <h3 class="font-serif text-white font-bold text-xs uppercase tracking-wider mb-4 border-b border-white/10 pb-2">Sekretariat &amp; Kontak</h3>
       <div class="space-y-3 text-xs">
-        <p id="footer-phone" class="flex items-center gap-2"><i class="fab fa-whatsapp text-secondary w-4"></i> <span>-</span></p>
-        <p id="footer-email" class="flex items-center gap-2"><i class="fas fa-envelope text-secondary w-4"></i> <span>-</span></p>
+        <p id="footer-phone" class="flex items-center gap-2"><i class="fab fa-whatsapp text-secondary w-4"></i> <span>0815-1577-7911</span></p>
+        <p id="footer-email" class="flex items-center gap-2"><i class="fas fa-envelope text-secondary w-4"></i> <span>smpiyaqu@gmail.com</span></p>
         <div class="pt-3">
           <button onclick="showSection('beranda');document.getElementById('beranda-maps').scrollIntoView({behavior:'smooth'});" class="px-4 py-2 rounded-full border border-white/20 hover:bg-white/10 text-white text-[11px] font-semibold transition-all">Lihat Peta Kampus &rarr;</button>
         </div>
@@ -3307,13 +3307,13 @@ function profilIsi(section, fallback) {
 // RENDER: PENGATURAN (kontak, sosmed, topbar, footer)
 // ---------------------------------------------------------------
 function renderPengaturan() {
-  const tlp = cfg('telepon', '-');
-  const email = cfg('email', '-');
-  document.getElementById('topbar-phone').innerHTML = '<i class="fas fa-phone-alt mr-1.5"></i> ' + tlp;
+  const tlp = cfg('telepon', '0815-1577-7911');
+  const email = cfg('email', 'smpiyaqu@gmail.com');
+  document.getElementById('topbar-phone').innerHTML = '<i class="fab fa-whatsapp mr-1.5"></i> ' + tlp;
   document.getElementById('topbar-email').innerHTML = '<i class="fas fa-envelope mr-1.5"></i> ' + email;
-  document.getElementById('footer-phone').innerHTML = '<i class="fas fa-phone-alt w-4"></i> ' + tlp;
+  document.getElementById('footer-phone').innerHTML = '<i class="fab fa-whatsapp w-4"></i> ' + tlp;
   document.getElementById('footer-email').innerHTML = '<i class="fas fa-envelope w-4"></i> ' + email;
-  document.getElementById('footer-alamat').textContent = cfg('alamat', 'Alamat sekolah belum diisi di sheet Pengaturan.');
+  document.getElementById('footer-alamat').textContent = cfg('alamat', 'Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri');
 
   // Logo navbar: kalau admin sudah upload logo (key "logo" di sheet
   // Pengaturan, lewat panel Admin > Pengaturan), tampilkan fotonya saja
@@ -3355,7 +3355,7 @@ function renderPengaturan() {
   // jadi admin tidak perlu isi link WhatsApp terpisah di sheet Pengaturan.
   const socialList = [
     { link: cfg('facebook', ''), icon: 'fab fa-facebook-f', bg: 'bg-[#1877F2]' },
-    { link: cfg('instagram', ''), icon: 'fab fa-instagram', bg: 'bg-secondary text-primary-900' },
+    { link: cfg('instagram', 'https://www.instagram.com/smpiyaqu_kediri/'), icon: 'fab fa-instagram', bg: 'bg-secondary text-primary-900' },
     { link: cfg('youtube', ''), icon: 'fab fa-youtube', bg: 'bg-[#FF0000]' },
     { link: waNumber ? ('https://wa.me/' + waNumber.toString().replace(/\D/g, '')) : '', icon: 'fab fa-whatsapp', bg: 'bg-[#25D366]' },
     { link: cfg('tiktok', ''), icon: 'fab fa-tiktok', bg: 'bg-black' }
@@ -5950,7 +5950,7 @@ let waQuickBox_ = null;
 function waNomor_() {
   const a = document.getElementById('floating-wa-btn');
   const m = ((a && a.href) || '').match(/wa\.me\/(\d+)/);
-  return m ? m[1] : '6285936157246';
+  return m ? m[1] : '6281515777911';
 }
 function waJam_() {
   const d = new Date();
@@ -6544,7 +6544,7 @@ function terapkanTombolPendaftaran_() {
 function klikPendaftaran() {
   const link = rapikanLinkPendaftaran_(cfg('pendaftaran_link', ''));
   if (!link) {                                            // belum diisi -> arahkan ke WhatsApp sekolah
-    const wa = (cfg('wa_number', '6285936157246') || '').toString().replace(/\D/g, '');
+    const wa = (cfg('wa_number', '6281515777911') || '').toString().replace(/\D/g, '');
     window.open('https://wa.me/' + wa + '?text=' + encodeURIComponent('Saya ingin bertanya seputar pendaftaran SMPI Yambu\'ul Qur\'an.'), '_blank', 'noopener,noreferrer');
     return;
   }
@@ -7301,7 +7301,7 @@ function kirimDonasiWeb_() {
   }).kirimDonasi(nama, jumlah, kontak, pesan, anonim);
 }
 function tampilkanDonasiSukses_(res, nama) {
-  const wa = String(cfg('wa_number', '6285936157246')).replace(/\D/g, '');
+  const wa = String(cfg('wa_number', '6281515777911')).replace(/\D/g, '');
   const teksWa = encodeURIComponent('Assalamualaikum, saya sudah berdonasi untuk SMPI Yambu\'ul Qur\'an.\nKode: ' + res.kode + '\nNama: ' + nama + '\nJumlah: ' + _rupiahDonasi_(res.jumlah) + '\nBerikut bukti transfer saya.');
   document.getElementById('donasi-form-isi').style.display = 'none';
   const el = document.getElementById('donasi-form-sukses');

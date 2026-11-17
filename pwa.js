@@ -62,7 +62,7 @@
     var el = document.createElement('div');
     el.id = 'pwa-banner';
     el.setAttribute('role', 'dialog');
-    el.setAttribute('aria-label', 'Pasang aplikasi SMPI Yambu'ul Qur'an');
+    el.setAttribute('aria-label', "Pasang aplikasi SMPI Yambu'ul Qur'an");
     el.innerHTML =
       '<img src="logo.png" alt="">' +
       '<div class="pwa-teks"><div class="pwa-judul">Pasang Aplikasi Sekolah</div>' +
