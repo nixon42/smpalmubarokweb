@@ -199,9 +199,9 @@ function isiDemoData() {
       ["Kompetisi Futsal Antar Kelas (Classmeeting)", "Olahraga", "2026-10-18", "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80"]
     ],
     'Menu': [
-      ["JURNAL DIGITAL", "https://jurnal.smpitalmubarok.sch.id/", "Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru secara terstruktur.", 1, "ya"],
-      ["LMS", "https://lms.smpitalmubarok.sch.id/", "Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas terpadu.", 2, "ya"],
-      ["Absensi", "https://absen.smpitalmubarok.sch.id/", "Absensi berbasis face recognition, pencatatan secara realtime dan akurat.", 3, "ya"],
+      ["JURNAL DIGITAL", "https://nixon42.github.io/jurnal/", "Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru secara terstruktur.", 1, "ya"],
+      ["LMS", "https://nixon42.github.io/lms/", "Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas terpadu.", 2, "ya"],
+      ["Absensi", "https://nixon42.github.io/absen/", "Absensi berbasis face recognition, pencatatan secara realtime dan akurat.", 3, "ya"],
       ["TU & Persuratan Online", "https://administrasi.smpitalmubarok.sch.id/", "Digitalisasi pengarsipan, permintaan surat, dan tata kelola administrasi surat-menyurat sekolah.", 4, "ya"],
       ["Supervisi", "https://supervisi.smpitalmubarok.sch.id/", "Platform digital yang dirancang untuk mempermudah, mempercepat, dan mengoptimalkan proses pemantauan, evaluasi, serta pembinaan kinerja secara real-time dari mana saja.", 5, "ya"],
       ["Buku Inventaris Barang", "https://inventaris.smpitalmubarok.sch.id/", "Digitalisasi pendataan dan pemantauan kondisi serta aset sarana-prasarana sekolah.", 6, "ya"],
