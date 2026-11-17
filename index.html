@@ -1037,9 +1037,27 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       <button onclick="showSection('karya')" class="px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">Karya</button>
       <button onclick="showSection('aplikasi')" class="px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">Layanan Digital</button>
       <button id="nav-daftar-btn" onclick="klikPendaftaran()" class="ml-3 px-5 py-2.5 rounded-full bg-secondary text-primary-900 font-bold hover:bg-secondary-400 shadow-md transition-all hover:shadow-lg">Pendaftaran PPDB</button>
+      <div class="flex items-center gap-1.5 ml-2 border-l border-white/20 pl-3">
+        <button onclick="bukaPencarian()" title="Cari (Ctrl+K)" aria-label="Cari di website" class="w-9 h-9 rounded-full text-white/85 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors">
+          <i class="fas fa-magnifying-glass text-sm"></i>
+        </button>
+        <button onclick="toggleModeGelap()" id="tombol-mode-gelap" title="Mode Gelap" aria-label="Ganti mode gelap" class="w-9 h-9 rounded-full text-white/85 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors">
+          <i class="fas fa-moon text-sm"></i>
+        </button>
+      </div>
     </nav>
 
-    <button onclick="toggleMobileMenu()" class="xl:hidden text-white text-2xl"><i class="fas fa-bars"></i></button>
+    <div class="flex xl:hidden items-center gap-2">
+      <button onclick="bukaPencarian()" title="Cari" aria-label="Cari" class="w-9 h-9 rounded-full text-white/90 flex items-center justify-center active:bg-white/10">
+        <i class="fas fa-magnifying-glass text-base"></i>
+      </button>
+      <button onclick="toggleModeGelap()" id="tombol-mode-gelap-mobile" title="Mode Gelap" aria-label="Mode Gelap" class="w-9 h-9 rounded-full text-white/90 flex items-center justify-center active:bg-white/10">
+        <i class="fas fa-moon text-base"></i>
+      </button>
+      <button onclick="toggleMobileMenu()" aria-label="Menu Navigasi" class="w-9 h-9 rounded-full text-white flex items-center justify-center active:bg-white/10 text-xl ml-1">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
   </div>
 
   <!-- Mobile menu -->
@@ -1159,10 +1177,10 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
               <div class="overflow-hidden rounded-2xl aspect-[16/10] bg-primary-900" id="hero-viewport">
                 <!-- slide banner dirender oleh JS (renderHeroSlider) ke sini, dari sheet HeroBanner -->
                 <div id="hero-slides" class="flex transition-transform duration-700 ease-in-out">
-                  <div class="hero-slide flex-shrink-0 w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-md bg-primary-900 relative flex items-center justify-center">
+                  <div class="hero-slide flex-shrink-0 w-full aspect-[16/10] rounded-2xl overflow-hidden bg-primary-900 relative flex items-center justify-center">
                     <img src="splash-bg.webp" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" alt="Kampus SMPI Yambu'ul Qur'an" fetchpriority="high">
                     <div class="relative z-10 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-t from-[#062116]/90 via-[#0b3323]/60 to-transparent w-full h-full">
-                      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/10 p-2.5 backdrop-blur-md border border-white/20 mb-3 shadow-xl">
+                      <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/10 p-2.5 border border-white/20 mb-3">
                         <img src="logo.png" alt="Logo SMPI Yambu'ul Qur'an" class="w-full h-full object-contain">
                       </div>
                       <p class="font-arabic text-xl md:text-2xl text-secondary font-bold">&#1610;&#1614;&#1606;&#1576;&#1615;&#1608;&#1593;&#1615; &#1575;&#1604;&#1602;&#1615;&#1585;&#1578;&#1575;&#1606;</p>
@@ -2513,7 +2531,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 <!-- ============================================================ -->
 <!-- PANEL CHATBOT AI (independen, dipakai bareng desktop & mobile) -->
 <!-- ============================================================ -->
-<div id="chatbot-panel" class="hidden fixed right-4 md:right-6 bottom-[172px] z-[99998] w-[92vw] max-w-sm h-[65vh] max-h-[560px] bg-white rounded-[1.75rem] shadow-2xl border border-slate-100 flex-col overflow-hidden">
+<div id="chatbot-panel" class="hidden fixed right-4 md:right-6 bottom-20 md:bottom-24 z-[99998] w-[92vw] max-w-sm h-[65vh] max-h-[560px] bg-white rounded-[1.75rem] shadow-2xl border border-slate-100 flex-col overflow-hidden">
   <div class="flex items-center justify-between px-5 py-4 bg-primary flex-shrink-0">
     <div class="flex items-center gap-3 min-w-0">
       <div class="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0"><i class="fas fa-robot text-white text-sm"></i></div>
@@ -2540,7 +2558,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 <!-- ============================================================ -->
 <!-- ROOM CHAT WHATSAPP (kirim langsung ke admin lewat web; opsi lanjut ke WhatsApp admin) -->
 <!-- ============================================================ -->
-<div id="wa-panel" role="dialog" aria-label="Chat WhatsApp Admin" class="hidden fixed right-4 md:right-6 bottom-[172px] z-[99998] w-[92vw] max-w-sm bg-white rounded-[1.75rem] shadow-2xl border border-slate-100 flex-col overflow-hidden" style="height:min(600px, calc(100vh - 200px)); height:min(600px, calc(100dvh - 200px));">
+<div id="wa-panel" role="dialog" aria-label="Chat WhatsApp Admin" class="hidden fixed right-4 md:right-6 bottom-20 md:bottom-24 z-[99998] w-[92vw] max-w-sm bg-white rounded-[1.75rem] shadow-2xl border border-slate-100 flex-col overflow-hidden" style="height:min(580px, calc(100vh - 120px)); height:min(580px, calc(100dvh - 120px));">
   <div class="flex items-center justify-between px-4 py-3.5 flex-shrink-0" style="background:linear-gradient(135deg,#075e54 0%,#0f8a79 100%)">
     <div class="flex items-center gap-3 min-w-0">
       <div class="relative flex-shrink-0">
@@ -2622,49 +2640,36 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     </div>
   </div>
 </div>
-<!-- FLOATING: WHATSAPP + CHATBOT AI (nonaktif, sudah digabung ke BOTTOM NAV BAR di bawah agar tidak dobel) -->
 <!-- ============================================================ -->
-<div id="floating-action-stack" class="hidden fixed right-4 md:right-6 bottom-6 z-[99998] flex-col items-end gap-3">
-  <button onclick="toggleChatbot()" title="Tanya Asisten AI" class="w-14 h-14 rounded-full bg-primary hover:bg-primary-600 text-white shadow-xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95">
-    <i id="chatbot-toggle-icon" class="fas fa-comment-dots text-xl"></i>
+<!-- FLOATING ACTION CONTROLS (Sleek, Minimalist Bottom-Right Stack) -->
+<!-- ============================================================ -->
+<div id="bottom-nav-bar" class="fixed bottom-5 right-4 sm:right-6 z-[9996] flex flex-col items-end gap-2.5 transition-all duration-300">
+  
+  <!-- Scroll to Top (Auto-fades in on scroll) -->
+  <button id="btn-scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Kembali ke Atas" aria-label="Kembali ke atas" class="opacity-0 pointer-events-none transition-all duration-300 w-10 h-10 rounded-full bg-white/95 dark:bg-[#0f241a] text-stone-700 dark:text-stone-200 shadow-md border border-stone-200/80 dark:border-stone-700/80 flex items-center justify-center text-xs hover:scale-105 active:scale-95">
+    <i class="fas fa-arrow-up"></i>
   </button>
-  <a id="floating-wa-btn" href="https://wa.me/6281515777911" onclick="return toggleWaChat(true);" title="Chat WhatsApp" class="w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95">
+
+  <!-- Aksesibilitas (A11y) -->
+  <button id="a11y-fab" type="button" title="Aksesibilitas (Alt+A)" aria-label="Buka menu aksesibilitas (Alt+A)" aria-haspopup="dialog" aria-expanded="false" class="group relative w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 dark:bg-[#0f241a] text-[#855f0e] dark:text-[#dfb342] shadow-md border border-stone-200/80 dark:border-stone-700/80 flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95">
+    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><path d="M7 10l5 .8 5-.8M12 10.8V15M9.6 19l2.4-4 2.4 4"/></svg>
+    <span class="pointer-events-none absolute right-full mr-2.5 whitespace-nowrap bg-stone-900/90 text-white text-[11px] font-medium px-2 py-0.5 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">Aksesibilitas</span>
+  </button>
+
+  <!-- Chatbot AI -->
+  <button onclick="toggleChatbot()" id="floating-chatbot-btn" title="Tanya Asisten AI" aria-label="Tanya Asisten AI" class="group relative w-12 h-12 sm:w-[50px] sm:h-[50px] rounded-full bg-[#0b3323] hover:bg-[#062116] text-[#dfb342] shadow-lg border border-[#c39328]/40 flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95">
+    <i id="chatbot-toggle-icon" class="fas fa-comment-dots text-xl"></i>
+    <i id="chatbot-toggle-icon-mobile" class="hidden"></i>
+    <span class="pointer-events-none absolute right-full mr-2.5 whitespace-nowrap bg-stone-900/90 text-white text-[11px] font-medium px-2.5 py-1 rounded-md shadow opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">Asisten AI</span>
+  </button>
+
+  <!-- WhatsApp -->
+  <a id="bottomnav-wa-btn" href="https://wa.me/6281515777911" onclick="return toggleWaChat();" title="Chat WhatsApp" aria-label="Chat WhatsApp Admin" class="group relative w-12 h-12 sm:w-[50px] sm:h-[50px] rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95">
     <i class="fab fa-whatsapp text-2xl"></i>
+    <span class="pointer-events-none absolute right-full mr-2.5 whitespace-nowrap bg-stone-900/90 text-white text-[11px] font-medium px-2.5 py-1 rounded-md shadow opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">WhatsApp</span>
   </a>
-</div>
-
-<!-- ============================================================ -->
-<!-- BOTTOM NAV BAR (Mobile & Desktop): Menu, Cari, WA + Chatbot, Mode Gelap, Ke Atas -->
-<!-- ============================================================ -->
-<div id="bottom-nav-bar" class="fixed bottom-3 left-1/2 -translate-x-1/2 z-[9996] w-[94%] max-w-[440px] transition-opacity duration-200">
-  <div class="relative bg-white/95 backdrop-blur-md rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.18)] border border-slate-100 flex items-center justify-between px-3 py-2" style="padding-bottom:max(0.5rem, env(safe-area-inset-bottom));">
-    <button onclick="toggleMobileMenu()" title="Menu" class="w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center text-primary text-lg active:bg-slate-100 active:scale-95 transition-transform"><i class="fas fa-grip"></i></button>
-    <button onclick="bukaPencarian()" title="Cari" class="w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center text-primary text-lg active:bg-slate-100 active:scale-95 transition-transform"><i class="fas fa-magnifying-glass"></i></button>
-    <span class="w-[154px] md:w-[196px] flex-shrink-0"></span>
-    <button onclick="toggleModeGelap()" id="tombol-mode-gelap" title="Mode Gelap" class="w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center text-primary text-lg active:bg-slate-100 active:scale-95 transition-transform"><i class="fas fa-moon"></i></button>
-    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Kembali ke Atas" class="w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center text-primary text-lg active:bg-slate-100 active:scale-95 transition-transform"><i class="fas fa-arrow-up"></i></button>
-
-    <div class="absolute left-1/2 -translate-x-1/2 -top-6 flex items-center gap-1.5 md:gap-3">
-      <div class="relative flex flex-col items-center">
-        <span class="hidden md:inline-block absolute -top-7 whitespace-nowrap bg-primary-900 text-white text-[9px] font-bold px-2.5 py-1 rounded-full shadow-md">WhatsApp</span>
-        <a id="bottomnav-wa-btn" href="https://wa.me/6281515777911" onclick="return toggleWaChat();" title="Chat WhatsApp" class="w-[46px] h-[46px] md:w-14 md:h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-lg border-[3px] md:border-4 border-white flex items-center justify-center transition-transform hover:scale-105 active:scale-95">
-          <i class="fab fa-whatsapp text-xl md:text-2xl"></i>
-        </a>
-      </div>
-      <div class="relative flex flex-col items-center">
-        <span class="hidden md:inline-block absolute -top-7 whitespace-nowrap bg-primary-900 text-white text-[9px] font-bold px-2.5 py-1 rounded-full shadow-md">Chatbot AI</span>
-        <button onclick="toggleChatbot()" title="Tanya Asisten AI" class="w-[46px] h-[46px] md:w-14 md:h-14 rounded-full bg-primary hover:bg-primary-600 text-white shadow-lg border-[3px] md:border-4 border-white flex items-center justify-center transition-transform hover:scale-105 active:scale-95">
-          <i id="chatbot-toggle-icon-mobile" class="fas fa-comment-dots text-xl"></i>
-        </button>
-      </div>
-      <div class="relative flex flex-col items-center">
-        <span class="hidden md:inline-block absolute -top-7 whitespace-nowrap bg-primary-900 text-white text-[9px] font-bold px-2.5 py-1 rounded-full shadow-md">Aksesibilitas</span>
-        <button id="a11y-fab" type="button" title="Aksesibilitas (Alt+A)" aria-label="Buka menu aksesibilitas (Alt+A)" aria-haspopup="dialog" aria-expanded="false" class="w-[46px] h-[46px] md:w-14 md:h-14 rounded-full bg-secondary hover:bg-secondary-400 text-primary shadow-lg border-[3px] md:border-4 border-white flex items-center justify-center transition-transform hover:scale-105 active:scale-95">
-          <svg class="w-6 h-6 md:w-7 md:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><path d="M7 10l5 .8 5-.8M12 10.8V15M9.6 19l2.4-4 2.4 4"/></svg>
-        </button>
-      </div>
-    </div>
-  </div>
+  
+  <a id="floating-wa-btn" href="https://wa.me/6281515777911" class="hidden" aria-hidden="true"></a>
 </div>
 
 <!-- ============================================================ -->
@@ -3610,10 +3615,10 @@ function renderHeroSlider() {
   if (!rows.length) {
     heroSig_ = '';
     if (!wrap.querySelector('.hero-slide')) {
-      wrap.innerHTML = '<div class="hero-slide flex-shrink-0 w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-md bg-primary-900 relative flex items-center justify-center">' +
+      wrap.innerHTML = '<div class="hero-slide flex-shrink-0 w-full aspect-[16/10] rounded-2xl overflow-hidden bg-primary-900 relative flex items-center justify-center">' +
         '<img src="splash-bg.webp" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" alt="Kampus SMPI Yambu\'ul Qur\'an" fetchpriority="high">' +
         '<div class="relative z-10 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-t from-[#062116]/90 via-[#0b3323]/60 to-transparent w-full h-full">' +
-        '<div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/10 p-2.5 backdrop-blur-md border border-white/20 mb-3 shadow-xl">' +
+        '<div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/10 p-2.5 border border-white/20 mb-3">' +
         '<img src="logo.png" alt="Logo SMPI Yambu\'ul Qur\'an" class="w-full h-full object-contain">' +
         '</div>' +
         '<p class="font-arabic text-xl md:text-2xl text-secondary font-bold">&#1610;&#1614;&#1606;&#1576;&#1615;&#1608;&#1593;&#1615; &#1575;&#1604;&#1602;&#1615;&#1585;&#1578;&#1575;&#1606;</p>' +
@@ -3647,7 +3652,7 @@ function renderHeroSlider() {
   // jadi foto bannernya tidak kepotong parah.
   wrap.classList.remove('hero-kosong');
   wrap.innerHTML = semuaGambar.map(function (g, i) {
-    return '<div class="hero-slide flex-shrink-0 w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-md bg-primary-900">' +
+    return '<div class="hero-slide flex-shrink-0 w-full aspect-[16/10] rounded-2xl overflow-hidden bg-primary-900">' +
       '<img src="' + gambarKecil_(g, 1000) + '" width="1280" height="720" decoding="async" ' + (i === 0 ? 'fetchpriority="high"' : (i === 1 ? '' : 'loading="lazy"')) + ' class="w-full h-full object-cover" alt="Banner Sekolah">' +
       '</div>';
   }).join('');
@@ -5565,11 +5570,15 @@ window.addEventListener('scroll', function () {
     if (!bar) return;
     const y = window.pageYOffset || 0;
     const selisih = y - _navScrollTerakhir_;
-    if (y <= 80) {
-      bar.classList.remove('nav-sembunyi-scroll');
-    } else if (Date.now() >= _navAbaikanScrollSampai_ && Math.abs(selisih) >= 8) {
-      const arahAtas = selisih < 0;
-      bar.classList.toggle('nav-sembunyi-scroll', NAV_SEMBUNYI_SAAT_ === 'atas' ? arahAtas : !arahAtas);
+    const btnTop = document.getElementById('btn-scroll-top');
+    if (btnTop) {
+      if (y > 300) {
+        btnTop.classList.remove('opacity-0', 'pointer-events-none');
+        btnTop.classList.add('opacity-100', 'pointer-events-auto');
+      } else {
+        btnTop.classList.add('opacity-0', 'pointer-events-none');
+        btnTop.classList.remove('opacity-100', 'pointer-events-auto');
+      }
     }
     if (Math.abs(selisih) >= 8 || y <= 80) _navScrollTerakhir_ = y;
   });
@@ -5580,8 +5589,9 @@ window.addEventListener('scroll', function () {
 // ---------------------------------------------------------------
 function terapkanModeGelap(aktif) {
   document.body.classList.toggle('mode-gelap', aktif);
-  const icon = document.querySelector('#tombol-mode-gelap i');
-  if (icon) icon.className = aktif ? 'fas fa-sun' : 'fas fa-moon';
+  document.querySelectorAll('[id^="tombol-mode-gelap"] i').forEach(function (icon) {
+    icon.className = aktif ? 'fas fa-sun' : 'fas fa-moon';
+  });
 }
 function toggleModeGelap() {
   const aktif = !document.body.classList.contains('mode-gelap');
