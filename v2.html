@@ -3945,11 +3945,16 @@ function profilIsi(section, fallback) {
 function renderPengaturan() {
   const tlp = cfg('telepon', '0815-1577-7911');
   const email = cfg('email', 'smpiyaqu@gmail.com');
-  document.getElementById('topbar-phone').innerHTML = '<i class="fab fa-whatsapp mr-1.5"></i> ' + tlp;
-  document.getElementById('topbar-email').innerHTML = '<i class="fas fa-envelope mr-1.5"></i> ' + email;
-  document.getElementById('footer-phone').innerHTML = '<i class="fab fa-whatsapp w-4 text-secondary"></i> <span>' + tlp + '</span>';
-  document.getElementById('footer-email').innerHTML = '<i class="fas fa-envelope w-4 text-secondary"></i> <span>' + email + '</span>';
-  document.getElementById('footer-alamat').textContent = cfg('alamat', 'Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri');
+  const elTbPhone = document.getElementById('topbar-phone');
+  if (elTbPhone) elTbPhone.innerHTML = '<i class="fab fa-whatsapp mr-1.5"></i> ' + tlp;
+  const elTbEmail = document.getElementById('topbar-email');
+  if (elTbEmail) elTbEmail.innerHTML = '<i class="fas fa-envelope mr-1.5"></i> ' + email;
+  const elFtPhone = document.getElementById('footer-phone');
+  if (elFtPhone) elFtPhone.innerHTML = '<i class="fab fa-whatsapp w-4 text-secondary"></i> <span>' + tlp + '</span>';
+  const elFtEmail = document.getElementById('footer-email');
+  if (elFtEmail) elFtEmail.innerHTML = '<i class="fas fa-envelope w-4 text-secondary"></i> <span>' + email + '</span>';
+  const elFtAlamat = document.getElementById('footer-alamat');
+  if (elFtAlamat) elFtAlamat.textContent = cfg('alamat', 'Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri');
 
   // Logo navbar: kalau admin sudah upload logo (key "logo" di sheet
   // Pengaturan, lewat panel Admin > Pengaturan), tampilkan fotonya saja
@@ -4003,8 +4008,10 @@ function renderPengaturan() {
   });
   // Tombol DONASI (setelah TikTok) -> buka halaman Donasi (rekening + daftar donatur)
   socialHtml += '<button type="button" onclick="showSection(\'donasi\')" class="dn-topbtn"><i class="fas fa-hand-holding-heart"></i> Donasi</button>';
-  document.getElementById('topbar-social').innerHTML = socialHtml;
-  document.getElementById('footer-social').innerHTML = socialHtml;
+  const elTbSocial = document.getElementById('topbar-social');
+  if (elTbSocial) elTbSocial.innerHTML = socialHtml;
+  const elFtSocial = document.getElementById('footer-social');
+  if (elFtSocial) elFtSocial.innerHTML = socialHtml;
 }
 
 // ---------------------------------------------------------------
