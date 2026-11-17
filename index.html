@@ -923,6 +923,25 @@ body.mode-gelap .border-slate-100, body.mode-gelap .border-slate-200 {
   border: 1px solid var(--theme-border-gold) !important;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
 }
+
+/* Bespoke Dark Elements */
+footer {
+  background: linear-gradient(180deg, #062116 0%, #03140d 100%) !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+footer .text-white {
+  color: #ffffff !important;
+}
+footer a:hover {
+  color: #dfb342 !important;
+}
+.program-card-header {
+  background: linear-gradient(135deg, #062116 0%, #0b3323 100%) !important;
+  color: #ffffff !important;
+}
+.sbt-caption {
+  background: linear-gradient(to top, rgba(6, 33, 22, 0.95) 0%, rgba(6, 33, 22, 0.7) 60%, transparent 100%) !important;
+}
 </style>
 
 <!-- Gaya khusus MODE CMS (?page=cms). Semua selektor diawali html.mode-cms / #cms-gate,
@@ -1343,9 +1362,9 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       </div>
       <div class="card-scholar bg-white overflow-hidden sbt-grid">
         <!-- Panel Hijau Tua: Foto Kepala Sekolah -->
-        <div class="sbt-panel bg-gradient-to-br from-[#062116] via-[#0b3323] to-[#134e35] relative">
+        <div class="sbt-panel bg-primary relative">
           <div id="beranda-kepsek-foto" class="sbt-foto2"><img src="https://placehold.co/400x500/0b3323/dfb342?text=Kepala+Sekolah" class="w-full h-auto block" alt="Kepala Sekolah SMPI Yambu'ul Qur'an"></div>
-          <div class="absolute inset-x-0 bottom-0 px-5 pb-6 pt-24 text-center bg-gradient-to-t from-[#062116] via-[#062116]/85 to-transparent pointer-events-none">
+          <div class="absolute inset-x-0 bottom-0 px-5 pb-6 pt-24 text-center sbt-caption pointer-events-none">
             <p class="text-white font-serif font-bold text-base md:text-lg leading-snug" id="beranda-kepsek-nama">Ust. H. Ahmad Fauzi, Lc., M.Pd.</p>
             <span class="inline-block mt-1.5 text-secondary text-[11px] font-semibold uppercase tracking-wider" id="beranda-kepsek-jabatan">Kepala Sekolah</span>
           </div>
@@ -1392,7 +1411,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <article class="card-scholar bg-white overflow-hidden flex flex-col group">
-            <div class="relative h-28 bg-gradient-to-br from-[#062116] to-[#0b3323] p-5 flex items-center justify-between text-white">
+            <div class="relative h-28 program-card-header p-5 flex items-center justify-between text-white">
               <span class="font-serif font-black text-secondary text-2xl">01</span>
               <div class="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-secondary text-xl">
                 <i class="fas fa-book-quran"></i>
@@ -1416,7 +1435,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
           </article>
 
           <article class="card-scholar bg-white overflow-hidden flex flex-col group">
-            <div class="relative h-28 bg-gradient-to-br from-[#062116] to-[#0b3323] p-5 flex items-center justify-between text-white">
+            <div class="relative h-28 program-card-header p-5 flex items-center justify-between text-white">
               <span class="font-serif font-black text-secondary text-2xl">02</span>
               <div class="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-secondary text-xl">
                 <i class="fas fa-microscope"></i>
@@ -1440,7 +1459,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
           </article>
 
           <article class="card-scholar bg-white overflow-hidden flex flex-col group">
-            <div class="relative h-28 bg-gradient-to-br from-[#062116] to-[#0b3323] p-5 flex items-center justify-between text-white">
+            <div class="relative h-28 program-card-header p-5 flex items-center justify-between text-white">
               <span class="font-serif font-black text-secondary text-2xl">03</span>
               <div class="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-secondary text-xl">
                 <i class="fas fa-language"></i>
@@ -1464,7 +1483,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
           </article>
 
           <article class="card-scholar bg-white overflow-hidden flex flex-col group">
-            <div class="relative h-28 bg-gradient-to-br from-[#062116] to-[#0b3323] p-5 flex items-center justify-between text-white">
+            <div class="relative h-28 program-card-header p-5 flex items-center justify-between text-white">
               <span class="font-serif font-black text-secondary text-2xl">04</span>
               <div class="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-secondary text-xl">
                 <i class="fas fa-mosque"></i>
@@ -1518,14 +1537,14 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     </div>
 
     <!-- Agenda Terkini -->
-    <div class="relative overflow-hidden bg-gradient-to-b from-[#062116] via-[#0b3323] to-[#072418] py-14 md:py-16 text-white border-y border-white/10">
-      <div class="relative max-w-7xl mx-auto px-4 md:px-6">
+    <div class="py-12 md:py-16 border-t border-[var(--theme-border)]">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
         <div class="flex items-end justify-between mb-8">
           <div>
-            <h2 class="font-serif text-2xl md:text-3xl font-black text-white">Agenda &amp; Kalender Kegiatan</h2>
-            <p class="text-xs text-white/70 mt-1.5 font-medium">Jadwal pembinaan, ujian, dan kegiatan akademik santri SMPI Yambu'ul Qur'an</p>
+            <h2 class="font-serif text-2xl md:text-3xl font-black text-primary">Agenda &amp; Kalender Kegiatan</h2>
+            <p class="text-xs md:text-sm text-slate-500 mt-1 font-medium">Jadwal pembinaan, ujian, dan kegiatan akademik santri SMPI Yambu'ul Qur'an</p>
           </div>
-          <button onclick="showSection('kegiatan')" class="hidden md:block text-secondary hover:text-secondary-400 font-bold text-xs uppercase tracking-wider transition-colors">Kalender Lengkap &rarr;</button>
+          <button onclick="showSection('kegiatan')" class="hidden md:block text-primary hover:text-secondary-600 font-bold text-xs uppercase tracking-wider transition-colors">Kalender Lengkap &rarr;</button>
         </div>
         <div id="beranda-kegiatan-grid" class="max-w-4xl mx-auto"></div>
       </div>
@@ -1552,21 +1571,21 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     </div>
 
     <!-- Dewan Asatidz & Guru -->
-    <div class="relative overflow-hidden bg-gradient-to-b from-[#0b3323] to-[#062116] py-14 md:py-16 text-white border-y border-white/10">
-      <div class="relative max-w-7xl mx-auto px-4 md:px-6">
+    <div class="py-12 md:py-16 border-t border-[var(--theme-border)]">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
         <div class="flex items-end justify-between mb-8">
           <div>
-            <h2 class="font-serif text-2xl md:text-3xl font-black text-white">Dewan Asatidz &amp; Tenaga Pendidik</h2>
-            <p class="text-xs text-white/70 mt-1.5 font-medium">Para pendidik berdedikasi membimbing dan mengasuh santri dengan keteladanan</p>
+            <h2 class="font-serif text-2xl md:text-3xl font-black text-primary">Dewan Asatidz &amp; Tenaga Pendidik</h2>
+            <p class="text-xs md:text-sm text-slate-500 mt-1 font-medium">Para pendidik berdedikasi membimbing dan mengasuh santri dengan keteladanan</p>
           </div>
-          <button onclick="showSection('guru')" class="hidden md:block text-secondary hover:text-secondary-400 font-bold text-xs uppercase tracking-wider transition-colors">Profil Dewan Guru &rarr;</button>
+          <button onclick="showSection('guru')" class="hidden md:block text-primary hover:text-secondary-600 font-bold text-xs uppercase tracking-wider transition-colors">Profil Dewan Guru &rarr;</button>
         </div>
         <div class="relative">
-          <button onclick="geserGuru(-1)" aria-label="Geser ke kiri" class="hidden md:flex items-center justify-center absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white text-primary shadow-lg hover:bg-secondary hover:text-white transition-colors">
+          <button onclick="geserGuru(-1)" aria-label="Geser ke kiri" class="hidden md:flex items-center justify-center absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white text-primary shadow-lg hover:bg-secondary hover:text-primary transition-colors">
             <i class="fas fa-chevron-left text-sm"></i>
           </button>
           <div id="beranda-guru-grid" class="flex gap-4 md:gap-5 overflow-x-auto pb-3 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"></div>
-          <button onclick="geserGuru(1)" aria-label="Geser ke kanan" class="hidden md:flex items-center justify-center absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white text-primary shadow-lg hover:bg-secondary hover:text-white transition-colors">
+          <button onclick="geserGuru(1)" aria-label="Geser ke kanan" class="hidden md:flex items-center justify-center absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white text-primary shadow-lg hover:bg-secondary hover:text-primary transition-colors">
             <i class="fas fa-chevron-right text-sm"></i>
           </button>
         </div>
@@ -1644,14 +1663,14 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     </div>
 
     <!-- Fasilitas Kampus -->
-    <div id="beranda-fasilitas" class="bg-gradient-to-b from-[#062116] to-[#0b3323] py-12 md:py-16 text-white border-y border-white/10 scroll-mt-24">
+    <div id="beranda-fasilitas" class="py-12 md:py-16 border-t border-[var(--theme-border)] scroll-mt-24">
       <div class="max-w-7xl mx-auto px-4 md:px-6">
         <div class="flex items-end justify-between mb-8">
           <div>
-            <h2 class="font-serif text-2xl md:text-3xl font-black text-white">Fasilitas Penunjang Pendidikan</h2>
-            <p class="text-xs md:text-sm text-white/70 mt-1 font-medium">Sarana prasarana modern untuk kenyamanan ibadah dan belajar para santri</p>
+            <h2 class="font-serif text-2xl md:text-3xl font-black text-primary">Fasilitas Penunjang Pendidikan</h2>
+            <p class="text-xs md:text-sm text-slate-500 mt-1 font-medium">Sarana prasarana modern untuk kenyamanan ibadah dan belajar para santri</p>
           </div>
-          <button onclick="showSection('fasilitas')" class="hidden md:block text-secondary hover:text-secondary-400 font-bold text-xs uppercase tracking-wider transition-colors">Detail Sarana &rarr;</button>
+          <button onclick="showSection('fasilitas')" class="hidden md:block text-primary hover:text-secondary-600 font-bold text-xs uppercase tracking-wider transition-colors">Detail Sarana &rarr;</button>
         </div>
         <div class="relative">
           <div id="beranda-fasilitas-grid" class="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"></div>
@@ -3902,7 +3921,7 @@ function renderFasilitas() {
       fotoSliderHtml(f.foto, 'w-full h-full object-cover group-hover:scale-105 transition-transform', 'https://placehold.co/400x300/0b3323/dfb342?text=Fasilitas') +
       '<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none"></div>' +
       '<div class="absolute bottom-0 left-0 right-0 p-4 pointer-events-none"><p class="text-white font-black text-xs uppercase tracking-wide">' + (f.nama_fasilitas || '-') + '</p></div></div>';
-  }).join('') || '<div class="col-span-full text-center py-8 text-white/50 text-xs font-semibold">Belum ada data fasilitas. Buat sheet "Fasilitas" (kolom: nama_fasilitas, deskripsi, foto) di spreadsheet.</div>';
+  }).join('') || '<div class="col-span-full text-center py-8 text-slate-400 text-xs font-semibold">Belum ada data fasilitas. Buat sheet "Fasilitas" (kolom: nama_fasilitas, deskripsi, foto) di spreadsheet.</div>';
 
   document.getElementById('fasilitas-full-grid').innerHTML = rows.map(function (f) {
     return '<div class="bg-white rounded-2xl shadow-md overflow-hidden group">' +
@@ -4265,18 +4284,18 @@ function renderKegiatan() {
     return '<div class="flex gap-3 md:gap-5' + (lewat ? ' opacity-60' : '') + '">' +
       // kolom tanggal
       '<div class="w-12 md:w-16 flex-shrink-0 text-right pt-0.5">' +
-      '<div class="text-2xl md:text-3xl font-black leading-none text-white">' + hari + '</div>' +
-      '<div class="text-[10px] md:text-xs font-black tracking-widest text-secondary mt-1">' + bulan + '</div>' +
-      '<div class="text-[9px] text-white/50 font-semibold">' + tahun + '</div></div>' +
+      '<div class="text-2xl md:text-3xl font-black leading-none text-primary">' + hari + '</div>' +
+      '<div class="text-[10px] md:text-xs font-black tracking-widest text-secondary-600 mt-1">' + bulan + '</div>' +
+      '<div class="text-[9px] text-slate-400 font-semibold">' + tahun + '</div></div>' +
       // garis + titik
       '<div class="flex flex-col items-center flex-shrink-0">' +
       '<span class="relative flex w-4 h-4 mt-1">' +
       (pertama ? '<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-60"></span>' : '') +
-      '<span class="relative inline-flex w-4 h-4 rounded-full ' + (lewat ? 'bg-white/40' : 'bg-secondary') + ' ring-4 ring-primary"></span></span>' +
-      (terakhir ? '' : '<span class="flex-1 w-0.5 bg-white/20 mt-1"></span>') + '</div>' +
+      '<span class="relative inline-flex w-4 h-4 rounded-full ' + (lewat ? 'bg-slate-300' : 'bg-secondary') + ' ring-4 ring-white shadow-sm"></span></span>' +
+      (terakhir ? '' : '<span class="flex-1 w-0.5 bg-slate-200 mt-1"></span>') + '</div>' +
       // kartu
       '<div class="flex-1 min-w-0' + (terakhir ? '' : ' pb-5') + '">' +
-      '<div onclick="bukaDetailUmum(\'kegiatan\',' + k._rowId + ')" class="bg-white rounded-2xl shadow-sm p-4 md:p-5 cursor-pointer hover:shadow-xl hover:-translate-y-0.5 transition-all">' +
+      '<div onclick="bukaDetailUmum(\'kegiatan\',' + k._rowId + ')" class="bg-white rounded-2xl shadow-sm border border-[var(--theme-border)] p-4 md:p-5 cursor-pointer hover:shadow-xl hover:-translate-y-0.5 transition-all">' +
       '<div class="flex flex-wrap items-center gap-2 mb-2">' +
       (k.kategori ? '<span class="text-[10px] font-black text-secondary-600 bg-secondary/10 uppercase tracking-widest px-2.5 py-1 rounded-full">' + k.kategori + '</span>' : '') +
       (label ? '<span class="text-[10px] font-bold ' + (pertama ? 'text-white bg-primary' : 'text-slate-500 bg-slate-100') + ' px-2.5 py-1 rounded-full">' + (pertama ? '<i class="fas fa-bell mr-1"></i>' : '') + label + '</span>' : '') +
@@ -4290,7 +4309,7 @@ function renderKegiatan() {
   }).join('');
 
   document.getElementById('beranda-kegiatan-grid').innerHTML = (kotakTimeline
-    ? kotakTimeline + '<div class="text-center mt-6"><button onclick="showSection(\'kegiatan\')" class="inline-flex items-center gap-2 bg-secondary text-primary-900 font-black text-xs uppercase tracking-widest px-6 py-3 rounded-full hover:bg-white transition-colors">Lihat Semua Agenda <i class="fas fa-arrow-right"></i></button></div>'
+    ? kotakTimeline + '<div class="text-center mt-6"><button onclick="showSection(\'kegiatan\')" class="inline-flex items-center gap-2 bg-primary text-white font-bold text-xs uppercase tracking-widest px-7 py-3 rounded-full hover:bg-secondary hover:text-primary transition-all shadow-md">Lihat Semua Agenda <i class="fas fa-arrow-right"></i></button></div>'
     : emptyState('Belum ada agenda yang diunggah.'));
 
   // Isi dropdown kategori di halaman Agenda penuh dari kategori yang benar-benar ada.
