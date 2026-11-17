@@ -698,6 +698,80 @@ body.mode-gelap .ju-stop .ju-card.aktif{border-color:#b7860b}
   min-height: 260px;
 }
 
+/* Hero Layout Grid (Mobile 1-column, Desktop 7fr 5fr split) */
+.hero-layout-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 2rem !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+@media (min-width: 1024px) {
+  .hero-layout-grid {
+    grid-template-columns: 7fr 5fr !important;
+    gap: 3rem !important;
+    align-items: center !important;
+  }
+}
+.hero-layout-grid > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* Hero CTA Button Pair (Side-by-side on mobile, flex on desktop) */
+.hero-cta-group {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0.625rem !important;
+  margin-top: 1.75rem !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+@media (min-width: 640px) {
+  .hero-cta-group {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 0.875rem !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+}
+.hero-cta-group > button {
+  min-width: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 0.75rem 0.5rem !important;
+  letter-spacing: 0.02em !important;
+}
+@media (min-width: 640px) {
+  .hero-cta-group > button {
+    width: auto !important;
+    padding: 0.875rem 1.5rem !important;
+    letter-spacing: 0.05em !important;
+  }
+}
+.hero-cta-desktop-text {
+  display: none !important;
+}
+.hero-cta-mobile-text {
+  display: inline-block !important;
+}
+@media (min-width: 640px) {
+  .hero-cta-desktop-text {
+    display: inline-block !important;
+  }
+  .hero-cta-mobile-text {
+    display: none !important;
+  }
+}
+
 /* Trust Metrics Micro-Cards (Generous padding & spacing) */
 .hero-trust-metrics {
   display: grid !important;
@@ -1326,9 +1400,9 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     <!-- BESPOKE EDITORIAL SPLIT HERO -->
     <div class="relative bg-gradient-to-b from-[#0b3323] via-[#08281b] to-[#051c13] text-white pt-10 pb-16 md:pt-14 md:pb-20 border-b border-white/10 overflow-hidden" id="hero-slider">
       <div class="relative max-w-7xl mx-auto px-4 md:px-6">
-        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div class="hero-layout-grid items-center">
           <!-- Left Column: Monumental Editorial Identity & Value Proposition -->
-          <div class="lg:col-span-7 flex flex-col justify-center min-w-0 max-w-full">
+          <div class="flex flex-col justify-center min-w-0 max-w-full">
             <h1 class="font-serif text-2xl sm:text-4xl lg:text-5xl font-black text-white leading-[1.15] tracking-tight">
               Mendidik Generasi Qur'ani, Berakhlak Mulia &amp; Berwawasan Global
             </h1>
@@ -1336,13 +1410,15 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
               SMPI Yambu'ul Qur'an memadukan kurikulum nasional berkualitas unggul dengan bimbingan tahfidzul Qur'an intensif, adab islami santri, serta penguasaan literasi sains dan teknologi di Plosoklaten, Kabupaten Kediri.
             </p>
 
-            <div class="flex flex-wrap items-center gap-3.5 mt-7">
-              <button onclick="klikPendaftaran()" class="px-6 py-3.5 rounded-full bg-secondary hover:bg-secondary-400 text-primary-900 font-extrabold text-xs uppercase tracking-wider shadow-lg hover:shadow-xl transition-all flex items-center gap-2">
-                <i class="fas fa-file-signature text-sm"></i>
-                <span>Pendaftaran Santri Baru (PPDB)</span>
+            <div class="hero-cta-group">
+              <button onclick="klikPendaftaran()" class="rounded-full bg-secondary hover:bg-secondary-400 text-primary-900 font-extrabold text-[11px] sm:text-xs uppercase tracking-normal sm:tracking-wider shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-1.5 sm:gap-2">
+                <i class="fas fa-file-signature text-xs sm:text-sm flex-shrink-0"></i>
+                <span class="hero-cta-desktop-text">Pendaftaran Santri Baru (PPDB)</span>
+                <span class="hero-cta-mobile-text truncate">Daftar PPDB</span>
               </button>
-              <button onclick="showSection('program')" class="px-6 py-3.5 rounded-full border border-white/20 hover:bg-white/10 text-white font-bold text-xs uppercase tracking-wider transition-all">
-                Kurikulum &amp; Program Unggulan &rarr;
+              <button onclick="showSection('program')" class="rounded-full border border-white/20 hover:bg-white/10 text-white font-bold text-[11px] sm:text-xs uppercase tracking-normal sm:tracking-wider transition-all flex items-center justify-center">
+                <span class="hero-cta-desktop-text">Kurikulum &amp; Program Unggulan &rarr;</span>
+                <span class="hero-cta-mobile-text truncate">Program Unggulan &rarr;</span>
               </button>
             </div>
 
@@ -1368,7 +1444,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
           </div>
 
           <!-- Right Column: Campus Lens Framed Carousel -->
-          <div class="lg:col-span-5">
+          <div>
             <div class="relative rounded-3xl p-2 sm:p-2.5 bg-white/5 border border-white/15 shadow-2xl backdrop-blur-md">
               <div class="overflow-hidden rounded-2xl aspect-[16/10] bg-primary-900" id="hero-viewport">
                 <!-- slide banner dirender oleh JS (renderHeroSlider) ke sini, dari sheet HeroBanner -->
