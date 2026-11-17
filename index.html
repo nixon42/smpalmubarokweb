@@ -4246,6 +4246,14 @@ function parseTanggalArtikel_(str) {
   return isNaN(fallback.getTime()) ? null : fallback;
 }
 
+function formatTanggalIndo_(str) {
+  if (!str) return '';
+  const d = parseTanggalArtikel_(str);
+  if (!d) return String(str).slice(0, 10);
+  const bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+  return d.getDate() + ' ' + bulan[d.getMonth()] + ' ' + d.getFullYear();
+}
+
 // ---------------------------------------------------------------
 // RENDER: ARTIKEL
 // ---------------------------------------------------------------
@@ -4261,7 +4269,7 @@ function renderArtikel() {
   const cardHtml = function (a, extraClass) {
     return '<div onclick="openArtikelDetail(' + a._rowId + ')" class="bg-white rounded-2xl shadow-sm overflow-hidden cursor-pointer hover:shadow-lg transition-shadow group ' + (extraClass || '') + '">' +
       fotoSliderHtml(a.gambar, 'w-full h-40 object-cover', 'https://placehold.co/400x250/1f287d/e7b10a?text=Artikel') +
-      '<div class="p-5"><p class="text-[10px] text-secondary-600 font-bold uppercase tracking-widest">' + (a.kategori || 'Artikel') + ' &middot; ' + (a.tanggal || '') + '</p>' +
+      '<div class="p-5"><p class="text-[10px] text-secondary-600 font-bold uppercase tracking-widest">' + (a.kategori || 'Artikel') + ' &middot; ' + formatTanggalIndo_(a.tanggal) + '</p>' +
       '<p class="font-black text-primary text-sm mt-1 mb-2 line-clamp-2">' + (a.judul || '-') + '</p>' +
       '<p class="text-xs text-slate-500 leading-relaxed line-clamp-2">' + (a.ringkasan || (a.konten || '').toString().slice(0, 100)) + '</p>' +
       '<div class="flex items-center justify-between gap-3 mt-3 pt-3 border-t border-slate-100">' +
@@ -4335,7 +4343,7 @@ function openArtikelDetail(rowId) {
   currentArtikelRowId_ = rowId;
   sukaAktifArtikel_ = false;
   document.getElementById('artikel-detail-content').innerHTML =
-    '<p class="text-xs md:text-sm text-secondary-600 font-bold uppercase tracking-widest">' + (a.kategori || 'Artikel') + ' &middot; ' + (a.tanggal || '') + '</p>' +
+    '<p class="text-xs md:text-sm text-secondary-600 font-bold uppercase tracking-widest">' + (a.kategori || 'Artikel') + ' &middot; ' + formatTanggalIndo_(a.tanggal) + '</p>' +
     ((a.penulis || '').toString().trim() ? '<p class="text-xs md:text-sm text-slate-500 font-semibold mt-1"><i class="fas fa-user-pen mr-1.5"></i>Penulis: ' + (a.penulis || '').toString().trim() + '</p>' : '') +
     '<h1 class="text-3xl md:text-4xl font-black text-primary mt-3 mb-5 leading-tight">' + (a.judul || '-') + '</h1>' +
     '<div class="group">' + fotoSliderHtml(a.gambar, 'w-full rounded-2xl mb-6', 'https://placehold.co/800x400/1f287d/e7b10a?text=Artikel') + '</div>' +
