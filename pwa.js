@@ -37,7 +37,7 @@
   var css = document.createElement('style');
   css.textContent =
     '#pwa-banner{position:fixed;left:50%;bottom:176px;transform:translate(-50%,16px);width:94%;max-width:440px;z-index:9997;' +
-    'display:none;align-items:center;gap:12px;background:#1f287d;color:#fff;border-radius:20px;padding:12px 14px;' +
+    'display:none;align-items:center;gap:12px;background:#0b3323;color:#fff;border-radius:20px;padding:12px 14px;' +
     'box-shadow:0 12px 32px rgba(15,23,42,.35);opacity:0;transition:opacity .25s ease,transform .25s ease;font-family:inherit}' +
     '#pwa-banner.tampil{display:flex;opacity:1;transform:translate(-50%,0)}' +
     '#pwa-banner img{width:44px;height:44px;border-radius:12px;background:#fff;object-fit:contain;padding:3px;flex-shrink:0}' +
@@ -45,12 +45,12 @@
     '#pwa-banner .pwa-judul{font-weight:800;font-size:13px}' +
     '#pwa-banner .pwa-sub{font-size:11px;opacity:.8;margin-top:2px}' +
     '#pwa-banner button{border:0;cursor:pointer;font-family:inherit}' +
-    '#pwa-banner .pwa-pasang{background:#fff;color:#1f287d;font-weight:800;font-size:12px;border-radius:999px;padding:9px 16px;flex-shrink:0}' +
+    '#pwa-banner .pwa-pasang{background:#fff;color:#0b3323;font-weight:800;font-size:12px;border-radius:999px;padding:9px 16px;flex-shrink:0}' +
     '#pwa-banner .pwa-tutup{background:transparent;color:#fff;opacity:.7;font-size:22px;line-height:1;padding:4px 6px;flex-shrink:0}' +
     '.pwa-tombol-footer{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:rgba(255,255,255,.12);' +
     'color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:9px 18px;font-size:12px;font-weight:700;cursor:pointer}' +
     '.pwa-tombol-footer:hover{background:rgba(255,255,255,.22)}' +
-    '.pwa-topbtn{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:9px;border:0;background:#fff;color:#1f287d;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;font-family:inherit;transition:transform .15s}' +
+    '.pwa-topbtn{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:9px;border:0;background:#fff;color:#0b3323;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;font-family:inherit;transition:transform .15s}' +
     '.pwa-topbtn:hover{transform:scale(1.06)}' +
     '.pwa-hdrbtn{display:none;align-items:center;gap:6px;height:32px;padding:0 12px;margin-left:auto;margin-right:14px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.15);color:#fff;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit;flex-shrink:0}' +
     '@media (max-width:767px){.pwa-hdrbtn{display:inline-flex}}' +
@@ -93,12 +93,12 @@
       '<li>Ketuk tombol <b>Bagikan</b> (ikon kotak dengan panah ke atas) di bagian bawah layar.</li>' +
       '<li>Gulir, pilih <b>Tambah ke Layar Utama</b>.</li>' +
       '<li>Ketuk <b>Tambah</b>.</li></ol></div>';
-    if (window.Swal) Swal.fire({ title: 'Pasang Aplikasi', html: html, confirmButtonText: 'Mengerti', confirmButtonColor: '#1f287d' });
+    if (window.Swal) Swal.fire({ title: 'Pasang Aplikasi', html: html, confirmButtonText: 'Mengerti', confirmButtonColor: '#0b3323' });
     else alert('Di Safari: ketuk tombol Bagikan, lalu pilih "Tambah ke Layar Utama".');
   }
   function petunjukUmum() {
     var teks = 'Buka menu browser (titik tiga di kanan atas), lalu pilih "Pasang aplikasi" atau "Tambahkan ke Layar utama".';
-    if (window.Swal) Swal.fire({ title: 'Pasang Aplikasi', text: teks, confirmButtonText: 'Mengerti', confirmButtonColor: '#1f287d' });
+    if (window.Swal) Swal.fire({ title: 'Pasang Aplikasi', text: teks, confirmButtonText: 'Mengerti', confirmButtonColor: '#0b3323' });
     else alert(teks);
   }
 
