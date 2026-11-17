@@ -3785,12 +3785,12 @@ function iconUntukStatistik(label) {
 }
 
 const APLIKASI_WARNA_ = [
-  { g: 'from-[#0b3323] to-[#134e35]',  t: 'text-primary' },
-  { g: 'from-[#062116] to-[#0d3d29]',  t: 'text-primary-700' },
-  { g: 'from-[#c39328] to-[#987118]',  t: 'text-secondary-700' },
-  { g: 'from-[#0b3323] to-[#062116]',  t: 'text-primary' },
-  { g: 'from-[#059669] to-[#047857]',  t: 'text-emerald-700' },
-  { g: 'from-[#b45309] to-[#92400e]',  t: 'text-amber-800' }
+  { g: 'linear-gradient(135deg, #0b3323 0%, #1a563c 100%)',  t: '#0b3323' },
+  { g: 'linear-gradient(135deg, #062116 0%, #0d3d29 100%)',  t: '#062116' },
+  { g: 'linear-gradient(135deg, #c39328 0%, #987118 100%)',  t: '#c39328' },
+  { g: 'linear-gradient(135deg, #0b3323 0%, #062116 100%)',  t: '#0b3323' },
+  { g: 'linear-gradient(135deg, #059669 0%, #047857 100%)',  t: '#059669' },
+  { g: 'linear-gradient(135deg, #b45309 0%, #92400e 100%)',  t: '#b45309' }
 ];
 // Ikon dipilih otomatis dari kata kunci nama aplikasi, admin cukup isi nama & link
 function iconUntukAplikasi(nama) {
@@ -3869,16 +3869,16 @@ function renderMenuAplikasi() {
     const ikon = iconUntukAplikasi(m.nama_menu);
     const desk = (m.deskripsi || '').toString().replace(/\s+/g, ' ').trim();
     return '<' + tag + ' ' + attrLink + ' class="group relative flex flex-col bg-white rounded-2xl md:rounded-3xl border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 cursor-pointer overflow-hidden text-left">' +
-      '<div class="h-1.5 bg-gradient-to-r ' + w.g + '"></div>' +
-      '<i class="' + ikon + ' absolute -top-3 -right-3 text-[96px] ' + w.t + ' opacity-[0.07] rotate-12 pointer-events-none group-hover:opacity-[0.13] group-hover:scale-110 transition-all duration-500"></i>' +
+      '<div class="h-1.5" style="background:' + w.g + '"></div>' +
+      '<i class="' + ikon + ' absolute -top-3 -right-3 text-[96px] opacity-[0.08] rotate-12 pointer-events-none group-hover:opacity-[0.14] group-hover:scale-110 transition-all duration-500" style="color:' + w.t + '"></i>' +
       '<div class="relative flex flex-col flex-1 p-4 md:p-5">' +
         '<div class="flex items-start justify-between">' +
-          '<div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ' + w.g + ' flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300"><i class="' + ikon + ' text-white text-xl md:text-2xl"></i></div>' +
+          '<div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300" style="background:' + w.g + '"><i class="' + ikon + ' text-white text-xl md:text-2xl"></i></div>' +
           '<span class="text-[11px] font-black text-slate-300 tracking-widest">' + (i + 1 < 10 ? '0' : '') + (i + 1) + '</span>' +
         '</div>' +
         '<h3 class="font-black text-primary text-[11px] md:text-xs uppercase tracking-wide leading-snug mt-4 line-clamp-2">' + _ak(m.nama_menu || '-') + '</h3>' +
         (desk ? '<p class="hidden sm:block text-[11px] text-slate-500 leading-relaxed mt-1.5 line-clamp-2">' + _ak(desk) + '</p>' : '') +
-        '<span class="mt-auto pt-3 inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest ' + (link ? w.t : 'text-slate-400') + '">' + (link ? 'Buka <i class="fas fa-arrow-right text-[9px] group-hover:translate-x-1 transition-transform"></i>' : '<i class="fas fa-hourglass-half"></i> Segera') + '</span>' +
+        '<span class="mt-auto pt-3 inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest" style="color:' + (link ? w.t : '#94a3b8') + '">' + (link ? 'Buka <i class="fas fa-arrow-right text-[9px] group-hover:translate-x-1 transition-transform"></i>' : '<i class="fas fa-hourglass-half"></i> Segera') + '</span>' +
       '</div></' + tag + '>';
   }).join('');
 }
@@ -3910,11 +3910,11 @@ function renderAplikasiFull_() {
       ? '<a href="' + _ak(link) + '" target="_blank" rel="noopener" class="mt-6 inline-flex items-center justify-between gap-3 bg-primary hover:bg-secondary text-white hover:text-primary rounded-2xl pl-5 pr-2 py-2 text-xs font-black uppercase tracking-widest transition-colors duration-300">Buka Aplikasi <span class="w-8 h-8 rounded-xl bg-white/15 group-hover:bg-white/60 flex items-center justify-center transition-colors"><i class="fas fa-arrow-up-right-from-square text-[11px]"></i></span></a>'
       : '<span class="mt-6 inline-flex items-center justify-center gap-2 bg-slate-100 text-slate-400 rounded-2xl py-3.5 text-xs font-black uppercase tracking-widest"><i class="fas fa-hourglass-half"></i> Segera Hadir</span>';
     return '<article class="group relative flex flex-col bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">' +
-      '<div class="h-1.5 bg-gradient-to-r ' + w.g + '"></div>' +
-      '<i class="' + ikon + ' absolute -top-3 -right-3 text-[120px] ' + w.t + ' opacity-[0.07] rotate-12 pointer-events-none group-hover:opacity-[0.12] group-hover:scale-110 transition-all duration-500"></i>' +
+      '<div class="h-1.5" style="background:' + w.g + '"></div>' +
+      '<i class="' + ikon + ' absolute -top-3 -right-3 text-[120px] opacity-[0.08] rotate-12 pointer-events-none group-hover:opacity-[0.14] group-hover:scale-110 transition-all duration-500" style="color:' + w.t + '"></i>' +
       '<div class="relative flex flex-col flex-1 p-6">' +
         '<div class="flex items-start justify-between">' +
-          '<div class="w-16 h-16 rounded-2xl bg-gradient-to-br ' + w.g + ' flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300"><i class="' + ikon + ' text-white text-2xl"></i></div>' +
+          '<div class="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300" style="background:' + w.g + '"><i class="' + ikon + ' text-white text-2xl"></i></div>' +
           '<span class="text-xs font-black text-slate-300 tracking-widest">' + nomor + '</span>' +
         '</div>' +
         '<h3 class="font-black text-primary text-base uppercase tracking-wide leading-tight mt-5">' + _ak(m.nama_menu || '-') + '</h3>' +
