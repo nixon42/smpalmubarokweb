@@ -1,4 +1,4 @@
-/* Service Worker SMP IT Al Mubarok
+/* Service Worker SMPI Yambu'ul Qur'an
  * - Halaman (navigasi): jaringan dulu, kalau offline pakai salinan terakhir / offline.html
  * - Aset statis satu domain (gambar, css, font): tampil cepat dari cache lalu diperbarui diam-diam
  * - Permintaan data ke Apps Script (script.google.com) TIDAK pernah disentuh -> data selalu terbaru

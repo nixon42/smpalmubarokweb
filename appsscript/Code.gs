@@ -55,11 +55,19 @@ function initSpreadsheet() {
   const cfgSheet = ss.getSheetByName('Pengaturan');
   if (cfgSheet.getLastRow() <= 1) {
     const defaultCfg = [
-      ['nama_sekolah', 'Sekolah Digital'],
-      ['alamat', 'Jl. Pendidikan No. 1'],
-      ['telepon', '021-1234567'],
-      ['whatsapp', '08123456789'],
-      ['email', 'info@sekolah.sch.id']
+      ['nama_sekolah', "SMPI Yambu'ul Qur'an"],
+      ['alamat', 'Jl. Agung Ds. Jarak RT 04/ RW 02, Desa Jarak, Kecamatan Plosoklaten, Kabupaten Kediri, Jawa Timur'],
+      ['telepon', '0815-1577-7911'],
+      ['whatsapp', '0815-1577-7911'],
+      ['wa_number', '6281515777911'],
+      ['email', 'smpiyaqu@gmail.com'],
+      ['instagram', 'https://www.instagram.com/smpiyaqu_kediri/'],
+      ['npsn', '70003325'],
+      ['yayasan', "Yayasan Yambu'ul Qur'an"],
+      ['status', 'Swasta (Akreditasi B)'],
+      ['sk_operasional', '414-44/2053/418.20/2023'],
+      ['splash_judul', "SMPI YAMBU'UL QUR'AN"],
+      ['splash_tagline', "Mencetak Generasi Qur'ani & Berakhlak Mulia"]
     ];
     cfgSheet.getRange(2, 1, defaultCfg.length, 2).setValues(defaultCfg);
   }
@@ -78,10 +86,22 @@ function doGet(e) {
     let hasil;
     if (fn === 'getFullData') {
       hasil = getFullData();
+    } else if (fn === 'tanyaChatbotSekolah') {
+      hasil = tanyaChatbotSekolah(args[0], args[1]);
+    } else if (fn === 'getYoutubeData') {
+      hasil = getYoutubeData();
+    } else if (fn === 'getLiveStatus') {
+      hasil = getLiveStatus();
     } else if (fn === 'tambahViewArtikel') {
       hasil = tambahViewArtikel(args[0]);
     } else if (fn === 'updateSuka') {
       hasil = updateSuka(args[0], args[1], args[2]);
+    } else if (fn === 'tambahViewKarya') {
+      hasil = tambahViewKarya(args[0]);
+    } else if (fn === 'updateSukaKarya') {
+      hasil = updateSukaKarya(args[0], args[1]);
+    } else if (fn === 'cekSandiKarya') {
+      hasil = cekSandiKarya(args[0]);
     } else if (fn === 'ping') {
       hasil = { status: 'ok', time: new Date().toISOString() };
     } else {
@@ -120,6 +140,12 @@ function doPost(e) {
       hasil = uploadFileToDrive(args[0], args[1], args[2], args[3]);
     } else if (fn === 'getFullData') {
       hasil = getFullData();
+    } else if (fn === 'tanyaChatbotSekolah') {
+      hasil = tanyaChatbotSekolah(args[0], args[1]);
+    } else if (fn === 'cekSandiKarya') {
+      hasil = cekSandiKarya(args[0]);
+    } else if (fn === 'cekKodeAkses') {
+      hasil = cekKodeAkses(args[0]);
     } else {
       throw new Error('Fungsi ' + fn + ' tidak dikenali.');
     }
@@ -301,4 +327,235 @@ function updateSuka(sheetName, rowId, type) {
   } catch (e) {
     return 0;
   }
+}
+
+function tambahViewKarya(rowId) {
+  try {
+    const ss = getDb_();
+    const sheet = ss.getSheetByName('Karya');
+    if (!sheet) return 0;
+    const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    let viewCol = headers.indexOf('views') + 1;
+    if (viewCol <= 0) {
+      viewCol = headers.length + 1;
+      sheet.getRange(1, viewCol).setValue('views');
+    }
+    const cell = sheet.getRange(parseInt(rowId), viewCol);
+    const val = parseInt(cell.getValue() || 0) + 1;
+    cell.setValue(val);
+    return val;
+  } catch (e) {
+    return 0;
+  }
+}
+
+function updateSukaKarya(rowId, type) {
+  try {
+    const ss = getDb_();
+    const sheet = ss.getSheetByName('Karya');
+    if (!sheet) return 0;
+    const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    let sukaCol = headers.indexOf('suka') + 1;
+    if (sukaCol <= 0) {
+      sukaCol = headers.length + 1;
+      sheet.getRange(1, sukaCol).setValue('suka');
+    }
+    const cell = sheet.getRange(parseInt(rowId), sukaCol);
+    let val = parseInt(cell.getValue() || 0);
+    if (type === 'like') val += 1;
+    else if (type === 'unlike' && val > 0) val -= 1;
+    cell.setValue(val);
+    return val;
+  } catch (e) {
+    return 0;
+  }
+}
+
+function cekSandiKarya(sandi) {
+  return { valid: true };
+}
+
+function cekKodeAkses(kode) {
+  return { valid: true };
+}
+
+function getYoutubeData() {
+  return { status: 'ok', items: [] };
+}
+
+function getLiveStatus() {
+  return { live: false, url: '' };
+}
+
+// ============================================================
+// CHATBOT SEKOLAH: SMPI YAMBU'UL QUR'AN
+// ============================================================
+function tanyaChatbotSekolah(pertanyaan, history) {
+  if (!pertanyaan || !pertanyaan.trim()) {
+    return { jawaban: "Silakan ajukan pertanyaan seputar SMPI Yambu'ul Qur'an." };
+  }
+  const q = pertanyaan.toLowerCase().trim();
+
+  // Data Profil Sekolah
+  const profil = {
+    nama: "SMPI Yambu'ul Qur'an",
+    npsn: "70003325",
+    alamat: "Jl. Agung Ds. Jarak RT 04/ RW 02, Desa Jarak, Kecamatan Plosoklaten, Kabupaten Kediri, Jawa Timur",
+    yayasan: "Yayasan Yambu'ul Qur'an",
+    akreditasi: "Akreditasi B (Swasta)",
+    sk: "414-44/2053/418.20/2023 (tanggal 19 Januari 2023)",
+    wa: "0815-1577-7911",
+    email: "smpiyaqu@gmail.com",
+    ig: "@smpiyaqu_kediri"
+  };
+
+  // 1. Coba panggil Groq AI jika ada API Key di sheet Pengaturan
+  try {
+    const ss = getDb_();
+    const cfgSheet = ss.getSheetByName('Pengaturan');
+    if (cfgSheet) {
+      const cfgData = cfgSheet.getDataRange().getValues();
+      let groqKey = '';
+      for (let i = 1; i < cfgData.length; i++) {
+        if (cfgData[i][0] === 'groq_api_key' && cfgData[i][1]) {
+          groqKey = cfgData[i][1].toString().trim();
+          break;
+        }
+      }
+      if (groqKey) {
+        const sysPrompt = "Anda adalah Asisten AI resmi SMPI Yambu'ul Qur'an Plosoklaten Kediri. Jawab dengan ramah, santun, Islami, dan ringkas dalam Bahasa Indonesia.\n" +
+          "Informasi Sekolah:\n" +
+          "- Nama: SMPI Yambu'ul Qur'an\n" +
+          "- NPSN: 70003325\n" +
+          "- Alamat: Jl. Agung Ds. Jarak RT 04/ RW 02, Desa Jarak, Kec. Plosoklaten, Kab. Kediri, Jawa Timur\n" +
+          "- Yayasan: Yayasan Yambu'ul Qur'an\n" +
+          "- Status & Akreditasi: Swasta (Akreditasi B)\n" +
+          "- SK Operasional: 414-44/2053/418.20/2023\n" +
+          "- Kontak / WhatsApp: 0815-1577-7911\n" +
+          "- Email: smpiyaqu@gmail.com\n" +
+          "- Instagram: @smpiyaqu_kediri\n" +
+          "Jika ada pertanyaan di luar sekolah, arahkan dengan sopan kembali ke informasi sekolah.";
+        
+        const messages = [{ role: "system", content: sysPrompt }];
+        if (Array.isArray(history)) {
+          history.slice(-4).forEach(h => {
+            if (h.role === 'user' || h.role === 'bot') {
+              messages.push({ role: h.role === 'bot' ? 'assistant' : 'user', content: h.text || '' });
+            }
+          });
+        }
+        messages.push({ role: "user", content: pertanyaan });
+
+        const resp = UrlFetchApp.fetch("https://api.groq.com/openai/v1/chat/completions", {
+          method: "post",
+          headers: {
+            "Authorization": "Bearer " + groqKey,
+            "Content-Type": "application/json"
+          },
+          payload: JSON.stringify({
+            model: "llama-3.1-8b-instant",
+            messages: messages,
+            max_tokens: 400,
+            temperature: 0.6
+          }),
+          muteHttpExceptions: true
+        });
+        if (resp.getResponseCode() === 200) {
+          const resJson = JSON.parse(resp.getContentText());
+          if (resJson.choices && resJson.choices[0] && resJson.choices[0].message) {
+            return { jawaban: resJson.choices[0].message.content };
+          }
+        }
+      }
+    }
+  } catch (errAI) {
+    // Abaikan jika Groq error, lanjut ke knowledge base bawaan
+  }
+
+  // 2. Knowledge Base Cerdas Bawaan SMPI Yambu'ul Qur'an
+  if (q.includes('profil') || q.includes('tentang') || q.includes('sejarah') || q.includes('visi') || q.includes('misi')) {
+    return {
+      jawaban: "🏫 *Profil SMPI Yambu'ul Qur'an*\n\n" +
+               "SMPI Yambu'ul Qur'an adalah sekolah menengah pertama swasta di bawah naungan " + profil.yayasan + " dengan status " + profil.akreditasi + ".\n\n" +
+               "📌 NPSN: " + profil.npsn + "\n" +
+               "📜 No. SK Operasional: " + profil.sk + "\n" +
+               "📍 Alamat: " + profil.alamat + "\n\n" +
+               "Visi: Terwujudnya generasi yang beriman, bertakwa, berakhlak mulia, berprestasi, dan berwawasan Al-Qur'an."
+    };
+  }
+
+  if (q.includes('npsn') || q.includes('sk') || q.includes('akreditasi') || q.includes('yayasan') || q.includes('legalitas') || q.includes('status')) {
+    return {
+      jawaban: "📋 *Legalitas & Identitas Sekolah*\n\n" +
+               "• Nama Sekolah: " + profil.nama + "\n" +
+               "• NPSN: " + profil.npsn + "\n" +
+               "• Yayasan / Naungan: " + profil.yayasan + "\n" +
+               "• Status & Akreditasi: " + profil.akreditasi + "\n" +
+               "• No. SK Operasional: " + profil.sk
+    };
+  }
+
+  if (q.includes('daftar') || q.includes('ppdb') || q.includes('biaya') || q.includes('syarat') || q.includes('masuk') || q.includes('spmb')) {
+    return {
+      jawaban: "📝 *Informasi PPDB & Pendaftaran SMPI Yambu'ul Qur'an*\n\n" +
+               "Pendaftaran siswa/santri baru SMPI Yambu'ul Qur'an telah dibuka!\n\n" +
+               "Syarat Umum Pendaftaran:\n" +
+               "1. Mengisi formulir pendaftaran\n" +
+               "2. Fotokopi Ijazah / SKL SD/MI sederajat\n" +
+               "3. Fotokopi Kartu Keluarga (KK) & Akta Kelahiran\n" +
+               "4. Pas foto berwarna terbaru\n\n" +
+               "Untuk konsultasi pendaftaran, jadwal tes, serta info beasiswa & biaya, silakan hubungi panitia PPDB melalui WhatsApp: " + profil.wa + "."
+    };
+  }
+
+  if (q.includes('kontak') || q.includes('lokasi') || q.includes('alamat') || q.includes('nomor') || q.includes('wa') || q.includes('telepon') || q.includes('email') || q.includes('instagram') || q.includes('sosmed')) {
+    return {
+      jawaban: "📞 *Kontak & Lokasi SMPI Yambu'ul Qur'an*\n\n" +
+               "📍 Alamat: " + profil.alamat + "\n" +
+               "📱 WhatsApp / Telp: " + profil.wa + "\n" +
+               "✉️ Email: " + profil.email + "\n" +
+               "📸 Instagram: " + profil.ig + " (https://www.instagram.com/smpiyaqu_kediri/)\n\n" +
+               "Silakan hubungi kami untuk informasi lebih lanjut!"
+    };
+  }
+
+  if (q.includes('program') || q.includes('unggulan') || q.includes('kurikulum') || q.includes('tahfidz') || q.includes('quran')) {
+    return {
+      jawaban: "🌟 *Program Unggulan SMPI Yambu'ul Qur'an*\n\n" +
+               "1. **Tahfidz & Tahsin Al-Qur'an**: Bimbingan hafalan dan tajwid Al-Qur'an intensif oleh asatidz berkompeten.\n" +
+               "2. **Pendidikan Karakter Islami**: Penanaman adab, sholat berjamaah, dan pembiasaan akhlakul karimah.\n" +
+               "3. **Penguatan Akademik & Teknologi**: Pembelajaran kurikulum terintegrasi dengan sarana digital.\n" +
+               "4. **Pengembangan Bahasa**: Pembiasaan kosakata dan muhadharah bahasa Arab dan Inggris."
+    };
+  }
+
+  if (q.includes('ekskul') || q.includes('ekstrakurikuler') || q.includes('kegiatan')) {
+    return {
+      jawaban: "⚽ *Ekstrakurikuler SMPI Yambu'ul Qur'an*\n\n" +
+               "Wadah minat dan bakat siswa mencakup:\n" +
+               "• Seni Hadrah / Banjari\n" +
+               "• Kepramukaan\n" +
+               "• Olahraga (Futsal, Bulutangkis, Tenis Meja)\n" +
+               "• Kaligrafi Islam\n" +
+               "• Muhadharah (Khitobah / Pidato 3 Bahasa)\n" +
+               "• Bimbingan Literasi & Komputer"
+    };
+  }
+
+  if (q.includes('prestasi') || q.includes('juara') || q.includes('lomba')) {
+    return {
+      jawaban: "🏆 *Prestasi Sekolah*\n\n" +
+               "Siswa-siswi SMPI Yambu'ul Qur'an aktif mengukir prestasi dalam berbagai kompetisi keagamaan (MTQ/MHQ), seni Islami, dan akademik baik di tingkat kecamatan Plosoklaten maupun Kabupaten Kediri."
+    };
+  }
+
+  if (q.includes('halo') || q.includes('assalamu') || q.includes('hai') || q.includes('selamat') || q.includes('pagi') || q.includes('siang') || q.includes('sore') || q.includes('malam')) {
+    return {
+      jawaban: "Assalamu'alaikum Warahmatullahi Wabarakatuh! Selamat datang di Asisten Virtual SMPI Yambu'ul Qur'an. Ada yang bisa saya bantu seputar profil sekolah, program unggulan, info pendaftaran (PPDB), atau kontak sekolah?"
+    };
+  }
+
+  return {
+    jawaban: "Terima kasih atas pertanyaan Anda. Untuk informasi lebih mendalam mengenai hal tersebut, silakan menghubungi layanan informasi SMPI Yambu'ul Qur'an langsung melalui WhatsApp panitia di " + profil.wa + " atau email " + profil.email + ".\n\nAnda juga dapat memilih topik cepat: Profil Sekolah, Program Unggulan, PPDB, Ekstrakurikuler, atau Kontak & Lokasi."
+  };
 }

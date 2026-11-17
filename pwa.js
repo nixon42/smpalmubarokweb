@@ -1,4 +1,4 @@
-/* PWA SMP IT Al Mubarok: pendaftaran service worker + tombol "Pasang Aplikasi".
+/* PWA SMPI Yambu'ul Qur'an: pendaftaran service worker + tombol "Pasang Aplikasi".
  * Android/Chrome: memakai prompt bawaan browser. iPhone/Safari: menampilkan petunjuk "Tambah ke Layar Utama". */
 (function () {
   'use strict';
@@ -62,7 +62,7 @@
     var el = document.createElement('div');
     el.id = 'pwa-banner';
     el.setAttribute('role', 'dialog');
-    el.setAttribute('aria-label', 'Pasang aplikasi SMP IT Al Mubarok');
+    el.setAttribute('aria-label', 'Pasang aplikasi SMPI Yambu'ul Qur'an');
     el.innerHTML =
       '<img src="logo.png" alt="">' +
       '<div class="pwa-teks"><div class="pwa-judul">Pasang Aplikasi Sekolah</div>' +
