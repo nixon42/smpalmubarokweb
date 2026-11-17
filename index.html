@@ -405,13 +405,6 @@ body.mode-gelap .dn-no,body.mode-gelap .dn-nm{color:#e2e8f0}
 body.mode-gelap .dn-item{border-top-color:#24304f}
 body.mode-gelap .dn-av{background:#24304f;color:#c7d0ff}
 body.mode-gelap .dn-bar{background:#24304f}
-.lg-group{display:inline-flex;align-items:center;gap:2px;background:rgba(255,255,255,.12);border-radius:9px;padding:2px}
-.lg-btn{border:0;background:transparent;color:rgba(255,255,255,.85);font-size:11px;font-weight:900;letter-spacing:.06em;padding:4px 9px;border-radius:7px;cursor:pointer;font-family:inherit}
-.lg-btn:hover{background:rgba(255,255,255,.15)}
-.lg-btn.aktif{background:#ffd84d;color:#161f36}
-.lg-mobile{display:flex;gap:8px;padding:8px 12px}
-.lg-mobile .lg-btn{flex:1;background:rgba(255,255,255,.12);padding:10px 0;font-size:12px}
-.lg-mobile .lg-btn.aktif{background:#ffd84d;color:#161f36}
 /* form konfirmasi donasi & panel admin */
 .dn-h3{font-weight:900;color:#0b3323;font-size:16px;margin:0 0 6px}
 .dn-h3 i{color:#16a34a;margin-right:8px}
@@ -530,14 +523,9 @@ html,body{top:0!important;margin-top:0!important}
 body.mode-gelap #section-donasi .dn-quote .dn-ar{color:#ffe58a}
 body.mode-gelap #section-donasi .dn-quote .dn-id{color:#ffe58a}
 body.mode-gelap #section-donasi .dn-quote-sep{background:#4a3e12}
-/* menu HP: Donasi & Bahasa */
+/* menu HP: Donasi */
 #mobile-menu .mob-donasi{background:rgba(255,216,77,.12);color:#ffd84d;border:1px solid rgba(255,216,77,.4);margin-top:6px}
 #mobile-menu .mob-donasi:hover{background:rgba(255,216,77,.22)}
-#mobile-menu .mob-bahasa{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.12)}
-#mobile-menu .mob-bahasa-judul{margin:0 0 8px;padding:0 12px;font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-#mobile-menu .mob-bahasa-judul i{margin-right:6px}
-#mobile-menu .lg-mobile{padding:0 12px;gap:8px}
-#mobile-menu .lg-mobile .lg-btn{min-height:44px;border-radius:12px;font-size:13px}
 /* mode gelap */
 body.mode-gelap #section-donasi{background:linear-gradient(180deg,#0b1020 0,#0f172a 420px)}
 body.mode-gelap #section-donasi .dn-step,body.mode-gelap #section-donasi .dn-empty,body.mode-gelap #section-donasi .dn-chip{background:#161f36;border-color:#24304f}
@@ -992,7 +980,6 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       <span id="topbar-email" class="hover:text-white transition-colors"><i class="fas fa-envelope text-secondary mr-1.5"></i> smpiyaqu@gmail.com</span>
     </div>
     <div class="flex items-center gap-3">
-      <div id="lang-switch-desktop"></div>
       <div class="flex items-center gap-2.5 text-white/70" id="topbar-social"></div>
     </div>
   </div>
@@ -1125,10 +1112,6 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     <button onclick="showSection('karya')" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-white/10">Karya</button>
     <button onclick="showSection('aplikasi')" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-white/10">Aplikasi</button>
     <button onclick="showSection('donasi')" class="mob-donasi w-full text-left px-3 py-2.5 rounded-lg flex items-center justify-between"><span>Donasi</span><i class="fas fa-hand-holding-heart" aria-hidden="true"></i></button>
-    <div class="mob-bahasa">
-      <p class="mob-bahasa-judul"><i class="fas fa-language" aria-hidden="true"></i> Bahasa</p>
-      <div id="lang-switch-mobile" class="lg-mobile"></div>
-    </div>
     <button id="nav-daftar-btn-mobile" onclick="klikPendaftaran()" class="block w-full text-left px-3 py-2.5 rounded-lg bg-secondary text-primary mt-2">Pendaftaran</button>
   </div>
 </header>
@@ -7469,103 +7452,22 @@ function donasiMasukAksi_(rowId, aksi) {
 }
 
 // ---------------------------------------------------------------
-// GANTI BAHASA: Indonesia (asli) / English / Basa Jawa
-// Memakai Google Translate untuk SELURUH halaman (teks tetap di HTML +
-// konten dari spreadsheet yang muncul belakangan). Pilihan pengunjung
-// disimpan di localStorage dan otomatis dipakai lagi saat web dibuka.
+// PEMBERSIHAN SISA COOKIE/STORAGE TERJEMAHAN
 // ---------------------------------------------------------------
-const BAHASA_LIST_ = [
-  { k: 'id', label: 'ID', nama: 'Bahasa Indonesia' },
-  { k: 'en', label: 'EN', nama: 'English' },
-  { k: 'jv', label: 'JV', nama: 'Basa Jawa' }
-];
-function _prefBahasa_() {
-  try { const p = localStorage.getItem('smp_bahasa'); if (p === 'en' || p === 'jv') return p; } catch (e) {}
-  return 'id';
-}
-function _simpanBahasa_(k) { try { localStorage.setItem('smp_bahasa', k); } catch (e) {} }
-function _hapusCookieTranslate_() {
+(function _bersihkanSisaTerjemahan_() {
   try {
-    const lalu = 'expires=Thu, 01 Jan 1970 00:00:00 GMT';
-    document.cookie = 'googtrans=; path=/; ' + lalu;
+    localStorage.removeItem('smp_bahasa');
+    sessionStorage.removeItem('smp_bahasa_reload');
+    const lalu = 'expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
+    document.cookie = 'googtrans=;' + lalu;
     const bagian = location.hostname.split('.');
     for (let i = 0; i < bagian.length - 1; i++) {
       const dom = bagian.slice(i).join('.');
-      document.cookie = 'googtrans=; path=/; domain=' + dom + '; ' + lalu;
-      document.cookie = 'googtrans=; path=/; domain=.' + dom + '; ' + lalu;
+      document.cookie = 'googtrans=;' + lalu + ' domain=' + dom + ';';
+      document.cookie = 'googtrans=;' + lalu + ' domain=.' + dom + ';';
     }
   } catch (e) {}
-}
-function _sedangTerjemah_() { return /translated-(ltr|rtl)/.test(document.documentElement.className || ''); }
-// Kembali ke teks asli (Indonesia) TANPA refresh; refresh hanya cadangan, maksimal sekali.
-function kembaliKeIndonesia_() {
-  _hapusCookieTranslate_();
-  const combo = document.querySelector('select.goog-te-combo');
-  if (combo) {
-    const opsi = Array.prototype.map.call(combo.options, function (o) { return o.value; });
-    combo.value = opsi.indexOf('id') !== -1 ? 'id' : '';
-    combo.dispatchEvent(new Event('change'));
-  }
-  try {
-    document.querySelectorAll('iframe.skiptranslate').forEach(function (fr) {
-      const d = fr.contentDocument || (fr.contentWindow && fr.contentWindow.document);
-      const tombol = d && (d.getElementById(':1.restore') || d.querySelector('[id$=".restore"]'));
-      if (tombol) tombol.click();
-    });
-  } catch (e) {}
-  setTimeout(function () {
-    if (!_sedangTerjemah_()) { try { sessionStorage.removeItem('smp_bahasa_reload'); } catch (e) {} return; }
-    let sudah = false;
-    try { sudah = sessionStorage.getItem('smp_bahasa_reload') === '1'; } catch (e) {}
-    if (sudah) return;   // jangan pernah refresh berulang
-    try { sessionStorage.setItem('smp_bahasa_reload', '1'); } catch (e) {}
-    location.reload();
-  }, 1200);
-}
-function renderSwitchBahasa_() {
-  const aktif = _prefBahasa_();
-  const html = BAHASA_LIST_.map(function (b) {
-    return '<button type="button" class="lg-btn' + (b.k === aktif ? ' aktif' : '') + '" title="' + b.nama + '" aria-label="' + b.nama + '" onclick="gantiBahasa(\'' + b.k + '\')">' + b.label + '</button>';
-  }).join('');
-  const d = document.getElementById('lang-switch-desktop');
-  if (d) d.innerHTML = '<div class="lg-group notranslate" translate="no"><i class="fas fa-language" style="color:#ffd84d;font-size:14px;padding:0 6px"></i>' + html + '</div>';
-  const m = document.getElementById('lang-switch-mobile');
-  if (m) { m.className = 'lg-mobile notranslate'; m.setAttribute('translate', 'no'); m.innerHTML = html; }
-}
-// Tunggu komponen Google Translate siap, lalu pilih bahasanya.
-function terapkanBahasa_(k) {
-  let coba = 0;
-  const t = setInterval(function () {
-    const combo = document.querySelector('select.goog-te-combo');
-    if (!combo && ++coba < 80) return;   // maksimal ~8 detik menunggu
-    clearInterval(t);
-    if (!combo) return;
-    const opsi = Array.prototype.map.call(combo.options, function (o) { return o.value; });
-    let kode = k;
-    if (k === 'jv') kode = opsi.indexOf('jv') !== -1 ? 'jv' : (opsi.indexOf('jw') !== -1 ? 'jw' : 'jv');
-    if (opsi.indexOf(kode) === -1 || combo.value === kode) return;
-    combo.value = kode;
-    combo.dispatchEvent(new Event('change'));
-  }, 100);
-}
-function gantiBahasa(k) {
-  const sebelumnya = _prefBahasa_();
-  if (k === sebelumnya) return;
-  _simpanBahasa_(k);
-  renderSwitchBahasa_();
-  if (k === 'id') { kembaliKeIndonesia_(); return; }   // kembali ke teks asli
-  terapkanBahasa_(k);
-}
-function googleTranslateElementInit() {
-  try {
-    new google.translate.TranslateElement({ pageLanguage: 'id', includedLanguages: 'id,en,jv,jw', autoDisplay: false }, 'google_translate_element');
-  } catch (e) { return; }
-  const p = _prefBahasa_();
-  if (p !== 'id') terapkanBahasa_(p);
-}
-if (_prefBahasa_() === 'id') _hapusCookieTranslate_();   // sebelum skrip Google dimuat
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', renderSwitchBahasa_);
-else renderSwitchBahasa_();
+})();
 
 // Link rahasia admin (?akses=KODE): tunggu splash selesai, lalu buka panel
 // (kalau sesi masih berlaku di tab ini) atau form login.
@@ -8027,8 +7929,6 @@ setTimeout(function () {
 })();
 </script>
 
-<div id="google_translate_element"></div>
-<script async src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script src="pwa.js" defer></script>
 </body>
 </html>
