@@ -37,7 +37,7 @@
 <!-- Typography: Marcellus (Monumental Serif), Amiri (Arabic Calligraphy), Plus Jakarta Sans (Clean Indonesian Reading) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Marcellus&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Percepat koneksi ke server yang dipakai & muat gambar splash lebih awal -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
@@ -49,7 +49,7 @@
 <!-- ========================================== -->
 <!-- SEO META TAGS -->
 <!-- ========================================== -->
-<title>SMPI YAMBU'UL QUR'AN — Minimalist Editorial Edition</title>
+<title>SMPI YAMBU'UL QUR'AN — Minimalist Editorial Edition (V2)</title>
 <meta name="description" content="Website Resmi SMPI Yambu'ul Qur'an Plosoklaten Kediri. Sekolah menengah pertama berbasis Al-Qur'an dan akhlak mulia, mencetak generasi Qur'ani yang beriman, bertakwa, dan berprestasi. Info PPDB, Profil, Program, dan Berita Sekolah.">
 <meta name="keywords" content="SMPI YAMBU'UL QUR'AN, SMPI Yaqu, SMP Islam Yambu'ul Qur'an, PPDB SMP Kediri, SMP Plosoklaten, Sekolah Tahfidz Kediri">
 <meta name="author" content="SMPI Yambu'ul Qur'an">
@@ -80,7 +80,7 @@
 (function () {
   try {
     if (typeof google !== 'undefined' && google.script && google.script.run) return; // dibuka lewat Apps Script asli -> tak perlu
-    var url = '__APPS_SCRIPT_URL__'
+    var url = ('__APPS_SCRIPT_URL__' === ('_' + '_APPS_SCRIPT_URL_' + '_')) ? 'https://script.google.com/macros/s/AKfycbzayy9zLbwLUho6AA1gAYc11bl6IVY8rs_9KjD14BbGh4JA9pDi0_qvVBAGqFjD0cjC/exec' : '__APPS_SCRIPT_URL__'
             + '?fn=getFullData&args=' + encodeURIComponent(JSON.stringify(['id']));
     var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 30000);
@@ -990,27 +990,26 @@ body.mode-gelap #jadwal-sholat-wrap .text-amber-900 {
   --theme-primary: #0b3323;
   --theme-primary-dark: #062116;
   --theme-primary-light: #134e35;
-  --theme-primary-soft: #f2f7f4;
+  --theme-primary-soft: #edf5f0;
   
   --theme-gold: #c39328;
   --theme-gold-light: #dfb342;
   --theme-gold-dark: #987118;
   --theme-gold-pale: #fbf5e7;
 
-  --theme-ground: #ffffff;
-  --theme-surface: #fcfbf7;
+  --theme-ground: #fcfbf7;
+  --theme-surface: #f4efe6;
   --theme-surface-card: #ffffff;
-  --theme-border: #e2ece6;
+  --theme-border: #e6dfd1;
   --theme-border-gold: rgba(195, 147, 40, 0.28);
 
-  --theme-text-main: #0b1913;
-  --theme-text-muted: #52665a;
-  --theme-text-subtle: #7a8e82;
+  --theme-text-main: #142019;
+  --theme-text-muted: #57685e;
+  --theme-text-subtle: #84968c;
 
   --font-serif: 'Marcellus', Georgia, 'Times New Roman', serif;
-  --font-sans: '"Plus Jakarta Sans"', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-arabic: 'Amiri', 'Traditional Arabic', serif;
-  --font-mono: '"JetBrains Mono"', ui-monospace, monospace;
 }
 
 /* Base resets & typography */
@@ -1309,158 +1308,148 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
 </style>
 
 
-<!-- SWISS-ISLAMIC EDITORIAL AESTHETIC OVERRIDES FOR V2 -->
-<style id="editorial-swiss-theme">
-  body {
-    font-family: var(--font-sans) !important;
-    background-color: #ffffff !important;
-    color: #0b1913 !important;
-  }
+    <style id="theme-v2">
+      :root {
+        --color-primary: #062116;
+        --color-primary-dark: #020b07;
+        --color-accent: #c39328;
+        --color-accent-light: #dfb342;
+        --bg-main: #ffffff;
+        --bg-surface: #faf9f5;
+        --text-main: #062116;
+        --text-muted: #52665a;
+        --border-color: #e2ece6;
+      }
+      body {
+        background-color: #ffffff !important;
+        color: #062116 !important;
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+      }
+      h1, h2, h3, h4, .font-serif {
+        font-family: 'Marcellus', Georgia, serif !important;
+      }
+      .font-mono {
+        font-family: 'JetBrains Mono', monospace !important;
+      }
+      #splash-screen, #modal-onboarding, #banner-offline {
+        display: none !important;
+      }
+      body.splash-aktif {
+        overflow: visible !important;
+      }
+      /* V2 Hero Text Contrast Override */
+      #hero-slider {
+        background: #faf9f5 !important;
+        color: #062116 !important;
+      }
+      #hero-slider h1, #hero-slider h1 * {
+        color: #062116 !important;
+      }
+      #hero-slider p, #hero-slider p * {
+        color: #52665a !important;
+      }
+      #hero-slider span {
+        color: inherit;
+      }
+      #hero-slider .text-\[\#c39328\], #hero-slider .text-secondary {
+        color: #c39328 !important;
+      }
 
-  /* 1. Eliminate Pill Slop across the whole site */
-  .rounded-full:not(.splash-ring):not(#navbar-logo-icon):not(#splash-logo-img):not(.live-dot):not([class*="w-1."]):not([class*="w-2"]):not([class*="h-1."]):not([class*="h-2"]):not(.hero-dot):not([class*="bg-secondary"]):not([class*="bg-red-"]):not([class*="bg-emerald-"]):not([class*="bg-[#25D366]"]) {
-    border-radius: 2px !important;
-  }
-  .rounded-2xl, .rounded-3xl, .rounded-xl {
-    border-radius: 4px !important;
-  }
-  .rounded-lg {
-    border-radius: 2px !important;
-  }
-
-  /* 2. Hairlines & Card Framing */
-  .card-scholar {
-    border: 1px solid #e2ece6 !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
-    border-radius: 2px !important;
-    background: #ffffff !important;
-  }
-  .pu-card {
-    border: 1px solid #e2ece6 !important;
-    border-radius: 2px !important;
-  }
-
-  /* 3. Header & Navbar: Light Porcelain Canvas with Hairline Border */
-  header.bg-primary {
-    background-color: rgba(255, 255, 255, 0.98) !important;
-    border-bottom: 1px solid #e2ece6 !important;
-    backdrop-filter: blur(12px) !important;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.03) !important;
-  }
-  header.bg-primary #navbar-logo-icon {
-    background-color: #f2f7f4 !important;
-    border: 1px solid #e2ece6 !important;
-    box-shadow: none !important;
-  }
-  header.bg-primary #navbar-logo-text div {
-    color: #062116 !important;
-  }
-  header.bg-primary #navbar-logo-text p {
-    color: #52665a !important;
-  }
-  header.bg-primary .nav-desktop-main {
-    color: #1e3328 !important;
-  }
-  header.bg-primary .nav-desktop-main button {
-    color: #1e3328 !important;
-    font-weight: 600 !important;
-    border-radius: 2px !important;
-  }
-  header.bg-primary .nav-desktop-main button:hover {
-    background-color: #f2f7f4 !important;
-    color: #062116 !important;
-  }
-  header.bg-primary .dropdown-menu {
-    background-color: #ffffff !important;
-    border: 1px solid #e2ece6 !important;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.07) !important;
-    border-radius: 2px !important;
-  }
-  header.bg-primary .dropdown-menu button {
-    color: #2e3e35 !important;
-    border-radius: 2px !important;
-  }
-  header.bg-primary .dropdown-menu button:hover {
-    background-color: #f2f7f4 !important;
-    color: #062116 !important;
-  }
-  header.bg-primary #mobile-menu-btn {
-    color: #062116 !important;
-    border: 1px solid #e2ece6 !important;
-    background: #ffffff !important;
-    border-radius: 2px !important;
-  }
-  header.bg-primary a[href*="wa.me"] {
-    border-radius: 2px !important;
-  }
-
-  /* 4. Mobile Menu Drawer */
-  #mobile-menu {
-    background-color: #ffffff !important;
-    color: #0b1913 !important;
-    border-bottom: 1px solid #e2ece6 !important;
-  }
-  #mobile-menu button {
-    color: #0b1913 !important;
-    border-radius: 2px !important;
-  }
-  #mobile-menu button:hover {
-    background-color: #f2f7f4 !important;
-  }
-  #mobile-menu .border-white\/10 {
-    border-color: #e2ece6 !important;
-  }
-  #mobile-menu .text-white\/90 {
-    color: #334155 !important;
-  }
-
-  /* 5. Mobile Layout Optimization for 18 Apps */
-  @media (max-width: 640px) {
-    #aplikasi-grid-full {
-      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-      gap: 0.75rem !important;
-    }
-    #aplikasi-grid-full article {
-      padding: 0.85rem !important;
-      border: 1px solid #e2ece6 !important;
-      border-radius: 2px !important;
-      box-shadow: none !important;
-    }
-    #aplikasi-grid-full article .w-16.h-16 {
-      width: 2.25rem !important;
-      height: 2.25rem !important;
-      border-radius: 2px !important;
-    }
-    #aplikasi-grid-full article .w-16.h-16 i {
-      font-size: 0.95rem !important;
-    }
-    #aplikasi-grid-full article h3, #aplikasi-grid-full article h4 {
-      font-size: 0.78rem !important;
-      line-height: 1.25 !important;
-      margin-top: 0.4rem !important;
-    }
-    #aplikasi-grid-full article p {
-      font-size: 0.68rem !important;
-      line-height: 1.3 !important;
-      -webkit-line-clamp: 2 !important;
-      display: -webkit-box !important;
-      -webkit-box-orient: vertical !important;
-      overflow: hidden !important;
-    }
-    #aplikasi-grid-full article a {
-      margin-top: 0.6rem !important;
-      padding: 0.35rem 0.6rem !important;
-      font-size: 0.65rem !important;
-      border-radius: 2px !important;
-    }
-  }
-
-  /* 6. Subpage Hero Banners */
-  .subpage-hero-banner {
-    background: linear-gradient(135deg, #062116 0%, #0b3323 100%) !important;
-    border-bottom: 1px solid #e2ece6 !important;
-  }
-</style>
+      /* Clean Editorial Rules */
+      footer {
+        background: #faf9f5 !important;
+        background-color: #faf9f5 !important;
+        color: #52665a !important;
+      }
+      footer h3, footer p.font-serif, footer .text-white {
+        color: #062116 !important;
+      }
+      footer button:not(.dn-topbtn), footer a, footer p, footer span, footer li {
+        color: #52665a !important;
+      }
+      .bg-primary {
+        background-color: #062116 !important;
+        color: #ffffff !important;
+      }
+      .text-primary {
+        color: #062116 !important;
+      }
+      .border-primary {
+        border-color: #062116 !important;
+      }
+      .bg-secondary {
+        background-color: #c39328 !important;
+        color: #ffffff !important;
+      }
+      .text-secondary {
+        color: #c39328 !important;
+      }
+      .subpage-hero-banner {
+        background: #faf9f5 !important;
+        color: #062116 !important;
+        border-bottom: 1px solid #e2ece6 !important;
+      }
+      /* Eliminate rounded pills in V2 */
+      .rounded-full:not(.nav-circle):not(.hero-dot):not(.avatar-img):not(#wa-btn),
+      .rounded-2xl, .rounded-3xl, .rounded-xl {
+        border-radius: 0px !important;
+      }
+      /* V2 Pure Swiss Architecture Overrides */
+      .program-card-header {
+        background: #faf9f5 !important;
+        color: #062116 !important;
+        border-bottom: 1px solid #e2ece6 !important;
+      }
+      .program-card-header span {
+        color: #c39328 !important;
+        font-family: 'JetBrains Mono', monospace !important;
+      }
+      .program-card-header div {
+        background: #ffffff !important;
+        border: 1px solid #e2ece6 !important;
+        color: #062116 !important;
+      }
+      .card-scholar {
+        border-radius: 0px !important;
+        border: 1px solid #e2ece6 !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+        transition: border-color 0.2s ease, transform 0.2s ease !important;
+      }
+      .card-scholar:hover {
+        border-color: #062116 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(6, 33, 22, 0.05) !important;
+      }
+      .pu-section {
+        background: #faf9f5 !important;
+        border-top: 1px solid #e2ece6 !important;
+        border-bottom: 1px solid #e2ece6 !important;
+      }
+      #mobile-menu {
+        background-color: #faf9f5 !important;
+        color: #062116 !important;
+        border-bottom: 1px solid #e2ece6 !important;
+      }
+      #mobile-menu a, #mobile-menu button {
+        color: #062116 !important;
+      }
+      /* Mobile horizontal scroll for beranda cards */
+      @media (max-width: 640px) {
+        #beranda-aplikasi-grid, #beranda-guru-grid, #beranda-fasilitas-grid, #beranda-prestasi-grid, #beranda-artikel-grid {
+          display: flex !important;
+          flex-direction: row !important;
+          overflow-x: auto !important;
+          scroll-snap-type: x mandatory !important;
+          padding-bottom: 1rem !important;
+          gap: 1rem !important;
+        }
+        #beranda-aplikasi-grid > div, #beranda-guru-grid > div, #beranda-fasilitas-grid > div, #beranda-prestasi-grid > div, #beranda-artikel-grid > div {
+          flex: 0 0 85% !important;
+          scroll-snap-align: start !important;
+        }
+      }
+    </style>
 
 </head>
 <body class="text-slate-700 splash-aktif">
@@ -1534,191 +1523,100 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 })();
 </script>
 
-<!-- ============================================================ -->
 <!-- INSTITUTIONAL COLOPHON TOPBAR -->
-<!-- ============================================================ -->
-<!-- ============================================================ -->
-<!-- INSTITUTIONAL COLOPHON TOPBAR (RESPONSIVE, ZERO RAW PIPE BREAKAGE) -->
-<!-- ============================================================ -->
-<aside class="bg-white border-b border-[#e2ece6] text-[11px] text-slate-600 py-2 px-4 sm:px-6 font-medium">
-  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-4">
-    <div class="flex items-center gap-2 sm:gap-3 flex-wrap text-[10px] sm:text-[11px] w-full sm:w-auto justify-between sm:justify-start">
-      <div class="flex items-center gap-2">
-        <span class="font-mono text-[#062116] font-bold tracking-wider">PLOSOKLATEN, KEDIRI</span>
-        <span class="hidden sm:inline-block w-px h-3 bg-slate-200"></span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="font-mono">NPSN: <strong class="text-slate-900 font-semibold">70003325</strong></span>
-        <span class="hidden md:inline-block w-px h-3 bg-slate-200"></span>
-      </div>
-      <div class="hidden md:flex items-center gap-1.5">
-        <span class="font-mono">AKREDITASI: <strong class="text-[#0b3323] font-semibold">B (BAN-S/M)</strong></span>
-      </div>
+<div class="hidden md:flex text-[11px] font-mono px-6 py-2.5 items-center justify-between border-b border-[#e2ece6]" style="background:#faf9f5 !important; color:#52665a !important;">
+  <div class="flex items-center gap-4">
+    <span class="font-arabic text-[#062116] text-sm font-bold tracking-wide border-r border-[#e2ece6] pr-4">يَنبُوعُ القُرآن</span>
+    <span class="inline-flex items-center gap-1.5 uppercase tracking-wider text-[#52665a]">
+      <span class="w-1.5 h-1.5 bg-[#059669]"></span> NPSN 70003325 &bull; Terakreditasi B (BAN-S/M)
+    </span>
+  </div>
+  <div class="flex items-center gap-6">
+    <div class="flex items-center gap-4">
+      <span id="topbar-phone"><i class="fab fa-whatsapp text-[#059669] mr-1.5"></i> 0815-1577-7911</span>
+      <span id="topbar-email"><i class="fas fa-envelope text-[#c39328] mr-1.5"></i> smpiyaqu@gmail.com</span>
     </div>
-    <div class="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 w-full sm:w-auto pt-1 sm:pt-0 border-t border-[#e2ece6] sm:border-t-0 text-[10px] sm:text-[11px]">
-      <span class="font-arabic text-[#0b3323] text-xs sm:text-sm font-bold tracking-wide">يَنبُوعُ القُرآن</span>
-      <span class="hidden sm:inline-block w-px h-3 bg-slate-200"></span>
-      <a href="https://wa.me/6281515777911" target="_blank" rel="noopener" class="hover:text-[#0b3323] transition-colors flex items-center gap-1.5 font-semibold text-[#0b3323] ml-auto sm:ml-0">
-        <i class="fab fa-whatsapp text-emerald-700 text-xs"></i> <span>0815-1577-7911</span>
-      </a>
+    <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2.5 text-[#52665a]" id="topbar-social"></div>
     </div>
   </div>
-</aside>
+</div>
 
-<!-- ============================================================ -->
-<!-- MAIN ACADEMIC NAVBAR -->
-<!-- ============================================================ -->
-<header class="sticky top-0 z-50 bg-primary border-b border-white/10 shadow-lg backdrop-blur-md">
+<!-- MAIN ACADEMIC NAVBAR (Editorial Porcelain) -->
+<header class="sticky top-0 z-50 backdrop-blur-md shadow-sm border-b border-[#e2ece6]" id="main-header" style="background:rgba(255,255,255,0.98) !important;">
   <div class="max-w-7xl mx-auto px-3.5 sm:px-4 md:px-6 flex items-center justify-between h-16 sm:h-20">
-    <a href="#" onclick="showSection('beranda');return false;" class="flex items-center gap-2.5 sm:gap-3.5 group min-w-0 pr-2">
-      <div id="navbar-logo-icon" class="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-white/10 p-0.5 sm:p-1 flex items-center justify-center flex-shrink-0 overflow-hidden ring-1 ring-secondary/40 shadow-inner group-hover:ring-secondary transition-all">
+    <a href="#" onclick="showSection('beranda');return false;" class="flex items-center gap-3 group min-w-0 pr-2">
+      <div id="navbar-logo-icon" class="w-10 h-10 rounded-none bg-[#faf9f5] border border-[#e2ece6] p-1 flex items-center justify-center flex-shrink-0">
         <img id="navbar-logo-img" src="logo.png" alt="Logo SMPI Yambu'ul Qur'an" class="w-full h-full object-contain">
       </div>
       <div id="navbar-logo-text" class="leading-tight min-w-0">
-        <div class="font-serif font-bold sm:font-black text-[13.5px] sm:text-base md:text-lg text-white leading-tight tracking-tight whitespace-nowrap">SMPI Yambu'ul Qur'an</div>
-        <p class="text-secondary text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider sm:tracking-widest mt-0.5 whitespace-nowrap">Pesantren Modern &bull; Kediri<span class="hidden sm-inline">, Jawa Timur</span></p>
+        <div class="font-serif font-bold text-base sm:text-lg text-[#062116] leading-tight tracking-tight whitespace-nowrap">SMPI Yambu'ul Qur'an</div>
+        <p class="text-[#c39328] text-[10px] font-mono uppercase tracking-widest mt-0.5 whitespace-nowrap">Pesantren Terpadu &bull; Kediri</p>
       </div>
     </a>
 
-    <nav class="nav-desktop-main items-center gap-1.5 xl:gap-2 text-white/90 text-[13px] font-medium">
-      <button onclick="showSection('beranda')" class="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-white transition-colors">Beranda</button>
+    <nav class="nav-desktop-main items-center gap-1 xl:gap-2 text-[#062116] text-[13px] font-medium">
+      <button onclick="showSection('beranda')" class="px-3 py-2 rounded-none hover:bg-[#f2f7f4] hover:text-[#c39328] transition-colors">Beranda</button>
 
       <!-- Dropdown: Profil -->
       <div class="dropdown relative">
-        <button class="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-white flex items-center gap-1.5 transition-colors">Profil <i class="fas fa-chevron-down text-[9px] text-secondary"></i></button>
-        <div class="dropdown-menu top-full left-0 bg-white rounded-2xl shadow-2xl p-2.5 w-60 text-slate-700 normal-case font-semibold border border-slate-100">
-          <button onclick="showSection('sambutan')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Sambutan &amp; Visi Misi</button>
-          <button onclick="showSection('sejarah')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Sejarah Sekolah</button>
-          <button onclick="showSection('fasilitas')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Fasilitas Kampus</button>
-          <button onclick="showSection('guru')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Dewan Asatidz &amp; Staf</button>
-          <button onclick="showSection('prestasi')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Prestasi Santri</button>
+        <button class="px-3 py-2 rounded-none hover:bg-[#f2f7f4] flex items-center gap-1.5 transition-colors">Profil <i class="fas fa-chevron-down text-[9px] text-[#c39328]"></i></button>
+        <div class="dropdown-menu top-full left-0 bg-white rounded-none shadow-xl p-2 w-60 text-slate-800 font-normal text-xs border border-[#e2ece6]">
+          <button onclick="showSection('sambutan')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] hover:text-[#062116] transition-colors">Sambutan &amp; Visi Misi</button>
+          <button onclick="showSection('sejarah')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] hover:text-[#062116] transition-colors">Sejarah Sekolah</button>
+          <button onclick="showSection('fasilitas')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] hover:text-[#062116] transition-colors">Fasilitas Kampus</button>
+          <button onclick="showSection('guru')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] hover:text-[#062116] transition-colors">Dewan Asatidz &amp; Staf</button>
+          <button onclick="showSection('prestasi')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] hover:text-[#062116] transition-colors">Prestasi Santri</button>
         </div>
       </div>
 
-      <!-- Dropdown: Akademik & Program -->
+      <!-- Dropdown: Akademik -->
       <div class="dropdown relative">
-        <button class="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-white flex items-center gap-1.5 transition-colors">Akademik <i class="fas fa-chevron-down text-[9px] text-secondary"></i></button>
-        <div class="dropdown-menu top-full left-0 bg-white rounded-2xl shadow-2xl p-2.5 w-60 text-slate-700 normal-case font-semibold border border-slate-100">
-          <button onclick="showSection('program')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Kurikulum &amp; Program Unggulan</button>
-          <button onclick="showSection('ekstrakurikuler')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Ekstrakurikuler Santri</button>
-          <div class="my-1 border-t border-slate-100"></div>
-          <button onclick="showSection('kalender')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Kalender Akademik</button>
-          <button onclick="showSection('jadwalpelajaran')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Jadwal Pelajaran</button>
-          <button onclick="showSection('jadwalujian')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Jadwal Ujian &amp; Evaluasi</button>
+        <button class="px-3 py-2 rounded-none hover:bg-[#f2f7f4] flex items-center gap-1.5 transition-colors">Akademik <i class="fas fa-chevron-down text-[9px] text-[#c39328]"></i></button>
+        <div class="dropdown-menu top-full left-0 bg-white rounded-none shadow-xl p-2 w-60 text-slate-800 font-normal text-xs border border-[#e2ece6]">
+          <button onclick="showSection('program')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">Kurikulum &amp; Program Unggulan</button>
+          <button onclick="showSection('ekstrakurikuler')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">Ekstrakurikuler Santri</button>
+          <div class="my-1 border-t border-[#e2ece6]"></div>
+          <button onclick="showSection('kalender')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">Kalender Akademik</button>
+          <button onclick="showSection('jadwalpelajaran')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">Jadwal Pelajaran</button>
+          <button onclick="showSection('jadwalujian')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">Jadwal Ujian &amp; Evaluasi</button>
         </div>
       </div>
 
       <!-- Dropdown: Informasi -->
       <div class="dropdown relative">
-        <button class="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-white flex items-center gap-1.5 transition-colors">Informasi <i class="fas fa-chevron-down text-[9px] text-secondary"></i></button>
-        <div class="dropdown-menu top-full left-0 bg-white rounded-2xl shadow-2xl p-2.5 w-60 text-slate-700 normal-case font-semibold border border-slate-100">
-          <button onclick="showSection('artikel')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Warta &amp; Berita</button>
-          <button onclick="showSection('kegiatan')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Agenda Sekolah</button>
-          <button onclick="showSection('galeri')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Galeri Dokumentasi</button>
-          <button onclick="showSection('galerivideo')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Galeri Video</button>
-          <button onclick="showSection('virtualtour')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Virtual Tour Kampus</button>
-          <button onclick="showSection('livestreaming')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors flex items-center justify-between">Live Streaming <span id="dropdown-live-badge" class="hidden text-[9px] font-black text-red-500"><span class="live-dot inline-block w-1.5 h-1.5 rounded-full bg-red-500 mr-1"></span>LIVE</span></button>
-          <button onclick="showSection('alumni')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Jejaring Alumni</button>
+        <button class="px-3 py-2 rounded-none hover:bg-[#f2f7f4] flex items-center gap-1.5 transition-colors">Informasi <i class="fas fa-chevron-down text-[9px] text-[#c39328]"></i></button>
+        <div class="dropdown-menu top-full left-0 bg-white rounded-none shadow-xl p-2 w-60 text-slate-800 font-normal text-xs border border-[#e2ece6]">
+          <button onclick="showSection('artikel')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">Warta &amp; Artikel</button>
+          <button onclick="showSection('kegiatan')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">Agenda Kegiatan</button>
+          <button onclick="showSection('galeri')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">Galeri Foto</button>
+          <button onclick="showSection('galerivideo')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">Galeri Video</button>
+          <button onclick="showSection('virtualtour')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">Virtual Tour 360&deg;</button>
+          <button onclick="showSection('livestreaming')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">Live Streaming</button>
+          <button onclick="showSection('alumni')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">Jejaring Alumni</button>
         </div>
       </div>
 
-      <!-- Dropdown: Layanan & Karya -->
+      <!-- Dropdown: Layanan -->
       <div class="dropdown relative">
-        <button class="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-white flex items-center gap-1.5 transition-colors">Layanan <i class="fas fa-chevron-down text-[9px] text-secondary"></i></button>
-        <div class="dropdown-menu top-full right-0 bg-white rounded-2xl shadow-2xl p-2.5 w-60 text-slate-700 normal-case font-semibold border border-slate-100">
-          <button onclick="showSection('aplikasi')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Layanan Digital &amp; Aplikasi</button>
-          <button onclick="showSection('karya')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Karya &amp; Kreativitas Santri</button>
+        <button class="px-3 py-2 rounded-none hover:bg-[#f2f7f4] flex items-center gap-1.5 transition-colors">Layanan <i class="fas fa-chevron-down text-[9px] text-[#c39328]"></i></button>
+        <div class="dropdown-menu top-full left-0 bg-white rounded-none shadow-xl p-2 w-60 text-slate-800 font-normal text-xs border border-[#e2ece6]">
+          <button onclick="showSection('aplikasi')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">18 Layanan Digital Sekolah</button>
+          <button onclick="showSection('karya')" class="w-full text-left px-3 py-2 hover:bg-[#f2f7f4] transition-colors">Karya Santri</button>
         </div>
       </div>
 
-      <!-- CTA Pendaftaran & Toolbar -->
-      <div class="flex items-center gap-2 ml-2">
-        <button id="nav-daftar-btn" onclick="klikPendaftaran()" class="px-4 py-2 rounded-full bg-secondary text-primary-900 font-bold hover:bg-secondary-400 shadow-sm transition-all hover:shadow text-xs whitespace-nowrap">Pendaftaran PPDB</button>
-        <div class="flex items-center gap-1 border-l border-white/20 pl-2">
-          <button onclick="bukaPencarian()" title="Cari (Ctrl+K)" aria-label="Cari di website" class="w-8 h-8 rounded-full text-white/80 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors">
-            <i class="fas fa-magnifying-glass text-xs"></i>
-          </button>
-          <button onclick="toggleModeGelap()" id="tombol-mode-gelap" title="Mode Gelap" aria-label="Ganti mode gelap" class="w-8 h-8 rounded-full text-white/80 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors">
-            <i class="fas fa-moon text-xs"></i>
-          </button>
-        </div>
-      </div>
+      <button onclick="showSection('donasi')" class="px-3 py-2 rounded-none hover:bg-[#f2f7f4] text-[#062116] transition-colors">Donasi</button>
+      <button onclick="klikPendaftaran()" class="px-4 py-2 bg-[#062116] hover:bg-[#0b3323] text-[#dfb342] text-xs font-bold uppercase tracking-wider rounded-none transition-all ml-1">Pendaftaran PPDB</button>
+      <button onclick="bukaPencarian()" class="w-8 h-8 flex items-center justify-center hover:bg-[#f2f7f4] text-[#062116]"><i class="fas fa-search text-xs"></i></button>
+      <button onclick="toggleModeGelap()" class="w-8 h-8 flex items-center justify-center hover:bg-[#f2f7f4] text-[#062116]"><i class="fas fa-moon text-xs"></i></button>
     </nav>
 
-    <div class="nav-mobile-toggle items-center gap-1 sm:gap-1.5 flex-shrink-0">
-      <button onclick="bukaPencarian()" title="Cari" aria-label="Cari" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full text-white/90 hover:text-white hover:bg-white/10 active:bg-white/20 flex items-center justify-center transition-colors">
-        <i class="fas fa-magnifying-glass text-sm sm:text-base"></i>
-      </button>
-      <button onclick="toggleModeGelap()" id="tombol-mode-gelap-mobile" title="Mode Gelap" aria-label="Mode Gelap" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full text-white/90 hover:text-white hover:bg-white/10 active:bg-white/20 flex items-center justify-center transition-colors">
-        <i class="fas fa-moon text-sm sm:text-base"></i>
-      </button>
-      <button onclick="toggleMobileMenu()" aria-label="Menu Navigasi" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full text-white hover:bg-white/10 active:bg-white/20 flex items-center justify-center text-base sm:text-lg transition-colors">
-        <i class="fas fa-bars"></i>
-      </button>
+    <!-- Mobile Toggle -->
+    <div class="flex items-center gap-2 lg:hidden">
+      <button onclick="bukaPencarian()" class="w-9 h-9 flex items-center justify-center text-[#062116]"><i class="fas fa-search"></i></button>
+      <button onclick="toggleMobileMenu()" class="w-9 h-9 flex items-center justify-center text-[#062116] border border-[#e2ece6]"><i class="fas fa-bars"></i></button>
     </div>
-  </div>
-
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden bg-primary-700 px-4 py-4 space-y-1 text-white text-sm font-semibold">
-    <button onclick="showSection('beranda')" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-white/10">Beranda</button>
-
-    <div>
-      <button onclick="toggleMobileSubmenu('mobile-sub-profil', this)" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-white/10">
-        <span>Profil</span>
-        <i class="fas fa-chevron-down text-[10px] transition-transform duration-200"></i>
-      </button>
-      <div id="mobile-sub-profil" class="hidden pl-4 space-y-1 normal-case font-normal text-xs">
-        <button onclick="showSection('sambutan')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Sambutan &amp; Visi Misi</button>
-        <button onclick="showSection('sejarah')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Sejarah Sekolah</button>
-        <button onclick="showSection('fasilitas')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Fasilitas</button>
-        <button onclick="showSection('guru')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Guru &amp; Staf</button>
-        <button onclick="showSection('prestasi')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Prestasi</button>
-      </div>
-    </div>
-
-    <div>
-      <button onclick="toggleMobileSubmenu('mobile-sub-akademik', this)" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-white/10">
-        <span>Akademik</span>
-        <i class="fas fa-chevron-down text-[10px] transition-transform duration-200"></i>
-      </button>
-      <div id="mobile-sub-akademik" class="hidden pl-4 space-y-1 normal-case font-normal text-xs">
-        <button onclick="showSection('program')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Program Unggulan</button>
-        <button onclick="showSection('ekstrakurikuler')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Ekstrakurikuler</button>
-        <button onclick="showSection('kalender')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Kalender Akademik</button>
-        <button onclick="showSection('jadwalpelajaran')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Jadwal Pelajaran</button>
-        <button onclick="showSection('jadwalujian')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Jadwal Ujian</button>
-      </div>
-    </div>
-
-    <div>
-      <button onclick="toggleMobileSubmenu('mobile-sub-informasi', this)" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-white/10">
-        <span>Informasi</span>
-        <i class="fas fa-chevron-down text-[10px] transition-transform duration-200"></i>
-      </button>
-      <div id="mobile-sub-informasi" class="hidden pl-4 space-y-1 normal-case font-normal text-xs">
-        <button onclick="showSection('artikel')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Artikel &amp; Berita</button>
-        <button onclick="showSection('kegiatan')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Agenda</button>
-        <button onclick="showSection('galeri')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Galeri Foto</button>
-        <button onclick="showSection('galerivideo')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Galeri Video</button>
-        <button onclick="showSection('virtualtour')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Virtual Tour 360&deg;</button>
-        <button onclick="showSection('livestreaming')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90 flex items-center justify-between">Live Streaming <span id="mobile-live-badge" class="hidden text-[9px] font-black text-red-400"><span class="live-dot inline-block w-1.5 h-1.5 rounded-full bg-red-400 mr-1"></span>LIVE</span></button>
-        <button onclick="showSection('alumni')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Alumni</button>
-      </div>
-    </div>
-
-    <div>
-      <button onclick="toggleMobileSubmenu('mobile-sub-layanan', this)" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-white/10">
-        <span>Layanan &amp; Karya</span>
-        <i class="fas fa-chevron-down text-[10px] transition-transform duration-200"></i>
-      </button>
-      <div id="mobile-sub-layanan" class="hidden pl-4 space-y-1 normal-case font-normal text-xs">
-        <button onclick="showSection('aplikasi')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Layanan Digital &amp; Aplikasi</button>
-        <button onclick="showSection('karya')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Karya Santri</button>
-      </div>
-    </div>
-
-    <button onclick="showSection('donasi')" class="mob-donasi w-full text-left px-3 py-2.5 rounded-lg flex items-center justify-between"><span>Donasi</span><i class="fas fa-hand-holding-heart" aria-hidden="true"></i></button>
-    <button id="nav-daftar-btn-mobile" onclick="klikPendaftaran()" class="block w-full text-left px-3 py-2.5 rounded-lg bg-secondary text-primary mt-2">Pendaftaran</button>
   </div>
 </header>
 
@@ -1729,193 +1627,183 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= BERANDA ================= -->
   <section id="section-beranda" class="app-section active">
-    <!-- BESPOKE EDITORIAL SPLIT HERO -->
-    <div class="relative bg-gradient-to-b from-[#0b3323] via-[#08281b] to-[#051c13] text-white pt-10 pb-16 md:pt-14 md:pb-20 border-b border-white/10 overflow-hidden" id="hero-slider">
-      <div class="relative max-w-7xl mx-auto px-4 md:px-6">
-        <div class="hero-layout-grid items-center">
-          <!-- Left Column: Monumental Editorial Identity & Value Proposition -->
-          <div class="flex flex-col justify-center min-w-0 max-w-full">
-            <h1 class="font-serif text-2xl sm:text-4xl lg:text-5xl font-black text-white leading-[1.15] tracking-tight">
-              Mendidik Generasi Qur'ani, Berakhlak Mulia &amp; Berwawasan Global
+    
+    <!-- BESPOKE EDITORIAL HERO BROADSIDE (V2) -->
+    <div id="hero-slider" class="relative overflow-hidden border-b border-[#e2ece6]" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <!-- Left Column (7 cols): Editorial Typography -->
+          <div class="lg:col-span-7 flex flex-col justify-center">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ LEMBARAN RESMI ]</span>
+              <span class="w-12 h-px bg-[#c39328]/40"></span>
+              <span class="font-mono text-xs text-[#52665a] uppercase tracking-wider">TAHUN AKADEMIK 2026/2027</span>
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#062116] font-normal tracking-tight leading-[1.12]">
+              Kearifan Qur'ani dalam <span class="italic text-[#c39328]">Cakrawala</span> Intelektual Modern.
             </h1>
-            <p class="text-white/80 text-sm sm:text-base leading-relaxed mt-4 max-w-xl font-normal">
-              SMPI Yambu'ul Qur'an memadukan kurikulum nasional berkualitas unggul dengan bimbingan tahfidzul Qur'an intensif, adab islami santri, serta penguasaan literasi sains dan teknologi di Plosoklaten, Kabupaten Kediri.
+
+            <p class="text-sm sm:text-base text-[#52665a] font-light leading-relaxed mt-6 max-w-xl">
+              SMPI Yambu'ul Qur'an memadukan sanad hafalan Al-Qur'an 30 juz berstandar internasional dengan kedalaman kurikulum nasional dan integritas kepemimpinan santri.
             </p>
 
-            <div class="hero-cta-group">
-              <button onclick="klikPendaftaran()" class="rounded-full bg-secondary hover:bg-secondary-400 text-primary-900 font-extrabold text-[11px] sm:text-xs uppercase tracking-normal sm:tracking-wider shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-1.5 sm:gap-2">
-                <i class="fas fa-file-signature text-xs sm:text-sm flex-shrink-0"></i>
-                <span class="hero-cta-desktop-text">Pendaftaran Santri Baru (PPDB)</span>
-                <span class="hero-cta-mobile-text truncate">Daftar PPDB</span>
+            <div class="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-[#e2ece6]">
+              <button onclick="klikPendaftaran()" class="px-6 py-3.5 bg-[#062116] hover:bg-[#0b3323] text-[#dfb342] text-xs font-mono uppercase tracking-wider font-bold rounded-none transition-colors">
+                Daftar Santri Baru &rarr;
               </button>
-              <button onclick="showSection('program')" class="rounded-full border border-white/20 hover:bg-white/10 text-white font-bold text-[11px] sm:text-xs uppercase tracking-normal sm:tracking-wider transition-all flex items-center justify-center">
-                <span class="hero-cta-desktop-text">Kurikulum &amp; Program Unggulan &rarr;</span>
-                <span class="hero-cta-mobile-text truncate">Program Unggulan &rarr;</span>
+              <button onclick="showSection('sambutan')" class="px-6 py-3.5 bg-transparent hover:bg-white text-[#062116] border border-[#062116] text-xs font-mono uppercase tracking-wider font-bold rounded-none transition-colors">
+                Wacana Pimpinan
               </button>
-            </div>
-
-            <!-- Integrated Trust Metrics Strip (Replaces generic badges) -->
-            <div class="hero-trust-metrics">
-              <div class="trust-metric-item">
-                <p class="trust-metric-value">70003325</p>
-                <p class="trust-metric-label">NPSN Kemendikdasmen</p>
-              </div>
-              <div class="trust-metric-item">
-                <p class="trust-metric-value">Akreditasi B</p>
-                <p class="trust-metric-label">Resmi BAN-S/M</p>
-              </div>
-              <div class="trust-metric-item">
-                <p class="trust-metric-value">Tahfidz &amp; Sains</p>
-                <p class="trust-metric-label">Kurikulum Plus</p>
-              </div>
-              <div class="trust-metric-item">
-                <p class="trust-metric-value">Plosoklaten</p>
-                <p class="trust-metric-label">Kediri, Jawa Timur</p>
-              </div>
             </div>
           </div>
 
-          <!-- Right Column: Campus Lens Framed Carousel -->
-          <div>
-            <div class="relative rounded-3xl p-2 sm:p-2.5 bg-white/5 border border-white/15 shadow-2xl backdrop-blur-md">
-              <div class="overflow-hidden rounded-2xl aspect-[16/10] bg-primary-900" id="hero-viewport">
-                <!-- slide banner dirender oleh JS (renderHeroSlider) ke sini, dari sheet HeroBanner -->
-                <div id="hero-slides" class="flex transition-transform duration-700 ease-in-out">
-                  <div class="hero-slide flex-shrink-0 w-full aspect-[16/10] rounded-2xl overflow-hidden bg-primary-900 relative flex items-center justify-center">
-                    <img src="splash-bg.webp" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" alt="Kampus SMPI Yambu'ul Qur'an" fetchpriority="high">
-                    <div class="relative z-10 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-t from-[#062116]/90 via-[#0b3323]/60 to-transparent w-full h-full">
-                      <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/10 p-2.5 border border-white/20 mb-3">
-                        <img src="logo.png" alt="Logo SMPI Yambu'ul Qur'an" class="w-full h-full object-contain">
-                      </div>
-                      <p class="font-arabic text-xl md:text-2xl text-secondary font-bold">&#1610;&#1614;&#1606;&#1576;&#1615;&#1608;&#1593;&#1615; &#1575;&#1604;&#1602;&#1615;&#1585;&#1578;&#1575;&#1606;</p>
-                      <p class="font-serif text-white font-black text-base md:text-lg mt-1 tracking-tight">SMPI YAMBU'UL QUR'AN</p>
-                      <p class="text-white/70 text-xs font-sans mt-0.5 tracking-wider uppercase">Plosoklaten &bull; Kediri</p>
-                    </div>
-                  </div>
+          <!-- Right Column (5 cols): Campus Architectural Frame -->
+          <div class="lg:col-span-5">
+            <div class="relative p-2 bg-white border border-[#e2ece6] shadow-sm">
+              <div class="aspect-[4/3] overflow-hidden bg-[#faf9f5] relative">
+                <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1200&q=80" alt="Kampus SMPI Yambu'ul Qur'an" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-700">
+                <div class="absolute bottom-3 left-3 bg-[#062116]/90 text-white font-mono text-[10px] px-2.5 py-1">
+                  KAMPUS PLOSOKLATEN &bull; KEDIRI
                 </div>
               </div>
-              <div id="hero-dots" class="flex items-center justify-center gap-2 mt-4 pb-1"></div>
+              <div class="mt-2 text-right">
+                <span class="font-mono text-[10px] text-[#7a8e82] uppercase tracking-widest">[ ARSIP DOKUMENTASI ]</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- TRANQUIL WAKTU SHOLAT RIBBON -->
-    <div id="jadwal-sholat-wrap" class="max-w-7xl mx-auto px-4 md:px-6 -mt-8 relative z-20">
-      <div class="card-scholar bg-white shadow-xl px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6">
-        <!-- Top Header: Title Left, Digital Clock Right -->
-        <div class="flex items-center justify-between gap-2 mb-3 pb-2.5 sm:mb-3.5 sm:pb-3 border-b border-slate-100">
-          <div class="flex items-center gap-2 sm:gap-3.5 min-w-0">
-            <div class="w-8 h-8 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-primary flex items-center justify-center flex-shrink-0 text-secondary shadow-sm">
-              <i class="fas fa-mosque text-xs sm:text-base md:text-lg"></i>
-            </div>
-            <div class="leading-tight min-w-0">
-              <h2 class="font-serif text-primary font-bold sm:font-black text-[13px] sm:text-base md:text-xl whitespace-nowrap">Waktu Sholat &amp; Ibadah</h2>
-              <p class="text-slate-400 text-[9.5px] sm:text-xs font-medium flex items-center gap-1 mt-0.5 truncate">
-                <i class="fas fa-location-dot text-[8px] sm:text-[9px] text-secondary flex-shrink-0"></i>
-                <span>Plosoklaten &bull; Kediri, Jatim</span>
-              </p>
-            </div>
-          </div>
-          <div class="text-right flex-shrink-0 flex flex-col items-end">
-            <div class="inline-flex items-center gap-1 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-md sm:rounded-lg bg-primary-50 border border-primary/10">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <p id="jadwal-sholat-jam" class="text-primary font-mono font-bold text-[11px] sm:text-sm md:text-base tabular-nums leading-none tracking-tight sm:tracking-wide">--:--:-- WIB</p>
-            </div>
-            <p id="jadwal-sholat-tanggal" class="text-slate-400 text-[9px] sm:text-[11px] font-semibold mt-0.5 sm:mt-1 tabular-nums"></p>
-          </div>
-        </div>
 
-        <!-- 5-Prayer Columns (All 5 prayers visible on mobile & desktop without scroll) -->
-        <div class="w-full">
-          <div id="jadwal-sholat-grid" class="grid grid-cols-5 gap-1.5 sm:gap-2.5 md:gap-3 w-full" style="min-height:80px">
-            <div class="col-span-full text-center py-4 text-slate-300 text-xs font-semibold"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat jadwal sholat...</div>
-          </div>
+    <!-- SWISS HORIZONTAL SHOLAT TIMETABLE (V2) -->
+    <div id="jadwal-sholat-wrap" class="max-w-7xl mx-auto px-4 md:px-6 py-6 border-b border-[#e2ece6]" style="background:#ffffff !important;">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-[#e2ece6]">
+        <div class="flex items-center gap-3">
+          <span class="font-mono text-xs text-[#c39328] font-bold uppercase tracking-widest">[ WAKTU SHOLAT ]</span>
+          <span class="text-xs font-mono text-[#52665a]" id="jadwal-sholat-tanggal"></span>
         </div>
-
-        <!-- Bottom Status: Countdown Badge & Source -->
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-2 mt-3 pt-2.5 border-t border-slate-100 text-[11px]">
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:py-1 rounded-full bg-amber-50/80 border border-amber-200/60">
-            <i class="fas fa-hourglass-half text-amber-600 text-[11px] animate-spin-slow"></i>
-            <span id="jadwal-sholat-countdown" class="font-bold text-amber-900 text-[10.5px] sm:text-xs tabular-nums"></span>
-          </div>
-          <p class="text-slate-400 text-[10px] text-center sm:text-right flex items-center gap-1.5">
-            <i class="fas fa-circle-check text-emerald-600/70 text-[10px]"></i>
-            <span>Metode Kemenag RI &bull; Sentuh kartu untuk panduan ibadah</span>
-          </p>
+        <div class="flex items-center gap-4 text-xs font-mono">
+          <span class="text-[#062116] font-bold" id="jadwal-sholat-jam">--:--:-- WIB</span>
+          <span class="text-[#c39328]" id="jadwal-sholat-countdown">Menghitung...</span>
         </div>
       </div>
+      <div id="jadwal-sholat-grid" class="grid grid-cols-5 divide-x divide-[#e2ece6] border-b border-[#e2ece6] text-center" style="min-height:70px"></div>
     </div>
 
-    <!-- Aplikasi Sekolah (dari sheet Menu, menggantikan navigasi cepat Profil/Sambutan/dst) -->
-    <div id="beranda-aplikasi-wrap" class="max-w-7xl mx-auto px-4 md:px-6 mt-8 relative z-20">
-      <div class="card-scholar bg-white px-5 md:px-8 py-6 md:py-8">
-        <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
-          <div class="flex items-center gap-3 flex-1 min-w-0">
-            <div class="w-11 h-11 rounded-xl bg-secondary/15 flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-layer-group text-secondary-600 text-lg"></i>
-            </div>
-            <div class="leading-tight min-w-0">
-              <h2 class="font-serif text-primary font-black text-lg sm:text-xl md:text-2xl">Layanan &amp; Portal Digital Sekolah</h2>
-              <p class="text-slate-400 text-[11px] md:text-xs font-semibold">Akses terintegrasi sarana pembelajaran &amp; administrasi online</p>
-            </div>
-          </div>
-          <button id="btn-aplikasi-selengkapnya" onclick="showSection('aplikasi')" class="hidden flex-shrink-0 self-start sm:self-auto text-secondary-600 hover:text-secondary-700 font-bold text-xs uppercase tracking-wider whitespace-nowrap">Semua Layanan &rarr;</button>
+
+    <!-- SWISS ACADEMIC LEDGER PREVIEW (V2) -->
+    <div id="beranda-aplikasi-wrap" class="max-w-7xl mx-auto px-4 md:px-6 py-12 border-b border-[#e2ece6]" style="background:#ffffff !important;">
+      <div class="flex items-end justify-between pb-4 mb-6 border-b border-[#e2ece6]">
+        <div>
+          <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ DIREKTORI SISTEM RESMI ]</span>
+          <h2 class="font-serif text-2xl md:text-3xl font-normal text-[#062116] mt-1">Layanan &amp; Portal Digital Sekolah</h2>
         </div>
-        <div id="beranda-aplikasi-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"></div>
+        <button onclick="showSection('aplikasi')" class="font-mono text-xs text-[#062116] hover:text-[#c39328] uppercase tracking-wider font-bold">Semua 18 Layanan &rarr;</button>
       </div>
+      <div id="beranda-aplikasi-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
     </div>
 
-    <!-- Sambutan Kepala Sekolah -->
-    <div id="beranda-kepsek" class="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16 scroll-mt-24">
-      <div class="mb-8 md:mb-10">
-        <h2 class="font-serif text-2xl md:text-4xl font-black text-primary leading-tight">Sambutan Kepala Sekolah SMPI Yambu'ul Qur'an</h2>
-        <p class="text-xs md:text-sm text-slate-500 mt-2 font-medium">Membangun peradaban mulia berlandaskan Al-Qur'an dan kemajuan ilmu pengetahuan.</p>
-      </div>
-      <div class="card-scholar bg-white overflow-hidden sbt-grid">
-        <!-- Panel Hijau Tua: Foto Kepala Sekolah -->
-        <div class="sbt-panel bg-primary relative">
-          <div id="beranda-kepsek-foto" class="sbt-foto2"><img src="https://placehold.co/400x500/0b3323/dfb342?text=Kepala+Sekolah" class="w-full h-auto block" alt="Kepala Sekolah SMPI Yambu'ul Qur'an"></div>
-          <div class="absolute inset-x-0 bottom-0 px-5 pb-6 pt-24 text-center sbt-caption pointer-events-none">
-            <p class="text-white font-serif font-bold text-base md:text-lg leading-snug" id="beranda-kepsek-nama">Ust. H. Ahmad Fauzi, Lc., M.Pd.</p>
-            <span class="inline-block mt-1.5 text-secondary text-[11px] font-semibold uppercase tracking-wider" id="beranda-kepsek-jabatan">Kepala Sekolah</span>
+
+    <!-- MAGAZINE INTERVIEW: SAMBUTAN KEPALA SEKOLAH (V2) -->
+    <div id="beranda-kepsek" class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 border-b border-[#e2ece6] scroll-mt-24" style="background:#faf9f5 !important;">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <!-- Asymmetric Portrait (4 cols) -->
+        <div class="lg:col-span-4">
+          <div class="border border-[#e2ece6] p-2 bg-white">
+            <div id="beranda-kepsek-foto" class="aspect-[3/4] overflow-hidden bg-[#e2ece6] relative">
+              <img src="https://placehold.co/400x500/062116/dfb342?text=Kepala+Sekolah" class="w-full h-full object-cover grayscale contrast-125" alt="Kepala Sekolah SMPI Yambu'ul Qur'an">
+            </div>
+            <div class="mt-3 text-center">
+              <p class="font-serif text-base font-bold text-[#062116]" id="beranda-kepsek-nama">Ust. H. Ahmad Fauzi, Lc., M.Pd.</p>
+              <p class="font-mono text-[10px] text-[#c39328] uppercase tracking-wider mt-0.5" id="beranda-kepsek-jabatan">Kepala SMPI Yambu'ul Qur'an</p>
+            </div>
           </div>
-          <div class="absolute inset-x-0 bottom-0 h-1 bg-secondary"></div>
         </div>
-        <div class="relative p-6 md:p-9 lg:p-10 flex flex-col justify-between">
+
+        <!-- Editorial Prose (8 cols) -->
+        <div class="lg:col-span-8 flex flex-col justify-between">
           <div>
-            <div class="flex items-center gap-2 text-secondary-600 text-xs font-bold uppercase tracking-wider mb-3">
-              <i class="fas fa-quote-left text-sm"></i>
-              <span>Risalah Pendidikan</span>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ WACANA PIMPINAN ]</span>
+              <span class="w-12 h-px bg-[#c39328]/40"></span>
             </div>
-            <p class="relative text-sm md:text-[15px] text-slate-600 leading-[1.85] line-clamp-6" id="beranda-sambutan">Memuat naskah sambutan kepala sekolah...</p>
-            <div class="mt-5">
-              <button onclick="showSection('sambutan')" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-600 text-white font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-full shadow-md transition-all">Baca Sambutan Lengkap <i class="fas fa-arrow-right text-[10px]"></i></button>
+            <h2 class="font-serif text-2xl sm:text-4xl text-[#062116] font-normal leading-snug">
+              "Pendidikan bukan sekadar transfer ilmu, melainkan pembiasaan adab dan penyelarasan jiwa dengan kalam Ilahi."
+            </h2>
+            <div class="mt-6 text-sm sm:text-base text-[#52665a] font-light leading-relaxed whitespace-pre-line" id="beranda-sambutan">
+              Memuat naskah sambutan resmi kepala sekolah...
             </div>
           </div>
-          <div class="grid sm:grid-cols-2 gap-6 mt-8 pt-6 border-t border-slate-100">
-            <div class="border-l-2 border-secondary" style="padding-left: 1rem;">
-              <p class="font-serif font-black text-primary text-xs uppercase tracking-wider mb-1 flex items-center gap-2"><i class="fas fa-eye text-secondary-600"></i> Visi Lembaga</p>
-              <p class="text-xs md:text-[13px] text-slate-600 leading-relaxed line-clamp-4" id="beranda-visi">Memuat visi pendidikan...</p>
+
+          <div class="grid sm:grid-cols-2 gap-6 mt-10 pt-8 border-t border-[#e2ece6]">
+            <div>
+              <span class="font-mono text-xs text-[#062116] uppercase tracking-widest block font-bold mb-2">VISI UTAMA</span>
+              <p class="text-xs text-[#52665a] leading-relaxed font-light" id="beranda-visi">Memuat visi kelembagaan...</p>
             </div>
-            <div class="border-l-2 border-primary" style="padding-left: 1rem;">
-              <p class="font-serif font-black text-primary text-xs uppercase tracking-wider mb-1 flex items-center gap-2"><i class="fas fa-bullseye text-primary"></i> Misi Lembaga</p>
-              <p class="text-xs md:text-[13px] text-slate-600 leading-relaxed line-clamp-4" id="beranda-misi">Memuat misi pembinaan santri...</p>
+            <div>
+              <span class="font-mono text-xs text-[#062116] uppercase tracking-widest block font-bold mb-2">MISI STRATEGIS</span>
+              <p class="text-xs text-[#52665a] leading-relaxed font-light" id="beranda-misi">Memuat misi kelembagaan...</p>
             </div>
+          </div>
+
+          <div class="mt-8">
+            <button onclick="showSection('sambutan')" class="px-5 py-3 border border-[#062116] text-[#062116] hover:bg-[#062116] hover:text-white font-mono text-xs uppercase tracking-wider transition-colors inline-flex items-center gap-2">
+              <span>Baca Wacana Lengkap &rarr;</span>
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Statistik Terukur (Pilar Kepercayaan) -->
-    <div class="max-w-7xl mx-auto px-4 md:px-6 pb-16">
-      <div class="card-scholar shadow-xl overflow-hidden border border-white/10" style="background: linear-gradient(135deg, #062116 0%, #0b3323 50%, #08281b 100%);">
-        <div id="statistik-grid" class="relative grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/10"></div>
+
+    <!-- SWISS DATA COUNTER STRIP (V2) -->
+    <div class="border-b border-[#e2ece6] py-12" style="background:#ffffff !important;">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="flex items-center justify-between mb-6 pb-2 border-b border-[#e2ece6]">
+          <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ DATA INDIKATOR KAMPUS ]</span>
+          <span class="font-mono text-xs text-[#7a8e82]">TERAKREDITASI BAN-S/M</span>
+        </div>
+        <div id="statistik-grid" class="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e2ece6]"></div>
       </div>
     </div>
 
-    <!-- Kurikulum & Program Unggulan -->
+
+    <!-- EDITORIAL ARCHITECTURAL EXHIBITION (V2) -->
+    <div class="border-y border-[#e2ece6] py-16" style="background:#faf9f5 !important;">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="flex items-center justify-between mb-8 pb-3 border-b border-[#e2ece6]">
+          <div>
+            <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ DOKUMENTASI ARSITEKTUR KAMPUS ]</span>
+            <h3 class="font-serif text-2xl text-[#062116] font-normal mt-1">Lanskap Lingkungan Belajar Terpadu</h3>
+          </div>
+          <button onclick="showSection('galeri')" class="font-mono text-xs text-[#062116] hover:text-[#c39328] uppercase tracking-wider">Katalog Foto &rarr;</button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="border border-[#e2ece6] p-2 bg-white">
+            <div class="aspect-[4/3] overflow-hidden bg-[#e2ece6]">
+              <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=800&q=80" alt="Gedung Kampus" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500">
+            </div>
+            <p class="font-mono text-[10px] text-[#7a8e82] uppercase tracking-widest mt-2">[ FIG. 01 ] KOMPLEKS GEDUNG PESANTREN</p>
+          </div>
+          <div class="border border-[#e2ece6] p-2 bg-white">
+            <div class="aspect-[4/3] overflow-hidden bg-[#e2ece6]">
+              <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80" alt="Perpustakaan & Kelas" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500">
+            </div>
+            <p class="font-mono text-[10px] text-[#7a8e82] uppercase tracking-widest mt-2">[ FIG. 02 ] PERPUSTAKAAN &amp; KELAS MULTIMEDIA</p>
+          </div>
+          <div class="border border-[#e2ece6] p-2 bg-white">
+            <div class="aspect-[4/3] overflow-hidden bg-[#e2ece6]">
+              <img src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=800&q=80" alt="Masjid & Halaqah" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500">
+            </div>
+            <p class="font-mono text-[10px] text-[#7a8e82] uppercase tracking-widest mt-2">[ FIG. 03 ] MASJID JAMI' &amp; RUANG HALAQAH</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Kurikulum & Program Unggulan -->
     <div id="beranda-program-unggulan" class="pu-section relative overflow-hidden py-14 md:py-20 scroll-mt-24">
       <div class="relative max-w-7xl mx-auto px-4 md:px-6">
         <div class="text-center max-w-3xl mx-auto mb-12">
@@ -2277,17 +2165,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
   <!-- ================= PROFIL ================= -->
   <!-- ================= FASILITAS (HALAMAN FULL) ================= -->
   <section id="section-fasilitas" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-school pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-flask pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-futbol pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Fasilitas <span class="text-secondary">Sekolah</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Ruang belajar, laboratorium, dan sarana penunjang yang nyaman untuk mendukung tumbuh kembang siswa.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Fasilitas</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Fasilitas ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Fasilitas <span class="text-secondary">Sekolah</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Ruang belajar, laboratorium, dan sarana penunjang yang nyaman untuk mendukung tumbuh kembang siswa.</p>
+        
       </div>
     </div>
     <div class="max-w-6xl mx-auto px-4 md:px-6 py-12">
@@ -2298,17 +2181,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= SAMBUTAN KEPALA SEKOLAH (HALAMAN FULL) ================= -->
   <section id="section-sambutan" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-quote-left pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-user-tie pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-star-and-crescent pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Sambutan <span class="text-secondary">Kepala</span> Sekolah</h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Salam hangat dan pesan dari Kepala SMPI Yambu'ul Qur'an untuk seluruh keluarga besar sekolah.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Sambutan</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Sambutan ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Sambutan <span class="text-secondary">Kepala</span> Sekolah</h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Salam hangat dan pesan dari Kepala SMPI Yambu'ul Qur'an untuk seluruh keluarga besar sekolah.</p>
+        
       </div>
     </div>
     <div class="max-w-5xl mx-auto px-4 md:px-6 py-12 space-y-12">
@@ -2346,21 +2224,16 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= APLIKASI DIGITAL SEKOLAH ================= -->
   <section id="section-aplikasi" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-laptop-code pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-cloud pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-chart-line pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto px-4">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Yambu'ul Qur'an <span class="text-secondary">Smart School</span> Ecosystem</h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Satu pintu untuk seluruh layanan digital SMPI Yambu'ul Qur'an &mdash; praktis, cepat, dan bisa diakses dari mana saja.</p>
-        <div class="mt-7 max-w-md mx-auto relative">
-          <i class="fas fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-          <input id="aplikasi-cari" type="search" oninput="setCariAplikasi_(this.value)" placeholder="Cari aplikasi..." class="w-full bg-white rounded-full pl-12 pr-5 py-3.5 text-sm text-primary placeholder-slate-400 shadow-2xl focus:outline-none focus:ring-4 focus:ring-secondary/50">
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Aplikasi Digital Sekolah ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Yambu'ul Qur'an <span class="text-secondary">Smart School</span> Ecosystem</h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Satu pintu untuk seluruh layanan digital SMPI Yambu'ul Qur'an &mdash; praktis, cepat, dan bisa diakses dari mana saja.</p>
+        
+        <div class="mt-6 max-w-md relative">
+          <input id="aplikasi-cari" type="search" oninput="setCariAplikasi_(this.value)" placeholder="Ketik nama atau kata kunci aplikasi..." class="w-full bg-white border border-[#e2ece6] rounded-none px-4 py-3 text-xs font-mono text-[#062116] placeholder-[#7a8e82] focus:outline-none focus:border-[#062116]">
         </div>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Aplikasi Digital Sekolah</p>
+
       </div>
     </div>
     <div class="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-12">
@@ -2368,17 +2241,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
         <button onclick="kembaliKeBeranda('beranda-aplikasi-wrap')" class="text-primary hover:text-primary-600 text-xs font-bold inline-flex items-center gap-1.5"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</button>
         <span id="aplikasi-jumlah" class="text-[11px] font-black text-primary bg-primary-50 px-3.5 py-1.5 rounded-full"></span>
       </div>
-      
-      <!-- Category Tabs (Zero Pill Slop, Crisp Editorial Buttons) -->
-      <div id="v2-cat-filter-tabs" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-6 text-xs font-mono uppercase tracking-wider">
-        <button onclick="filterAplikasiKategori_('Semua', this)" class="v2-app-tab active px-3.5 py-1.5 bg-[#062116] text-[#dfb342] font-bold border border-[#062116] whitespace-nowrap">Semua</button>
-        <button onclick="filterAplikasiKategori_('Akademik', this)" class="v2-app-tab px-3.5 py-1.5 bg-white text-slate-700 font-medium border border-[#e2ece6] hover:bg-slate-50 whitespace-nowrap">Akademik</button>
-        <button onclick="filterAplikasiKategori_('Administrasi', this)" class="v2-app-tab px-3.5 py-1.5 bg-white text-slate-700 font-medium border border-[#e2ece6] hover:bg-slate-50 whitespace-nowrap">Administrasi</button>
-        <button onclick="filterAplikasiKategori_('Tahfidz', this)" class="v2-app-tab px-3.5 py-1.5 bg-white text-slate-700 font-medium border border-[#e2ece6] hover:bg-slate-50 whitespace-nowrap">Tahfidz &amp; Literasi</button>
-        <button onclick="filterAplikasiKategori_('Layanan', this)" class="v2-app-tab px-3.5 py-1.5 bg-white text-slate-700 font-medium border border-[#e2ece6] hover:bg-slate-50 whitespace-nowrap">Layanan Santri</button>
-      </div>
-
-      <div id="aplikasi-grid-full" class="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6"></div>
+      <div id="aplikasi-grid-full" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"></div>
       <div class="subpage-hero-banner mt-12 relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary-900 via-primary to-primary-600 p-7 md:p-9 flex flex-col md:flex-row md:items-center justify-between gap-5">
         
         <div class="relative">
@@ -2395,17 +2258,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= AKADEMIK: KALENDER AKADEMIK ================= -->
   <section id="section-kalender" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-calendar-check pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-bell pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-clock pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Kalender <span class="text-secondary">Akademik</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Pantau jadwal penting tahun ajaran: awal semester, libur, ujian, hingga pembagian rapor.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Akademik / Kalender Akademik</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Akademik / Kalender Akademik ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Kalender <span class="text-secondary">Akademik</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Pantau jadwal penting tahun ajaran: awal semester, libur, ujian, hingga pembagian rapor.</p>
+        
       </div>
     </div>
     <div class="max-w-6xl mx-auto px-4 md:px-6 py-12">
@@ -2418,17 +2276,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= AKADEMIK: JADWAL PELAJARAN ================= -->
   <section id="section-jadwalpelajaran" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-book-open pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-chalkboard pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-clock pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Jadwal <span class="text-secondary">Pelajaran</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Jadwal pelajaran tiap kelas, tersusun rapi dan mudah dibuka dari mana saja.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Akademik / Jadwal Pelajaran</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Akademik / Jadwal Pelajaran ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Jadwal <span class="text-secondary">Pelajaran</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Jadwal pelajaran tiap kelas, tersusun rapi dan mudah dibuka dari mana saja.</p>
+        
       </div>
     </div>
     <div class="max-w-6xl mx-auto px-4 md:px-6 py-12">
@@ -2441,17 +2294,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= AKADEMIK: JADWAL UJIAN ================= -->
   <section id="section-jadwalujian" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-pen-to-square pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-clipboard-check pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-hourglass-half pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Jadwal <span class="text-secondary">Ujian</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Informasi jadwal ujian agar siswa dan orang tua dapat mempersiapkan diri dengan baik.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Akademik / Jadwal Ujian</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Akademik / Jadwal Ujian ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Jadwal <span class="text-secondary">Ujian</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Informasi jadwal ujian agar siswa dan orang tua dapat mempersiapkan diri dengan baik.</p>
+        
       </div>
     </div>
     <div class="max-w-6xl mx-auto px-4 md:px-6 py-12">
@@ -2464,17 +2312,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= SEJARAH SEKOLAH ================= -->
   <section id="section-sejarah" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-monument pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-scroll pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-timeline pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Sejarah <span class="text-secondary">Sekolah</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Perjalanan SMPI Yambu'ul Qur'an dari awal berdiri hingga hari ini.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Profil / Sejarah Sekolah</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Profil / Sejarah Sekolah ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Sejarah <span class="text-secondary">Sekolah</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Perjalanan SMPI Yambu'ul Qur'an dari awal berdiri hingga hari ini.</p>
+        
       </div>
     </div>
     <div class="max-w-3xl mx-auto px-4 md:px-6 py-12">
@@ -2485,17 +2328,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= DONASI ================= -->
   <section id="section-donasi" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-hand-holding-heart pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-mosque pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-heart pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight" id="donasi-judul">Donasi <span class="text-secondary">Sekolah</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto" id="donasi-deskripsi">Mari berbagi kebaikan untuk kemajuan SMPI Yambu'ul Qur'an. Semoga menjadi amal jariyah yang terus mengalir.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Donasi</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Donasi ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Donasi <span class="text-secondary">Sekolah</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Mari berbagi kebaikan untuk kemajuan SMPI Yambu'ul Qur'an. Semoga menjadi amal jariyah yang terus mengalir.</p>
+        
       </div>
     </div>
     <div class="dn-wrap">
@@ -2552,17 +2390,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= GURU ================= -->
   <section id="section-guru" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-graduation-cap pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-users pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-book-open-reader pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Guru &amp; <span class="text-secondary">Staf</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Para pendidik dan tenaga kependidikan yang membimbing siswa dengan keteladanan dan dedikasi.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Guru &amp; Staf</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Guru &amp; Staf ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Guru &amp; <span class="text-secondary">Staf</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Para pendidik dan tenaga kependidikan yang membimbing siswa dengan keteladanan dan dedikasi.</p>
+        
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2573,17 +2406,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= PROGRAM ================= -->
   <section id="section-program" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-lightbulb pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-medal pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-seedling pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Program <span class="text-secondary">Unggulan</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Program pilihan yang membentuk karakter islami, prestasi akademik, dan kecakapan masa depan.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Program</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Program ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Program <span class="text-secondary">Unggulan</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Program pilihan yang membentuk karakter islami, prestasi akademik, dan kecakapan masa depan.</p>
+        
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2594,17 +2422,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= EKSTRAKURIKULER ================= -->
   <section id="section-ekstrakurikuler" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-futbol pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-music pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-palette pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Ekstra<span class="text-secondary">kurikuler</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Wadah mengembangkan bakat, minat, dan kepemimpinan siswa di luar jam pelajaran.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Ekstrakurikuler</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Ekstrakurikuler ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Ekstra<span class="text-secondary">kurikuler</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Wadah mengembangkan bakat, minat, dan kepemimpinan siswa di luar jam pelajaran.</p>
+        
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2615,17 +2438,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= PRESTASI ================= -->
   <section id="section-prestasi" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-medal pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-award pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-ranking-star pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Prestasi <span class="text-secondary">Sekolah</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Capaian siswa dan sekolah di berbagai bidang, bukti kerja keras dan doa bersama.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Prestasi</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Prestasi ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Prestasi <span class="text-secondary">Sekolah</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Capaian siswa dan sekolah di berbagai bidang, bukti kerja keras dan doa bersama.</p>
+        
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2636,17 +2454,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= ALUMNI ================= -->
   <section id="section-alumni" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-graduation-cap pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-handshake pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-earth-asia pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight"><span class="text-secondary">Alumni</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Jejak lulusan SMPI Yambu'ul Qur'an yang terus berkarya dan berkontribusi di berbagai bidang.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Alumni</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Alumni ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight"><span class="text-secondary">Alumni</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Jejak lulusan SMPI Yambu'ul Qur'an yang terus berkarya dan berkontribusi di berbagai bidang.</p>
+        
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2657,53 +2470,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= KEGIATAN / AGENDA ================= -->
   <section id="section-kegiatan" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-calendar-days pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-bullhorn pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-clock pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Agenda <span class="text-secondary">Sekolah</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Jadwal kegiatan belajar mengajar, ujian, serta agenda sekolah lainnya di SMPI Yambu'ul Qur'an.</p>
-
-        <div id="agenda-ringkasan" class="flex flex-wrap justify-center gap-2.5 mt-6"></div>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Artikel ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Agenda <span class="text-secondary">Sekolah</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Jadwal kegiatan belajar mengajar, ujian, serta agenda sekolah lainnya di SMPI Yambu'ul Qur'an.</p>
         
-      </div>
-    </div>
-    <div class="max-w-4xl mx-auto px-4 md:px-6 py-12">
-      <button onclick="kembaliKeBeranda('beranda-kegiatan-grid')" class="text-primary hover:text-primary-600 text-xs font-bold inline-flex items-center gap-1.5 mb-6"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</button>
-
-      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-3 md:p-4 flex flex-col sm:flex-row gap-3 mb-4">
-        <div class="flex-1 flex items-center gap-2 bg-slate-50 rounded-xl px-4 py-2.5">
-          <i class="fas fa-search text-slate-400 text-sm"></i>
-          <input id="agenda-cari" type="text" placeholder="Cari agenda (contoh: Ujian, Upacara, Rapat)..." class="flex-1 min-w-0 bg-transparent text-sm focus:outline-none" oninput="renderAgendaList()">
-        </div>
-        <select id="agenda-filter-kategori" class="bg-slate-50 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-600 focus:outline-none sm:w-56" onchange="renderAgendaList()">
-          <option value="">Semua Kategori</option>
-        </select>
-      </div>
-
-      <div id="agenda-tab" class="flex gap-2 mb-8 overflow-x-auto scrollbar-hide pb-1"></div>
-
-      <div id="agenda-list"></div>
-    </div>
-  </section>
-
-  <!-- ================= ARTIKEL (list) ================= -->
-  <section id="section-artikel" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-pen-nib pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-bullhorn pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-rss pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Artikel <span class="text-secondary">&amp;</span> Berita</h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Berita, tulisan, dan informasi terbaru seputar kegiatan SMPI Yambu'ul Qur'an.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Artikel</p>
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2783,17 +2555,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= GALERI FOTO ================= -->
   <section id="section-galeri" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-camera pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-image pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-photo-film pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Galeri <span class="text-secondary">Foto</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Potret momen belajar, kegiatan, dan kebersamaan keluarga besar sekolah.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Galeri Foto</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Galeri Foto ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Galeri <span class="text-secondary">Foto</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Potret momen belajar, kegiatan, dan kebersamaan keluarga besar sekolah.</p>
+        
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2804,17 +2571,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= GALERI VIDEO ================= -->
   <section id="section-galerivideo" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-video pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-circle-play pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-clapperboard pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Galeri <span class="text-secondary">Video</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Tonton cuplikan kegiatan dan kebersamaan di SMPI Yambu'ul Qur'an.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Galeri Video</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Galeri Video ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Galeri <span class="text-secondary">Video</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Tonton cuplikan kegiatan dan kebersamaan di SMPI Yambu'ul Qur'an.</p>
+        
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2825,17 +2587,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= VIRTUAL TOUR 360 ================= -->
   <section id="section-virtualtour" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-street-view pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-compass pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-map-location-dot pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Virtual <span class="text-secondary">Tour</span> 360&deg;</h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Keliling lingkungan sekolah secara virtual, seolah-olah berada langsung di lokasi.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Virtual Tour</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Virtual Tour ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Virtual <span class="text-secondary">Tour</span> 360&deg;</h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Keliling lingkungan sekolah secara virtual, seolah-olah berada langsung di lokasi.</p>
+        
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2848,17 +2605,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= LIVE STREAMING ================= -->
   <section id="section-livestreaming" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-video pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-satellite-dish pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-circle-play pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Live <span class="text-secondary">Streaming</span></h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Ikuti siaran langsung kegiatan sekolah dan lihat arsip siaran sebelumnya.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Live Streaming</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Live Streaming ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Live <span class="text-secondary">Streaming</span></h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Ikuti siaran langsung kegiatan sekolah dan lihat arsip siaran sebelumnya.</p>
+        
       </div>
     </div>
     <div class="max-w-5xl mx-auto px-4 md:px-6 py-12">
@@ -2877,17 +2629,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= KARYA ================= -->
   <section id="section-karya" class="app-section">
-    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
-      
-      
-      <i class="fas fa-paintbrush pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
-      <i class="fas fa-feather-pointed pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
-      <i class="fas fa-lightbulb pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
-      <div class="relative max-w-3xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Karya <span class="text-secondary">Siswa</span> &amp; Guru</h1>
-        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Kumpulan puisi, cerpen, lukisan, gambar, dan video hasil kreativitas keluarga besar SMPI Yambu'ul Qur'an.</p>
-        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Karya</p>
+    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
+      <div class="max-w-6xl mx-auto">
+        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Karya ]</span>
+        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Karya <span class="text-secondary">Siswa</span> &amp; Guru</h1>
+        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Kumpulan puisi, cerpen, lukisan, gambar, dan video hasil kreativitas keluarga besar SMPI Yambu'ul Qur'an.</p>
+        
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-12">
@@ -2910,64 +2657,53 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 <!-- ============================================================ -->
 <!-- FOOTER -->
 <!-- ============================================================ -->
-<footer class="text-white mt-12 border-t border-white/10" style="background: linear-gradient(180deg, #062116 0%, #03140d 100%) !important; background-color: #062116 !important;">
-  <div class="max-w-7xl mx-auto px-4 md:px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10 text-sm">
-    <div class="space-y-3.5">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-white/10 p-1 flex items-center justify-center ring-1 ring-secondary/40">
-          <img src="logo.png" alt="Logo SMPI Yambu'ul Qur'an" class="w-full h-full object-contain">
+
+<footer class="border-t border-[#e2ece6] mt-20" style="background:#faf9f5 !important; color:#52665a !important;">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <span class="font-serif text-2xl text-[#062116] block tracking-tight font-normal">SMPI Yambu'ul Qur'an</span>
+        <span class="font-mono text-xs text-[#c39328] block mt-1 uppercase tracking-widest">EDISI EDITORIAL SWISS &bull; 2026/2027</span>
+        <p class="text-xs text-[#52665a] leading-relaxed mt-4 max-w-sm font-light">
+          Lembaga pendidikan formal tingkat menengah pertama berbasis pesantren tahfidzul Qur'an terpadu di Plosoklaten Kediri.
+        </p>
+        <div class="mt-6 flex items-center gap-3 font-mono text-[11px]">
+          <span class="border border-[#e2ece6] px-2.5 py-1 bg-white text-[#062116]">NPSN: 70003325</span>
+          <span class="border border-[#e2ece6] px-2.5 py-1 bg-white text-[#062116]">AKREDITASI: B</span>
         </div>
-        <div>
-          <p class="font-serif text-white font-bold text-base leading-tight">SMPI YAMBU'UL QUR'AN</p>
-          <p class="font-arabic text-secondary text-xs">يَنبُوعُ القُرآن</p>
+      </div>
+      <div class="md:col-span-4">
+        <span class="font-mono text-xs uppercase tracking-widest text-[#062116] block mb-4 font-bold">[ INDEKS DIREKTORI ]</span>
+        <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+          <a href="#" onclick="showSection('sambutan');return false;" class="hover:text-[#c39328]">Wacana Pimpinan</a>
+          <a href="#" onclick="showSection('program');return false;" class="hover:text-[#c39328]">Kurikulum</a>
+          <a href="#" onclick="showSection('guru');return false;" class="hover:text-[#c39328]">Dewan Asatidz</a>
+          <a href="#" onclick="showSection('fasilitas');return false;" class="hover:text-[#c39328]">Fasilitas</a>
+          <a href="#" onclick="showSection('aplikasi');return false;" class="hover:text-[#c39328] font-bold text-[#062116]">18 Aplikasi</a>
+          <a href="#" onclick="showSection('prestasi');return false;" class="hover:text-[#c39328]">Prestasi</a>
+          <a href="#" onclick="showSection('artikel');return false;" class="hover:text-[#c39328]">Warta Sekolah</a>
+          <a href="#" onclick="klikPendaftaran();return false;" class="hover:text-[#c39328] text-[#c39328]">Pendaftaran</a>
         </div>
       </div>
-      <p class="text-xs text-white/80 leading-relaxed" id="footer-alamat">Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri</p>
-      <div class="pt-2 text-[11px] text-white/75 space-y-1 border-t border-white/10 font-mono">
-        <p>NPSN: 70003325 &bull; Akreditasi: B</p>
-        <p>SK: 414-44/2053/418.20/2023</p>
-        <p>Yayasan Yambu'ul Qur'an</p>
-      </div>
-      <div class="flex gap-3 pt-2" id="footer-social"></div>
-    </div>
-
-    <div>
-      <h3 class="font-serif text-white font-bold text-xs uppercase tracking-wider mb-4 border-b border-white/10 pb-2">Direktori Akademik</h3>
-      <div class="space-y-2.5 text-xs">
-        <button onclick="showSection('sambutan')" class="block text-white/85 hover:text-secondary transition-colors text-left">Profil &amp; Visi Misi</button>
-        <button onclick="showSection('program')" class="block text-white/85 hover:text-secondary transition-colors text-left">Kurikulum &amp; Program Unggulan</button>
-        <button onclick="showSection('guru')" class="block text-white/85 hover:text-secondary transition-colors text-left">Dewan Asatidz &amp; Staf</button>
-        <button onclick="showSection('fasilitas')" class="block text-white/85 hover:text-secondary transition-colors text-left">Fasilitas Kampus</button>
-        <button onclick="showSection('prestasi')" class="block text-white/85 hover:text-secondary transition-colors text-left">Prestasi Santri</button>
-      </div>
-    </div>
-
-    <div>
-      <h3 class="font-serif text-white font-bold text-xs uppercase tracking-wider mb-4 border-b border-white/10 pb-2">Informasi Publik</h3>
-      <div class="space-y-2.5 text-xs">
-        <button onclick="showSection('kegiatan')" class="block text-white/85 hover:text-secondary transition-colors text-left">Agenda &amp; Kalender</button>
-        <button onclick="showSection('artikel')" class="block text-white/85 hover:text-secondary transition-colors text-left">Warta &amp; Artikel Berita</button>
-        <button onclick="showSection('galeri')" class="block text-white/85 hover:text-secondary transition-colors text-left">Galeri Dokumentasi</button>
-        <button onclick="showSection('alumni')" class="block text-white/85 hover:text-secondary transition-colors text-left">Jejaring Alumni</button>
-        <button id="nav-daftar-btn-footer" onclick="klikPendaftaran()" class="block text-secondary font-bold hover:text-secondary-400 transition-colors text-left">Pendaftaran PPDB Online &rarr;</button>
-      </div>
-    </div>
-
-    <div>
-      <h3 class="font-serif text-white font-bold text-xs uppercase tracking-wider mb-4 border-b border-white/10 pb-2">Sekretariat &amp; Kontak</h3>
-      <div class="space-y-3 text-xs">
-        <p id="footer-phone" class="flex items-center gap-2 text-white/85"><i class="fab fa-whatsapp text-secondary w-4"></i> <span>0815-1577-7911</span></p>
-        <p id="footer-email" class="flex items-center gap-2 text-white/85"><i class="fas fa-envelope text-secondary w-4"></i> <span>smpiyaqu@gmail.com</span></p>
-        <div class="pt-3">
-          <button onclick="showSection('beranda');document.getElementById('beranda-maps').scrollIntoView({behavior:'smooth'});" class="px-4 py-2 rounded-full border border-white/20 hover:bg-white/10 text-white text-[11px] font-semibold transition-all">Lihat Peta Kampus &rarr;</button>
+      <div class="md:col-span-3">
+        <span class="font-mono text-xs uppercase tracking-widest text-[#062116] block mb-4 font-bold">[ KOORDINAT KAMPUS ]</span>
+        <div class="text-xs text-[#52665a] space-y-2 font-mono">
+          <div>Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri, Jawa Timur</div>
+          <div>WA: 0815-1577-7911</div>
+          <div>Email: smpiyaqu@gmail.com</div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="border-t border-white/10 pt-5 pb-40 md:py-5 text-center text-[11px] text-white/70">
-    &copy; <span id="footer-year"></span> SMPI Yambu'ul Qur'an &bull; Plosoklaten, Kabupaten Kediri. Seluruh hak cipta dilindungi undang-undang.
+    <div class="mt-12 pt-8 border-t border-[#e2ece6] flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-[#7a8e82] gap-4">
+      <div>&copy; <span id="footer-year">2026</span> SMPI YAMBU'UL QUR'AN. Hak cipta dilindungi.</div>
+      <div class="flex items-center gap-4">
+        <span>Varian: Swiss Editorial (V2)</span>
+        <a href="#" onclick="showSection('cms');return false;" class="hover:text-[#062116]">CMS</a>
+      </div>
+    </div>
   </div>
 </footer>
+
 
 <!-- ============================================================ -->
 <!-- MODAL: INFO SHOLAT (rakaat, sunnah, keutamaan) -->
@@ -3387,7 +3123,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 // PENTING: kalau nanti Apps Script di-deploy ulang jadi versi/URL baru,
 // ganti juga nilai di bawah ini (harus SAMA PERSIS dengan GOOGLE_SCRIPT_URL
 // di file wrapper/index GitHub Pages).
-const APPS_SCRIPT_EXEC_URL_ = '__APPS_SCRIPT_URL__';
+const APPS_SCRIPT_EXEC_URL_ = ('__APPS_SCRIPT_URL__' === ('_' + '_APPS_SCRIPT_URL_' + '_')) ? 'https://script.google.com/macros/s/AKfycbzayy9zLbwLUho6AA1gAYc11bl6IVY8rs_9KjD14BbGh4JA9pDi0_qvVBAGqFjD0cjC/exec' : '__APPS_SCRIPT_URL__';
 
 if (typeof google === 'undefined' || !google.script || !google.script.run) {
   window.google = window.google || {};
@@ -3945,16 +3681,11 @@ function profilIsi(section, fallback) {
 function renderPengaturan() {
   const tlp = cfg('telepon', '0815-1577-7911');
   const email = cfg('email', 'smpiyaqu@gmail.com');
-  const elTbPhone = document.getElementById('topbar-phone');
-  if (elTbPhone) elTbPhone.innerHTML = '<i class="fab fa-whatsapp mr-1.5"></i> ' + tlp;
-  const elTbEmail = document.getElementById('topbar-email');
-  if (elTbEmail) elTbEmail.innerHTML = '<i class="fas fa-envelope mr-1.5"></i> ' + email;
-  const elFtPhone = document.getElementById('footer-phone');
-  if (elFtPhone) elFtPhone.innerHTML = '<i class="fab fa-whatsapp w-4 text-secondary"></i> <span>' + tlp + '</span>';
-  const elFtEmail = document.getElementById('footer-email');
-  if (elFtEmail) elFtEmail.innerHTML = '<i class="fas fa-envelope w-4 text-secondary"></i> <span>' + email + '</span>';
-  const elFtAlamat = document.getElementById('footer-alamat');
-  if (elFtAlamat) elFtAlamat.textContent = cfg('alamat', 'Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri');
+  document.getElementById('topbar-phone').innerHTML = '<i class="fab fa-whatsapp mr-1.5"></i> ' + tlp;
+  document.getElementById('topbar-email').innerHTML = '<i class="fas fa-envelope mr-1.5"></i> ' + email;
+  document.getElementById('footer-phone').innerHTML = '<i class="fab fa-whatsapp w-4 text-secondary"></i> <span>' + tlp + '</span>';
+  document.getElementById('footer-email').innerHTML = '<i class="fas fa-envelope w-4 text-secondary"></i> <span>' + email + '</span>';
+  document.getElementById('footer-alamat').textContent = cfg('alamat', 'Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri');
 
   // Logo navbar: kalau admin sudah upload logo (key "logo" di sheet
   // Pengaturan, lewat panel Admin > Pengaturan), tampilkan fotonya saja
@@ -4008,10 +3739,8 @@ function renderPengaturan() {
   });
   // Tombol DONASI (setelah TikTok) -> buka halaman Donasi (rekening + daftar donatur)
   socialHtml += '<button type="button" onclick="showSection(\'donasi\')" class="dn-topbtn"><i class="fas fa-hand-holding-heart"></i> Donasi</button>';
-  const elTbSocial = document.getElementById('topbar-social');
-  if (elTbSocial) elTbSocial.innerHTML = socialHtml;
-  const elFtSocial = document.getElementById('footer-social');
-  if (elFtSocial) elFtSocial.innerHTML = socialHtml;
+  document.getElementById('topbar-social').innerHTML = socialHtml;
+  document.getElementById('footer-social').innerHTML = socialHtml;
 }
 
 // ---------------------------------------------------------------
@@ -4143,41 +3872,19 @@ function renderMenuAplikasi() {
 }
 
 // ---------------------------------------------------------------
-// HALAMAN APLIKASI: kartu berwarna + pencarian + filter kategori
+// HALAMAN APLIKASI: kartu berwarna + pencarian
 // ---------------------------------------------------------------
 let aplikasiRows_ = [];
 let aplikasiCari_ = '';
-window.v2AppCategoryFilter = 'Semua';
-function filterAplikasiKategori_(cat, btn) {
-  window.v2AppCategoryFilter = cat;
-  document.querySelectorAll('.v2-app-tab').forEach(function(b) {
-    b.className = 'v2-app-tab px-3.5 py-1.5 bg-white text-slate-700 font-medium border border-[#e2ece6] hover:bg-slate-50 whitespace-nowrap';
-  });
-  if (btn) btn.className = 'v2-app-tab active px-3.5 py-1.5 bg-[#062116] text-[#dfb342] font-bold border border-[#062116] whitespace-nowrap';
-  renderAplikasiFull_();
-}
 function setCariAplikasi_(v) { aplikasiCari_ = (v || '').toString(); renderAplikasiFull_(); }
 function renderAplikasiFull_() {
   const elFull = document.getElementById('aplikasi-grid-full');
   if (!elFull) return;
   const q = aplikasiCari_.trim().toLowerCase();
   const semua = aplikasiRows_ || [];
-  const catFilter = (window.v2AppCategoryFilter || 'Semua').toLowerCase();
   const rows = semua.map(function (m, i) { return { m: m, i: i }; }).filter(function (x) {
-    const text = ((x.m.nama_menu || '') + ' ' + (x.m.deskripsi || '')).toString().toLowerCase();
-    if (q && text.indexOf(q) === -1) return false;
-    if (catFilter !== 'semua') {
-      if (catFilter === 'akademik') {
-        return text.includes('jurnal') || text.includes('lms') || text.includes('rapor') || text.includes('ujian') || text.includes('tka') || text.includes('belajar') || text.includes('kalender');
-      } else if (catFilter === 'administrasi') {
-        return text.includes('tu') || text.includes('persuratan') || text.includes('supervisi') || text.includes('inventaris') || text.includes('induk') || text.includes('mutasi') || text.includes('ijazah') || text.includes('keuangan');
-      } else if (catFilter === 'tahfidz') {
-        return text.includes('tahfidz') || text.includes('quran') || text.includes('perpustakaan') || text.includes('buku') || text.includes('karya');
-      } else if (catFilter === 'layanan') {
-        return text.includes('absen') || text.includes('nisn') || text.includes('pip') || text.includes('bk') || text.includes('poskestren') || text.includes('alumni') || text.includes('ppdb') || text.includes('humas') || (!text.includes('jurnal') && !text.includes('tu'));
-      }
-    }
-    return true;
+    if (!q) return true;
+    return ((x.m.nama_menu || '') + ' ' + (x.m.deskripsi || '')).toString().toLowerCase().indexOf(q) !== -1;
   });
   const jml = document.getElementById('aplikasi-jumlah');
   if (jml) jml.textContent = q ? (rows.length + ' dari ' + semua.length + ' aplikasi') : (semua.length + ' aplikasi tersedia');
@@ -8609,5 +8316,200 @@ setTimeout(function () {
 </script>
 
 <script src="pwa.js?v=4" defer></script>
+
+<script>
+// ============================================================================
+// V2 SWISS MINIMALIST EDITORIAL ENGINE: FULL SECTION OVERRIDES
+// ============================================================================
+(function() {
+  const DEFAULT_APLIKASI_ = [
+    { nama_menu: 'JURNAL DIGITAL', link: 'https://nixon42.github.io/jurnal/', deskripsi: 'Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru secara terstruktur.', urutan: 1, kategori: 'AKADEMIK & GURU' },
+    { nama_menu: 'LMS', link: 'https://nixon42.github.io/lms/', deskripsi: 'Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas terpadu.', urutan: 2, kategori: 'AKADEMIK & UJIAN' },
+    { nama_menu: 'Absensi', link: 'https://nixon42.github.io/absen/', deskripsi: 'Absensi berbasis face recognition, pencatatan secara realtime dan akurat.', urutan: 3, kategori: 'LAYANAN SISWA' },
+    { nama_menu: 'TU & Persuratan Online', link: 'https://administrasi.smpitalmubarok.sch.id/', deskripsi: 'Digitalisasi pengarsipan, permintaan surat, dan tata kelola administrasi surat-menyurat sekolah.', urutan: 4, kategori: 'ADMINISTRASI' },
+    { nama_menu: 'Supervisi', link: 'https://supervisi.smpitalmubarok.sch.id/', deskripsi: 'Platform digital untuk pemantauan, evaluasi, serta pembinaan kinerja secara real-time.', urutan: 5, kategori: 'ADMINISTRASI' },
+    { nama_menu: 'Buku Inventaris Barang', link: 'https://inventaris.smpitalmubarok.sch.id/', deskripsi: 'Digitalisasi pendataan dan pemantauan kondisi serta aset sarana-prasarana sekolah.', urutan: 6, kategori: 'SARPRAS' },
+    { nama_menu: 'Layanan Perpustakaan', link: 'https://perpustakaan.smpitalmubarok.sch.id/', deskripsi: 'Sistem katalog, peminjaman, dan pengembalian buku fisik sekolah.', urutan: 7, kategori: 'LITERASI' },
+    { nama_menu: 'E-Rapor Tahfidz', link: 'https://eraportahfidz.smpitalmubarok.sch.id/', deskripsi: "Laporan capaian hafalan Al-Qur'an dan perkembangan Tahsin siswa secara transparan.", urutan: 8, kategori: 'TAHFIDZ' },
+    { nama_menu: "Al-Qur'an Digital", link: 'https://quran.smpitalmubarok.sch.id/', deskripsi: "Akses teks dan bacaan Al-Qur'an interaktif untuk mendukung kegiatan keagamaan.", urutan: 9, kategori: 'TAHFIDZ' },
+    { nama_menu: 'Buku Induk Siswa', link: 'https://edosis.disdikkedirikab.com/auth/login', deskripsi: 'Database rekam jejak biodata dan histori akademis siswa terlengkap secara digital.', urutan: 10, kategori: 'PORTAL RESMI' },
+    { nama_menu: 'Sistem Mutasi Siswa', link: 'https://mutasi.disdikkedirikab.com/auth/login', deskripsi: 'Pengelolaan proses kepindahan siswa (masuk/keluar) yang tertib administrasi.', urutan: 11, kategori: 'PORTAL RESMI' },
+    { nama_menu: 'Ujian Online', link: 'https://app.e-ujian.com/SMPIT_AlMubarok/login', deskripsi: 'Platform ujian dan evaluasi belajar digital yang praktis, fleksibel, dan aman.', urutan: 12, kategori: 'AKADEMIK & UJIAN' },
+    { nama_menu: 'Portal TKA', link: 'https://tka.onedumind.com/', deskripsi: 'Pelaksanaan dan analisis hasil pemetaan potensi akademik siswa.', urutan: 13, kategori: 'AKADEMIK' },
+    { nama_menu: 'Buku Digital', link: 'https://buku.kemendikdasmen.go.id/daftar-katalog', deskripsi: 'Perpustakaan digital berisi koleksi modul dan buku paket pembelajaran elektronik.', urutan: 14, kategori: 'LITERASI' },
+    { nama_menu: 'Cek NISN', link: 'https://nisn.data.kemendikdasmen.go.id/', deskripsi: 'Fitur validasi dan verifikasi Nomor Induk Siswa Nasional secara instan.', urutan: 15, kategori: 'KEMDIKBUD' },
+    { nama_menu: 'Layanan PIP', link: 'https://pip.kemendikdasmen.go.id/home_v1', deskripsi: 'Pengelolaan data dan bantuan Program Indonesia Pintar bagi siswa penerima manfaat.', urutan: 16, kategori: 'KEMDIKBUD' },
+    { nama_menu: 'Portal Admin Belajar id', link: 'https://akun.belajar.id/sso/login?flow=2a90194c-a623-44d5-ae60-45bd0d988c35', deskripsi: 'Integrasi dan pengelolaan akun pembelajaran resmi dari Kemendikbudristek.', urutan: 17, kategori: 'KEMDIKBUD' },
+    { nama_menu: 'Menejemen E-Ijazah', link: 'https://ijazah.data.kemendikdasmen.go.id/manajemen/#/sign-in', deskripsi: 'Penerbitan, pengarsipan, dan verifikasi keabsahan ijazah kelulusan digital.', urutan: 18, kategori: 'KEMDIKBUD' }
+  ];
+
+  function getApps() {
+    let raw = (window.DB && window.DB.menu && window.DB.menu.length) ? window.DB.menu : DEFAULT_APLIKASI_;
+    return raw.filter(function(m) {
+      const t = (m.tampil || '').toString().toLowerCase();
+      return t !== 'tidak' && t !== 'no' && t !== '0' && t !== 'false';
+    });
+  }
+
+  // 1. OVERRIDE APLIKASI UNTUK V2 (Editorial Academic Directory Ledger)
+  window.renderMenuAplikasi = function() {
+    const el = document.getElementById('beranda-aplikasi-grid');
+    const wrap = document.getElementById('beranda-aplikasi-wrap');
+    if (!el || !wrap) return;
+    const rows = getApps();
+    wrap.classList.remove('hidden');
+
+    const preview = rows.slice(0, 4);
+    el.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4';
+    el.innerHTML = preview.map(function(m, i) {
+      const num = String(i + 1).padStart(2, '0');
+      const link = (m.link || '').toString().trim();
+      const kat = m.kategori || 'LAYANAN DIGITAL';
+      return '<div class="border border-[#e2ece6] bg-white p-5 flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+        '<div>' +
+          '<div class="flex items-center justify-between text-[11px] font-mono mb-3">' +
+            '<span class="text-[#7a8e82]">[' + num + ']</span>' +
+            '<span class="text-[#c39328] font-bold tracking-wider">' + kat + '</span>' +
+          '</div>' +
+          '<h3 class="font-serif text-base font-bold text-[#062116] mb-1.5">' + (m.nama_menu || '-') + '</h3>' +
+          '<p class="text-xs text-[#52665a] font-light leading-relaxed line-clamp-2">' + (m.deskripsi || '') + '</p>' +
+        '</div>' +
+        '<div class="mt-4 pt-3 border-t border-[#e2ece6]">' +
+          '<a href="' + (link || '#') + '" target="_blank" rel="noopener" class="text-xs font-mono uppercase tracking-wider text-[#062116] hover:text-[#c39328] font-bold inline-flex items-center gap-1.5">Buka Layanan &rarr;</a>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    renderAplikasiFull_();
+  };
+
+  window.renderAplikasiFull_ = function() {
+    const elFull = document.getElementById('aplikasi-grid-full');
+    const jml = document.getElementById('aplikasi-jumlah');
+    if (!elFull) return;
+    const q = (window.aplikasiCari_ || '').trim().toLowerCase();
+    const semua = getApps();
+    const rows = semua.filter(function(m) {
+      if (!q) return true;
+      return ((m.nama_menu || '') + ' ' + (m.deskripsi || '')).toLowerCase().indexOf(q) !== -1;
+    });
+
+    if (jml) jml.textContent = q ? (rows.length + ' dari ' + semua.length + ' aplikasi terindeks') : (semua.length + ' aplikasi resmi terindeks');
+
+    elFull.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5';
+    elFull.innerHTML = rows.map(function(m, i) {
+      const num = String(i + 1).padStart(2, '0');
+      const link = (m.link || '').toString().trim();
+      const kat = m.kategori || 'SISTEM SEKOLAH';
+      return '<div class="border border-[#e2ece6] bg-white p-6 flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+        '<div>' +
+          '<div class="flex items-center justify-between text-xs font-mono mb-4 pb-2 border-b border-[#e2ece6]">' +
+            '<span class="text-[#7a8e82]">INDEX: ' + num + '</span>' +
+            '<span class="text-[#c39328] font-bold uppercase tracking-wider">' + kat + '</span>' +
+          '</div>' +
+          '<h3 class="font-serif text-lg font-bold text-[#062116] leading-snug mb-2">' + (m.nama_menu || '-') + '</h3>' +
+          '<p class="text-xs text-[#52665a] font-light leading-relaxed mb-4">' + (m.deskripsi || 'Deskripsi aplikasi belum diisi.') + '</p>' +
+        '</div>' +
+        '<div class="pt-4 border-t border-[#e2ece6] flex items-center justify-between">' +
+          (link ? '<a href="' + link + '" target="_blank" rel="noopener" class="px-4 py-2 border border-[#062116] text-[#062116] hover:bg-[#062116] hover:text-white font-mono text-[11px] uppercase tracking-wider font-bold transition-colors inline-flex items-center gap-1.5">Buka Layanan &rarr;</a>' : '<span class="font-mono text-xs text-[#7a8e82]">[ Segera Hadir ]</span>') +
+          '<span class="font-mono text-[10px] text-[#7a8e82]">PORTAL RESMI</span>' +
+        '</div>' +
+      '</div>';
+    }).join('') || '<div class="col-span-full py-12 text-center font-mono text-xs text-[#7a8e82]">Tidak ada aplikasi yang cocok dengan pencarian.</div>';
+  };
+
+  // 2. OVERRIDE STATISTIK UNTUK V2 (Swiss Data Counter)
+  window.renderStatistik = function() {
+    const rows = (window.DB && window.DB.statistik) || [];
+    const el = document.getElementById('statistik-grid');
+    if (!el || !rows.length) return;
+    el.innerHTML = rows.map(function(s) {
+      const target = parseInt(s.jumlah) || 0;
+      return '<div class="p-6 md:p-8 text-center">' +
+        '<p class="text-3xl md:text-5xl font-serif text-[#062116] font-normal" data-statistik-angka data-target="' + target + '">0</p>' +
+        '<p class="text-[11px] font-mono uppercase tracking-widest text-[#7a8e82] mt-2">' + (s.label || '') + '</p>' +
+        '</div>';
+    }).join('');
+    if (typeof animasiStatistik === 'function') animasiStatistik();
+  };
+
+  // 3. OVERRIDE FASILITAS UNTUK V2 (Architectural Exhibition Gallery)
+  window.renderFasilitas = function() {
+    const rows = (window.DB && window.DB.fasilitas) || [];
+    const elB = document.getElementById('beranda-fasilitas-grid');
+    const elF = document.getElementById('fasilitas-full-grid');
+    if (elB) {
+      elB.innerHTML = rows.map(function(f, i) {
+        const num = String(i + 1).padStart(2, '0');
+        return '<div class="border border-[#e2ece6] p-2 bg-white flex-shrink-0 w-64 snap-start cursor-pointer hover:border-[#062116] transition-colors" onclick="showSection(\'fasilitas\')">' +
+          '<div class="aspect-[4/3] overflow-hidden bg-[#e2ece6] mb-2">' +
+            fotoSliderHtml(f.foto, 'w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500', 'https://placehold.co/400x300/062116/dfb342?text=Fasilitas') +
+          '</div>' +
+          '<p class="font-mono text-[10px] text-[#7a8e82] uppercase tracking-widest">[ FIG. ' + num + ' ]</p>' +
+          '<p class="font-serif text-sm font-bold text-[#062116] line-clamp-1 mt-0.5">' + (f.nama_fasilitas || '-') + '</p>' +
+          '</div>';
+      }).join('') || '<div class="py-8 font-mono text-xs text-[#7a8e82]">Belum ada data fasilitas.</div>';
+    }
+    if (elF) {
+      elF.innerHTML = rows.map(function(f, i) {
+        const num = String(i + 1).padStart(2, '0');
+        return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+          '<div>' +
+            '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-4">' +
+              fotoSliderHtml(f.foto, 'w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500', 'https://placehold.co/400x300/062116/dfb342?text=Fasilitas') +
+            '</div>' +
+            '<p class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ FIG. ' + num + ' &bull; KAMPUS PLOSOKLATEN ]</p>' +
+            '<h3 class="font-serif text-lg font-bold text-[#062116] mt-1 mb-2">' + (f.nama_fasilitas || '-') + '</h3>' +
+            '<p class="text-xs text-[#52665a] font-light leading-relaxed whitespace-pre-line">' + (f.deskripsi || 'Deskripsi fasilitas belum diisi.') + '</p>' +
+          '</div>' +
+          '<div class="mt-4 pt-3 border-t border-[#e2ece6] font-mono text-[10px] text-[#7a8e82] uppercase tracking-wider">FASILITAS RESMI</div>' +
+          '</div>';
+      }).join('') || '<div class="col-span-full py-12 font-mono text-xs text-[#7a8e82] text-center">Belum ada data fasilitas.</div>';
+    }
+  };
+
+  // 4. OVERRIDE GURU UNTUK V2 (Academic Faculty Ledger)
+  window.renderGuru = function() {
+    const rows = (window.DB && window.DB.guru) || [];
+    const elB = document.getElementById('beranda-guru-grid');
+    const elG = document.getElementById('guru-grid');
+    const cardHtml = function(g, i) {
+      const num = String(i + 1).padStart(2, '0');
+      return '<div class="border border-[#e2ece6] p-3 bg-white text-center flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+        '<div>' +
+          '<div class="aspect-[3/4] overflow-hidden bg-[#e2ece6] mb-3">' +
+            fotoSliderHtml(g.foto, 'w-full h-full object-cover object-top grayscale contrast-125 hover:grayscale-0 transition-all duration-500', 'https://placehold.co/300x400/062116/dfb342?text=Guru') +
+          '</div>' +
+          '<p class="font-mono text-[10px] text-[#7a8e82] uppercase tracking-widest">[ ASATIDZ ' + num + ' ]</p>' +
+          '<h4 class="font-serif text-sm font-bold text-[#062116] mt-1 leading-snug line-clamp-2">' + (g.nama || '-') + '</h4>' +
+        '</div>' +
+        '<p class="text-[11px] font-mono text-[#c39328] mt-2 pt-2 border-t border-[#e2ece6] uppercase tracking-wider">' + (g.jabatan || g.mapel || 'Pengajar') + '</p>' +
+      '</div>';
+    };
+    const cardHtmlScroll = function(g, i) {
+      const num = String(i + 1).padStart(2, '0');
+      return '<div class="border border-[#e2ece6] p-3 bg-white text-center flex-shrink-0 w-44 snap-start hover:border-[#062116] transition-colors">' +
+        '<div class="aspect-[3/4] overflow-hidden bg-[#e2ece6] mb-2.5">' +
+          fotoSliderHtml(g.foto, 'w-full h-full object-cover object-top grayscale contrast-125 hover:grayscale-0 transition-all duration-500', 'https://placehold.co/300x400/062116/dfb342?text=Guru') +
+        '</div>' +
+        '<p class="font-mono text-[9px] text-[#7a8e82] uppercase tracking-widest">[ ' + num + ' ]</p>' +
+        '<h4 class="font-serif text-xs font-bold text-[#062116] mt-0.5 leading-snug line-clamp-1">' + (g.nama || '-') + '</h4>' +
+        '<p class="text-[10px] font-mono text-[#c39328] mt-1 uppercase">' + (g.jabatan || g.mapel || 'Asatidz') + '</p>' +
+      '</div>';
+    };
+    if (elG) elG.innerHTML = rows.map(cardHtml).join('') || '<div class="col-span-full py-12 font-mono text-xs text-[#7a8e82] text-center">Belum ada data guru.</div>';
+    if (elB) elB.innerHTML = rows.map(cardHtmlScroll).join('') || '<div class="py-8 font-mono text-xs text-[#7a8e82]">Belum ada data guru.</div>';
+  };
+
+  // Re-run renderers on load & API readiness
+  setTimeout(function() {
+    renderMenuAplikasi();
+    renderStatistik();
+    renderFasilitas();
+    renderGuru();
+  }, 100);
+})();
+</script>
+
 </body>
 </html>

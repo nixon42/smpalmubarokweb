@@ -80,7 +80,7 @@
 (function () {
   try {
     if (typeof google !== 'undefined' && google.script && google.script.run) return; // dibuka lewat Apps Script asli -> tak perlu
-    var url = '__APPS_SCRIPT_URL__'
+    var url = ('__APPS_SCRIPT_URL__' === ('_' + '_APPS_SCRIPT_URL_' + '_')) ? 'https://script.google.com/macros/s/AKfycbzayy9zLbwLUho6AA1gAYc11bl6IVY8rs_9KjD14BbGh4JA9pDi0_qvVBAGqFjD0cjC/exec' : '__APPS_SCRIPT_URL__'
             + '?fn=getFullData&args=' + encodeURIComponent(JSON.stringify(['id']));
     var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 30000);
@@ -3212,7 +3212,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 // PENTING: kalau nanti Apps Script di-deploy ulang jadi versi/URL baru,
 // ganti juga nilai di bawah ini (harus SAMA PERSIS dengan GOOGLE_SCRIPT_URL
 // di file wrapper/index GitHub Pages).
-const APPS_SCRIPT_EXEC_URL_ = '__APPS_SCRIPT_URL__';
+const APPS_SCRIPT_EXEC_URL_ = ('__APPS_SCRIPT_URL__' === ('_' + '_APPS_SCRIPT_URL_' + '_')) ? 'https://script.google.com/macros/s/AKfycbzayy9zLbwLUho6AA1gAYc11bl6IVY8rs_9KjD14BbGh4JA9pDi0_qvVBAGqFjD0cjC/exec' : '__APPS_SCRIPT_URL__';
 
 if (typeof google === 'undefined' || !google.script || !google.script.run) {
   window.google = window.google || {};
