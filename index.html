@@ -772,6 +772,11 @@ body.mode-gelap .ju-stop .ju-card.aktif{border-color:#b7860b}
   }
 }
 
+/* Responsive helper */
+@media (min-width: 640px) {
+  .sm-inline { display: inline !important; }
+}
+
 /* Prayer Schedule Ribbon */
 #jadwal-sholat-grid {
   display: grid !important;
@@ -1334,14 +1339,14 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 <!-- MAIN ACADEMIC NAVBAR -->
 <!-- ============================================================ -->
 <header class="sticky top-0 z-50 bg-primary border-b border-white/10 shadow-lg backdrop-blur-md">
-  <div class="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between h-20">
-    <a href="#" onclick="showSection('beranda');return false;" class="flex items-center gap-3.5 group">
-      <div id="navbar-logo-icon" class="w-12 h-12 rounded-full bg-white/10 p-1 flex items-center justify-center flex-shrink-0 overflow-hidden ring-1 ring-secondary/40 shadow-inner group-hover:ring-secondary transition-all">
+  <div class="max-w-7xl mx-auto px-3.5 sm:px-4 md:px-6 flex items-center justify-between h-16 sm:h-20">
+    <a href="#" onclick="showSection('beranda');return false;" class="flex items-center gap-2.5 sm:gap-3.5 group min-w-0 pr-2">
+      <div id="navbar-logo-icon" class="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-white/10 p-0.5 sm:p-1 flex items-center justify-center flex-shrink-0 overflow-hidden ring-1 ring-secondary/40 shadow-inner group-hover:ring-secondary transition-all">
         <img id="navbar-logo-img" src="logo.png" alt="Logo SMPI Yambu'ul Qur'an" class="w-full h-full object-contain">
       </div>
-      <div id="navbar-logo-text" class="leading-tight">
-        <div class="font-serif font-black text-sm sm:text-base md:text-lg text-white leading-tight tracking-tight">SMPI Yambu'ul Qur'an</div>
-        <p class="text-secondary text-[10px] font-semibold uppercase tracking-widest mt-0.5">Pesantren Modern &bull; Kediri, Jawa Timur</p>
+      <div id="navbar-logo-text" class="leading-tight min-w-0">
+        <div class="font-serif font-bold sm:font-black text-[13.5px] sm:text-base md:text-lg text-white leading-tight tracking-tight whitespace-nowrap">SMPI Yambu'ul Qur'an</div>
+        <p class="text-secondary text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider sm:tracking-widest mt-0.5 whitespace-nowrap">Pesantren Modern &bull; Kediri<span class="hidden sm-inline">, Jawa Timur</span></p>
       </div>
     </a>
 
@@ -1410,14 +1415,14 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       </div>
     </nav>
 
-    <div class="nav-mobile-toggle items-center gap-2">
-      <button onclick="bukaPencarian()" title="Cari" aria-label="Cari" class="w-9 h-9 rounded-full text-white/90 flex items-center justify-center active:bg-white/10">
-        <i class="fas fa-magnifying-glass text-base"></i>
+    <div class="nav-mobile-toggle items-center gap-1 sm:gap-1.5 flex-shrink-0">
+      <button onclick="bukaPencarian()" title="Cari" aria-label="Cari" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full text-white/90 hover:text-white hover:bg-white/10 active:bg-white/20 flex items-center justify-center transition-colors">
+        <i class="fas fa-magnifying-glass text-sm sm:text-base"></i>
       </button>
-      <button onclick="toggleModeGelap()" id="tombol-mode-gelap-mobile" title="Mode Gelap" aria-label="Mode Gelap" class="w-9 h-9 rounded-full text-white/90 flex items-center justify-center active:bg-white/10">
-        <i class="fas fa-moon text-base"></i>
+      <button onclick="toggleModeGelap()" id="tombol-mode-gelap-mobile" title="Mode Gelap" aria-label="Mode Gelap" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full text-white/90 hover:text-white hover:bg-white/10 active:bg-white/20 flex items-center justify-center transition-colors">
+        <i class="fas fa-moon text-sm sm:text-base"></i>
       </button>
-      <button onclick="toggleMobileMenu()" aria-label="Menu Navigasi" class="w-9 h-9 rounded-full text-white flex items-center justify-center active:bg-white/10 text-xl ml-1">
+      <button onclick="toggleMobileMenu()" aria-label="Menu Navigasi" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full text-white hover:bg-white/10 active:bg-white/20 flex items-center justify-center text-base sm:text-lg transition-colors">
         <i class="fas fa-bars"></i>
       </button>
     </div>
