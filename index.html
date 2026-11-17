@@ -4219,7 +4219,7 @@ function unduhIcalAgenda_(rowId) {
   const besok = new Date(tgl); besok.setDate(besok.getDate() + 1);
   const esc = function (s) { return (s || '').replace(/\n/g, '\\n'); };
   const ics = [
-    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//SMPI Yambu'ul Qur'an//Agenda//ID', 'BEGIN:VEVENT',
+    'BEGIN:VCALENDAR', 'VERSION:2.0', "PRODID:-//SMPI Yambu'ul Qur'an//Agenda//ID", 'BEGIN:VEVENT',
     'UID:' + rowId + '@yaqu', 'DTSTAMP:' + fmt(new Date()) + 'T000000Z',
     'DTSTART;VALUE=DATE:' + fmt(tgl), 'DTEND;VALUE=DATE:' + fmt(besok),
     'SUMMARY:' + esc(k.judul), 'DESCRIPTION:' + esc(k.deskripsi), 'LOCATION:' + esc(k.lokasi),
@@ -4758,7 +4758,7 @@ function renderVirtualTourBeranda() {
     '<div class="flex flex-col justify-center">' +
       '<span class="inline-flex self-start items-center gap-2 bg-white/10 border border-white/15 text-secondary text-[10px] font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full"><i class="fas fa-vr-cardboard"></i> Jelajahi Sekolah</span>' +
       '<h2 class="text-2xl md:text-4xl font-black text-white mt-4 leading-tight">Virtual Tour <span class="text-secondary">360&deg;</span></h2>' +
-      '<p class="text-sm text-white/60 mt-3 leading-relaxed">Lihat sekeliling lingkungan SMPI Yambu'ul Qur'an dari mana saja. Geser dan putar pandangan untuk menjelajahi setiap sudut sekolah.</p>' +
+      '<p class="text-sm text-white/60 mt-3 leading-relaxed">Lihat sekeliling lingkungan SMPI Yambu\'ul Qur\'an dari mana saja. Geser dan putar pandangan untuk menjelajahi setiap sudut sekolah.</p>' +
       '<div class="grid grid-cols-2 gap-3 mt-6">' + thumbs + '</div>' +
       (rows.length > 4 ? '<p class="text-[11px] text-white/50 font-semibold mt-3">+ ' + (rows.length - 4) + ' titik lokasi lainnya di halaman tour</p>' : '') +
       '<button onclick="bukaTourBeranda(' + tourBerandaIdx_ + ')" class="self-start mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-secondary hover:bg-secondary-400 text-primary font-black text-xs uppercase tracking-wide shadow-lg transition-colors"><i class="fas fa-expand text-[10px]"></i>Buka Tur Lengkap</button>' +
@@ -5684,7 +5684,7 @@ function openUploadKarya() {
   if (_karyaTerbuka_) { openModal('modal-upload-karya'); return; }
   Swal.fire({
     title: 'Masukkan Sandi',
-    text: 'Unggah karya hanya untuk siswa dan guru SMPI Yambu'ul Qur'an. Minta sandinya ke guru/admin sekolah.',
+    text: 'Unggah karya hanya untuk siswa dan guru SMPI Yambu\'ul Qur\'an. Minta sandinya ke guru/admin sekolah.',
     input: 'password',
     inputPlaceholder: 'Sandi unggah karya',
     inputAttributes: { autocapitalize: 'off', autocomplete: 'off' },
@@ -5844,7 +5844,7 @@ function toggleWaChat(forceOpen) {
     waIdentitasMode_(!!waNomorValid_((document.getElementById('wa-kontak') || {}).value));
     if (!waRiwayat_.length) {
       waChipTanggal_();
-      waBubble_('in', 'Assalamu\'alaikum! \uD83D\uDC4B Selamat datang di SMPI Yambu'ul Qur'an. Tulis pertanyaan Anda di sini, pesan langsung masuk ke admin kami. Isi nomor WhatsApp Anda supaya kami bisa membalas.');
+      waBubble_('in', 'Assalamu\'alaikum! \uD83D\uDC4B Selamat datang di SMPI Yambu\'ul Qur\'an. Tulis pertanyaan Anda di sini, pesan langsung masuk ke admin kami. Isi nomor WhatsApp Anda supaya kami bisa membalas.');
       waQuickReply_();
     }
     if (window.matchMedia && window.matchMedia('(hover:hover)').matches) setTimeout(function () { const i = document.getElementById('wa-input'); if (i) i.focus(); }, 60);
@@ -5940,7 +5940,7 @@ function waQuickReply_() {
 // URL WhatsApp admin dengan teks siap kirim (dipakai tombol "chat langsung" & cadangan saat gagal)
 function waUrlLangsung_(teks) {
   const nama = ((document.getElementById('wa-nama') || {}).value || '').trim();
-  const pesan = 'Assalamu\'alaikum, Admin SMPI Yambu'ul Qur'an.' + (nama ? '\nSaya ' + nama + '.' : '') + (teks ? '\n\n' + teks : '');
+  const pesan = 'Assalamu\'alaikum, Admin SMPI Yambu\'ul Qur\'an.' + (nama ? '\nSaya ' + nama + '.' : '') + (teks ? '\n\n' + teks : '');
   return 'https://wa.me/' + waNomor_() + '?text=' + encodeURIComponent(pesan);
 }
 function waBukaLangsung_() {
@@ -6008,7 +6008,7 @@ function toggleChatbot(forceOpen) {
     if (icon) icon.className = 'fas fa-times text-xl';
     if (iconMobile) iconMobile.className = 'fas fa-times text-xl';
     if (!chatHistory.length) {
-      addChatBubble('bot', 'Assalamu\'alaikum! Saya asisten AI SMPI Yambu'ul Qur'an. Ada yang bisa saya bantu seputar sekolah kami?');
+      addChatBubble('bot', 'Assalamu\'alaikum! Saya asisten AI SMPI Yambu\'ul Qur\'an. Ada yang bisa saya bantu seputar sekolah kami?');
       tampilkanQuickReplyChatbot();
     }
   } else {
@@ -6394,7 +6394,7 @@ function klikPendaftaran() {
   const link = rapikanLinkPendaftaran_(cfg('pendaftaran_link', ''));
   if (!link) {                                            // belum diisi -> arahkan ke WhatsApp sekolah
     const wa = (cfg('wa_number', '6285936157246') || '').toString().replace(/\D/g, '');
-    window.open('https://wa.me/' + wa + '?text=' + encodeURIComponent('Saya ingin bertanya seputar pendaftaran SMPI Yambu'ul Qur'an.'), '_blank', 'noopener,noreferrer');
+    window.open('https://wa.me/' + wa + '?text=' + encodeURIComponent('Saya ingin bertanya seputar pendaftaran SMPI Yambu\'ul Qur\'an.'), '_blank', 'noopener,noreferrer');
     return;
   }
   const tabBaru = (cfg('pendaftaran_tab_baru', 'ya') || 'ya').toString().trim().toLowerCase() !== 'tidak';
@@ -7151,7 +7151,7 @@ function kirimDonasiWeb_() {
 }
 function tampilkanDonasiSukses_(res, nama) {
   const wa = String(cfg('wa_number', '6285936157246')).replace(/\D/g, '');
-  const teksWa = encodeURIComponent('Assalamualaikum, saya sudah berdonasi untuk SMPI Yambu'ul Qur'an.\nKode: ' + res.kode + '\nNama: ' + nama + '\nJumlah: ' + _rupiahDonasi_(res.jumlah) + '\nBerikut bukti transfer saya.');
+  const teksWa = encodeURIComponent('Assalamualaikum, saya sudah berdonasi untuk SMPI Yambu\'ul Qur\'an.\nKode: ' + res.kode + '\nNama: ' + nama + '\nJumlah: ' + _rupiahDonasi_(res.jumlah) + '\nBerikut bukti transfer saya.');
   document.getElementById('donasi-form-isi').style.display = 'none';
   const el = document.getElementById('donasi-form-sukses');
   el.style.display = 'block';
