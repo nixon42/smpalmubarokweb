@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth dark">
+<html lang="id" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,36 +9,39 @@
 <link rel="apple-touch-icon" href="logo.png">
 
 <!-- PWA Metadata -->
-<meta name="theme-color" content="#03140d">
+<meta name="theme-color" content="#2563eb">
 <title>SMPI Yambu'ul Qur'an — Smart Campus Bento Portal</title>
 <meta name="description" content="Website Resmi SMPI Yambu'ul Qur'an Plosoklaten Kediri — Edisi Smart Campus Portal & Bento Ecosystem. Integrasi Tahfidz Bersanad & Teknologi Digital Pesantren Modern.">
 
-<!-- Typography: Outfit (Modern Sans), Plus Jakarta Sans, Amiri (Arabic Calligraphy), JetBrains Mono -->
+<!-- Typography: Outfit (Modern Sans), Plus Jakarta Sans (Precision Body), Amiri (Arabic Calligraphy), JetBrains Mono (Tech/Metrics) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Tailwind CDN for JIT & Utilities -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
-    darkMode: 'class',
     theme: {
       extend: {
         colors: {
           brand: {
-            deep: '#03140d',
-            dark: '#062116',
-            surface: '#0a2e20',
-            card: '#0e3a29',
-            emerald: '#10b981',
-            mint: '#34d399',
-            gold: '#dfb342',
-            'gold-light': '#fef08a'
+            azure: '#2563eb',
+            'azure-light': '#3b82f6',
+            emerald: '#059669',
+            'emerald-light': '#10b981',
+            amber: '#d97706',
+            'amber-light': '#f59e0b',
+            violet: '#7c3aed',
+            indigo: '#4f46e5',
+            rose: '#e11d48',
+            navy: '#0f172a',
+            slate: '#1e293b'
           }
         },
         fontFamily: {
-          sans: ['Outfit', '"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          heading: ['Outfit', '"Plus Jakarta Sans"', 'sans-serif'],
           arabic: ['Amiri', 'serif'],
           mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
         }
@@ -66,263 +69,308 @@
 </script>
 
 <style>
-  ::selection { background: #10b981; color: #03140d; }
-  .bento-card {
-    background: rgba(14, 58, 41, 0.45);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  ::selection { background: #2563eb; color: #ffffff; }
+  
+  /* Bento Card Styles - Clean, Light & High Contrast */
+  .bento-surface {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .bento-card:hover {
-    border-color: rgba(52, 211, 153, 0.3);
+  .bento-surface:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
     transform: translateY(-2px);
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
   }
-  .glow-dot {
-    box-shadow: 0 0 10px #10b981;
+
+  /* No Scrollbar for Horizontal Navigation on Mobile */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 </style>
 </head>
 
-<body class="bg-brand-deep text-slate-100 font-sans antialiased selection:bg-brand-emerald selection:text-brand-deep min-h-screen flex flex-col relative overflow-x-hidden">
-
-  <!-- Ambient Background Glows -->
-  <div class="fixed top-0 left-1/4 w-[600px] h-[400px] bg-emerald-600/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
-  <div class="fixed top-1/2 right-10 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-blue-600 selection:text-white">
 
   <!-- ================================================================= -->
-  <!-- TOP COMMAND BAR -->
+  <!-- TOP COMMAND BAR (CLEAN RESPONSIVE FLEX, NO BROKEN PIPE WRAPS) -->
   <!-- ================================================================= -->
-  <div class="bg-brand-dark/90 border-b border-white/5 text-[11px] font-mono py-2 px-4 sm:px-8 tracking-wider">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-slate-400">
-      <div class="flex items-center gap-4 flex-wrap">
-        <div class="flex items-center gap-2 text-brand-emerald font-semibold">
-          <span class="w-2 h-2 rounded-full bg-brand-emerald animate-ping"></span>
+  <aside class="bg-slate-900 text-slate-300 text-[11px] font-mono py-2 sm:py-2.5 px-4 sm:px-8 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 flex-wrap">
+      
+      <!-- Left: Status & Identity -->
+      <div class="flex items-center gap-3 sm:gap-4 flex-wrap">
+        <div class="inline-flex items-center gap-2 font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/80 px-2.5 py-1 rounded-md tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span>SMART CAMPUS PORTAL</span>
         </div>
-        <span class="text-white/20">|</span>
-        <span class="hidden sm:inline">KEDIRI: <span id="kediri-live-clock" class="text-white font-bold">--:--:-- WIB</span></span>
-        <span class="text-white/20">|</span>
-        <span>AKREDITASI: <b class="text-brand-gold">B BAN-S/M</b> (NPSN 70003325)</span>
+        <div class="hidden sm:flex items-center gap-2 text-slate-400 border-l border-slate-700 pl-3">
+          <i class="far fa-clock text-blue-400"></i>
+          <span>KEDIRI: <span id="kediri-live-clock" class="text-white font-bold font-mono">--:--:-- WIB</span></span>
+        </div>
+        <div class="hidden md:flex items-center gap-2 text-slate-400 border-l border-slate-700 pl-3">
+          <i class="fas fa-certificate text-amber-400"></i>
+          <span>AKREDITASI: <b class="text-amber-300 font-bold">B BAN-S/M</b> <span class="text-slate-400 hidden lg:inline">(NPSN 70003325)</span></span>
+        </div>
       </div>
+
+      <!-- Right: Motto & Hotline -->
       <div class="flex items-center gap-4 ml-auto">
-        <span class="font-arabic text-brand-gold text-sm">يَنبُوعُ القُرآن</span>
-        <span class="text-white/20">|</span>
-        <a href="https://wa.me/6281515777911" target="_blank" rel="noopener" class="text-slate-300 hover:text-brand-mint transition-colors flex items-center gap-1.5 font-bold">
-          <i class="fab fa-whatsapp text-emerald-400"></i> Hotline 0815-1577-7911
+        <span class="font-arabic text-amber-300 text-sm hidden sm:inline tracking-wide">يَنبُوعُ القُرآن</span>
+        <div class="hidden sm:block w-px h-3.5 bg-slate-700"></div>
+        <a href="https://wa.me/6281515777911" target="_blank" rel="noopener" class="text-slate-200 hover:text-emerald-400 transition-colors flex items-center gap-1.5 font-bold min-h-[36px] py-1 text-xs">
+          <i class="fab fa-whatsapp text-emerald-400 text-sm"></i>
+          <span class="hidden xs:inline">Hotline:</span> <span>0815-1577-7911</span>
         </a>
       </div>
+
     </div>
-  </div>
+  </aside>
 
   <!-- ================================================================= -->
-  <!-- MODERN GLASSMORPHIC NAVBAR -->
+  <!-- CRISP MODERN STICKY NAVBAR -->
   <!-- ================================================================= -->
-  <header class="sticky top-0 z-50 bg-brand-deep/80 backdrop-blur-xl border-b border-white/10 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-6">
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
       
       <!-- Logo & Wordmark -->
       <a href="#hero" class="flex items-center gap-3.5 group">
         <div class="relative">
-          <img src="logo.png" alt="SMPI Yambu'ul Qur'an" class="w-11 h-11 object-contain transition-transform duration-300 group-hover:scale-110">
-          <span class="absolute -bottom-1 -right-1 w-3 h-3 bg-brand-emerald rounded-full border-2 border-brand-deep glow-dot"></span>
+          <img src="logo.png" alt="SMPI Yambu'ul Qur'an" class="w-11 h-11 object-contain transition-transform duration-300 group-hover:scale-105">
+          <span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-white"></span>
         </div>
         <div>
-          <span class="block font-black text-lg tracking-tight text-white group-hover:text-brand-mint transition-colors">
+          <span class="block font-heading font-black text-lg sm:text-xl tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">
             SMPI Yambu'ul Qur'an
           </span>
-          <span class="block text-[10px] uppercase font-mono tracking-widest text-emerald-400 font-semibold">
+          <span class="block text-[11px] font-mono font-bold tracking-wider text-blue-600 uppercase">
             Smart Pesantren Ecosystem
           </span>
         </div>
       </a>
 
       <!-- Desktop Nav -->
-      <nav class="hidden lg:flex items-center gap-7 text-xs font-bold uppercase tracking-wider text-slate-300">
-        <a href="#hero" class="hover:text-brand-mint transition-colors">Dashboard</a>
-        <a href="#aplikasi" class="hover:text-brand-mint transition-colors">18 Apps Hub</a>
-        <a href="#tahfidz" class="hover:text-brand-mint transition-colors">Tahfidz &amp; Sains</a>
-        <a href="#warta" class="hover:text-brand-mint transition-colors">Warta Kampus</a>
-        <a href="#guru" class="hover:text-brand-mint transition-colors">Asatidz</a>
-        <a href="#kontak" class="hover:text-brand-mint transition-colors">Kontak</a>
+      <nav class="hidden lg:flex items-center gap-7 text-xs font-bold uppercase tracking-wider text-slate-600">
+        <a href="#hero" class="hover:text-blue-600 transition-colors py-2">Dashboard</a>
+        <a href="#aplikasi" class="hover:text-blue-600 transition-colors py-2">18 Apps Hub</a>
+        <a href="#tahfidz" class="hover:text-blue-600 transition-colors py-2">Tahfidz &amp; Sains</a>
+        <a href="#warta" class="hover:text-blue-600 transition-colors py-2">Warta Kampus</a>
+        <a href="#guru" class="hover:text-blue-600 transition-colors py-2">Asatidz</a>
+        <a href="#kontak" class="hover:text-blue-600 transition-colors py-2">Kontak</a>
       </nav>
 
-      <!-- CTA & Mobile Toggle -->
+      <!-- CTA & Mobile Toggle (Touch Target >= 44px) -->
       <div class="flex items-center gap-3">
-        <a href="#ppdb" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-black px-5 py-2.5 rounded-xl uppercase tracking-wider transition-all duration-300 shadow-lg shadow-emerald-950/50 hover:shadow-emerald-700/30">
+        <a href="#ppdb" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-black px-5 py-2.5 rounded-xl uppercase tracking-wider transition-all duration-300 shadow-sm hover:shadow min-h-[44px]">
           <i class="fas fa-paper-plane text-xs"></i>
           <span>PPDB 2026/2027</span>
         </a>
-        <button id="mobile-toggle-btn" class="lg:hidden w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/10" aria-label="Toggle Menu">
-          <i class="fas fa-bars text-sm"></i>
+        <button id="mobile-toggle-btn" class="lg:hidden w-11 h-11 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-200 active:scale-95 transition-all" aria-label="Toggle Menu">
+          <i class="fas fa-bars text-base"></i>
         </button>
       </div>
 
     </div>
 
-    <!-- Mobile Dropdown -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-brand-dark/95 border-b border-white/10 px-6 py-5 space-y-3 text-xs font-bold uppercase tracking-wider text-slate-300">
-      <a href="#hero" class="block py-1 hover:text-brand-mint" onclick="toggleMobile()">Dashboard</a>
-      <a href="#aplikasi" class="block py-1 hover:text-brand-mint" onclick="toggleMobile()">18 Apps Hub</a>
-      <a href="#tahfidz" class="block py-1 hover:text-brand-mint" onclick="toggleMobile()">Tahfidz &amp; Sains</a>
-      <a href="#warta" class="block py-1 hover:text-brand-mint" onclick="toggleMobile()">Warta Kampus</a>
-      <a href="#guru" class="block py-1 hover:text-brand-mint" onclick="toggleMobile()">Asatidz</a>
-      <a href="#kontak" class="block py-1 hover:text-brand-mint" onclick="toggleMobile()">Kontak</a>
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-6 py-5 space-y-3 text-xs font-bold uppercase tracking-wider text-slate-700 shadow-lg">
+      <a href="#hero" class="block py-2.5 hover:text-blue-600 border-b border-slate-100" onclick="toggleMobile()">Dashboard</a>
+      <a href="#aplikasi" class="block py-2.5 hover:text-blue-600 border-b border-slate-100" onclick="toggleMobile()">18 Apps Hub</a>
+      <a href="#tahfidz" class="block py-2.5 hover:text-blue-600 border-b border-slate-100" onclick="toggleMobile()">Tahfidz &amp; Sains</a>
+      <a href="#warta" class="block py-2.5 hover:text-blue-600 border-b border-slate-100" onclick="toggleMobile()">Warta Kampus</a>
+      <a href="#guru" class="block py-2.5 hover:text-blue-600 border-b border-slate-100" onclick="toggleMobile()">Asatidz</a>
+      <a href="#kontak" class="block py-2.5 hover:text-blue-600 border-b border-slate-100" onclick="toggleMobile()">Kontak</a>
       <div class="pt-2">
-        <a href="#ppdb" class="block text-center bg-emerald-600 text-white py-3 rounded-xl font-black" onclick="toggleMobile()">
+        <a href="#ppdb" class="block text-center bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 py-3.5 rounded-xl font-black text-xs uppercase tracking-wider shadow-sm" onclick="toggleMobile()">
           PORTAL PENDAFTARAN PPDB ONLINE
         </a>
       </div>
     </div>
   </header>
 
-  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-8 py-10 w-full space-y-12">
+  <!-- ================================================================= -->
+  <!-- MAIN CONTENT CONTAINER -->
+  <!-- ================================================================= -->
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 w-full space-y-12 sm:space-y-14">
 
     <!-- ================================================================= -->
-    <!-- MASTER BENTO-GRID HERO SECTION -->
+    <!-- DYNAMIC BENTO HERO SECTION -->
     <!-- ================================================================= -->
     <section id="hero" class="grid grid-cols-1 md:grid-cols-12 gap-5">
       
       <!-- TILE 1: Large Showcase Hero (Span 8 cols) -->
-      <div class="md:col-span-8 bento-card rounded-3xl p-8 sm:p-12 relative overflow-hidden flex flex-col justify-between min-h-[460px]">
-        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        
+      <div class="md:col-span-8 bento-surface rounded-3xl p-6 sm:p-10 lg:p-12 relative overflow-hidden flex flex-col justify-between bg-gradient-to-br from-white via-slate-50 to-blue-50/40">
+        <!-- Structural Decorative Corner Accent -->
+        <div class="absolute -right-16 -top-16 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-16 -bottom-16 w-60 h-60 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
         <div>
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[11px] font-mono text-emerald-300 font-bold mb-6">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-50 border border-blue-200 text-[11px] font-mono text-blue-700 font-bold mb-5">
+            <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
             <span>PORTAL EKOSISTEM DIGITAL PESANTREN</span>
           </div>
 
-          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight max-w-2xl">
-            Integrasi Tahfidz Bersanad &amp; Keunggulan Digital.
+          <h1 class="text-2xl sm:text-4xl lg:text-5xl font-heading font-black text-slate-900 leading-[1.2] tracking-tight max-w-2xl">
+            Integrasi Tahfidz Bersanad &amp; Keunggulan Kampus Digital.
           </h1>
 
-          <p class="text-slate-300 text-sm sm:text-base font-normal mt-4 max-w-xl leading-relaxed">
-            SMPI Yambu'ul Qur'an memadukan sanad 30 Juz Al-Qur'an mutqin, kurikulum sains mutakhir, dan ekosistem 18 aplikasi sekolah terintegrasi untuk mencetak generasi pemimpin masa depan.
+          <p class="text-slate-600 text-sm sm:text-base font-normal mt-4 max-w-xl leading-relaxed">
+            SMPI Yambu'ul Qur'an memadukan sanad 30 Juz Al-Qur'an mutqin, kurikulum sains mutakhir, dan ekosistem 18 aplikasi sekolah terintegrasi untuk mencetak generasi pemimpin berkarakter luhur.
           </p>
         </div>
 
-        <div class="flex flex-wrap items-center gap-4 pt-8">
-          <a href="#ppdb" class="inline-flex items-center gap-2.5 bg-brand-gold hover:bg-amber-400 text-brand-deep font-black text-xs px-7 py-3.5 rounded-2xl uppercase tracking-wider transition-all duration-300 shadow-lg shadow-amber-950/40">
-            <span>Daftar PPDB Sekarang</span>
-            <i class="fas fa-arrow-right text-xs"></i>
-          </a>
-          <a href="#aplikasi" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-6 py-3.5 rounded-2xl border border-white/15 uppercase tracking-wider transition-all">
-            <i class="fas fa-grid-2"></i>
-            <span>Buka 18 Aplikasi</span>
-          </a>
+        <div class="space-y-6 pt-6 sm:pt-8">
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="#ppdb" class="inline-flex items-center gap-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs px-6 py-3.5 rounded-xl uppercase tracking-wider transition-all shadow-sm hover:shadow min-h-[44px]">
+              <span>Daftar PPDB Sekarang</span>
+              <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+            <a href="#aplikasi" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-6 py-3.5 rounded-xl uppercase tracking-wider transition-all shadow-sm hover:shadow min-h-[44px]">
+              <i class="fas fa-grid-2"></i>
+              <span>Buka 18 Aplikasi</span>
+            </a>
+            <a href="https://wa.me/6281515777911" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs px-5 py-3.5 rounded-xl border border-slate-300 uppercase tracking-wider transition-all min-h-[44px]">
+              <i class="fab fa-whatsapp text-emerald-600 text-sm"></i>
+              <span>Hubungi Humas</span>
+            </a>
+          </div>
+
+          <!-- Proof Badges -->
+          <div class="pt-4 border-t border-slate-200/80 flex flex-wrap items-center gap-3 text-[11px] font-mono text-slate-500">
+            <span class="inline-flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-md text-slate-700 font-medium">
+              <i class="fas fa-id-card text-blue-600"></i> NPSN: 70003325
+            </span>
+            <span class="inline-flex items-center gap-1.5 bg-amber-50 px-2.5 py-1 rounded-md text-amber-800 font-semibold border border-amber-200">
+              <i class="fas fa-award text-amber-600"></i> Akreditasi B BAN-S/M
+            </span>
+            <span class="inline-flex items-center gap-1.5 bg-emerald-50 px-2.5 py-1 rounded-md text-emerald-800 font-semibold border border-emerald-200">
+              <i class="fas fa-book-quran text-emerald-600"></i> Sanad 30 Juz Mutqin
+            </span>
+          </div>
         </div>
       </div>
 
       <!-- TILE 2: Realtime Prayer Hub & Qibla (Span 4 cols) -->
-      <div class="md:col-span-4 bento-card rounded-3xl p-7 flex flex-col justify-between">
+      <div class="md:col-span-4 bento-surface rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center gap-2 text-xs font-mono font-bold text-emerald-400">
-              <i class="fas fa-mosque"></i>
+            <div class="flex items-center gap-2 text-xs font-mono font-bold text-emerald-700">
+              <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm">
+                <i class="fas fa-mosque"></i>
+              </div>
               <span>JADWAL SHOLAT KEDIRI</span>
             </div>
-            <span class="text-[10px] font-mono bg-white/10 text-slate-300 px-2.5 py-1 rounded-full">
+            <span class="text-[10px] font-mono bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md border border-slate-200 font-medium">
               Kemenag RI
             </span>
           </div>
 
-          <div class="bg-black/30 rounded-2xl p-4 border border-white/5 mb-5 text-center">
-            <span class="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">Menuju Waktu Sholat Berikutnya</span>
-            <div id="bento-countdown" class="text-xl sm:text-2xl font-mono font-black text-brand-gold mt-1">
+          <!-- Highlight Timer Widget -->
+          <div class="bg-gradient-to-br from-emerald-50 to-teal-50/60 rounded-2xl p-4 border border-emerald-100 mb-5 text-center">
+            <span class="text-[10px] font-mono text-emerald-800 uppercase tracking-widest block font-semibold">Menuju Waktu Sholat Berikutnya</span>
+            <div id="bento-countdown" class="text-2xl sm:text-3xl font-mono font-black text-emerald-900 mt-1">
               --:--:--
             </div>
-            <span id="bento-next-sholat" class="text-xs text-brand-mint font-bold block mt-0.5">Memuat jadwal...</span>
+            <span id="bento-next-sholat" class="text-xs text-emerald-700 font-bold block mt-0.5">Memuat jadwal...</span>
           </div>
 
           <!-- Prayer List Rows -->
-          <div class="space-y-2 text-xs font-mono" id="bento-prayer-list">
-            <div class="flex items-center justify-between py-1.5 px-3 rounded-xl bg-white/5">
-              <span class="text-slate-300">Subuh</span>
-              <span class="font-bold text-white bento-p-val">04:05</span>
+          <div class="space-y-1.5 text-xs font-mono" id="bento-prayer-list">
+            <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-slate-50 border border-slate-100">
+              <span class="text-slate-600 font-medium">Subuh</span>
+              <span class="font-bold text-slate-900 bento-p-val">04:05</span>
             </div>
-            <div class="flex items-center justify-between py-1.5 px-3 rounded-xl bg-white/5">
-              <span class="text-slate-300">Dzuhur</span>
-              <span class="font-bold text-white bento-p-val">11:38</span>
+            <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-slate-50 border border-slate-100">
+              <span class="text-slate-600 font-medium">Dzuhur</span>
+              <span class="font-bold text-slate-900 bento-p-val">11:38</span>
             </div>
-            <div class="flex items-center justify-between py-1.5 px-3 rounded-xl bg-white/5">
-              <span class="text-slate-300">Ashar</span>
-              <span class="font-bold text-white bento-p-val">14:58</span>
+            <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-slate-50 border border-slate-100">
+              <span class="text-slate-600 font-medium">Ashar</span>
+              <span class="font-bold text-slate-900 bento-p-val">14:58</span>
             </div>
-            <div class="flex items-center justify-between py-1.5 px-3 rounded-xl bg-white/5">
-              <span class="text-slate-300">Maghrib</span>
-              <span class="font-bold text-white bento-p-val">17:50</span>
+            <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-slate-50 border border-slate-100">
+              <span class="text-slate-600 font-medium">Maghrib</span>
+              <span class="font-bold text-slate-900 bento-p-val">17:50</span>
             </div>
-            <div class="flex items-center justify-between py-1.5 px-3 rounded-xl bg-white/5">
-              <span class="text-slate-300">Isya</span>
-              <span class="font-bold text-white bento-p-val">19:02</span>
+            <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-slate-50 border border-slate-100">
+              <span class="text-slate-600 font-medium">Isya</span>
+              <span class="font-bold text-slate-900 bento-p-val">19:02</span>
             </div>
           </div>
         </div>
 
-        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-400 font-mono">
-          <span>Arah Kiblat: <b class="text-white">294° NW</b></span>
-          <span class="text-emerald-400"><i class="fas fa-compass mr-1"></i>Plosoklaten</span>
+        <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+          <span>Kiblat: <b class="text-slate-800">294° NW</b></span>
+          <span class="text-emerald-700 font-semibold"><i class="fas fa-compass mr-1"></i>Plosoklaten Kediri</span>
         </div>
       </div>
 
-      <!-- TILE 3: Core 3 Forked Apps Quick Launchpad (Span 8 cols) -->
-      <div class="md:col-span-8 bento-card rounded-3xl p-7">
-        <div class="flex items-center justify-between mb-5">
+      <!-- TILE 3: Core 3 Forked Apps Launchpad (Span 8 cols) -->
+      <div class="md:col-span-8 bento-surface rounded-3xl p-6 sm:p-7">
+        <div class="flex items-center justify-between mb-5 flex-wrap gap-2">
           <div>
-            <h3 class="text-base font-black text-white flex items-center gap-2">
-              <i class="fas fa-rocket text-brand-emerald"></i>
-              <span>3 Aplikasi Utama Kampus (Live)</span>
+            <h3 class="text-base font-heading font-black text-slate-900 flex items-center gap-2">
+              <i class="fas fa-rocket text-blue-600"></i>
+              <span>3 Aplikasi Utama Kampus (Live &amp; Terverifikasi)</span>
             </h3>
-            <p class="text-xs text-slate-400 mt-0.5">Akses langsung ke portal aktif yang telah di-fork dan distandarisasi.</p>
+            <p class="text-xs text-slate-500 mt-0.5">Akses instan ke portal utama yang telah aktif dan distandarisasi.</p>
           </div>
-          <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-brand-emerald/15 text-brand-mint font-bold">
-            AKTIF
+          <span class="text-[11px] font-mono px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 font-bold border border-emerald-200">
+            100% ONLINE
           </span>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           
-          <a href="https://nixon42.github.io/jurnal/" target="_blank" rel="noopener" class="bg-black/30 hover:bg-black/50 border border-white/10 hover:border-emerald-500/40 rounded-2xl p-5 flex flex-col justify-between group transition-all">
+          <!-- App 1: Jurnal Digital (Emerald Theme) -->
+          <a href="https://nixon42.github.io/jurnal/" target="_blank" rel="noopener" class="bg-gradient-to-br from-emerald-50/60 to-white hover:to-emerald-50/40 border border-emerald-200/90 rounded-2xl p-5 flex flex-col justify-between group transition-all shadow-xs hover:shadow-md">
             <div>
-              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform">
+              <div class="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-lg mb-3 group-hover:scale-105 transition-transform shadow-sm">
                 <i class="fas fa-book-open"></i>
               </div>
-              <h4 class="font-black text-sm text-white group-hover:text-brand-mint transition-colors">Jurnal Digital</h4>
-              <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">Agenda pengajaran harian &amp; mutaba'ah asatidz.</p>
+              <span class="text-[10px] font-mono font-bold text-emerald-700 uppercase tracking-wider block mb-1">Akademik</span>
+              <h4 class="font-heading font-black text-sm text-slate-900 group-hover:text-emerald-700 transition-colors">Jurnal Digital</h4>
+              <p class="text-xs text-slate-500 mt-1 leading-relaxed">Agenda pengajaran harian &amp; mutaba'ah asatidz.</p>
             </div>
-            <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-bold text-brand-mint">
+            <div class="mt-4 pt-3 border-t border-emerald-100 flex items-center justify-between text-xs font-bold text-emerald-700 min-h-[36px]">
               <span>Buka App</span>
-              <i class="fas fa-arrow-up-right-from-square text-[9px]"></i>
+              <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
             </div>
           </a>
 
-          <a href="https://nixon42.github.io/lms/" target="_blank" rel="noopener" class="bg-black/30 hover:bg-black/50 border border-white/10 hover:border-emerald-500/40 rounded-2xl p-5 flex flex-col justify-between group transition-all">
+          <!-- App 2: LMS & CBT (Electric Azure Theme) -->
+          <a href="https://nixon42.github.io/lms/" target="_blank" rel="noopener" class="bg-gradient-to-br from-blue-50/60 to-white hover:to-blue-50/40 border border-blue-200/90 rounded-2xl p-5 flex flex-col justify-between group transition-all shadow-xs hover:shadow-md">
             <div>
-              <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform">
+              <div class="w-11 h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center text-lg mb-3 group-hover:scale-105 transition-transform shadow-sm">
                 <i class="fas fa-laptop-code"></i>
               </div>
-              <h4 class="font-black text-sm text-white group-hover:text-brand-mint transition-colors">LMS &amp; CBT</h4>
-              <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">Portal materi, tugas terpadu, dan ujian online.</p>
+              <span class="text-[10px] font-mono font-bold text-blue-700 uppercase tracking-wider block mb-1">E-Learning</span>
+              <h4 class="font-heading font-black text-sm text-slate-900 group-hover:text-blue-700 transition-colors">LMS &amp; CBT Terpadu</h4>
+              <p class="text-xs text-slate-500 mt-1 leading-relaxed">Portal materi, kuis daring, dan ujian online.</p>
             </div>
-            <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-bold text-brand-mint">
+            <div class="mt-4 pt-3 border-t border-blue-100 flex items-center justify-between text-xs font-bold text-blue-700 min-h-[36px]">
               <span>Buka App</span>
-              <i class="fas fa-arrow-up-right-from-square text-[9px]"></i>
+              <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
             </div>
           </a>
 
-          <a href="https://nixon42.github.io/absen/" target="_blank" rel="noopener" class="bg-black/30 hover:bg-black/50 border border-white/10 hover:border-emerald-500/40 rounded-2xl p-5 flex flex-col justify-between group transition-all">
+          <!-- App 3: Presensi Digital (Solar Gold Theme) -->
+          <a href="https://nixon42.github.io/absen/" target="_blank" rel="noopener" class="bg-gradient-to-br from-amber-50/60 to-white hover:to-amber-50/40 border border-amber-200/90 rounded-2xl p-5 flex flex-col justify-between group transition-all shadow-xs hover:shadow-md">
             <div>
-              <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-brand-gold flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform">
+              <div class="w-11 h-11 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center text-lg mb-3 group-hover:scale-105 transition-transform shadow-sm">
                 <i class="fas fa-user-check"></i>
               </div>
-              <h4 class="font-black text-sm text-white group-hover:text-brand-mint transition-colors">Presensi Digital</h4>
-              <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">Presensi santri &amp; guru face recognition.</p>
+              <span class="text-[10px] font-mono font-bold text-amber-800 uppercase tracking-wider block mb-1">Presensi</span>
+              <h4 class="font-heading font-black text-sm text-slate-900 group-hover:text-amber-800 transition-colors">Presensi Digital</h4>
+              <p class="text-xs text-slate-500 mt-1 leading-relaxed">Presensi santri &amp; guru face recognition.</p>
             </div>
-            <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-bold text-brand-mint">
+            <div class="mt-4 pt-3 border-t border-amber-100 flex items-center justify-between text-xs font-bold text-amber-800 min-h-[36px]">
               <span>Buka App</span>
-              <i class="fas fa-arrow-up-right-from-square text-[9px]"></i>
+              <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
             </div>
           </a>
 
@@ -330,126 +378,170 @@
       </div>
 
       <!-- TILE 4: Institutional Trust Metrics (Span 4 cols) -->
-      <div class="md:col-span-4 bento-card rounded-3xl p-7 flex flex-col justify-between">
-        <span class="text-xs font-mono font-bold text-brand-gold uppercase tracking-wider block mb-4">
-          METRIK REPUTASI KAMPUS
+      <div class="md:col-span-4 bento-surface rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+        <span class="text-xs font-mono font-bold text-slate-600 uppercase tracking-wider block mb-4 flex items-center gap-1.5">
+          <i class="fas fa-chart-line text-blue-600"></i>
+          <span>METRIK KEUNGGULAN KAMPUS</span>
         </span>
 
-        <div class="grid grid-cols-2 gap-4">
-          <div class="bg-black/30 rounded-2xl p-4 border border-white/5">
-            <span class="text-2xl font-black text-white block">30 Juz</span>
-            <span class="text-[10px] font-mono text-slate-400 uppercase mt-0.5 block">Target Tahfidz</span>
+        <div class="grid grid-cols-2 gap-3.5">
+          <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-200/80">
+            <span class="text-2xl font-heading font-black text-emerald-700 block">30 Juz</span>
+            <span class="text-[10px] font-mono text-slate-500 uppercase mt-0.5 block">Target Tahfidz</span>
           </div>
-          <div class="bg-black/30 rounded-2xl p-4 border border-white/5">
-            <span class="text-2xl font-black text-brand-mint block">18 Apps</span>
-            <span class="text-[10px] font-mono text-slate-400 uppercase mt-0.5 block">Layanan Digital</span>
+          <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-200/80">
+            <span class="text-2xl font-heading font-black text-blue-600 block">18 Apps</span>
+            <span class="text-[10px] font-mono text-slate-500 uppercase mt-0.5 block">Layanan Digital</span>
           </div>
-          <div class="bg-black/30 rounded-2xl p-4 border border-white/5">
-            <span class="text-2xl font-black text-brand-gold block">1 : 12</span>
-            <span class="text-[10px] font-mono text-slate-400 uppercase mt-0.5 block">Rasio Asatidz</span>
+          <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-200/80">
+            <span class="text-2xl font-heading font-black text-amber-600 block">1 : 12</span>
+            <span class="text-[10px] font-mono text-slate-500 uppercase mt-0.5 block">Rasio Asatidz</span>
           </div>
-          <div class="bg-black/30 rounded-2xl p-4 border border-white/5">
-            <span class="text-2xl font-black text-white block">100%</span>
-            <span class="text-[10px] font-mono text-slate-400 uppercase mt-0.5 block">Kelulusan</span>
+          <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-200/80">
+            <span class="text-2xl font-heading font-black text-purple-700 block">100%</span>
+            <span class="text-[10px] font-mono text-slate-500 uppercase mt-0.5 block">Kelulusan</span>
           </div>
         </div>
 
-        <div class="mt-4 pt-3 border-t border-white/5 text-[11px] text-slate-400 font-mono flex items-center justify-between">
+        <div class="mt-4 pt-3.5 border-t border-slate-100 text-[11px] text-slate-500 font-mono flex items-center justify-between">
           <span>Akreditasi BAN-S/M</span>
-          <span class="text-brand-gold font-bold">Peringkat B</span>
+          <span class="text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Peringkat B</span>
         </div>
       </div>
 
     </section>
 
     <!-- ================================================================= -->
-    <!-- 18 DIGITAL APPLICATIONS BENTO HUB -->
+    <!-- 18 DIGITAL APPLICATIONS BENTO HUB (TABS FILTER + COMPACT MOBILE) -->
     <!-- ================================================================= -->
     <section id="aplikasi" class="space-y-6">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <span class="text-xs font-mono uppercase tracking-widest text-brand-emerald block mb-1">
-            KATALOG APLIKASI SEKOLAH
+          <span class="text-xs font-mono uppercase tracking-widest text-blue-600 font-bold block mb-1">
+            KATALOG APLIKASI KAMPUS DIGITAL
           </span>
-          <h2 class="text-2xl sm:text-3xl font-black text-white">
+          <h2 class="text-2xl sm:text-3xl font-heading font-black text-slate-900">
             18 Ekosistem Layanan Terpadu
           </h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1 max-w-xl">
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-xl">
             Akses cepat ke seluruh sistem akademik, tahfidz, dan layanan santri dalam satu wadah cerdas.
           </p>
         </div>
 
-        <!-- Filter & Search -->
+        <!-- Filter & Search (Min Touch Target >= 44px) -->
         <div class="flex items-center gap-3">
-          <div class="relative">
-            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500"></i>
-            <input type="text" id="bento-app-search" oninput="searchBentoApps(this.value)" placeholder="Cari layanan aplikasi..." class="pl-8 pr-4 py-2.5 text-xs bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald w-60">
+          <div class="relative w-full sm:w-64">
+            <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i>
+            <input type="text" id="bento-app-search" oninput="searchBentoApps(this.value)" placeholder="Cari layanan aplikasi..." class="pl-9 pr-4 py-2.5 text-xs bg-white border border-slate-300 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 w-full min-h-[44px]">
           </div>
-          <span id="bento-apps-badge" class="font-mono text-xs text-brand-mint font-bold px-3 py-2.5 rounded-xl bg-white/5 border border-white/10">
+          <span id="bento-apps-badge" class="font-mono text-xs text-blue-700 font-bold px-3.5 py-2.5 rounded-xl bg-blue-50 border border-blue-200 whitespace-nowrap min-h-[44px] flex items-center">
             18 Aplikasi
           </span>
         </div>
       </div>
 
-      <!-- App Cards Bento Grid -->
-      <div id="bento-apps-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Rendered dynamically -->
+      <!-- Interactive Category Tabs Bar (Solves Mobile Scroll Issue) -->
+      <div class="overflow-x-auto no-scrollbar pb-1">
+        <div class="flex items-center gap-2 min-w-max" id="app-category-tabs">
+          <button onclick="filterAppCategory('Semua')" data-category="Semua" class="cat-tab-btn active px-4 py-2.5 rounded-xl text-xs font-bold transition-all min-h-[44px] bg-blue-600 text-white shadow-sm flex items-center gap-1.5">
+            <span>Semua</span>
+            <span class="text-[10px] opacity-80">(18)</span>
+          </button>
+          <button onclick="filterAppCategory('Akademik')" data-category="Akademik" class="cat-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold transition-all min-h-[44px] bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+            <span>Akademik &amp; LMS</span>
+            <span class="text-[10px] text-slate-400">(5)</span>
+          </button>
+          <button onclick="filterAppCategory('Tahfidz')" data-category="Tahfidz" class="cat-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold transition-all min-h-[44px] bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span>Tahfidz &amp; Karakter</span>
+            <span class="text-[10px] text-slate-400">(2)</span>
+          </button>
+          <button onclick="filterAppCategory('Layanan')" data-category="Layanan" class="cat-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold transition-all min-h-[44px] bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+            <span>Layanan Santri</span>
+            <span class="text-[10px] text-slate-400">(4)</span>
+          </button>
+          <button onclick="filterAppCategory('Administrasi')" data-category="Administrasi" class="cat-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold transition-all min-h-[44px] bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+            <span>Administrasi &amp; TU</span>
+            <span class="text-[10px] text-slate-400">(4)</span>
+          </button>
+          <button onclick="filterAppCategory('Kesehatan')" data-category="Kesehatan" class="cat-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold transition-all min-h-[44px] bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+            <span>Kesehatan &amp; Komunitas</span>
+            <span class="text-[10px] text-slate-400">(3)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- App Cards Grid (Rich Bento on Desktop, Compact Scannable on Mobile) -->
+      <div id="bento-apps-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
+        <!-- Rendered dynamically by JS -->
       </div>
 
     </section>
 
     <!-- ================================================================= -->
-    <!-- TAHFIDZ & SAINS RADAR (4 PILARS) -->
+    <!-- METODOLOGI UNGGULAN (4 THEMATIC PILARS) -->
     <!-- ================================================================= -->
     <section id="tahfidz" class="space-y-6">
       <div>
-        <span class="text-xs font-mono uppercase tracking-widest text-brand-emerald block mb-1">
+        <span class="text-xs font-mono uppercase tracking-widest text-emerald-700 font-bold block mb-1">
           METODOLOGI UNGGULAN
         </span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white">
+        <h2 class="text-2xl sm:text-3xl font-heading font-black text-slate-900">
           Fusi Tahfidz Bersanad &amp; Riset Sains
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
-        <div class="bento-card rounded-2xl p-6">
-          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg mb-4">
+        <!-- Pillar 1: Tahfidz Bersanad (Vibrant Emerald) -->
+        <div class="bento-surface rounded-2xl p-6 border-t-4 border-t-emerald-600 bg-white">
+          <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-4 border border-emerald-100">
             <i class="fas fa-book-quran"></i>
           </div>
-          <h3 class="font-bold text-white text-base">Sanad Qur'an 30 Juz</h3>
-          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-            Metode talaqqi intensif bersama syaikh &amp; asatidz berijazah sanad bersambung hingga Rasulullah SAW.
+          <span class="text-[10px] font-mono font-bold text-emerald-700 uppercase tracking-wider block mb-1">Pilar 01</span>
+          <h3 class="font-heading font-black text-slate-900 text-base">Sanad Qur'an 30 Juz</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Metode talaqqi intensif bersama syaikh &amp; asatidz berijazah sanad muttashil bersambung hingga Rasulullah SAW.
           </p>
         </div>
 
-        <div class="bento-card rounded-2xl p-6">
-          <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-lg mb-4">
+        <!-- Pillar 2: Sains & Riset (Electric Azure) -->
+        <div class="bento-surface rounded-2xl p-6 border-t-4 border-t-blue-600 bg-white">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-4 border border-blue-100">
             <i class="fas fa-atom"></i>
           </div>
-          <h3 class="font-bold text-white text-base">Kurikulum Sains &amp; Riset</h3>
-          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-            Pembelajaran IPA dan Matematika berbasis nalar kritis, olimpiade riset, dan eksperimen laboratorium.
+          <span class="text-[10px] font-mono font-bold text-blue-700 uppercase tracking-wider block mb-1">Pilar 02</span>
+          <h3 class="font-heading font-black text-slate-900 text-base">Kurikulum Sains &amp; Riset</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Pembelajaran IPA dan Matematika berbasis nalar kritis, olimpiade riset, dan eksperimen laboratorium modern.
           </p>
         </div>
 
-        <div class="bento-card rounded-2xl p-6">
-          <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-brand-gold flex items-center justify-center text-lg mb-4">
+        <!-- Pillar 3: Bilingual (Warm Solar Gold) -->
+        <div class="bento-surface rounded-2xl p-6 border-t-4 border-t-amber-500 bg-white">
+          <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl mb-4 border border-amber-100">
             <i class="fas fa-language"></i>
           </div>
-          <h3 class="font-bold text-white text-base">Bilingual Arab &amp; Inggris</h3>
-          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-            Pembiasaan percakapan harian asrama (muhadatsah) dan public speaking untuk daya saing global.
+          <span class="text-[10px] font-mono font-bold text-amber-800 uppercase tracking-wider block mb-1">Pilar 03</span>
+          <h3 class="font-heading font-black text-slate-900 text-base">Bilingual Arab &amp; Inggris</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Pembiasaan percakapan harian asrama (muhadatsah) dan public speaking untuk daya saing global santri.
           </p>
         </div>
 
-        <div class="bento-card rounded-2xl p-6">
-          <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-lg mb-4">
+        <!-- Pillar 4: Adab Santri (Vivid Violet) -->
+        <div class="bento-surface rounded-2xl p-6 border-t-4 border-t-purple-600 bg-white">
+          <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl mb-4 border border-purple-100">
             <i class="fas fa-hand-holding-heart"></i>
           </div>
-          <h3 class="font-bold text-white text-base">Adab &amp; Karakter Santri</h3>
-          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+          <span class="text-[10px] font-mono font-bold text-purple-700 uppercase tracking-wider block mb-1">Pilar 04</span>
+          <h3 class="font-heading font-black text-slate-900 text-base">Adab &amp; Karakter Santri</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
             Penanaman adab penuntut ilmu nabawi, kesantunan bertutur kata, dan kemandirian hidup di asrama 24 jam.
           </p>
         </div>
@@ -465,8 +557,8 @@
       <!-- News List (8 cols) -->
       <div class="lg:col-span-8 space-y-4">
         <div class="flex items-center justify-between mb-2">
-          <h3 class="text-lg font-black text-white flex items-center gap-2">
-            <i class="fas fa-newspaper text-brand-emerald"></i>
+          <h3 class="text-lg font-heading font-black text-slate-900 flex items-center gap-2">
+            <i class="fas fa-newspaper text-blue-600"></i>
             <span>Warta &amp; Publikasi Kampus</span>
           </h3>
         </div>
@@ -478,12 +570,12 @@
 
       <!-- Agenda Live (4 cols) -->
       <div class="lg:col-span-4 space-y-4">
-        <h3 class="text-lg font-black text-white flex items-center gap-2">
-          <i class="fas fa-calendar-check text-brand-gold"></i>
+        <h3 class="text-lg font-heading font-black text-slate-900 flex items-center gap-2">
+          <i class="fas fa-calendar-check text-amber-600"></i>
           <span>Agenda Terdekat</span>
         </h3>
 
-        <div class="bento-card rounded-2xl p-5 space-y-4" id="bento-agenda-list">
+        <div class="bento-surface rounded-2xl p-5 space-y-4" id="bento-agenda-list">
           <!-- Populated by JS -->
         </div>
       </div>
@@ -495,10 +587,10 @@
     <!-- ================================================================= -->
     <section id="guru" class="space-y-6">
       <div>
-        <span class="text-xs font-mono uppercase tracking-widest text-brand-emerald block mb-1">
+        <span class="text-xs font-mono uppercase tracking-widest text-blue-600 font-bold block mb-1">
           DEWAN PENDIDIK
         </span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white">
+        <h2 class="text-2xl sm:text-3xl font-heading font-black text-slate-900">
           Asatidz Pengampu &amp; Pengasuh
         </h2>
       </div>
@@ -509,25 +601,28 @@
     </section>
 
     <!-- ================================================================= -->
-    <!-- PPDB 2026/2027 BANNER -->
+    <!-- PPDB 2026/2027 BANNER (HIGH CONVERSION ROYAL NAVY) -->
     <!-- ================================================================= -->
-    <section id="ppdb" class="bento-card rounded-3xl p-8 sm:p-12 relative overflow-hidden bg-gradient-to-r from-emerald-950 via-brand-card to-emerald-950 border border-emerald-500/30">
+    <section id="ppdb" class="rounded-3xl p-8 sm:p-12 relative overflow-hidden bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 border border-blue-900/40 text-white shadow-xl">
+      <!-- Glow Accents -->
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
       <div class="max-w-3xl space-y-5 relative z-10">
-        <span class="inline-block px-3.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-mono text-[11px] font-bold">
-          PENDAFTARAN SANTRI BARU 2026/2027
+        <span class="inline-block px-3.5 py-1 rounded-lg bg-amber-400/20 text-amber-300 font-mono text-[11px] font-bold border border-amber-400/30">
+          PENDAFTARAN SANTRI BARU TAHUN AJARAN 2026/2027
         </span>
-        <h2 class="text-3xl sm:text-4xl font-black text-white leading-tight">
+        <h2 class="text-2xl sm:text-4xl font-heading font-black text-white leading-tight">
           Pintu Gerbang Menuju Generasi Qur'ani Berprestasi Global.
         </h2>
         <p class="text-sm text-slate-300 font-normal leading-relaxed">
           Penerimaan santri baru SMPI Yambu'ul Qur'an Gelombang I telah dibuka. Fasilitas asrama modern, lingkungan tahfidz asri, dan kurikulum sains terpadu siap menyambut putra/putri Anda.
         </p>
-        <div class="flex flex-wrap items-center gap-4 pt-3">
-          <a href="https://wa.me/6281515777911?text=Bismillah,%20saya%20tertarik%20dengan%20PPDB%20SMPI%20Yambu'ul%20Qur'an" target="_blank" rel="noopener" class="inline-flex items-center gap-2.5 bg-brand-gold hover:bg-amber-400 text-brand-deep font-black text-xs px-8 py-3.5 rounded-xl uppercase tracking-wider transition-all shadow-lg">
+        <div class="flex flex-wrap items-center gap-3 pt-3">
+          <a href="https://wa.me/6281515777911?text=Bismillah,%20saya%20tertarik%20dengan%20PPDB%20SMPI%20Yambu'ul%20Qur'an" target="_blank" rel="noopener" class="inline-flex items-center gap-2.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs px-8 py-3.5 rounded-xl uppercase tracking-wider transition-all shadow-md min-h-[44px]">
             <i class="fab fa-whatsapp text-sm"></i>
             <span>Konsultasi PPDB via WhatsApp</span>
           </a>
-          <a href="#kontak" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-6 py-3.5 rounded-xl border border-white/15 uppercase tracking-wider transition-all">
+          <a href="#kontak" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-6 py-3.5 rounded-xl border border-white/20 uppercase tracking-wider transition-all min-h-[44px]">
             <span>Rincian Syarat &amp; Biaya</span>
           </a>
         </div>
@@ -537,138 +632,256 @@
   </main>
 
   <!-- ================================================================= -->
-  <!-- FOOTER -->
+  <!-- INSTITUTIONAL FOOTER (HIGH CONTRAST ROYAL SLATE) -->
   <!-- ================================================================= -->
-  <footer id="kontak" class="bg-brand-dark/95 border-t border-white/10 text-slate-400 text-xs py-14 px-4 sm:px-8 mt-16">
+  <footer id="kontak" class="bg-slate-900 border-t border-slate-800 text-slate-400 text-xs py-14 px-4 sm:px-6 lg:px-8 mt-16">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
       
+      <!-- Brand & Legal Info -->
       <div class="md:col-span-5 space-y-4">
         <div class="flex items-center gap-3">
           <img src="logo.png" alt="Logo SMPI Yambu'ul Qur'an" class="w-10 h-10 object-contain">
           <div>
-            <span class="block font-black text-base text-white">SMPI Yambu'ul Qur'an</span>
-            <span class="block text-[10px] font-mono uppercase tracking-widest text-emerald-400">Smart Campus Portal</span>
+            <span class="block font-heading font-black text-base text-white">SMPI Yambu'ul Qur'an</span>
+            <span class="block text-[10px] font-mono uppercase tracking-widest text-blue-400 font-semibold">Smart Campus Portal</span>
           </div>
         </div>
         <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
           Pesantren modern berbasis Al-Qur'an dan sains. Yayasan Yambu'ul Qur'an Plosoklaten Kediri. NPSN 70003325, Akreditasi B BAN-S/M.
         </p>
-        <div class="text-[11px] font-mono text-slate-500">
-          SK Operasional: 414-44/2053/418.20/2023
+        <div class="text-[11px] font-mono text-slate-400 pt-1">
+          SK Operasional: <b class="text-slate-300">414-44/2053/418.20/2023</b>
         </div>
       </div>
 
+      <!-- Location & Contact -->
       <div class="md:col-span-4 space-y-3">
-        <span class="block font-mono text-xs font-bold text-white uppercase tracking-wider">Lokasi &amp; Kontak</span>
+        <span class="block font-mono text-xs font-bold text-white uppercase tracking-wider">Lokasi &amp; Kontak Resmi</span>
         <p class="text-xs leading-relaxed text-slate-400">
           Jl. Agung Ds. Jarak RT 04/ RW 02, Kec. Plosoklaten, Kab. Kediri, Jawa Timur 64175
         </p>
-        <div class="space-y-1.5 pt-1 text-xs">
-          <div><i class="fab fa-whatsapp w-4 text-emerald-400"></i> 0815-1577-7911</div>
-          <div><i class="fas fa-envelope w-4 text-emerald-400"></i> smpiyaqu@gmail.com</div>
-          <div><i class="fab fa-instagram w-4 text-emerald-400"></i> @smpiyaqu_kediri</div>
+        <div class="space-y-2 pt-1 text-xs">
+          <div class="flex items-center gap-2">
+            <i class="fab fa-whatsapp w-4 text-emerald-400"></i>
+            <a href="https://wa.me/6281515777911" target="_blank" rel="noopener" class="hover:text-emerald-400 font-medium">0815-1577-7911</a>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fas fa-envelope w-4 text-blue-400"></i>
+            <span class="font-medium">smpiyaqu@gmail.com</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fab fa-instagram w-4 text-rose-400"></i>
+            <a href="https://instagram.com/smpiyaqu_kediri" target="_blank" rel="noopener" class="hover:text-rose-400 font-medium">@smpiyaqu_kediri</a>
+          </div>
         </div>
       </div>
 
+      <!-- Quick Access Links -->
       <div class="md:col-span-3 space-y-3">
-        <span class="block font-mono text-xs font-bold text-white uppercase tracking-wider">Akses Cepat</span>
+        <span class="block font-mono text-xs font-bold text-white uppercase tracking-wider">Akses Portal Kampus</span>
         <ul class="space-y-2 text-xs">
-          <li><a href="https://nixon42.github.io/jurnal/" target="_blank" rel="noopener" class="hover:text-brand-mint">Jurnal Digital Guru</a></li>
-          <li><a href="https://nixon42.github.io/lms/" target="_blank" rel="noopener" class="hover:text-brand-mint">LMS &amp; Ujian Online</a></li>
-          <li><a href="https://nixon42.github.io/absen/" target="_blank" rel="noopener" class="hover:text-brand-mint">Presensi Face Recognition</a></li>
-          <li><a href="index.html" class="hover:text-brand-mint">Varian Heritage (index.html)</a></li>
-          <li><a href="v2.html" class="hover:text-brand-mint">Varian Minimalist (v2.html)</a></li>
+          <li><a href="https://nixon42.github.io/jurnal/" target="_blank" rel="noopener" class="hover:text-white flex items-center gap-1.5"><i class="fas fa-book-open text-[10px] text-emerald-400"></i> Jurnal Digital Guru</a></li>
+          <li><a href="https://nixon42.github.io/lms/" target="_blank" rel="noopener" class="hover:text-white flex items-center gap-1.5"><i class="fas fa-laptop-code text-[10px] text-blue-400"></i> LMS &amp; Ujian Online</a></li>
+          <li><a href="https://nixon42.github.io/absen/" target="_blank" rel="noopener" class="hover:text-white flex items-center gap-1.5"><i class="fas fa-user-check text-[10px] text-amber-400"></i> Presensi Digital Guru/Siswa</a></li>
+          <li class="pt-2 border-t border-slate-800"><a href="index.html" class="hover:text-white flex items-center gap-1.5 text-slate-400"><i class="fas fa-palette text-[10px]"></i> Varian Heritage (index.html)</a></li>
+          <li><a href="v2.html" class="hover:text-white flex items-center gap-1.5 text-slate-400"><i class="fas fa-feather text-[10px]"></i> Varian Minimalist (v2.html)</a></li>
         </ul>
       </div>
 
     </div>
 
-    <div class="max-w-7xl mx-auto pt-8 mt-10 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-slate-500">
+    <!-- Copyright -->
+    <div class="max-w-7xl mx-auto pt-8 mt-10 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-slate-500">
       <div>
-        &copy; <span id="bento-year">2026</span> SMPI Yambu'ul Qur'an. All rights reserved.
+        &copy; <span id="bento-year">2026</span> SMPI Yambu'ul Qur'an. Seluruh hak cipta dilindungi.
       </div>
       <div>
-        Edisi Smart Campus Bento Portal
+        Edisi Smart Campus Bento Portal (Varian 3)
       </div>
     </div>
   </footer>
 
   <!-- ================================================================= -->
-  <!-- SCRIPT LOGIC -->
+  <!-- SCRIPT LOGIC (ROBUST, THEMED, MOBILE COMPACT FILTER) -->
   <!-- ================================================================= -->
   <script>
     document.getElementById('bento-year').textContent = new Date().getFullYear();
 
+    // Mobile Menu Toggle
     function toggleMobile() {
       const m = document.getElementById('mobile-menu');
-      m.classList.toggle('hidden');
+      if (m) m.classList.toggle('hidden');
     }
-    document.getElementById('mobile-toggle-btn').addEventListener('click', toggleMobile);
+    const mobileBtn = document.getElementById('mobile-toggle-btn');
+    if (mobileBtn) mobileBtn.addEventListener('click', toggleMobile);
 
-    // 18 Apps Catalog
+    // 18 Apps Comprehensive Catalog with Multi-thematic Color Palette
     const BENTO_APPS = [
-      { id: 1, nama: 'JURNAL DIGITAL', link: 'https://nixon42.github.io/jurnal/', desc: 'Agenda pembelajaran guru, jurnal materi terstruktur, dan catatan santri.', cat: 'Akademik', icon: 'fas fa-book-open', tag: 'CORE APP' },
-      { id: 2, nama: 'LMS', link: 'https://nixon42.github.io/lms/', desc: 'Portal materi belajar, kuis interaktif, dan pengumpulan tugas online.', cat: 'Akademik', icon: 'fas fa-laptop-code', tag: 'CORE APP' },
-      { id: 3, nama: 'ABSENSI', link: 'https://nixon42.github.io/absen/', desc: 'Sistem presensi akurat santri dan guru berbasis face recognition.', cat: 'Layanan', icon: 'fas fa-user-check', tag: 'CORE APP' },
-      { id: 4, nama: 'TU & PERSURATAN', link: 'https://administrasi.smpitalmubarok.sch.id/', desc: 'Pengarsipan surat masuk/keluar dan permohonan surat izin santri.', cat: 'Administrasi', icon: 'fas fa-envelope-open-text' },
-      { id: 5, nama: 'SUPERVISI', link: 'https://supervisi.smpitalmubarok.sch.id/', desc: 'Platform evaluasi mutu dan pembinaan kinerja asatidz madrasah.', cat: 'Manajemen', icon: 'fas fa-chalkboard-user' },
-      { id: 6, nama: 'BUKU INVENTARIS', link: 'https://inventaris.smpitalmubarok.sch.id/', desc: 'Pendataan dan pengelolaan aset sarana prasarana sekolah.', cat: 'Administrasi', icon: 'fas fa-boxes-stacked' },
-      { id: 7, nama: 'E-RAPOR', link: 'https://erapor.smpitalmubarok.sch.id/', desc: 'Rekapitulasi nilai dan unduh e-rapor berkala santri.', cat: 'Akademik', icon: 'fas fa-file-invoice' },
-      { id: 8, nama: 'SIM TAHFIDZ', link: 'https://simtahfidz.smpitalmubarok.sch.id/', desc: 'Mutabaah hafalan Al-Qur\'an dan laporan setoran juz berkala.', cat: 'Tahfidz', icon: 'fas fa-book-quran' },
-      { id: 9, nama: 'E-LIBRARY', link: 'https://elibrary.smpitalmubarok.sch.id/', desc: 'Perpustakaan digital dan katalog literasi santri.', cat: 'Literasi', icon: 'fas fa-book-bookmark' },
-      { id: 10, nama: 'PORTAL PPDB', link: 'https://ppdb.smpitalmubarok.sch.id/', desc: 'Sistem pendaftaran santri baru dan tes seleksi daring.', cat: 'Layanan', icon: 'fas fa-user-plus' },
-      { id: 11, nama: 'KONSULTASI BK', link: 'https://bk.smpitalmubarok.sch.id/', desc: 'Konseling karakter, bakat, dan pembinaan santri.', cat: 'Layanan', icon: 'fas fa-comments' },
-      { id: 12, nama: 'KEUANGAN & SYAHRIYAH', link: 'https://keuangan.smpitalmubarok.sch.id/', desc: 'Layanan syahriyah bulanan dan informasi donasi.', cat: 'Keuangan', icon: 'fas fa-wallet' },
-      { id: 13, nama: 'PELANGGARAN & DISIPLIN', link: 'https://tatatertib.smpitalmubarok.sch.id/', desc: 'Catatan poin kedisiplinan dan mutabaah santri.', cat: 'Kedisiplinan', icon: 'fas fa-clipboard-check' },
-      { id: 14, nama: 'PORTAL ALUMNI', link: 'https://alumni.smpitalmubarok.sch.id/', desc: 'Jejaring komunikasi dan database alumni santri.', cat: 'Komunitas', icon: 'fas fa-user-graduate' },
-      { id: 15, nama: 'POSKESTREN', link: 'https://poskestren.smpitalmubarok.sch.id/', desc: 'Pusat kesehatan pesantren dan rekam medis asrama.', cat: 'Kesehatan', icon: 'fas fa-heart-pulse' },
-      { id: 16, nama: 'KARYA SANTRI', link: 'https://karya.smpitalmubarok.sch.id/', desc: 'Galeri kreativitas, kaligrafi, dan artikel karya santri.', cat: 'Kreativitas', icon: 'fas fa-newspaper' },
-      { id: 17, nama: 'JADWAL & KALENDER', link: 'https://kalender.smpitalmubarok.sch.id/', desc: 'Sinkronisasi kalender akademik dan agenda pesantren.', cat: 'Akademik', icon: 'fas fa-calendar-days' },
-      { id: 18, nama: 'HOTLINE HUMAS', link: 'https://wa.me/6281515777911', desc: 'Layanan informasi resmi wali santri 24 jam.', cat: 'Layanan', icon: 'fas fa-headset' }
+      { id: 1, nama: 'JURNAL DIGITAL', link: 'https://nixon42.github.io/jurnal/', desc: 'Agenda pembelajaran guru, jurnal materi terstruktur, dan catatan santri.', cat: 'Akademik', theme: 'azure', icon: 'fas fa-book-open', tag: 'CORE APP' },
+      { id: 2, nama: 'LMS & CBT TERPADU', link: 'https://nixon42.github.io/lms/', desc: 'Portal materi belajar daring, kuis interaktif, dan pengumpulan tugas online.', cat: 'Akademik', theme: 'azure', icon: 'fas fa-laptop-code', tag: 'CORE APP' },
+      { id: 3, nama: 'ABSENSI WAJAH', link: 'https://nixon42.github.io/absen/', desc: 'Sistem presensi akurat santri dan asatidz berbasis face recognition modern.', cat: 'Layanan', theme: 'amber', icon: 'fas fa-user-check', tag: 'CORE APP' },
+      { id: 4, nama: 'TU & PERSURATAN', link: 'https://administrasi.smpitalmubarok.sch.id/', desc: 'Pengarsipan surat masuk/keluar dan permohonan surat izin santri otomatis.', cat: 'Administrasi', theme: 'indigo', icon: 'fas fa-envelope-open-text', tag: 'LAYANAN' },
+      { id: 5, nama: 'SUPERVISI GURU', link: 'https://supervisi.smpitalmubarok.sch.id/', desc: 'Platform evaluasi mutu dan pembinaan kinerja asatidz madrasah berkala.', cat: 'Administrasi', theme: 'indigo', icon: 'fas fa-chalkboard-user', tag: 'MUTU' },
+      { id: 6, nama: 'BUKU INVENTARIS', link: 'https://inventaris.smpitalmubarok.sch.id/', desc: 'Pendataan dan pengelolaan aset sarana prasarana sekolah terintegrasi.', cat: 'Administrasi', theme: 'indigo', icon: 'fas fa-boxes-stacked', tag: 'SARPRAS' },
+      { id: 7, nama: 'E-RAPOR KURIKULUM', link: 'https://erapor.smpitalmubarok.sch.id/', desc: 'Rekapitulasi nilai capaian belajar dan unduh e-rapor berkala santri.', cat: 'Akademik', theme: 'azure', icon: 'fas fa-file-invoice', tag: 'RAPOR' },
+      { id: 8, nama: 'SIM TAHFIDZ 30 JUZ', link: 'https://simtahfidz.smpitalmubarok.sch.id/', desc: 'Mutabaah hafalan Al-Qur\'an dan laporan setoran juz berkala bersanad.', cat: 'Tahfidz', theme: 'emerald', icon: 'fas fa-book-quran', tag: 'SANAD' },
+      { id: 9, nama: 'E-LIBRARY DIGITAL', link: 'https://elibrary.smpitalmubarok.sch.id/', desc: 'Perpustakaan digital, katalog literasi santri, dan buku referensi kitab.', cat: 'Akademik', theme: 'azure', icon: 'fas fa-book-bookmark', tag: 'LITERASI' },
+      { id: 10, nama: 'PORTAL PPDB ONLINE', link: 'https://ppdb.smpitalmubarok.sch.id/', desc: 'Sistem pendaftaran santri baru dan tes seleksi daring terpadu.', cat: 'Layanan', theme: 'amber', icon: 'fas fa-user-plus', tag: 'PPDB' },
+      { id: 11, nama: 'KONSULTASI BK', link: 'https://bk.smpitalmubarok.sch.id/', desc: 'Layanan bimbingan konseling karakter, bakat, dan pembinaan santri.', cat: 'Layanan', theme: 'amber', icon: 'fas fa-comments', tag: 'KONSELING' },
+      { id: 12, nama: 'KEUANGAN & SYAHRIYAH', link: 'https://keuangan.smpitalmubarok.sch.id/', desc: 'Informasi syahriyah bulanan santri dan rekapitulasi infaq yayasan.', cat: 'Administrasi', theme: 'indigo', icon: 'fas fa-wallet', tag: 'SYAHRIYAH' },
+      { id: 13, nama: 'MUTABAAH & DISIPLIN', link: 'https://tatatertib.smpitalmubarok.sch.id/', desc: 'Catatan poin kedisiplinan, tata tertib, dan mutabaah santri asrama.', cat: 'Tahfidz', theme: 'violet', icon: 'fas fa-clipboard-check', tag: 'ADAB' },
+      { id: 14, nama: 'PORTAL ALUMNI', link: 'https://alumni.smpitalmubarok.sch.id/', desc: 'Jejaring silaturahmi, data persebaran, dan sinergi alumni santri.', cat: 'Kesehatan', theme: 'violet', icon: 'fas fa-user-graduate', tag: 'ALUMNI' },
+      { id: 15, nama: 'POSKESTREN & KLINIK', link: 'https://poskestren.smpitalmubarok.sch.id/', desc: 'Pusat layanan kesehatan santri dan rekam medis asrama terpadu.', cat: 'Kesehatan', theme: 'rose', icon: 'fas fa-heart-pulse', tag: 'MEDIS' },
+      { id: 16, nama: 'KARYA SANTRI', link: 'https://karya.smpitalmubarok.sch.id/', desc: 'Galeri karya kaligrafi, cerpen, esai, dan majalah dinding santri.', cat: 'Kesehatan', theme: 'azure', icon: 'fas fa-newspaper', tag: 'KARYA' },
+      { id: 17, nama: 'JADWAL & KALENDER', link: 'https://kalender.smpitalmubarok.sch.id/', desc: 'Sinkronisasi kalender akademik, jadwal ujian, dan agenda pesantren.', cat: 'Akademik', theme: 'azure', icon: 'fas fa-calendar-days', tag: 'AGENDA' },
+      { id: 18, nama: 'HOTLINE HUMAS 24J', link: 'https://wa.me/6281515777911', desc: 'Layanan informasi dan respon cepat wali santri 24 jam.', cat: 'Layanan', theme: 'emerald', icon: 'fab fa-whatsapp', tag: 'WHATSAPP' }
     ];
+
+    let currentActiveCategory = 'Semua';
+    let currentSearchQuery = '';
+
+    // Theme Config Helper for Distinctive Colors
+    function getThemeStyles(theme) {
+      switch (theme) {
+        case 'emerald':
+          return {
+            border: 'hover:border-emerald-400',
+            iconBox: 'bg-emerald-50 text-emerald-600 border border-emerald-100',
+            badge: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+            btnText: 'text-emerald-700 hover:text-emerald-800'
+          };
+        case 'amber':
+          return {
+            border: 'hover:border-amber-400',
+            iconBox: 'bg-amber-50 text-amber-700 border border-amber-100',
+            badge: 'bg-amber-50 text-amber-800 border-amber-200',
+            btnText: 'text-amber-800 hover:text-amber-900'
+          };
+        case 'violet':
+          return {
+            border: 'hover:border-purple-400',
+            iconBox: 'bg-purple-50 text-purple-600 border border-purple-100',
+            badge: 'bg-purple-50 text-purple-700 border-purple-200',
+            btnText: 'text-purple-700 hover:text-purple-800'
+          };
+        case 'indigo':
+          return {
+            border: 'hover:border-indigo-400',
+            iconBox: 'bg-indigo-50 text-indigo-600 border border-indigo-100',
+            badge: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+            btnText: 'text-indigo-700 hover:text-indigo-800'
+          };
+        case 'rose':
+          return {
+            border: 'hover:border-rose-400',
+            iconBox: 'bg-rose-50 text-rose-600 border border-rose-100',
+            badge: 'bg-rose-50 text-rose-700 border-rose-200',
+            btnText: 'text-rose-700 hover:text-rose-800'
+          };
+        case 'azure':
+        default:
+          return {
+            border: 'hover:border-blue-400',
+            iconBox: 'bg-blue-50 text-blue-600 border border-blue-100',
+            badge: 'bg-blue-50 text-blue-700 border-blue-200',
+            btnText: 'text-blue-600 hover:text-blue-700'
+          };
+      }
+    }
 
     function renderBentoApps(list) {
       const grid = document.getElementById('bento-apps-grid');
       const badge = document.getElementById('bento-apps-badge');
       if (badge) badge.textContent = list.length + ' Aplikasi';
 
+      if (!list.length) {
+        grid.innerHTML = '<div class="col-span-full py-12 text-center bg-white rounded-2xl border border-slate-200 text-slate-500 font-mono text-xs">' +
+          '<i class="fas fa-inbox text-3xl text-slate-300 block mb-2"></i>' +
+          'Tidak ada aplikasi yang cocok dengan kriteria pencarian.' +
+          '</div>';
+        return;
+      }
+
       grid.innerHTML = list.map(function(app) {
-        return '<div class="bento-card rounded-2xl p-5 flex flex-col justify-between group">' +
+        const t = getThemeStyles(app.theme);
+
+        return '<div class="bento-surface rounded-2xl p-4 sm:p-5 flex flex-col justify-between group ' + t.border + '">' +
           '<div>' +
             '<div class="flex items-center justify-between mb-3 text-[10px] font-mono">' +
-              '<span class="px-2 py-0.5 rounded-md bg-white/5 text-brand-mint font-semibold uppercase">' + app.cat + '</span>' +
-              '<span class="text-slate-500">#' + (app.id < 10 ? '0' : '') + app.id + '</span>' +
+              '<span class="px-2.5 py-1 rounded-md ' + t.badge + ' font-bold uppercase tracking-wider border">' + app.cat + '</span>' +
+              '<span class="text-slate-400 font-bold">#' + (app.id < 10 ? '0' : '') + app.id + '</span>' +
             '</div>' +
-            '<h4 class="font-bold text-white text-sm group-hover:text-brand-mint transition-colors flex items-center gap-2">' +
-              '<i class="' + app.icon + ' text-emerald-400 text-xs"></i> ' +
-              '<span>' + app.nama + '</span>' +
-            '</h4>' +
-            '<p class="text-xs text-slate-400 mt-1.5 leading-relaxed">' + app.desc + '</p>' +
+            '<div class="flex items-start gap-3">' +
+              '<div class="w-10 h-10 rounded-xl ' + t.iconBox + ' flex items-center justify-center text-sm shrink-0 mt-0.5 group-hover:scale-105 transition-transform">' +
+                '<i class="' + app.icon + '"></i>' +
+              '</div>' +
+              '<div class="flex-1 min-w-0">' +
+                '<h4 class="font-heading font-black text-slate-900 text-sm group-hover:text-blue-600 transition-colors leading-snug truncate">' +
+                  app.nama +
+                '</h4>' +
+                '<p class="text-xs text-slate-500 mt-1 leading-relaxed line-clamp-2 sm:line-clamp-none">' + app.desc + '</p>' +
+              '</div>' +
+            '</div>' +
           '</div>' +
-          '<div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-bold text-brand-mint">' +
-            '<a href="' + app.link + '" target="_blank" rel="noopener" class="hover:underline flex items-center gap-1.5">Buka Layanan <i class="fas fa-arrow-up-right-from-square text-[9px]"></i></a>' +
+          '<div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold ' + t.btnText + ' min-h-[40px]">' +
+            '<span class="text-[10px] font-mono text-slate-400 font-semibold">' + app.tag + '</span>' +
+            '<a href="' + app.link + '" target="_blank" rel="noopener" class="hover:underline flex items-center gap-1.5 min-h-[40px] py-1 px-2">Buka Layanan <i class="fas fa-arrow-up-right-from-square text-[10px]"></i></a>' +
           '</div>' +
         '</div>';
       }).join('');
     }
-    renderBentoApps(BENTO_APPS);
 
-    function searchBentoApps(q) {
-      const query = (q || '').toLowerCase().trim();
-      if (!query) {
-        renderBentoApps(BENTO_APPS);
-        return;
+    function applyAppFilter() {
+      let filtered = BENTO_APPS;
+      
+      // Filter by category
+      if (currentActiveCategory !== 'Semua') {
+        filtered = filtered.filter(function(a) {
+          return a.cat === currentActiveCategory;
+        });
       }
-      const filtered = BENTO_APPS.filter(function(a) {
-        return a.nama.toLowerCase().includes(query) || a.desc.toLowerCase().includes(query) || a.cat.toLowerCase().includes(query);
-      });
+
+      // Filter by search query
+      if (currentSearchQuery) {
+        filtered = filtered.filter(function(a) {
+          return a.nama.toLowerCase().includes(currentSearchQuery) ||
+                 a.desc.toLowerCase().includes(currentSearchQuery) ||
+                 a.cat.toLowerCase().includes(currentSearchQuery);
+        });
+      }
+
       renderBentoApps(filtered);
     }
+
+    function filterAppCategory(cat) {
+      currentActiveCategory = cat;
+      
+      // Update Tab Styles
+      const buttons = document.querySelectorAll('#app-category-tabs .cat-tab-btn');
+      buttons.forEach(function(btn) {
+        if (btn.getAttribute('data-category') === cat) {
+          btn.className = 'cat-tab-btn active px-4 py-2.5 rounded-xl text-xs font-bold transition-all min-h-[44px] bg-blue-600 text-white shadow-sm flex items-center gap-1.5';
+        } else {
+          btn.className = 'cat-tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold transition-all min-h-[44px] bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center gap-1.5';
+        }
+      });
+
+      applyAppFilter();
+    }
+
+    function searchBentoApps(q) {
+      currentSearchQuery = (q || '').toLowerCase().trim();
+      applyAppFilter();
+    }
+
+    // Initial App Render
+    renderBentoApps(BENTO_APPS);
 
     // Default News Fallback
     const BENTO_NEWS = [
       {
         kategori: 'TAHFIDZ',
+        badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
         tanggal: '12 Nov 2026',
         judul: 'Wisuda Khotmil Qur\'an Bil Ghoib Angkatan III SMPI Yambu\'ul Qur\'an',
         ringkas: '24 santri menyelesaikan hafalan Al-Qur\'an 30 Juz secara mutqin di hadapan dewan penguji sanad.',
@@ -676,6 +889,7 @@
       },
       {
         kategori: 'PRESTASI',
+        badgeClass: 'bg-amber-50 text-amber-800 border-amber-200',
         tanggal: '28 Okt 2026',
         judul: 'Santri SMPI Yambu\'ul Qur\'an Juara Olimpiade Sains & Matematika Kediri',
         ringkas: 'Raihan prestasi membuktikan santri tahfidz memiliki kapasitas analitis sains berdaya saing tinggi.',
@@ -683,9 +897,10 @@
       },
       {
         kategori: 'AKADEMIK',
+        badgeClass: 'bg-blue-50 text-blue-700 border-blue-200',
         tanggal: '15 Okt 2026',
         judul: 'Penguatan Kemampuan Dwi-Bahasa Arab & Inggris Melalui Muhadatsah Asrama',
-        ringkas: 'Program dialek tematik santri untuk melatih kepemimpinan berwawasan internasional.',
+        ringkas: 'Program dialek tematik santri untuk melatih kepemimpinan berwawasan global.',
         link: '#'
       }
     ];
@@ -694,14 +909,18 @@
       const container = document.getElementById('bento-news-list');
       if (!container) return;
       container.innerHTML = list.map(function(n) {
-        return '<article class="bento-card rounded-2xl p-5 hover:border-emerald-500/40 transition-colors">' +
-          '<div class="flex items-center gap-2 text-[10px] font-mono text-slate-400 mb-1.5">' +
-            '<span class="text-brand-mint font-bold uppercase">' + n.kategori + '</span>' +
+        const badgeStyle = n.badgeClass || 'bg-blue-50 text-blue-700 border-blue-200';
+        return '<article class="bento-surface rounded-2xl p-5 hover:border-blue-400 transition-colors">' +
+          '<div class="flex items-center gap-2 text-[10px] font-mono text-slate-400 mb-2">' +
+            '<span class="px-2 py-0.5 rounded border font-bold uppercase tracking-wider ' + badgeStyle + '">' + n.kategori + '</span>' +
             '<span>•</span>' +
             '<span>' + n.tanggal + '</span>' +
           '</div>' +
-          '<h4 class="font-bold text-white text-base hover:text-brand-mint transition-colors"><a href="' + (n.link || '#') + '">' + n.judul + '</a></h4>' +
-          '<p class="text-xs text-slate-400 mt-1 leading-relaxed">' + n.ringkas + '</p>' +
+          '<h4 class="font-heading font-black text-slate-900 text-base hover:text-blue-600 transition-colors"><a href="' + (n.link || '#') + '">' + n.judul + '</a></h4>' +
+          '<p class="text-xs text-slate-600 mt-1.5 leading-relaxed">' + n.ringkas + '</p>' +
+          '<div class="mt-3 pt-2.5 border-t border-slate-100">' +
+            '<a href="' + (n.link || '#') + '" class="text-xs font-bold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1">Baca Selengkapnya <i class="fas fa-arrow-right text-[10px]"></i></a>' +
+          '</div>' +
         '</article>';
       }).join('');
     }
@@ -710,7 +929,7 @@
     // Agenda Fallback
     const BENTO_AGENDA = [
       { tgl: '25 Nov', event: 'Ujian Tasmi\' Terbuka 5 & 10 Juz Sekali Duduk', loc: 'Masjid Kampus' },
-      { tgl: '05 Des', event: 'Penilaian Akhir Semester Ganjil 2026/2027', loc: 'Ruang Ujian Digital' },
+      { tgl: '05 Des', event: 'Penilaian Akhir Semester Ganjil 2026/2027', loc: 'Ruang Ujian Digital CBT' },
       { tgl: '20 Des', event: 'Penerimaan Buku Laporan Capaian Santri (E-Rapor)', loc: 'Aula Yayasan' }
     ];
 
@@ -718,10 +937,10 @@
       const container = document.getElementById('bento-agenda-list');
       if (!container) return;
       container.innerHTML = list.map(function(a) {
-        return '<div class="border-b border-white/5 pb-3">' +
-          '<span class="font-mono text-xs font-bold text-brand-gold block">' + a.tgl + '</span>' +
-          '<h5 class="text-xs font-bold text-white mt-0.5">' + a.event + '</h5>' +
-          '<span class="text-[10px] text-slate-400 block mt-0.5"><i class="fas fa-location-dot mr-1 text-emerald-400"></i>' + a.loc + '</span>' +
+        return '<div class="border-b border-slate-100 last:border-b-0 pb-3 last:pb-0">' +
+          '<span class="font-mono text-xs font-bold text-amber-700 block">' + a.tgl + '</span>' +
+          '<h5 class="text-xs font-bold text-slate-900 mt-0.5">' + a.event + '</h5>' +
+          '<span class="text-[10px] text-slate-500 block mt-0.5"><i class="fas fa-location-dot mr-1 text-emerald-600"></i>' + a.loc + '</span>' +
         '</div>';
       }).join('');
     }
@@ -729,22 +948,22 @@
 
     // Guru Fallback
     const BENTO_GURU = [
-      { nama: 'Ust. Ahmad Fauzi, S.Pd.I, Al-Hafidz', peran: 'Kepala Sekolah & Pengampu Sanad Qur\'an' },
-      { nama: 'Ustadzah Nurul Hidayah, S.Pd', peran: 'Wakasek Kurikulum & Sains Terpadu' },
-      { nama: 'Ust. Muhammad Zaid, Lc', peran: 'Pengasuh Asrama & Pembina Bahasa Arab' },
-      { nama: 'Ust. Ridwan Kamil, S.Kom', peran: 'Pembina Teknologi & Sistem Digital' }
+      { nama: 'Ust. Ahmad Fauzi, S.Pd.I, Al-Hafidz', peran: 'Kepala Sekolah & Pengampu Sanad Qur\'an', color: 'emerald' },
+      { nama: 'Ustadzah Nurul Hidayah, S.Pd', peran: 'Wakasek Kurikulum & Sains Terpadu', color: 'blue' },
+      { nama: 'Ust. Muhammad Zaid, Lc', peran: 'Pengasuh Asrama & Pembina Bahasa Arab', color: 'amber' },
+      { nama: 'Ust. Ridwan Kamil, S.Kom', peran: 'Pembina Teknologi & Sistem Digital', color: 'indigo' }
     ];
 
     function renderBentoGuru(list) {
       const container = document.getElementById('bento-guru-list');
       if (!container) return;
       container.innerHTML = list.map(function(g) {
-        return '<div class="bento-card rounded-2xl p-5 text-center">' +
-          '<div class="w-14 h-14 mx-auto mb-3 rounded-full bg-emerald-500/20 flex items-center justify-center text-brand-mint text-xl">' +
+        return '<div class="bento-surface rounded-2xl p-5 text-center">' +
+          '<div class="w-16 h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-blue-50 to-slate-100 border border-slate-200 flex items-center justify-center text-blue-600 text-2xl shadow-xs">' +
             '<i class="fas fa-user-tie"></i>' +
           '</div>' +
-          '<h4 class="font-bold text-sm text-white">' + g.nama + '</h4>' +
-          '<p class="text-[11px] text-slate-400 mt-1">' + g.peran + '</p>' +
+          '<h4 class="font-heading font-black text-sm text-slate-900">' + g.nama + '</h4>' +
+          '<p class="text-xs text-slate-500 mt-1 leading-relaxed">' + g.peran + '</p>' +
         '</div>';
       }).join('');
     }
@@ -761,7 +980,7 @@
         }
       }, 1000);
 
-      // Fetch Prayer Times
+      // Fetch Prayer Times for Kediri
       const now = new Date();
       const d = String(now.getDate()).padStart(2, '0');
       const m = String(now.getMonth() + 1).padStart(2, '0');
@@ -784,7 +1003,7 @@
             const nextEl = document.getElementById('bento-next-sholat');
             if (cdEl && nextEl) {
               cdEl.textContent = 'Aktif';
-              nextEl.textContent = 'Jadwal Terverifikasi Kemenag';
+              nextEl.textContent = 'Jadwal Terverifikasi Kemenag RI';
             }
           }
         })
