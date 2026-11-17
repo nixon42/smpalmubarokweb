@@ -700,6 +700,53 @@ body.mode-gelap .ju-stop .ju-card.aktif{border-color:#b7860b}
   min-height: 260px;
 }
 
+/* Trust Metrics Micro-Cards (Generous padding & spacing) */
+.hero-trust-metrics {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 1rem !important;
+  margin-top: 2.25rem !important;
+  padding-top: 1.75rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+@media (min-width: 640px) {
+  .hero-trust-metrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 1.25rem !important;
+  }
+}
+.trust-metric-item {
+  position: relative !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-left: 3.5px solid #dfb342 !important;
+  border-radius: 0 14px 14px 0 !important;
+  padding: 0.85rem 1.15rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+  transition: transform 0.2s ease, background 0.2s ease !important;
+}
+.trust-metric-item:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  transform: translateY(-2px);
+}
+.trust-metric-value {
+  font-family: var(--font-serif, Georgia, serif) !important;
+  font-weight: 900 !important;
+  font-size: 1.2rem !important;
+  line-height: 1.2 !important;
+  color: #dfb342 !important;
+  margin: 0 !important;
+}
+.trust-metric-label {
+  font-size: 0.7rem !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  font-weight: 600 !important;
+  margin-top: 0.35rem !important;
+  line-height: 1.3 !important;
+}
+
 :root {
   --theme-primary: #0b3323;
   --theme-primary-dark: #062116;
@@ -1186,22 +1233,22 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
             </div>
 
             <!-- Integrated Trust Metrics Strip (Replaces generic badges) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 pt-6 border-t border-white/10">
-              <div class="border-l-2 border-secondary/60 pl-3">
-                <p class="font-serif text-secondary font-black text-lg md:text-xl leading-none">70003325</p>
-                <p class="text-[10px] text-white/60 uppercase tracking-wider font-semibold mt-1">NPSN Kemendikdasmen</p>
+            <div class="hero-trust-metrics">
+              <div class="trust-metric-item">
+                <p class="trust-metric-value">70003325</p>
+                <p class="trust-metric-label">NPSN Kemendikdasmen</p>
               </div>
-              <div class="border-l-2 border-secondary/60 pl-3">
-                <p class="font-serif text-secondary font-black text-lg md:text-xl leading-none">Akreditasi B</p>
-                <p class="text-[10px] text-white/60 uppercase tracking-wider font-semibold mt-1">Resmi BAN-S/M</p>
+              <div class="trust-metric-item">
+                <p class="trust-metric-value">Akreditasi B</p>
+                <p class="trust-metric-label">Resmi BAN-S/M</p>
               </div>
-              <div class="border-l-2 border-secondary/60 pl-3">
-                <p class="font-serif text-secondary font-black text-lg md:text-xl leading-none">Tahfidz &amp; Sains</p>
-                <p class="text-[10px] text-white/60 uppercase tracking-wider font-semibold mt-1">Kurikulum Plus</p>
+              <div class="trust-metric-item">
+                <p class="trust-metric-value">Tahfidz &amp; Sains</p>
+                <p class="trust-metric-label">Kurikulum Plus</p>
               </div>
-              <div class="border-l-2 border-secondary/60 pl-3">
-                <p class="font-serif text-secondary font-black text-lg md:text-xl leading-none">Plosoklaten</p>
-                <p class="text-[10px] text-white/60 uppercase tracking-wider font-semibold mt-1">Kediri, Jawa Timur</p>
+              <div class="trust-metric-item">
+                <p class="trust-metric-value">Plosoklaten</p>
+                <p class="trust-metric-label">Kediri, Jawa Timur</p>
               </div>
             </div>
           </div>
@@ -1316,11 +1363,11 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
             </div>
           </div>
           <div class="grid sm:grid-cols-2 gap-6 mt-8 pt-6 border-t border-slate-100">
-            <div class="border-l-2 border-secondary pl-4">
+            <div class="border-l-2 border-secondary" style="padding-left: 1rem;">
               <p class="font-serif font-black text-primary text-xs uppercase tracking-wider mb-1 flex items-center gap-2"><i class="fas fa-eye text-secondary-600"></i> Visi Lembaga</p>
               <p class="text-xs md:text-[13px] text-slate-600 leading-relaxed line-clamp-4" id="beranda-visi">Memuat visi pendidikan...</p>
             </div>
-            <div class="border-l-2 border-primary pl-4">
+            <div class="border-l-2 border-primary" style="padding-left: 1rem;">
               <p class="font-serif font-black text-primary text-xs uppercase tracking-wider mb-1 flex items-center gap-2"><i class="fas fa-bullseye text-primary"></i> Misi Lembaga</p>
               <p class="text-xs md:text-[13px] text-slate-600 leading-relaxed line-clamp-4" id="beranda-misi">Memuat misi pembinaan santri...</p>
             </div>
