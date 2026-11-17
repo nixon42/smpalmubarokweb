@@ -199,12 +199,24 @@ function isiDemoData() {
       ["Kompetisi Futsal Antar Kelas (Classmeeting)", "Olahraga", "2026-10-18", "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80"]
     ],
     'Menu': [
-      ["SIAKAD & E-Rapor Santri", "https://wa.me/6281515777911?text=Halo%20Admin%20SIAKAD%20SMPI%20Yambu%27ul%20Qur%27an", "Sistem Informasi Akademik terpadu untuk rekapitulasi presensi, penilaian harian, kalender ujian, dan unduh e-rapor santri.", 1, "Ya"],
-      ["SIMTahfidz (Mutaba'ah Qur'an)", "https://wa.me/6281515777911?text=Halo%20Admin%20SIMTahfidz%20SMPI%20Yambu%27ul%20Qur%27an", "Monitoring setoran hafalan harian santri, penilaian tajwid & makhraj, capaian target juz, dan laporan berkala ke wali santri.", 2, "Ya"],
-      ["E-Learning & CBT Mandiri", "https://wa.me/6281515777911?text=Halo%20Admin%20CBT%20SMPI%20Yambu%27ul%20Qur%27an", "Portal ujian daring berbasis komputer (Computer Based Test), kuis interaktif, materi ajar digital, dan pengumpulan tugas santri.", 3, "Ya"],
-      ["Perpustakaan Digital (E-Library)", "https://wa.me/6281515777911?text=Halo%20Admin%20Perpustakaan%20SMPI%20Yambu%27ul%20Qur%27an", "Katalog buku teks pelajaran kurikulum nasional, referensi kitab kuning pesantren, dan koleksi literasi sains santri.", 4, "Ya"],
-      ["Portal PPDB Online", "https://wa.me/6281515777911?text=Halo%20Admin%20PPDB%20SMPI%20Yambu%27ul%20Qur%27an,%20saya%20ingin%20konsultasi%20pendaftaran", "Pendaftaran santri baru, unduh formulir registrasi, unggah berkas persyaratan, dan konsultasi panitia penerimaan.", 5, "Ya"],
-      ["Layanan Syahriyah & Keuangan", "https://wa.me/6281515777911?text=Halo%20Admin%20Keuangan%20SMPI%20Yambu%27ul%20Qur%27an,%20informasi%20syahriyah", "Layanan informasi pembayaran syahriyah (SPP) pesantren, donasi jariyah sarana pendidikan, dan konfirmasi transfer.", 6, "Ya"]
+      ["JURNAL DIGITAL", "https://jurnal.smpitalmubarok.sch.id/", "Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru secara terstruktur.", 1, "ya"],
+      ["LMS", "https://lms.smpitalmubarok.sch.id/", "Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas terpadu.", 2, "ya"],
+      ["Absensi", "https://absen.smpitalmubarok.sch.id/", "Absensi berbasis face recognition, pencatatan secara realtime dan akurat.", 3, "ya"],
+      ["TU & Persuratan Online", "https://administrasi.smpitalmubarok.sch.id/", "Digitalisasi pengarsipan, permintaan surat, dan tata kelola administrasi surat-menyurat sekolah.", 4, "ya"],
+      ["Supervisi", "https://supervisi.smpitalmubarok.sch.id/", "Platform digital yang dirancang untuk mempermudah, mempercepat, dan mengoptimalkan proses pemantauan, evaluasi, serta pembinaan kinerja secara real-time dari mana saja.", 5, "ya"],
+      ["Buku Inventaris Barang", "https://inventaris.smpitalmubarok.sch.id/", "Digitalisasi pendataan dan pemantauan kondisi serta aset sarana-prasarana sekolah.", 6, "ya"],
+      ["Layanan Perpustakaan", "https://perpustakaan.smpitalmubarok.sch.id/", "Sistem katalog, peminjaman, dan pengembalian buku fisik sekolah.", 7, "ya"],
+      ["E-Rapor Tahfidz", "https://eraportahfidz.smpitalmubarok.sch.id/", "Laporan capaian hafalan Al-Qur'an dan perkembangan Tahsin siswa secara transparan.", 8, "ya"],
+      ["Al-Qur'an Digital", "https://quran.smpitalmubarok.sch.id/", "Akses teks dan bacaan Al-Qur'an interaktif untuk mendukung kegiatan keagamaan.", 9, "ya"],
+      ["Buku Induk Siswa", "https://edosis.disdikkedirikab.com/auth/login", "Database rekam jejak biodata dan histori akademis siswa terlengkap secara digital.", 10, "ya"],
+      ["Sistem Mutasi Siswa", "https://mutasi.disdikkedirikab.com/auth/login", "Pengelolaan proses kepindahan siswa (masuk/keluar) yang tertib administrasi.", 11, "ya"],
+      ["Ujian Online", "https://app.e-ujian.com/SMPIT_AlMubarok/login", "Platform ujian dan evaluasi belajar digital yang praktis, fleksibel, dan aman.", 12, "ya"],
+      ["Portal TKA", "https://tka.onedumind.com/", "Pelaksanaan dan analisis hasil pemetaan potensi akademik siswa.", 13, "ya"],
+      ["Buku Digital", "https://buku.kemendikdasmen.go.id/daftar-katalog", "Perpustakaan digital berisi koleksi modul dan buku paket pembelajaran elektronik.", 14, "ya"],
+      ["Cek NISN", "https://nisn.data.kemendikdasmen.go.id/", "Fitur validasi dan verifikasi Nomor Induk Siswa Nasional secara instan.", 15, "ya"],
+      ["Layanan PIP", "https://pip.kemendikdasmen.go.id/home_v1", "Pengelolaan data dan bantuan Program Indonesia Pintar bagi siswa penerima manfaat.", 16, "ya"],
+      ["Portal Admin Belajar id", "https://akun.belajar.id/sso/login?flow=2a90194c-a623-44d5-ae60-45bd0d988c35", "Integrasi dan pengelolaan akun pembelajaran resmi dari Kemendikbudristek.", 17, "ya"],
+      ["Menejemen E-Ijazah", "https://ijazah.data.kemendikdasmen.go.id/manajemen/#/sign-in", "Penerbitan, pengarsipan, dan verifikasi keabsahan ijazah kelulusan digital.", 18, "ya"]
     ],
     'Karya': [
       [
