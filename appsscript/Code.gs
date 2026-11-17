@@ -45,34 +45,224 @@ function initSpreadsheet() {
     sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
   }
 
-  // Isi default admin jika kosong
   const adminSheet = ss.getSheetByName('Admin');
   if (adminSheet.getLastRow() <= 1) {
     adminSheet.appendRow(['admin', 'admin123', 'Administrator', '', '']);
   }
 
-  // Isi default pengaturan jika kosong
-  const cfgSheet = ss.getSheetByName('Pengaturan');
-  if (cfgSheet.getLastRow() <= 1) {
-    const defaultCfg = [
-      ['nama_sekolah', "SMPI Yambu'ul Qur'an"],
-      ['alamat', 'Jl. Agung Ds. Jarak RT 04/ RW 02, Desa Jarak, Kecamatan Plosoklaten, Kabupaten Kediri, Jawa Timur'],
-      ['telepon', '0815-1577-7911'],
-      ['whatsapp', '0815-1577-7911'],
-      ['wa_number', '6281515777911'],
-      ['email', 'smpiyaqu@gmail.com'],
-      ['instagram', 'https://www.instagram.com/smpiyaqu_kediri/'],
-      ['npsn', '70003325'],
-      ['yayasan', "Yayasan Yambu'ul Qur'an"],
-      ['status', 'Swasta (Akreditasi B)'],
-      ['sk_operasional', '414-44/2053/418.20/2023'],
-      ['splash_judul', "SMPI YAMBU'UL QUR'AN"],
-      ['splash_tagline', "Mencetak Generasi Qur'ani & Berakhlak Mulia"]
-    ];
-    cfgSheet.getRange(2, 1, defaultCfg.length, 2).setValues(defaultCfg);
+  return 'Inisialisasi Spreadsheet Berhasil!';
+}
+
+function isiDemoData() {
+  const ss = getDb_();
+  initSpreadsheet();
+
+  const dataDemo = {
+    'HeroBanner': [
+      ['https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1280&q=80', '1'],
+      ['https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1280&q=80', '2'],
+      ['https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1280&q=80', '3']
+    ],
+    'Artikel': [
+      [
+        "Penerimaan Peserta Didik Baru (PPDB) SMPI Yambu'ul Qur'an Tahun Ajaran 2026/2027 Resmi Dibuka",
+        'PPDB',
+        '2026-11-15',
+        "SMPI Yambu'ul Qur'an Plosoklaten membuka pendaftaran peserta didik dan santri baru dengan kuota terbatas serta program beasiswa tahfidz Al-Qur'an.",
+        "<p>Assalamu'alaikum Warahmatullahi Wabarakatuh.</p><p>Kabar gembira bagi para orang tua dan calon peserta didik yang mendambakan pendidikan berkualitas berbasis nilai-nilai Islam dan Al-Qur'an. <strong>SMPI Yambu'ul Qur'an</strong> secara resmi membuka Penerimaan Peserta Didik Baru (PPDB) untuk Tahun Ajaran 2026/2027.</p><h3>Program Unggulan:</h3><ul><li>Tahfidzul Qur'an Intensif bersanad</li><li>Pendidikan Karakter dan Adab Islami</li><li>Kelas Digital & Eksplorasi Sains</li><li>Pembiasaan Bahasa Arab dan Inggris</li></ul><p>Pendaftaran dapat dilakukan langsung di kampus SMPI Yambu'ul Qur'an atau via WhatsApp panitia di <strong>0815-1577-7911</strong>.</p>",
+        'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
+        'Panitia PPDB',
+        248,
+        37
+      ],
+      [
+        "Khotmil Qur'an & Imtihan Tahfidz: 42 Santri Sukses Uji Publik Hafalan Al-Qur'an",
+        'Prestasi',
+        '2026-11-10',
+        "Suasana khidmat dan penuh haru mewarnai gelaran Khotmil Qur'an dan Uji Publik Hafalan santri SMPI Yambu'ul Qur'an di hadapan para orang tua dan asatidz.",
+        "<p>Sebanyak 42 santri SMPI Yambu'ul Qur'an sukses menuntaskan uji hafalan Al-Qur'an pada acara Khotmil Qur'an dan Imtihan Tahfidz di Masjid Jami' Yambu'ul Qur'an.</p><p>Uji publik ini menguji kelancaran (itqan), tajwid, makharijul huruf, dan fashahah hafalan Al-Qur'an secara acak oleh para penguji berkompeten dan wali santri. Semoga melahirkan generasi Qur'ani yang berakhlak mulia.</p>",
+        'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+        'Humas Sekolah',
+        315,
+        52
+      ],
+      [
+        "Santri SMPI Yaqu Raih Juara 1 MTQ dan Kaligrafi Tingkat Kabupaten Kediri",
+        'Prestasi',
+        '2026-11-05',
+        "Prestasi membanggakan kembali ditorehkan santri SMPI Yambu'ul Qur'an pada ajang Pekan Seni dan Keterampilan Islam tingkat Kabupaten Kediri.",
+        "<p>Delegasi SMPI Yambu'ul Qur'an berhasil membawa pulang trofi Juara 1 pada cabang Musabaqah Tilawatil Qur'an (MTQ) dan Juara 1 Seni Kaligrafi Islam Kontemporer.</p><p>Keberhasilan ini membuktikan komitmen sekolah dalam membina bakat seni dan spiritualitas generasi muda.</p>",
+        'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
+        'Tim Redaksi Yaqu',
+        189,
+        41
+      ],
+      [
+        "Integrasi Kurikulum Merdeka dan Nilai Al-Qur'an di Era Digital",
+        'Pendidikan',
+        '2026-10-28',
+        "Bagaimana SMPI Yambu'ul Qur'an memadukan penguasaan sains teknologi modern dengan pembentukan karakter akhlakul karimah.",
+        "<p>Pendidikan di abad ke-21 menuntut keseimbangan antara kecerdasan intelektual, kemahiran digital, dan keteguhan spiritual. Di SMPI Yambu'ul Qur'an, proses pembelajaran dirancang untuk mengembangkan nalar kritis siswa tanpa meninggalkan adab Islami.</p>",
+        'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80',
+        'Ust. H. Ahmad Fauzi, Lc.',
+        172,
+        29
+      ],
+      [
+        "Peringatan Hari Santri Nasional: Meneladani Semangat Juang Para Ulama",
+        'Kegiatan',
+        '2026-10-22',
+        "Upacara peringatan Hari Santri Nasional di SMPI Yambu'ul Qur'an berlangsung khidmat diikuti seluruh santri, guru, dan pengurus yayasan.",
+        "<p>Dengan mengenakan busana muslim dan sarung khas santri, seluruh keluarga besar SMPI Yambu'ul Qur'an menggelar apel akbar Hari Santri Nasional yang dimeriahkan lomba khitobah 3 bahasa dan hadrah.</p>",
+        'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=800&q=80',
+        'OSIS SMPI Yaqu',
+        210,
+        48
+      ],
+      [
+        "Kiat Praktis Menghafal Al-Qur'an dan Menjaga Hafalan bagi Pelajar Remaja",
+        'Edukasi',
+        '2026-10-15',
+        "Tips efektif mengelola waktu antara target ziyadah hafalan Al-Qur'an harian dan kewajiban belajar pelajaran umum di sekolah.",
+        "<p>Koordinator Tahfidz SMPI Yambu'ul Qur'an membagikan tips kunci: niat ikhlas, istiqomah muroja'ah bakda subuh, menjaga pandangan serta adab, dan menggunakan mushaf standar yang sama.</p>",
+        'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80',
+        'Ust. Muhammad Ilham, Al-Hafidz',
+        340,
+        65
+      ]
+    ],
+    'Guru': [
+      ["Ust. H. Ahmad Fauzi, Lc., M.Pd.", "Kepala Sekolah", "PAI & Ulumul Qur'an", "19820415 200801 1 008", "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80"],
+      ["Ustadzah Siti Nur Azizah, S.Pd.I., M.Pd.", "Waka Kurikulum", "Bahasa Arab", "19860920 201101 2 012", "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"],
+      ["Ust. Muhammad Ilham, Al-Hafidz", "Koordinator Tahfidz", "Tahsin & Tahfidzul Qur'an", "-", "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"],
+      ["Bpk. Rian Hidayat, S.Pd.", "Waka Kesiswaan & Pembina Pramuka", "Ilmu Pengetahuan Alam (IPA)", "19900312 201503 1 005", "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"],
+      ["Ibu Dwi Rahayu, S.Si., M.Pd.", "Guru Senior", "Matematika", "19850118 200902 2 006", "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=400&q=80"],
+      ["Ustadzah Fitria Handayani, S.Pd.", "Pembina Bahasa", "Bahasa Inggris", "19930704 201903 2 015", "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80"],
+      ["Ust. Zainul Muttaqin, S.Pd.I.", "Pembina Seni & Ekskul", "Seni Budaya & Kaligrafi", "-", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"],
+      ["Bpk. Hendra Saputra, S.Kom.", "Kepala Lab Komputer", "Informatika", "-", "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=400&q=80"]
+    ],
+    'Program': [
+      ["Tahfidzul Qur'an Intensif (30 Juz)", "Bimbingan hafalan dan talaqqi Al-Qur'an bersanad setiap hari dengan target mutqin dan wisuda tahfidz berkala.", "fa-book-quran", "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80"],
+      ["Pendidikan Karakter & Adab Qur'ani", "Pembiasaan sholat fardhu berjamaah, sholat dhuha, tadarus Al-Qur'an, dan penanaman akhlakul karimah dalam keseharian santri.", "fa-heart", "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80"],
+      ["Bilingual Language Program", "Penguasaan komunikasi aktif Bahasa Arab dan Bahasa Inggris melalui muhadharah, yaumul lughah, dan mufrodat harian.", "fa-language", "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80"],
+      ["Smart School & Digital Learning", "Integrasi kurikulum nasional dengan fasilitas laboratorium komputer multimedia, e-learning, dan literasi teknologi modern.", "fa-laptop-code", "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"]
+    ],
+    'Ekstrakurikuler': [
+      ["Seni Hadrah & Banjari Al-Muhibbin", "Seni musik rebana Islami, pembacaan maulid Simtudduror dan sholawat nabi.", "Ust. Zainul Muttaqin", "Selasa & Kamis, 15.30 - 17.00 WIB", "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"],
+      ["Pramuka Gugus Depan Yaqu", "Pendidikan kepanduan melatih kedisiplinan, kemandirian, dan kepemimpinan generasi muda muslim.", "Kak Rian Hidayat, S.Pd.", "Jumat, 14.30 - 16.30 WIB", "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=600&q=80"],
+      ["Futsal & Olahraga Prestasi", "Latihan teknik sepak bola mini, penguatan fisik, dan kebugaran santri.", "Coach Wahyu Pratama", "Sabtu, 07.00 - 09.00 WIB", "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80"],
+      ["Seni Kaligrafi Islam Kontemporer", "Pembelajaran seni khat naskhi, tsuluts, diwani, dan lukis kaligrafi kanvas.", "Ust. Mahfudz Al-Khattat", "Rabu, 15.30 - 17.00 WIB", "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=600&q=80"],
+      ["Muhadharah 3 Bahasa", "Latihan pidato dan retorika dakwah dalam Bahasa Indonesia, Arab, dan Inggris.", "Ustadzah Fitria, S.Pd.", "Ahad, 19.30 - 21.00 WIB", "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80"],
+      ["Klub Komputer & IT Terapan", "Belajar dasar desain grafis, pengetikan cepat, dan eksplorasi teknologi digital.", "Bpk. Hendra Saputra, S.Kom.", "Senin, 15.30 - 17.00 WIB", "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"]
+    ],
+    'Prestasi': [
+      ["Juara 1 Musabaqah Hifdzil Qur'an (MHQ) 5 Juz", "Muhammad Ridwan (Kelas 8)", "Kabupaten Kediri", "2026", "Pekan Olahraga dan Seni Islami Kabupaten Kediri", "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"],
+      ["Juara 2 Lomba Pidato Bahasa Arab Pelajar", "Aisyah Syifa Ramadhani (Kelas 9)", "Provinsi Jawa Timur", "2026", "Festival Bahasa Arab Se-Jawa Timur", "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80"],
+      ["Juara 1 Festival Seni Hadrah Pelajar", "Grup Hadrah Syauqul Qolbi Yaqu", "Karesidenan Kediri", "2025", "Festival Maulid Pelajar Karesidenan Kediri", "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"],
+      ["Medali Perak Olimpiade Sains & PAI Nasional", "Fatimah Az-Zahra (Kelas 8)", "Nasional", "2025", "Olimpiade Sains PAI Pelajar Menengah Tingkat Nasional", "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80"]
+    ],
+    'Fasilitas': [
+      ["Masjid Jami' Yambu'ul Qur'an", "Masjid megah pusat ibadah sholat 5 waktu berjamaah, kajian kitab salaf, dan halaqah tahfidz yang nyaman.", "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80"],
+      ["Gedung Asrama Santri (Boarding)", "Hunian santri yang bersih, tertata rapi, berfasilitas kasur & lemari pribadi, serta dibimbing musyrif 24 jam.", "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=80"],
+      ["Laboratorium Komputer Multimedia", "Laboratorium ber-AC dengan 32 unit komputer modern dan jaringan internet berkecepatan tinggi.", "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"],
+      ["Perpustakaan & Pojok Literasi Qur'an", "Koleksi ribuan buku pelajaran, ensiklopedia Islam, kitab tafsir, dan ruang baca santai.", "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80"],
+      ["Lapangan Olahraga Serbaguna", "Lapangan futsal, voli, dan bulutangkis beralas cor halus untuk menjaga kebugaran dan sportivitas santri.", "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=600&q=80"],
+      ["Ruang Kelas Modern & Ber-AC", "Ruang belajar representatif dilengkapi proyektor LCD, papan tulis ganda, dan ventilasi udara yang sejuk.", "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80"]
+    ],
+    'Statistik': [
+      ['Santri & Siswa Aktif', '348'],
+      ['Guru & Asatidz', '28'],
+      ['Santri Tahfidz 5-30 Juz', '115'],
+      ['Trofi & Prestasi Juara', '42']
+    ],
+    'Alumni': [
+      ["Muhammad Faiz Al-Farisi", "2024", "MA PK MAN 1 Yogyakarta", "Fondasi Al-Qur'an dan kedisiplinan di SMPI Yambu'ul Qur'an membuat saya sangat siap bersaing dan mandiri di madrasah unggulan.", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"],
+      ["Nabila Salma Nur Izzati", "2024", "Pondok Modern Gontor Putri", "Alhamdulillah, bimbingan ustadz-ustadzah di SMPI Yaqu sangat berharga, baik hafalan Al-Qur'an maupun penanaman akhlak harian.", "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"],
+      ["Ahmad Zaki Robbani", "2025", "SMA Taruna Nusantara", "Di SMPI Yaqu kami dididik untuk berprestasi akademik sekaligus menjaga sholat berjamaah dan Al-Qur'an. Bekal luar biasa!", "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"]
+    ],
+    'Kegiatan': [
+      ["Ujian Sumatif Akhir Semester (SAS) Ganjil", "2026-12-01", "Akademik", "07.30 - 12.00 WIB", "Gedung Kelas SMPI Yaqu", "Evaluasi pembelajaran semester ganjil berbasis Computer Based Test (CBT) dan tertulis.", "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80"],
+      ["Munaqosyah & Uji Publik Tahfidz Al-Qur'an Ke-4", "2026-12-18", "Keagamaan", "08.00 - 15.00 WIB", "Masjid Jami' Yambu'ul Qur'an", "Ujian kelayakan hafalan 5 Juz, 10 Juz, dan 30 Juz bagi santri tahfidz intensif.", "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80"],
+      ["Penerimaan Rapor & Wisuda Tahfidz Semester Ganjil", "2026-12-23", "Akademik", "08.00 - 11.30 WIB", "Aula Pertemuan Sekolah", "Penyerahan laporan hasil belajar siswa semester ganjil kepada orang tua / wali santri.", "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"],
+      ["Kemah Bhakti Santri & Pelantikan Penggalang", "2027-01-15", "Kesiswaan", "07.00 WIB - Selesai", "Bumi Perkemahan Kediri", "Kegiatan pembinaan kemandirian dan kepanduan Pramuka Gugus Depan SMPI Yambu'ul Qur'an.", "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=600&q=80"]
+    ],
+    'RekeningDonasi': [
+      ["Bank Syariah Indonesia (BSI)", "7188-2938-11", "Yayasan Yambu'ul Qur'an Kediri", "Infaq & Donasi Pengembangan Sarana Pendidikan SMPI Yaqu"],
+      ["Bank Jatim Syariah", "6102-4889-01", "Yayasan Yambu'ul Qur'an", "Wakaf Mushaf Al-Qur'an & Beasiswa Santri Yatim/Dhuafa"]
+    ],
+    'Galeri': [
+      ["Halaqah Tahfidz Al-Qur'an Santri Pagi Hari", "Tahfidz", "2026-11-12", "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80"],
+      ["Praktikum Sains di Laboratorium Terpadu", "Akademik", "2026-11-08", "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"],
+      ["Sholat Berjamaah di Masjid Jami' Yambu'ul Qur'an", "Ibadah", "2026-11-04", "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80"],
+      ["Latihan Rutin Ekstrakurikuler Hadrah Banjari", "Ekstrakurikuler", "2026-10-30", "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"],
+      ["Upacara Bendera dan Pembinaan Karakter Santri", "Kesiswaan", "2026-10-25", "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"],
+      ["Kompetisi Futsal Antar Kelas (Classmeeting)", "Olahraga", "2026-10-18", "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80"]
+    ],
+    'Karya': [
+      [
+        "Lantunan Cahaya Kalam Ilahi",
+        "Puisi",
+        "Ahmad Raihan",
+        "Siswa",
+        "Kelas 8A",
+        "Puisi ungkapan kecintaan santri kepada Al-Qur'an dan bimbingan asatidz.",
+        "Di setiap hening fajar menyingsing,\nKalam-Mu mengalun lembut menentramkan jiwa.\nSetiap ayat adalah lentera,\nPenuntun langkah di belantara dunia.\n\nYambu'ul Qur'an, sumber mata air suci,\nTempat kami menyemai mimpi,\nMenjadi generasi yang berbakti,\nKuat iman, luhur pekerti.",
+        "",
+        ""
+      ],
+      [
+        "Khat Tsuluts Surat Al-Fatihah",
+        "Gambar",
+        "Fathur Rahman",
+        "Siswa",
+        "Kelas 9B",
+        "Karya kaligrafi tinta emas di atas kanvas hitam karya santri ekstra kaligrafi.",
+        "",
+        "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=800&q=80",
+        ""
+      ]
+    ],
+    'Profil': [
+      ["sambutan", "Assalamu'alaikum Warahmatullahi Wabarakatuh. Selamat datang di website resmi SMPI Yambu'ul Qur'an Plosoklaten Kediri. Kami berkomitmen menyelenggarakan pendidikan berkualitas yang memadukan kurikulum nasional dan nilai-nilai luhur Al-Qur'an guna melahirkan generasi yang unggul dalam ilmu, kuat dalam iman, dan berakhlakul karimah."],
+      ["visi", "Terwujudnya generasi yang beriman, bertakwa, berakhlak mulia, berprestasi, berwawasan Al-Qur'an, dan berdaya saing global."],
+      ["misi", "1. Menyelenggarakan pembelajaran berkualitas berbasis nilai-nilai Islam dan Al-Qur'an.\n2. Membina karakter dan akhlakul karimah siswa dalam kehidupan sehari-hari.\n3. Mengembangkan potensi akademik, minat, dan bakat peserta didik secara optimal.\n4. Membangun lingkungan sekolah yang asri, disiplin, dan berwawasan teknologi."],
+      ["sejarah", "SMPI Yambu'ul Qur'an berdiri di bawah naungan Yayasan Yambu'ul Qur'an di Desa Jarak, Kecamatan Plosoklaten, Kabupaten Kediri. Berangkat dari tekad mencetak generasi penghafal Al-Qur'an yang cerdas dan berkarakter, sekolah ini terus berkembang menjadi lembaga pendidikan Islam terpercaya dengan akreditasi B dan legalitas resmi SK Operasional 414-44/2053/418.20/2023."],
+      ["npsn", "70003325"],
+      ["akreditasi", "B"],
+      ["yayasan", "Yayasan Yambu'ul Qur'an"],
+      ["sk", "414-44/2053/418.20/2023"]
+    ],
+    'Pengaturan': [
+      ["nama_sekolah", "SMPI Yambu'ul Qur'an"],
+      ["alamat", "Jl. Agung Ds. Jarak RT 04/ RW 02, Desa Jarak, Kecamatan Plosoklaten, Kabupaten Kediri, Jawa Timur"],
+      ["telepon", "0815-1577-7911"],
+      ["wa_number", "6281515777911"],
+      ["whatsapp", "0815-1577-7911"],
+      ["email", "smpiyaqu@gmail.com"],
+      ["instagram", "https://www.instagram.com/smpiyaqu_kediri/"],
+      ["npsn", "70003325"],
+      ["yayasan", "Yayasan Yambu'ul Qur'an"],
+      ["status", "Swasta (Akreditasi B)"],
+      ["sk_operasional", "414-44/2053/418.20/2023"],
+      ["splash_judul", "SMPI YAMBU'UL QUR'AN"],
+      ["splash_tagline", "Mencetak Generasi Qur'ani & Berakhlak Mulia"]
+    ]
+  };
+
+  for (let sName in dataDemo) {
+    let sheet = ss.getSheetByName(sName);
+    if (!sheet) sheet = ss.insertSheet(sName);
+    const lastRow = sheet.getLastRow();
+    if (lastRow > 1) {
+      sheet.getRange(2, 1, lastRow - 1, sheet.getLastColumn()).clearContent();
+    }
+    const rows = dataDemo[sName];
+    if (rows && rows.length > 0) {
+      sheet.getRange(2, 1, rows.length, rows[0].length).setValues(rows);
+    }
   }
 
-  return 'Inisialisasi Spreadsheet Berhasil!';
+  return { sukses: true, pesan: 'Seluruh demo data SMPI Yambu\'ul Qur\'an berhasil dimasukkan!' };
 }
 
 function doGet(e) {
@@ -86,6 +276,8 @@ function doGet(e) {
     let hasil;
     if (fn === 'getFullData') {
       hasil = getFullData();
+    } else if (fn === 'isiDemoData') {
+      hasil = isiDemoData();
     } else if (fn === 'tanyaChatbotSekolah') {
       hasil = tanyaChatbotSekolah(args[0], args[1]);
     } else if (fn === 'getYoutubeData') {
@@ -128,6 +320,8 @@ function doPost(e) {
 
     if (fn === 'loginAdmin') {
       hasil = loginAdmin(args[0], args[1]);
+    } else if (fn === 'isiDemoData') {
+      hasil = isiDemoData();
     } else if (fn === 'cekSesiAdmin') {
       hasil = cekSesiAdmin(args[0]);
     } else if (fn === 'logoutAdmin') {
@@ -396,7 +590,6 @@ function tanyaChatbotSekolah(pertanyaan, history) {
   }
   const q = pertanyaan.toLowerCase().trim();
 
-  // Data Profil Sekolah
   const profil = {
     nama: "SMPI Yambu'ul Qur'an",
     npsn: "70003325",
@@ -409,7 +602,6 @@ function tanyaChatbotSekolah(pertanyaan, history) {
     ig: "@smpiyaqu_kediri"
   };
 
-  // 1. Coba panggil Groq AI jika ada API Key di sheet Pengaturan
   try {
     const ss = getDb_();
     const cfgSheet = ss.getSheetByName('Pengaturan');
@@ -468,11 +660,8 @@ function tanyaChatbotSekolah(pertanyaan, history) {
         }
       }
     }
-  } catch (errAI) {
-    // Abaikan jika Groq error, lanjut ke knowledge base bawaan
-  }
+  } catch (errAI) {}
 
-  // 2. Knowledge Base Cerdas Bawaan SMPI Yambu'ul Qur'an
   if (q.includes('profil') || q.includes('tentang') || q.includes('sejarah') || q.includes('visi') || q.includes('misi')) {
     return {
       jawaban: "🏫 *Profil SMPI Yambu'ul Qur'an*\n\n" +
@@ -533,12 +722,12 @@ function tanyaChatbotSekolah(pertanyaan, history) {
     return {
       jawaban: "⚽ *Ekstrakurikuler SMPI Yambu'ul Qur'an*\n\n" +
                "Wadah minat dan bakat siswa mencakup:\n" +
-               "• Seni Hadrah / Banjari\n" +
-               "• Kepramukaan\n" +
-               "• Olahraga (Futsal, Bulutangkis, Tenis Meja)\n" +
-               "• Kaligrafi Islam\n" +
-               "• Muhadharah (Khitobah / Pidato 3 Bahasa)\n" +
-               "• Bimbingan Literasi & Komputer"
+               "• Seni Hadrah / Banjari Al-Muhibbin\n" +
+               "• Kepramukaan Gugus Depan Yaqu\n" +
+               "• Olahraga (Futsal & Bulutangkis)\n" +
+               "• Seni Kaligrafi Islam Kontemporer\n" +
+               "• Muhadharah & Khitobah 3 Bahasa\n" +
+               "• Bimbingan Literasi & Komputer IT"
     };
   }
 
@@ -549,9 +738,28 @@ function tanyaChatbotSekolah(pertanyaan, history) {
     };
   }
 
+  if (q.includes('guru') || q.includes('ustadz') || q.includes('asatidz') || q.includes('pengajar')) {
+    return {
+      jawaban: "👨‍🏫 *Guru & Asatidz SMPI Yambu'ul Qur'an*\n\n" +
+               "Para pengajar di SMPI Yaqu merupakan lulusan perguruan tinggi Islam dan umum terkemuka serta hafidz/hafidzah Al-Qur'an yang berdedikasi membina ilmu dan akhlak santri. Kepala Sekolah kami adalah Ust. H. Ahmad Fauzi, Lc., M.Pd."
+    };
+  }
+
+  if (q.includes('fasilitas') || q.includes('gedung') || q.includes('asrama') || q.includes('lab') || q.includes('masjid')) {
+    return {
+      jawaban: "🏛️ *Fasilitas SMPI Yambu'ul Qur'an*\n\n" +
+               "• Masjid Jami' Yambu'ul Qur'an yang representatif\n" +
+               "• Gedung Asrama Santri (Boarding) bersih & nyaman\n" +
+               "• Laboratorium Komputer Multimedia modern ber-AC\n" +
+               "• Perpustakaan & Pojok Literasi Al-Qur'an\n" +
+               "• Lapangan Olahraga Serbaguna (Futsal, Bulutangkis, Voli)\n" +
+               "• Ruang Kelas Ber-AC & Multimedia"
+    };
+  }
+
   if (q.includes('halo') || q.includes('assalamu') || q.includes('hai') || q.includes('selamat') || q.includes('pagi') || q.includes('siang') || q.includes('sore') || q.includes('malam')) {
     return {
-      jawaban: "Assalamu'alaikum Warahmatullahi Wabarakatuh! Selamat datang di Asisten Virtual SMPI Yambu'ul Qur'an. Ada yang bisa saya bantu seputar profil sekolah, program unggulan, info pendaftaran (PPDB), atau kontak sekolah?"
+      jawaban: "Assalamu'alaikum Warahmatullahi Wabarakatuh! Selamat datang di Asisten Virtual SMPI Yambu'ul Qur'an. Ada yang bisa saya bantu seputar profil sekolah, program unggulan, guru, fasilitas, info pendaftaran (PPDB), atau kontak sekolah?"
     };
   }
 

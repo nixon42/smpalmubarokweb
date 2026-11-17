@@ -726,8 +726,8 @@ body.mode-gelap .ju-stop .ju-card.aktif{border-color:#b7860b}
       </div>
     </div>
 
-    <h1 id="splash-judul" class="text-white font-black text-2xl md:text-3xl tracking-tight">SMP ISLAM TERPADU AL MUBAROK</h1>
-    <p id="splash-tagline" class="text-secondary text-[11px] md:text-xs font-bold uppercase tracking-[0.25em] mt-2.5">"Terwujudnya Generasi Unggul dan Islami"</p>
+    <h1 id="splash-judul" class="text-white font-black text-2xl md:text-3xl tracking-tight">SMPI YAMBU&#39;UL QUR&#39;AN</h1>
+    <p id="splash-tagline" class="text-secondary text-[11px] md:text-xs font-bold uppercase tracking-[0.25em] mt-2.5">"Membentuk Generasi Qur'ani, Berakhlak Mulia &amp; Berprestasi"</p>
 
     <!-- Animasi loading: titik-titik yang menari bergantian (ganti dari garis progres lama) -->
     <div id="splash-loadbar-wrap" class="flex items-center justify-center gap-2 mt-8">
@@ -3165,7 +3165,7 @@ function renderPengaturan() {
 
   // Logo navbar: kalau admin sudah upload logo (key "logo" di sheet
   // Pengaturan, lewat panel Admin > Pengaturan), tampilkan fotonya saja
-  // menggantikan ikon topi wisuda + tulisan "SMP IT AL MUBAROK". Kalau
+  // menggantikan ikon topi wisuda + tulisan nama sekolah. Kalau
   // belum diisi, tampilan lama (ikon + teks) tetap jalan seperti biasa.
   const logoUrl = fotoUrls(cfg('logo', ''))[0];
   const logoIcon = document.getElementById('navbar-logo-icon');
@@ -3657,11 +3657,8 @@ function renderFasilitas() {
 function renderLokasi() {
   const alamat = cfg('alamat', '');
   document.getElementById('beranda-alamat-text').textContent = alamat || 'Alamat sekolah belum diisi di sheet Pengaturan.';
-  // Default: titik lokasi PERSIS SMPI Yambu'ul Qur'an Plosoklaten Kediri (link resmi
-  // "Embed a map" dari Google Maps), dipakai kalau admin belum isi key
-  // "maps_link" di sheet Pengaturan. Begitu admin isi link Google Maps
-  // sendiri di sheet, nilai itu yang dipakai (lihat buatEmbedMaps_).
-  const defaultMapsLink = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.553199198162!2d111.96873377382342!3d-7.941642392082503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78f9dafd97a871%3A0x53948d0c4527cd66!2sSMP%20ISLAM%20TERPADU%20AL%20MUBAROK!5e0!3m2!1sid!2sid!4v1788767617695!5m2!1sid!2sid';
+  // Default: titik lokasi SMPI Yambu'ul Qur'an Plosoklaten Kediri
+  const defaultMapsLink = 'https://www.google.com/maps?q=' + encodeURIComponent("SMPI Yambu'ul Qur'an Plosoklaten Kediri") + '&output=embed';
   document.getElementById('beranda-maps').src = buatEmbedMaps_(cfg('maps_link', defaultMapsLink), alamat);
 }
 
