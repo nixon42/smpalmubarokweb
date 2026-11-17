@@ -1000,10 +1000,12 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       </div>
     </a>
 
-    <nav class="hidden xl:flex items-center gap-1.5 text-white/90 text-xs font-semibold uppercase tracking-wider">
-      <button onclick="showSection('beranda')" class="px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">Beranda</button>
+    <nav class="hidden lg:flex items-center gap-1.5 xl:gap-2 text-white/90 text-[13px] font-medium">
+      <button onclick="showSection('beranda')" class="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-white transition-colors">Beranda</button>
+
+      <!-- Dropdown: Profil -->
       <div class="dropdown relative">
-        <button class="px-3 py-2 rounded-lg hover:bg-white/10 flex items-center gap-1.5 transition-colors">Profil <i class="fas fa-chevron-down text-[9px] text-secondary"></i></button>
+        <button class="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-white flex items-center gap-1.5 transition-colors">Profil <i class="fas fa-chevron-down text-[9px] text-secondary"></i></button>
         <div class="dropdown-menu top-full left-0 bg-white rounded-2xl shadow-2xl p-2.5 w-60 text-slate-700 normal-case font-semibold border border-slate-100">
           <button onclick="showSection('sambutan')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Sambutan &amp; Visi Misi</button>
           <button onclick="showSection('sejarah')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Sejarah Sekolah</button>
@@ -1012,21 +1014,26 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
           <button onclick="showSection('prestasi')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Prestasi Santri</button>
         </div>
       </div>
+
+      <!-- Dropdown: Akademik & Program -->
       <div class="dropdown relative">
-        <button class="px-3 py-2 rounded-lg hover:bg-white/10 flex items-center gap-1.5 transition-colors">Akademik <i class="fas fa-chevron-down text-[9px] text-secondary"></i></button>
+        <button class="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-white flex items-center gap-1.5 transition-colors">Akademik <i class="fas fa-chevron-down text-[9px] text-secondary"></i></button>
         <div class="dropdown-menu top-full left-0 bg-white rounded-2xl shadow-2xl p-2.5 w-60 text-slate-700 normal-case font-semibold border border-slate-100">
+          <button onclick="showSection('program')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Kurikulum &amp; Program Unggulan</button>
+          <button onclick="showSection('ekstrakurikuler')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Ekstrakurikuler Santri</button>
+          <div class="my-1 border-t border-slate-100"></div>
           <button onclick="showSection('kalender')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Kalender Akademik</button>
           <button onclick="showSection('jadwalpelajaran')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Jadwal Pelajaran</button>
           <button onclick="showSection('jadwalujian')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Jadwal Ujian &amp; Evaluasi</button>
         </div>
       </div>
-      <button onclick="showSection('program')" class="px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">Program</button>
-      <button onclick="showSection('ekstrakurikuler')" class="px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">Ekstrakurikuler</button>
+
+      <!-- Dropdown: Informasi -->
       <div class="dropdown relative">
-        <button class="px-3 py-2 rounded-lg hover:bg-white/10 flex items-center gap-1.5 transition-colors">Informasi <i class="fas fa-chevron-down text-[9px] text-secondary"></i></button>
+        <button class="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-white flex items-center gap-1.5 transition-colors">Informasi <i class="fas fa-chevron-down text-[9px] text-secondary"></i></button>
         <div class="dropdown-menu top-full left-0 bg-white rounded-2xl shadow-2xl p-2.5 w-60 text-slate-700 normal-case font-semibold border border-slate-100">
-          <button onclick="showSection('kegiatan')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Agenda Sekolah</button>
           <button onclick="showSection('artikel')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Warta &amp; Berita</button>
+          <button onclick="showSection('kegiatan')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Agenda Sekolah</button>
           <button onclick="showSection('galeri')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Galeri Dokumentasi</button>
           <button onclick="showSection('galerivideo')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Galeri Video</button>
           <button onclick="showSection('virtualtour')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Virtual Tour Kampus</button>
@@ -1034,20 +1041,31 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
           <button onclick="showSection('alumni')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Jejaring Alumni</button>
         </div>
       </div>
-      <button onclick="showSection('karya')" class="px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">Karya</button>
-      <button onclick="showSection('aplikasi')" class="px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">Layanan Digital</button>
-      <button id="nav-daftar-btn" onclick="klikPendaftaran()" class="ml-3 px-5 py-2.5 rounded-full bg-secondary text-primary-900 font-bold hover:bg-secondary-400 shadow-md transition-all hover:shadow-lg">Pendaftaran PPDB</button>
-      <div class="flex items-center gap-1.5 ml-2 border-l border-white/20 pl-3">
-        <button onclick="bukaPencarian()" title="Cari (Ctrl+K)" aria-label="Cari di website" class="w-9 h-9 rounded-full text-white/85 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors">
-          <i class="fas fa-magnifying-glass text-sm"></i>
-        </button>
-        <button onclick="toggleModeGelap()" id="tombol-mode-gelap" title="Mode Gelap" aria-label="Ganti mode gelap" class="w-9 h-9 rounded-full text-white/85 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors">
-          <i class="fas fa-moon text-sm"></i>
-        </button>
+
+      <!-- Dropdown: Layanan & Karya -->
+      <div class="dropdown relative">
+        <button class="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-white flex items-center gap-1.5 transition-colors">Layanan <i class="fas fa-chevron-down text-[9px] text-secondary"></i></button>
+        <div class="dropdown-menu top-full right-0 bg-white rounded-2xl shadow-2xl p-2.5 w-60 text-slate-700 normal-case font-semibold border border-slate-100">
+          <button onclick="showSection('aplikasi')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Layanan Digital &amp; Aplikasi</button>
+          <button onclick="showSection('karya')" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-primary-soft hover:text-primary text-xs transition-colors">Karya &amp; Kreativitas Santri</button>
+        </div>
+      </div>
+
+      <!-- CTA Pendaftaran & Toolbar -->
+      <div class="flex items-center gap-2 ml-2">
+        <button id="nav-daftar-btn" onclick="klikPendaftaran()" class="px-4 py-2 rounded-full bg-secondary text-primary-900 font-bold hover:bg-secondary-400 shadow-sm transition-all hover:shadow text-xs whitespace-nowrap">Pendaftaran PPDB</button>
+        <div class="flex items-center gap-1 border-l border-white/20 pl-2">
+          <button onclick="bukaPencarian()" title="Cari (Ctrl+K)" aria-label="Cari di website" class="w-8 h-8 rounded-full text-white/80 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors">
+            <i class="fas fa-magnifying-glass text-xs"></i>
+          </button>
+          <button onclick="toggleModeGelap()" id="tombol-mode-gelap" title="Mode Gelap" aria-label="Ganti mode gelap" class="w-8 h-8 rounded-full text-white/80 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors">
+            <i class="fas fa-moon text-xs"></i>
+          </button>
+        </div>
       </div>
     </nav>
 
-    <div class="flex xl:hidden items-center gap-2">
+    <div class="flex lg:hidden items-center gap-2">
       <button onclick="bukaPencarian()" title="Cari" aria-label="Cari" class="w-9 h-9 rounded-full text-white/90 flex items-center justify-center active:bg-white/10">
         <i class="fas fa-magnifying-glass text-base"></i>
       </button>
@@ -1061,7 +1079,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden xl:hidden bg-primary-700 px-4 py-4 space-y-1 text-white text-sm font-bold uppercase">
+  <div id="mobile-menu" class="hidden lg:hidden bg-primary-700 px-4 py-4 space-y-1 text-white text-sm font-semibold">
     <button onclick="showSection('beranda')" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-white/10">Beranda</button>
 
     <div>
@@ -1069,7 +1087,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
         <span>Profil</span>
         <i class="fas fa-chevron-down text-[10px] transition-transform duration-200"></i>
       </button>
-      <div id="mobile-sub-profil" class="hidden pl-4 space-y-1 normal-case font-semibold">
+      <div id="mobile-sub-profil" class="hidden pl-4 space-y-1 normal-case font-normal text-xs">
         <button onclick="showSection('sambutan')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Sambutan &amp; Visi Misi</button>
         <button onclick="showSection('sejarah')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Sejarah Sekolah</button>
         <button onclick="showSection('fasilitas')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Fasilitas</button>
@@ -1083,24 +1101,23 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
         <span>Akademik</span>
         <i class="fas fa-chevron-down text-[10px] transition-transform duration-200"></i>
       </button>
-      <div id="mobile-sub-akademik" class="hidden pl-4 space-y-1 normal-case font-semibold">
+      <div id="mobile-sub-akademik" class="hidden pl-4 space-y-1 normal-case font-normal text-xs">
+        <button onclick="showSection('program')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Program Unggulan</button>
+        <button onclick="showSection('ekstrakurikuler')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Ekstrakurikuler</button>
         <button onclick="showSection('kalender')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Kalender Akademik</button>
         <button onclick="showSection('jadwalpelajaran')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Jadwal Pelajaran</button>
         <button onclick="showSection('jadwalujian')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Jadwal Ujian</button>
       </div>
     </div>
 
-    <button onclick="showSection('program')" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-white/10">Program</button>
-    <button onclick="showSection('ekstrakurikuler')" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-white/10">Ekstrakurikuler</button>
-
     <div>
       <button onclick="toggleMobileSubmenu('mobile-sub-informasi', this)" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-white/10">
         <span>Informasi</span>
         <i class="fas fa-chevron-down text-[10px] transition-transform duration-200"></i>
       </button>
-      <div id="mobile-sub-informasi" class="hidden pl-4 space-y-1 normal-case font-semibold">
-        <button onclick="showSection('kegiatan')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Agenda</button>
+      <div id="mobile-sub-informasi" class="hidden pl-4 space-y-1 normal-case font-normal text-xs">
         <button onclick="showSection('artikel')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Artikel &amp; Berita</button>
+        <button onclick="showSection('kegiatan')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Agenda</button>
         <button onclick="showSection('galeri')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Galeri Foto</button>
         <button onclick="showSection('galerivideo')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Galeri Video</button>
         <button onclick="showSection('virtualtour')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Virtual Tour 360&deg;</button>
@@ -1109,8 +1126,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       </div>
     </div>
 
-    <button onclick="showSection('karya')" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-white/10">Karya</button>
-    <button onclick="showSection('aplikasi')" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-white/10">Aplikasi</button>
+    <div>
+      <button onclick="toggleMobileSubmenu('mobile-sub-layanan', this)" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-white/10">
+        <span>Layanan &amp; Karya</span>
+        <i class="fas fa-chevron-down text-[10px] transition-transform duration-200"></i>
+      </button>
+      <div id="mobile-sub-layanan" class="hidden pl-4 space-y-1 normal-case font-normal text-xs">
+        <button onclick="showSection('aplikasi')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Layanan Digital &amp; Aplikasi</button>
+        <button onclick="showSection('karya')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 text-white/90">Karya Santri</button>
+      </div>
+    </div>
+
     <button onclick="showSection('donasi')" class="mob-donasi w-full text-left px-3 py-2.5 rounded-lg flex items-center justify-between"><span>Donasi</span><i class="fas fa-hand-holding-heart" aria-hidden="true"></i></button>
     <button id="nav-daftar-btn-mobile" onclick="klikPendaftaran()" class="block w-full text-left px-3 py-2.5 rounded-lg bg-secondary text-primary mt-2">Pendaftaran</button>
   </div>
