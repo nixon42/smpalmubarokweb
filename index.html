@@ -772,6 +772,103 @@ body.mode-gelap .ju-stop .ju-card.aktif{border-color:#b7860b}
   }
 }
 
+/* Prayer Schedule Ribbon */
+#jadwal-sholat-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+}
+.sholat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+  border-radius: 12px;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  color: #334155;
+}
+@media (min-width: 640px) {
+  .sholat-card {
+    padding: 12px 8px;
+    border-radius: 16px;
+  }
+}
+.sholat-card:hover {
+  background: #f1f5f9;
+}
+.sholat-card:active {
+  transform: scale(0.96);
+}
+.sholat-card-aktif {
+  background: linear-gradient(135deg, #062116 0%, #0b3323 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(11, 51, 35, 0.28) !important;
+  border: 1.5px solid #dfb342 !important;
+  transform: translateY(-2px);
+}
+.sholat-card-aktif .sholat-icon {
+  color: #dfb342 !important;
+}
+.sholat-card-aktif .sholat-nama {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+.sholat-card-aktif .sholat-jam {
+  color: #ffffff !important;
+}
+
+/* Prayer Schedule Ribbon Dark Mode */
+body.mode-gelap #jadwal-sholat-wrap .card-scholar {
+  background: #0a241a !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+body.mode-gelap #jadwal-sholat-wrap .bg-primary-50 {
+  background: rgba(223, 179, 66, 0.1) !important;
+  border-color: rgba(223, 179, 66, 0.2) !important;
+}
+body.mode-gelap #jadwal-sholat-jam {
+  color: #dfb342 !important;
+}
+body.mode-gelap #jadwal-sholat-wrap .border-slate-100 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+body.mode-gelap .sholat-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #e2e8f0 !important;
+}
+body.mode-gelap .sholat-card:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+body.mode-gelap .sholat-card .sholat-nama {
+  color: #94a3b8 !important;
+}
+body.mode-gelap .sholat-card .sholat-jam {
+  color: #f8fafc !important;
+}
+body.mode-gelap .sholat-card-aktif {
+  background: linear-gradient(135deg, #041810 0%, #092e20 100%) !important;
+  border-color: #dfb342 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+}
+body.mode-gelap .sholat-card-aktif .sholat-nama {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+body.mode-gelap .sholat-card-aktif .sholat-jam {
+  color: #ffffff !important;
+}
+body.mode-gelap #jadwal-sholat-wrap [class*="bg-amber-50"] {
+  background: rgba(223, 179, 66, 0.12) !important;
+  border-color: rgba(223, 179, 66, 0.25) !important;
+}
+body.mode-gelap #jadwal-sholat-wrap .text-amber-900 {
+  color: #dfb342 !important;
+}
+
 /* Trust Metrics Micro-Cards (Generous padding & spacing) */
 .hero-trust-metrics {
   display: grid !important;
@@ -1470,37 +1567,47 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     </div>
 
     <!-- TRANQUIL WAKTU SHOLAT RIBBON -->
-    <div class="max-w-7xl mx-auto px-4 md:px-6 -mt-8 relative z-20">
-      <div class="card-scholar bg-white shadow-xl px-5 md:px-8 py-5 md:py-6">
-        <div class="flex flex-wrap items-center justify-between gap-3 mb-5 border-b border-slate-100 pb-4">
-          <div class="flex items-center gap-3.5">
-            <div class="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary">
-              <i class="fas fa-mosque text-lg"></i>
+    <div id="jadwal-sholat-wrap" class="max-w-7xl mx-auto px-4 md:px-6 -mt-8 relative z-20">
+      <div class="card-scholar bg-white shadow-xl px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6">
+        <!-- Top Header: Title Left, Digital Clock Right -->
+        <div class="flex items-center justify-between gap-2 mb-3 pb-2.5 sm:mb-3.5 sm:pb-3 border-b border-slate-100">
+          <div class="flex items-center gap-2 sm:gap-3.5 min-w-0">
+            <div class="w-8 h-8 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-primary flex items-center justify-center flex-shrink-0 text-secondary shadow-sm">
+              <i class="fas fa-mosque text-xs sm:text-base md:text-lg"></i>
             </div>
-            <div class="leading-tight">
-              <h2 class="font-serif text-primary font-black text-lg md:text-xl">Waktu Sholat &amp; Ibadah Harian</h2>
-              <p class="text-slate-400 text-[11px] md:text-xs font-medium">Wilayah Plosoklaten &amp; Kabupaten Kediri, Jawa Timur</p>
+            <div class="leading-tight min-w-0">
+              <h2 class="font-serif text-primary font-bold sm:font-black text-[13px] sm:text-base md:text-xl whitespace-nowrap">Waktu Sholat &amp; Ibadah</h2>
+              <p class="text-slate-400 text-[9.5px] sm:text-xs font-medium flex items-center gap-1 mt-0.5 truncate">
+                <i class="fas fa-location-dot text-[8px] sm:text-[9px] text-secondary flex-shrink-0"></i>
+                <span>Plosoklaten &bull; Kediri, Jatim</span>
+              </p>
             </div>
           </div>
-          <div class="text-right">
-            <p id="jadwal-sholat-jam" class="text-primary font-serif font-black text-xl md:text-2xl tabular-nums leading-none">--:--:--</p>
-            <p id="jadwal-sholat-tanggal" class="text-slate-400 text-[11px] md:text-xs font-semibold mt-1"></p>
+          <div class="text-right flex-shrink-0 flex flex-col items-end">
+            <div class="inline-flex items-center gap-1 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-md sm:rounded-lg bg-primary-50 border border-primary/10">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <p id="jadwal-sholat-jam" class="text-primary font-mono font-bold text-[11px] sm:text-sm md:text-base tabular-nums leading-none tracking-tight sm:tracking-wide">--:--:-- WIB</p>
+            </div>
+            <p id="jadwal-sholat-tanggal" class="text-slate-400 text-[9px] sm:text-[11px] font-semibold mt-0.5 sm:mt-1 tabular-nums"></p>
           </div>
         </div>
 
-        <div class="relative -mx-1 px-1 sm:mx-0 sm:px-0">
-          <div id="jadwal-sholat-grid" style="min-height:96px" class="flex sm:grid sm:grid-cols-5 gap-3 overflow-x-auto sm:overflow-visible snap-x snap-mandatory scrollbar-hide pb-1 sm:pb-0">
-            <div class="w-full sm:col-span-full text-center py-4 text-slate-300 text-xs font-semibold"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat jadwal sholat...</div>
-          </div>
-          <div id="jadwal-sholat-panah" class="sm:hidden absolute -right-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-primary shadow-lg items-center justify-center pointer-events-none hidden">
-            <i class="fas fa-chevron-right text-white text-[10px] animate-pulse-right"></i>
+        <!-- 5-Prayer Columns (All 5 prayers visible on mobile & desktop without scroll) -->
+        <div class="w-full">
+          <div id="jadwal-sholat-grid" class="grid grid-cols-5 gap-1.5 sm:gap-2.5 md:gap-3 w-full" style="min-height:80px">
+            <div class="col-span-full text-center py-4 text-slate-300 text-xs font-semibold"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat jadwal sholat...</div>
           </div>
         </div>
 
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-2 mt-4 pt-3 border-t border-slate-100 text-[11px]">
-          <p id="jadwal-sholat-countdown" class="font-bold text-secondary-600 flex items-center gap-1.5"></p>
-          <p class="text-slate-400 text-[10px] leading-relaxed text-center sm:text-right">
-            Dihitung otomatis via Kemenag RI untuk koordinat Plosoklaten Kediri.
+        <!-- Bottom Status: Countdown Badge & Source -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-2 mt-3 pt-2.5 border-t border-slate-100 text-[11px]">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:py-1 rounded-full bg-amber-50/80 border border-amber-200/60">
+            <i class="fas fa-hourglass-half text-amber-600 text-[11px] animate-spin-slow"></i>
+            <span id="jadwal-sholat-countdown" class="font-bold text-amber-900 text-[10.5px] sm:text-xs tabular-nums"></span>
+          </div>
+          <p class="text-slate-400 text-[10px] text-center sm:text-right flex items-center gap-1.5">
+            <i class="fas fa-circle-check text-emerald-600/70 text-[10px]"></i>
+            <span>Metode Kemenag RI &bull; Sentuh kartu untuk panduan ibadah</span>
           </p>
         </div>
       </div>
@@ -3353,33 +3460,19 @@ let _jadwalSholatItems = null; // cache hasil fetch hari ini, dipakai ulang tiap
 let _jadwalSholatTimer = null;
 
 // Tampilkan/sembunyikan tanda panah geser di kanan grid jadwal sholat
-// (hanya relevan di HP, karena di layar sm+ tampilannya sudah grid biasa
-// tanpa scroll). Panah otomatis hilang begitu sudah discroll sampai ujung.
-function _updateJadwalSholatPanah() {
-  const grid = document.getElementById('jadwal-sholat-grid');
-  const panah = document.getElementById('jadwal-sholat-panah');
-  if (!grid || !panah) return;
-  const sisaScroll = grid.scrollWidth - grid.clientWidth - grid.scrollLeft;
-  panah.classList.toggle('hidden', sisaScroll <= 8);
-  panah.classList.toggle('flex', sisaScroll > 8);
-}
+// (Fungsi dibiarkan aman untuk kompatibilitas)
+function _updateJadwalSholatPanah() {}
 
 function renderJadwalSholat() {
   const grid = document.getElementById('jadwal-sholat-grid');
   const tglEl = document.getElementById('jadwal-sholat-tanggal');
   if (!grid) return;
 
-  if (!grid.dataset.panahBound) {
-    grid.dataset.panahBound = '1';
-    grid.addEventListener('scroll', _updateJadwalSholatPanah);
-    window.addEventListener('resize', _updateJadwalSholatPanah);
-  }
-
   const now = new Date();
   const d = String(now.getDate()).padStart(2, '0');
   const m = String(now.getMonth() + 1).padStart(2, '0');
   const y = now.getFullYear();
-  if (tglEl) tglEl.textContent = now.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  if (tglEl) tglEl.textContent = now.toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
 
   fetch('https://api.aladhan.com/v1/timingsByCity/' + d + '-' + m + '-' + y + '?city=Kediri&country=Indonesia&method=20')
     .then(function (res) { return res.json(); })
@@ -3408,10 +3501,17 @@ function _tickJadwalSholat() {
   const grid = document.getElementById('jadwal-sholat-grid');
   const jamEl = document.getElementById('jadwal-sholat-jam');
   const cdEl = document.getElementById('jadwal-sholat-countdown');
+  const tglEl = document.getElementById('jadwal-sholat-tanggal');
   if (!grid || !_jadwalSholatItems) return;
 
   const now = new Date();
-  if (jamEl) jamEl.textContent = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+  const pad2 = function (n) { return String(n).padStart(2, '0'); };
+  if (jamEl) {
+    jamEl.textContent = pad2(now.getHours()) + ':' + pad2(now.getMinutes()) + ':' + pad2(now.getSeconds()) + ' WIB';
+  }
+  if (tglEl && !tglEl.textContent) {
+    tglEl.textContent = now.toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+  }
 
   const menit = function (jam) { const p = jam.split(':'); return parseInt(p[0]) * 60 + parseInt(p[1]); };
   const nowDetik = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
@@ -3436,22 +3536,22 @@ function _tickJadwalSholat() {
   const jamSisa = Math.floor(sisaDetik / 3600);
   const menitSisa = Math.floor((sisaDetik % 3600) / 60);
   const detikSisa = sisaDetik % 60;
-  const pad2 = function (n) { return String(n).padStart(2, '0'); };
-  if (cdEl) cdEl.innerHTML = '<i class="fas fa-hourglass-half mr-1.5"></i>' + pad2(jamSisa) + ':' + pad2(menitSisa) + ':' + pad2(detikSisa) + ' menuju ' + items[idxBerikutnya].nama;
+  if (cdEl) {
+    cdEl.textContent = pad2(jamSisa) + ':' + pad2(menitSisa) + ':' + pad2(detikSisa) + ' Menuju ' + items[idxBerikutnya].nama;
+  }
 
   const _htmlGrid = items.map(function (it, i) {
     const aktif = i === idxAktif;
-    return '<div onclick="bukaInfoSholat(\'' + it.nama + '\')" class="relative w-[104px] shrink-0 snap-center sm:w-auto sm:min-w-0 rounded-2xl px-3 py-3.5 text-center transition-all cursor-pointer active:scale-95 ' + (aktif ? 'bg-primary text-white shadow-lg  scale-[1.03]' : 'bg-slate-50 text-slate-700 hover:bg-slate-100') + '">' +
-      '<span class="absolute top-1.5 right-1.5 w-4 h-4 rounded-full flex items-center justify-center text-[8px] ' + (aktif ? 'bg-white/25 text-white' : 'bg-secondary/20 text-secondary-600') + '"><i class="fas fa-info animate-pulse"></i></span>' +
-      '<i class="' + it.icon + ' text-lg mb-1.5 ' + (aktif ? 'text-secondary' : 'text-primary/50') + '"></i>' +
-      '<p class="text-[10px] font-black uppercase tracking-widest ' + (aktif ? 'text-white/80' : 'text-slate-400') + '">' + it.nama + '</p>' +
-      '<p class="text-sm md:text-base font-black mt-0.5">' + it.jam + '</p></div>';
+    return '<div onclick="bukaInfoSholat(\'' + it.nama + '\')" class="sholat-card ' + (aktif ? 'sholat-card-aktif' : '') + '">' +
+      '<i class="' + it.icon + ' sholat-icon text-sm sm:text-base md:text-xl mb-1 sm:mb-1.5 ' + (aktif ? 'text-[#dfb342]' : 'text-[#0b3323]/50') + '"></i>' +
+      '<p class="sholat-nama text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-wider ' + (aktif ? '' : 'text-slate-400') + '">' + it.nama + '</p>' +
+      '<p class="sholat-jam text-xs sm:text-sm md:text-base font-black tabular-nums mt-0.5 ' + (aktif ? '' : 'text-slate-800') + '">' + it.jam + '</p>' +
+      '</div>';
   }).join('');
   // OPTIMASI: kartu hanya dibangun ulang kalau isinya berubah (ganti waktu sholat), bukan tiap detik.
   if (grid.__htmlSholat !== _htmlGrid) {
     grid.__htmlSholat = _htmlGrid;
     grid.innerHTML = _htmlGrid;
-    _updateJadwalSholatPanah();
   }
 }
 
