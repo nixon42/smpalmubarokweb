@@ -777,6 +777,71 @@ body.mode-gelap .ju-stop .ju-card.aktif{border-color:#b7860b}
   .sm-inline { display: inline !important; }
 }
 
+/* Floating Panels (Chatbot AI & WhatsApp) Positioning */
+#chatbot-panel,
+#wa-panel {
+  position: fixed !important;
+  bottom: 80px !important;
+  right: 16px !important;
+  z-index: 999999 !important;
+  width: min(92vw, 380px) !important;
+  max-height: calc(100vh - 100px) !important;
+  max-height: calc(100dvh - 100px) !important;
+}
+@media (min-width: 768px) {
+  #chatbot-panel,
+  #wa-panel {
+    bottom: 92px !important;
+    right: 24px !important;
+  }
+}
+
+/* Floating Chatbot AI Button */
+.fab-chatbot {
+  position: relative !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 9999px !important;
+  background: linear-gradient(135deg, #062116 0%, #0b3323 100%) !important;
+  border: 1.5px solid #dfb342 !important;
+  color: #dfb342 !important;
+  box-shadow: 0 4px 16px rgba(6, 33, 22, 0.45), 0 0 12px rgba(223, 179, 66, 0.25) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  user-select: none !important;
+}
+@media (min-width: 640px) {
+  .fab-chatbot {
+    width: 52px !important;
+    height: 52px !important;
+  }
+}
+.fab-chatbot:hover {
+  transform: scale(1.06) !important;
+  box-shadow: 0 6px 20px rgba(6, 33, 22, 0.55), 0 0 16px rgba(223, 179, 66, 0.4) !important;
+}
+.fab-chatbot:active {
+  transform: scale(0.95) !important;
+}
+.fab-chatbot .chatbot-ai-badge {
+  position: absolute !important;
+  top: -3px !important;
+  right: -3px !important;
+  background: linear-gradient(135deg, #fcd34d 0%, #dfb342 100%) !important;
+  color: #062116 !important;
+  font-size: 8.5px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  padding: 2px 4.5px !important;
+  border-radius: 9999px !important;
+  border: 1.5px solid #062116 !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3) !important;
+  letter-spacing: 0.05em !important;
+}
+
 /* Prayer Schedule Ribbon */
 #jadwal-sholat-grid {
   display: grid !important;
@@ -2915,7 +2980,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 <!-- ============================================================ -->
 <!-- PANEL CHATBOT AI (independen, dipakai bareng desktop & mobile) -->
 <!-- ============================================================ -->
-<div id="chatbot-panel" class="hidden fixed right-4 md:right-6 bottom-20 md:bottom-24 z-[99998] w-[92vw] max-w-sm h-[65vh] max-h-[560px] bg-white rounded-[1.75rem] shadow-2xl border border-slate-100 flex-col overflow-hidden">
+<div id="chatbot-panel" class="hidden rounded-[1.75rem] shadow-2xl border border-slate-100 flex-col overflow-hidden bg-white" style="height:min(560px, calc(100vh - 110px)); height:min(560px, calc(100dvh - 110px));">
   <div class="flex items-center justify-between px-5 py-4 bg-primary flex-shrink-0">
     <div class="flex items-center gap-3 min-w-0">
       <div class="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0"><i class="fas fa-robot text-white text-sm"></i></div>
@@ -2942,7 +3007,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 <!-- ============================================================ -->
 <!-- ROOM CHAT WHATSAPP (kirim langsung ke admin lewat web; opsi lanjut ke WhatsApp admin) -->
 <!-- ============================================================ -->
-<div id="wa-panel" role="dialog" aria-label="Chat WhatsApp Admin" class="hidden fixed right-4 md:right-6 bottom-20 md:bottom-24 z-[99998] w-[92vw] max-w-sm bg-white rounded-[1.75rem] shadow-2xl border border-slate-100 flex-col overflow-hidden" style="height:min(580px, calc(100vh - 120px)); height:min(580px, calc(100dvh - 120px));">
+<div id="wa-panel" role="dialog" aria-label="Chat WhatsApp Admin" class="hidden rounded-[1.75rem] shadow-2xl border border-slate-100 flex-col overflow-hidden bg-white" style="height:min(580px, calc(100vh - 120px)); height:min(580px, calc(100dvh - 120px));">
   <div class="flex items-center justify-between px-4 py-3.5 flex-shrink-0" style="background:linear-gradient(135deg,#075e54 0%,#0f8a79 100%)">
     <div class="flex items-center gap-3 min-w-0">
       <div class="relative flex-shrink-0">
@@ -3041,9 +3106,9 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
   </button>
 
   <!-- Chatbot AI -->
-  <button onclick="toggleChatbot()" id="floating-chatbot-btn" title="Tanya Asisten AI" aria-label="Tanya Asisten AI" class="group relative w-12 h-12 sm:w-[50px] sm:h-[50px] rounded-full bg-[#0b3323] hover:bg-[#062116] text-[#dfb342] shadow-lg border border-[#c39328]/40 flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95">
-    <i id="chatbot-toggle-icon" class="fas fa-comment-dots text-xl"></i>
-    <i id="chatbot-toggle-icon-mobile" class="hidden"></i>
+  <button onclick="toggleChatbot()" id="floating-chatbot-btn" type="button" title="Tanya Asisten AI Sekolah" aria-label="Tanya Asisten AI Sekolah" class="fab-chatbot group">
+    <i id="chatbot-toggle-icon" class="fas fa-robot text-lg sm:text-xl"></i>
+    <span class="chatbot-ai-badge">AI</span>
     <span class="pointer-events-none absolute right-full mr-2.5 whitespace-nowrap bg-stone-900/90 text-white text-[11px] font-medium px-2.5 py-1 rounded-md shadow opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">Asisten AI</span>
   </button>
 
@@ -6608,21 +6673,22 @@ function waKirim_(e) {
 function toggleChatbot(forceOpen) {
   const panel = document.getElementById('chatbot-panel');
   const icon = document.getElementById('chatbot-toggle-icon');
-  const iconMobile = document.getElementById('chatbot-toggle-icon-mobile');
+  const badge = document.querySelector('.chatbot-ai-badge');
+  if (!panel) return;
   const willOpen = (forceOpen !== undefined) ? forceOpen : panel.classList.contains('hidden');
   if (willOpen) {
     if (typeof toggleWaChat === 'function') toggleWaChat(false);
     panel.classList.remove('hidden'); panel.classList.add('flex');
-    if (icon) icon.className = 'fas fa-times text-xl';
-    if (iconMobile) iconMobile.className = 'fas fa-times text-xl';
+    if (icon) icon.className = 'fas fa-xmark text-xl text-white';
+    if (badge) badge.style.display = 'none';
     if (!chatHistory.length) {
       addChatBubble('bot', 'Assalamu\'alaikum! Saya asisten AI SMPI Yambu\'ul Qur\'an. Ada yang bisa saya bantu seputar sekolah kami?');
       tampilkanQuickReplyChatbot();
     }
   } else {
     panel.classList.add('hidden'); panel.classList.remove('flex');
-    if (icon) icon.className = 'fas fa-comment-dots text-xl';
-    if (iconMobile) iconMobile.className = 'fas fa-comment-dots text-xl';
+    if (icon) icon.className = 'fas fa-robot text-lg sm:text-xl text-[#dfb342]';
+    if (badge) badge.style.display = '';
   }
 }
 function addChatBubble(role, text) {
