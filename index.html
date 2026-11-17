@@ -927,13 +927,23 @@ body.mode-gelap .border-slate-100, body.mode-gelap .border-slate-200 {
 /* Bespoke Dark Elements */
 footer {
   background: linear-gradient(180deg, #062116 0%, #03140d 100%) !important;
-  color: rgba(255, 255, 255, 0.75) !important;
+  background-color: #062116 !important;
+  color: rgba(255, 255, 255, 0.85) !important;
 }
-footer .text-white {
+footer h3, footer p.font-serif, footer .text-white {
   color: #ffffff !important;
 }
-footer a:hover {
+footer button:not(.dn-topbtn), footer a, footer p, footer span, footer li {
+  color: rgba(255, 255, 255, 0.85);
+}
+footer button:not(.dn-topbtn):hover, footer a:hover {
   color: #dfb342 !important;
+}
+#nav-daftar-btn-footer {
+  color: #dfb342 !important;
+}
+#nav-daftar-btn-footer:hover {
+  color: #f7d26d !important;
 }
 .program-card-header {
   background: linear-gradient(135deg, #062116 0%, #0b3323 100%) !important;
@@ -2387,7 +2397,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 <!-- ============================================================ -->
 <!-- FOOTER -->
 <!-- ============================================================ -->
-<footer class="bg-gradient-to-b from-[#062116] to-[#03140d] text-white/70 mt-12 border-t border-white/10">
+<footer class="text-white mt-12 border-t border-white/10" style="background: linear-gradient(180deg, #062116 0%, #03140d 100%) !important; background-color: #062116 !important;">
   <div class="max-w-7xl mx-auto px-4 md:px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10 text-sm">
     <div class="space-y-3.5">
       <div class="flex items-center gap-3">
@@ -2399,8 +2409,8 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
           <p class="font-arabic text-secondary text-xs">يَنبُوعُ القُرآن</p>
         </div>
       </div>
-      <p class="text-xs text-white/70 leading-relaxed" id="footer-alamat">Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri</p>
-      <div class="pt-2 text-[11px] text-white/50 space-y-1 border-t border-white/10 font-mono">
+      <p class="text-xs text-white/80 leading-relaxed" id="footer-alamat">Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri</p>
+      <div class="pt-2 text-[11px] text-white/75 space-y-1 border-t border-white/10 font-mono">
         <p>NPSN: 70003325 &bull; Akreditasi: B</p>
         <p>SK: 414-44/2053/418.20/2023</p>
         <p>Yayasan Yambu'ul Qur'an</p>
@@ -2411,21 +2421,21 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     <div>
       <h3 class="font-serif text-white font-bold text-xs uppercase tracking-wider mb-4 border-b border-white/10 pb-2">Direktori Akademik</h3>
       <div class="space-y-2.5 text-xs">
-        <button onclick="showSection('sambutan')" class="block hover:text-secondary transition-colors text-left">Profil &amp; Visi Misi</button>
-        <button onclick="showSection('program')" class="block hover:text-secondary transition-colors text-left">Kurikulum &amp; Program Unggulan</button>
-        <button onclick="showSection('guru')" class="block hover:text-secondary transition-colors text-left">Dewan Asatidz &amp; Staf</button>
-        <button onclick="showSection('fasilitas')" class="block hover:text-secondary transition-colors text-left">Fasilitas Kampus</button>
-        <button onclick="showSection('prestasi')" class="block hover:text-secondary transition-colors text-left">Prestasi Santri</button>
+        <button onclick="showSection('sambutan')" class="block text-white/85 hover:text-secondary transition-colors text-left">Profil &amp; Visi Misi</button>
+        <button onclick="showSection('program')" class="block text-white/85 hover:text-secondary transition-colors text-left">Kurikulum &amp; Program Unggulan</button>
+        <button onclick="showSection('guru')" class="block text-white/85 hover:text-secondary transition-colors text-left">Dewan Asatidz &amp; Staf</button>
+        <button onclick="showSection('fasilitas')" class="block text-white/85 hover:text-secondary transition-colors text-left">Fasilitas Kampus</button>
+        <button onclick="showSection('prestasi')" class="block text-white/85 hover:text-secondary transition-colors text-left">Prestasi Santri</button>
       </div>
     </div>
 
     <div>
       <h3 class="font-serif text-white font-bold text-xs uppercase tracking-wider mb-4 border-b border-white/10 pb-2">Informasi Publik</h3>
       <div class="space-y-2.5 text-xs">
-        <button onclick="showSection('kegiatan')" class="block hover:text-secondary transition-colors text-left">Agenda &amp; Kalender</button>
-        <button onclick="showSection('artikel')" class="block hover:text-secondary transition-colors text-left">Warta &amp; Artikel Berita</button>
-        <button onclick="showSection('galeri')" class="block hover:text-secondary transition-colors text-left">Galeri Dokumentasi</button>
-        <button onclick="showSection('alumni')" class="block hover:text-secondary transition-colors text-left">Jejaring Alumni</button>
+        <button onclick="showSection('kegiatan')" class="block text-white/85 hover:text-secondary transition-colors text-left">Agenda &amp; Kalender</button>
+        <button onclick="showSection('artikel')" class="block text-white/85 hover:text-secondary transition-colors text-left">Warta &amp; Artikel Berita</button>
+        <button onclick="showSection('galeri')" class="block text-white/85 hover:text-secondary transition-colors text-left">Galeri Dokumentasi</button>
+        <button onclick="showSection('alumni')" class="block text-white/85 hover:text-secondary transition-colors text-left">Jejaring Alumni</button>
         <button id="nav-daftar-btn-footer" onclick="klikPendaftaran()" class="block text-secondary font-bold hover:text-secondary-400 transition-colors text-left">Pendaftaran PPDB Online &rarr;</button>
       </div>
     </div>
@@ -2433,15 +2443,15 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     <div>
       <h3 class="font-serif text-white font-bold text-xs uppercase tracking-wider mb-4 border-b border-white/10 pb-2">Sekretariat &amp; Kontak</h3>
       <div class="space-y-3 text-xs">
-        <p id="footer-phone" class="flex items-center gap-2"><i class="fab fa-whatsapp text-secondary w-4"></i> <span>0815-1577-7911</span></p>
-        <p id="footer-email" class="flex items-center gap-2"><i class="fas fa-envelope text-secondary w-4"></i> <span>smpiyaqu@gmail.com</span></p>
+        <p id="footer-phone" class="flex items-center gap-2 text-white/85"><i class="fab fa-whatsapp text-secondary w-4"></i> <span>0815-1577-7911</span></p>
+        <p id="footer-email" class="flex items-center gap-2 text-white/85"><i class="fas fa-envelope text-secondary w-4"></i> <span>smpiyaqu@gmail.com</span></p>
         <div class="pt-3">
           <button onclick="showSection('beranda');document.getElementById('beranda-maps').scrollIntoView({behavior:'smooth'});" class="px-4 py-2 rounded-full border border-white/20 hover:bg-white/10 text-white text-[11px] font-semibold transition-all">Lihat Peta Kampus &rarr;</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="border-t border-white/10 pt-5 pb-40 md:py-5 text-center text-[11px] text-white/50">
+  <div class="border-t border-white/10 pt-5 pb-40 md:py-5 text-center text-[11px] text-white/70">
     &copy; <span id="footer-year"></span> SMPI Yambu'ul Qur'an &bull; Plosoklaten, Kabupaten Kediri. Seluruh hak cipta dilindungi undang-undang.
   </div>
 </footer>
@@ -3431,8 +3441,8 @@ function renderPengaturan() {
   const email = cfg('email', 'smpiyaqu@gmail.com');
   document.getElementById('topbar-phone').innerHTML = '<i class="fab fa-whatsapp mr-1.5"></i> ' + tlp;
   document.getElementById('topbar-email').innerHTML = '<i class="fas fa-envelope mr-1.5"></i> ' + email;
-  document.getElementById('footer-phone').innerHTML = '<i class="fab fa-whatsapp w-4"></i> ' + tlp;
-  document.getElementById('footer-email').innerHTML = '<i class="fas fa-envelope w-4"></i> ' + email;
+  document.getElementById('footer-phone').innerHTML = '<i class="fab fa-whatsapp w-4 text-secondary"></i> <span>' + tlp + '</span>';
+  document.getElementById('footer-email').innerHTML = '<i class="fas fa-envelope w-4 text-secondary"></i> <span>' + email + '</span>';
   document.getElementById('footer-alamat').textContent = cfg('alamat', 'Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri');
 
   // Logo navbar: kalau admin sudah upload logo (key "logo" di sheet
