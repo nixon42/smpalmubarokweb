@@ -11,12 +11,12 @@
 <!-- PWA Metadata -->
 <meta name="theme-color" content="#ffffff">
 <title>SMPI Yambu'ul Qur'an — Minimalist Editorial Edition</title>
-<meta name="description" content="Website Resmi SMPI Yambu'ul Qur'an Plosoklaten Kediri — Edisi Minimalist Editorial. Lembaga pendidikan Islam terpadu berbasis Al-Qur'an bersanad dan sains modern.">
+<meta name="description" content="Website Resmi SMPI Yambu'ul Qur'an Plosoklaten Kediri — Edisi Minimalist Editorial Swiss-Islamic. Lembaga pendidikan Islam terpadu berbasis Al-Qur'an bersanad dan sains modern.">
 
-<!-- Typography: Marcellus (Monuments & Headlines), Plus Jakarta Sans (Precision Body), Amiri (Arabic Calligraphy) -->
+<!-- Typography: Marcellus (Monuments & Headlines), Plus Jakarta Sans (Precision Body), Amiri (Arabic Calligraphy), JetBrains Mono -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Tailwind CDN for JIT & Utilities -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -79,15 +79,13 @@
   .hairline-l { border-left: 1px solid #e2ece6; }
   .hairline-r { border-right: 1px solid #e2ece6; }
   .hairline-all { border: 1px solid #e2ece6; }
-  .editorial-lead::first-letter {
-    float: left;
-    font-family: 'Marcellus', serif;
-    font-size: 3.5rem;
-    line-height: 0.8;
-    padding-top: 4px;
-    padding-right: 10px;
-    padding-bottom: 2px;
-    color: #0b3323;
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 </style>
 </head>
@@ -95,24 +93,35 @@
 <body class="bg-chalk text-ink font-sans antialiased selection:bg-emerald-900 selection:text-gold-light min-h-screen flex flex-col">
 
   <!-- ================================================================= -->
-  <!-- TOP COLOPHON BAR -->
+  <!-- TOP COLOPHON BAR (CLEAN RESPONSIVE, NO RAW PIPE BREAKAGE) -->
   <!-- ================================================================= -->
-  <aside class="bg-white hairline-b text-[11px] text-ink-muted py-2 px-4 sm:px-8 tracking-wide font-medium">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center gap-4 flex-wrap">
-        <span class="font-mono text-emerald-900 font-semibold tracking-wider">PLOSOKLATEN, KEDIRI</span>
-        <span class="hidden sm:inline text-slate-300">|</span>
-        <span class="hidden sm:inline">NPSN: <b class="text-ink font-mono">70003325</b></span>
-        <span class="hidden md:inline text-slate-300">|</span>
-        <span class="hidden md:inline">Akreditasi Resmi: <b class="text-emerald-900">B (BAN-S/M)</b></span>
+  <aside class="bg-white hairline-b text-[11px] text-ink-muted py-2 px-4 sm:px-8 font-medium">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-4">
+      
+      <!-- Institutional Coordinates & Legal Identifiers -->
+      <div class="flex items-center gap-2 sm:gap-3 flex-wrap text-[10px] sm:text-[11px] w-full sm:w-auto justify-between sm:justify-start">
+        <div class="flex items-center gap-2">
+          <span class="font-mono text-emerald-950 font-bold tracking-wider">PLOSOKLATEN, KEDIRI</span>
+          <span class="hidden sm:inline-block w-px h-3 bg-slate-200"></span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="font-mono">NPSN: <strong class="text-ink font-semibold">70003325</strong></span>
+          <span class="hidden md:inline-block w-px h-3 bg-slate-200"></span>
+        </div>
+        <div class="hidden md:flex items-center gap-1.5">
+          <span class="font-mono">AKREDITASI: <strong class="text-emerald-900 font-semibold">B (BAN-S/M)</strong></span>
+        </div>
       </div>
-      <div class="flex items-center gap-5 ml-auto">
-        <span class="font-arabic text-emerald-900 text-sm font-bold">يَنبُوعُ القُرآن</span>
-        <span class="text-slate-300">|</span>
-        <a href="https://wa.me/6281515777911" target="_blank" rel="noopener" class="hover:text-emerald-900 transition-colors flex items-center gap-1.5 font-semibold text-emerald-900">
-          <i class="fab fa-whatsapp text-emerald-700"></i> 0815-1577-7911
+
+      <!-- Identity & Direct Contact -->
+      <div class="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 w-full sm:w-auto pt-1 sm:pt-0 hairline-t sm:border-t-0 text-[10px] sm:text-[11px]">
+        <span class="font-arabic text-emerald-900 text-xs sm:text-sm font-bold tracking-wide">يَنبُوعُ القُرآن</span>
+        <span class="hidden sm:inline-block w-px h-3 bg-slate-200"></span>
+        <a href="https://wa.me/6281515777911" target="_blank" rel="noopener" class="hover:text-emerald-900 transition-colors flex items-center gap-1.5 font-semibold text-emerald-900 ml-auto sm:ml-0">
+          <i class="fab fa-whatsapp text-emerald-700 text-xs"></i> <span>0815-1577-7911</span>
         </a>
       </div>
+
     </div>
   </aside>
 
@@ -120,39 +129,39 @@
   <!-- MAIN EDITORIAL HEADER & NAVIGATION -->
   <!-- ================================================================= -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md hairline-b transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-18 sm:h-20 flex items-center justify-between gap-3 sm:gap-6">
       
-      <!-- Logo & Institutional Typography -->
-      <a href="#hero" class="flex items-center gap-3.5 group">
-        <img src="logo.png" alt="SMPI Yambu'ul Qur'an" class="w-11 h-11 object-contain transition-transform duration-300 group-hover:scale-105">
-        <div>
-          <span class="block font-serif text-lg font-bold tracking-tight text-emerald-950 group-hover:text-emerald-800 transition-colors">
+      <!-- Logo & Institutional Typography with Breathing Room -->
+      <a href="#hero" class="flex items-center gap-2.5 sm:gap-3.5 min-w-0 group flex-1 sm:flex-initial">
+        <img src="logo.png" alt="SMPI Yambu'ul Qur'an" class="w-10 h-10 sm:w-11 sm:h-11 object-contain flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+        <div class="min-w-0">
+          <span class="block font-serif text-sm sm:text-base md:text-lg font-bold tracking-tight text-emerald-950 group-hover:text-emerald-800 transition-colors truncate">
             SMPI Yambu'ul Qur'an
           </span>
-          <span class="block text-[10px] uppercase font-mono tracking-widest text-ink-muted">
-            Pesantren Modern • Jawa Timur
+          <span class="block text-[9px] sm:text-[10px] uppercase font-mono tracking-widest text-ink-muted truncate">
+            Pesantren Modern &bull; Kediri
           </span>
         </div>
       </a>
 
       <!-- Desktop Navigation Menu -->
-      <nav class="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-ink-muted">
-        <a href="#tentang" class="hover:text-emerald-900 transition-colors">Visi & Adab</a>
+      <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider text-ink-muted">
+        <a href="#manifesto" class="hover:text-emerald-900 transition-colors">Manifesto</a>
+        <a href="#kurikulum" class="hover:text-emerald-900 transition-colors">Kurikulum</a>
+        <a href="#aplikasi" class="hover:text-emerald-900 transition-colors">18 Aplikasi</a>
         <a href="#jadwal" class="hover:text-emerald-900 transition-colors">Waktu Sholat</a>
-        <a href="#kurikulum" class="hover:text-emerald-900 transition-colors">Pilar Kurikulum</a>
-        <a href="#aplikasi" class="hover:text-emerald-900 transition-colors">Aplikasi Kampus</a>
-        <a href="#warta" class="hover:text-emerald-900 transition-colors">Warta & Berita</a>
+        <a href="#warta" class="hover:text-emerald-900 transition-colors">Warta &amp; Agenda</a>
         <a href="#guru" class="hover:text-emerald-900 transition-colors">Dewan Asatidz</a>
         <a href="#kontak" class="hover:text-emerald-900 transition-colors">Kontak</a>
       </nav>
 
       <!-- Action Button & Mobile Toggle -->
-      <div class="flex items-center gap-3">
-        <a href="#ppdb" class="hidden sm:inline-flex items-center gap-2 bg-emerald-950 hover:bg-emerald-900 text-gold-light text-xs font-semibold px-5 py-2.5 rounded-none hairline-all tracking-wider uppercase transition-all duration-300 shadow-sm hover:shadow">
+      <div class="flex items-center gap-2.5 flex-shrink-0">
+        <a href="#ppdb" class="hidden sm:inline-flex items-center gap-2 bg-emerald-950 hover:bg-emerald-900 text-gold-light text-xs font-semibold px-4 sm:px-5 py-2.5 rounded-none hairline-all tracking-wider uppercase transition-all duration-300 shadow-sm">
           <span>PPDB 2026/2027</span>
           <i class="fas fa-arrow-right text-[10px]"></i>
         </a>
-        <button id="mobile-menu-btn" class="lg:hidden w-10 h-10 flex items-center justify-center text-emerald-950 hover:bg-slate-50 hairline-all" aria-label="Toggle Menu">
+        <button id="mobile-menu-btn" class="lg:hidden w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center text-emerald-950 hover:bg-slate-50 hairline-all transition-colors" aria-label="Buka Menu Navigasi">
           <i class="fas fa-bars text-sm"></i>
         </button>
       </div>
@@ -161,15 +170,15 @@
 
     <!-- Mobile Drawer -->
     <div id="mobile-drawer" class="hidden lg:hidden bg-white hairline-b px-6 py-6 space-y-4 text-xs font-semibold uppercase tracking-wider text-ink-muted">
-      <a href="#tentang" class="block py-1 hover:text-emerald-900" onclick="toggleMobileMenu()">Visi & Adab</a>
-      <a href="#jadwal" class="block py-1 hover:text-emerald-900" onclick="toggleMobileMenu()">Waktu Sholat</a>
+      <a href="#manifesto" class="block py-1 hover:text-emerald-900" onclick="toggleMobileMenu()">Manifesto &amp; Visi</a>
       <a href="#kurikulum" class="block py-1 hover:text-emerald-900" onclick="toggleMobileMenu()">Pilar Kurikulum</a>
-      <a href="#aplikasi" class="block py-1 hover:text-emerald-900" onclick="toggleMobileMenu()">Aplikasi Kampus</a>
-      <a href="#warta" class="block py-1 hover:text-emerald-900" onclick="toggleMobileMenu()">Warta & Berita</a>
+      <a href="#aplikasi" class="block py-1 hover:text-emerald-900" onclick="toggleMobileMenu()">18 Aplikasi Kampus</a>
+      <a href="#jadwal" class="block py-1 hover:text-emerald-900" onclick="toggleMobileMenu()">Waktu Sholat</a>
+      <a href="#warta" class="block py-1 hover:text-emerald-900" onclick="toggleMobileMenu()">Warta &amp; Agenda</a>
       <a href="#guru" class="block py-1 hover:text-emerald-900" onclick="toggleMobileMenu()">Dewan Asatidz</a>
-      <a href="#kontak" class="block py-1 hover:text-emerald-900" onclick="toggleMobileMenu()">Kontak</a>
+      <a href="#kontak" class="block py-1 hover:text-emerald-900" onclick="toggleMobileMenu()">Kontak &amp; Legalitas</a>
       <div class="pt-2">
-        <a href="#ppdb" class="block text-center bg-emerald-950 text-gold-light py-3 hairline-all font-bold" onclick="toggleMobileMenu()">
+        <a href="#ppdb" class="block text-center bg-emerald-950 text-gold-light py-3 hairline-all font-bold tracking-wider" onclick="toggleMobileMenu()">
           PENDAFTARAN PPDB ONLINE
         </a>
       </div>
@@ -182,52 +191,54 @@
     <!-- HERO SECTION: ASYMMETRIC EDITORIAL SPLIT -->
     <!-- ================================================================= -->
     <section id="hero" class="relative bg-white hairline-b overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-8 py-16 lg:py-24">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8 py-12 sm:py-16 lg:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           <!-- Left Column: Editorial Statement & Action (7 cols) -->
-          <div class="lg:col-span-7 space-y-8">
+          <div class="lg:col-span-7 space-y-6 sm:space-y-8">
             
-            <div class="inline-flex items-center gap-2.5 text-[11px] font-mono uppercase tracking-widest text-emerald-900 bg-emerald-50 px-3.5 py-1.5 hairline-all">
-              <span class="w-2 h-2 rounded-full bg-emerald-700 animate-pulse"></span>
-              <span>Penerimaan Santri Baru Gelombang I 2026/2027</span>
+            <!-- Rectangular Editorial Tag (No Pill Slop) -->
+            <div class="inline-flex items-center gap-2.5 text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-emerald-900 bg-emerald-50/90 px-3 py-1.5 hairline-all">
+              <span class="w-1.5 h-1.5 bg-emerald-700"></span>
+              <span>PENERIMAAN SANTRI BARU GELOMBANG I &bull; 2026/2027</span>
             </div>
 
-            <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl text-emerald-950 font-normal leading-[1.12] tracking-tight">
+            <!-- Proportional Clamped Headline -->
+            <h1 class="font-serif text-emerald-950 font-normal tracking-tight" style="font-size: clamp(1.75rem, 4.5vw, 3.5rem); line-height: 1.14;">
               Mencetak Generasi Qur'ani, Berakhlak Mulia &amp; Berwawasan Global.
             </h1>
 
-            <p class="text-ink-muted text-base sm:text-lg leading-relaxed max-w-2xl font-light">
-              SMPI Yambu'ul Qur'an memadukan sanad hafalan Al-Qur'an 30 Juz, kedisiplinan adab pesantren salaf, serta kurikulum sains modern. Tempat di mana tradisi mulia dan kemajuan masa depan berpadu dalam keheningan spiritual Plosoklaten.
+            <p class="text-ink-muted text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl font-light">
+              SMPI Yambu'ul Qur'an memadukan sanad hafalan Al-Qur'an 30 Juz mutqin, kedisiplinan adab pesantren salaf, serta kurikulum sains modern. Tempat di mana tradisi mulia dan kemajuan masa depan berpadu dalam keheningan spiritual Plosoklaten Kediri.
             </p>
 
-            <div class="flex flex-wrap items-center gap-4 pt-2">
-              <a href="#ppdb" class="inline-flex items-center gap-3 bg-emerald-950 hover:bg-emerald-900 text-gold-light text-xs font-semibold px-7 py-4 hairline-all tracking-wider uppercase transition-all duration-300">
+            <div class="flex flex-wrap items-center gap-3 sm:gap-4 pt-1 sm:pt-2">
+              <a href="#ppdb" class="inline-flex items-center gap-2.5 bg-emerald-950 hover:bg-emerald-900 text-gold-light text-xs font-semibold px-6 py-3.5 hairline-all tracking-wider uppercase transition-all duration-300">
                 <span>Daftar Santri Baru Sekarang</span>
-                <i class="fas fa-arrow-right text-xs"></i>
+                <i class="fas fa-arrow-right text-[10px]"></i>
               </a>
-              <a href="#kurikulum" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-emerald-950 text-xs font-semibold px-6 py-4 hairline-all tracking-wider uppercase transition-all duration-300">
+              <a href="#kurikulum" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-emerald-950 text-xs font-semibold px-5 py-3.5 hairline-all tracking-wider uppercase transition-all duration-300">
                 <span>Pelajari Kurikulum</span>
               </a>
             </div>
 
-            <!-- Colophon Metrics Bar -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 hairline-t">
+            <!-- Colophon Metrics Bar (Responsive 4 metrics) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-6 hairline-t">
               <div>
-                <span class="block font-serif text-2xl font-bold text-emerald-950">30 Juz</span>
-                <span class="block text-[11px] font-mono uppercase tracking-wider text-ink-muted mt-1">Target Tahfidz</span>
+                <span class="block font-serif text-xl sm:text-2xl font-bold text-emerald-950">30 Juz</span>
+                <span class="block text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-ink-muted mt-0.5">Target Tahfidz</span>
               </div>
               <div>
-                <span class="block font-serif text-2xl font-bold text-emerald-950">1 : 12</span>
-                <span class="block text-[11px] font-mono uppercase tracking-wider text-ink-muted mt-1">Rasio Santri-Guru</span>
+                <span class="block font-serif text-xl sm:text-2xl font-bold text-emerald-950">1 : 12</span>
+                <span class="block text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-ink-muted mt-0.5">Rasio Santri-Guru</span>
               </div>
               <div>
-                <span class="block font-serif text-2xl font-bold text-emerald-950">Terakreditasi</span>
-                <span class="block text-[11px] font-mono uppercase tracking-wider text-ink-muted mt-1">Peringkat B BAN-S/M</span>
+                <span class="block font-serif text-xl sm:text-2xl font-bold text-emerald-950">Akreditasi B</span>
+                <span class="block text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-ink-muted mt-0.5">BAN-S/M Resmi</span>
               </div>
               <div>
-                <span class="block font-serif text-2xl font-bold text-emerald-950">100%</span>
-                <span class="block text-[11px] font-mono uppercase tracking-wider text-ink-muted mt-1">Kelulusan Santri</span>
+                <span class="block font-serif text-xl sm:text-2xl font-bold text-emerald-950">100%</span>
+                <span class="block text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-ink-muted mt-0.5">Kelulusan Santri</span>
               </div>
             </div>
 
@@ -235,33 +246,33 @@
 
           <!-- Right Column: Campus Lens Frame & Editorial Coordinates (5 cols) -->
           <div class="lg:col-span-5">
-            <div class="relative bg-chalk hairline-all p-3 shadow-sm">
+            <div class="relative bg-chalk hairline-all p-2.5 sm:p-3 shadow-sm">
               
               <!-- Frame Header -->
-              <div class="flex items-center justify-between text-[10px] font-mono uppercase text-ink-muted px-2 py-1.5 hairline-b mb-3">
+              <div class="flex items-center justify-between text-[10px] font-mono uppercase text-ink-muted px-2 py-1.5 hairline-b mb-2.5">
                 <span>DOKUMENTASI KAMPUS</span>
                 <span class="text-emerald-900 font-semibold">7.9152° S, 112.1381° E</span>
               </div>
 
               <!-- Main Photographic Artifact -->
-              <div class="relative aspect-[4/5] bg-slate-900 overflow-hidden group">
+              <div class="relative aspect-video sm:aspect-[4/5] bg-slate-900 overflow-hidden group">
                 <img src="splash-bg.webp" alt="Kampus SMPI Yambu'ul Qur'an" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90">
-                <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-transparent to-transparent"></div>
                 
-                <div class="absolute bottom-6 left-6 right-6 text-white">
-                  <span class="inline-block text-[10px] font-mono uppercase tracking-widest bg-emerald-900/90 text-gold-light px-2.5 py-1 mb-2">
+                <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 text-white">
+                  <span class="inline-block text-[9px] sm:text-[10px] font-mono uppercase tracking-widest bg-emerald-900/90 text-gold-light px-2.5 py-1 mb-1.5 hairline-all">
                     Kompleks Pesantren Terpadu
                   </span>
-                  <p class="font-serif text-lg leading-snug">
+                  <p class="font-serif text-sm sm:text-lg leading-snug">
                     Suasana pembelajaran tahfidz Al-Qur'an dan pengkajian kitab di lereng Gunung Kelud yang sejuk.
                   </p>
                 </div>
               </div>
 
               <!-- Frame Footer Caption -->
-              <div class="pt-3 px-2 flex items-center justify-between text-[11px] text-ink-muted">
+              <div class="pt-2.5 px-2 flex items-center justify-between text-[10px] sm:text-[11px] text-ink-muted">
                 <span>Plosoklaten, Kab. Kediri</span>
-                <span class="font-arabic text-emerald-900 text-sm">معهد ينبوع القرآن</span>
+                <span class="font-arabic text-emerald-900 text-xs sm:text-sm font-semibold">معهد ينبوع القرآن</span>
               </div>
 
             </div>
@@ -274,47 +285,47 @@
     <!-- ================================================================= -->
     <!-- REALTIME PRAYER TIMES RIBBON (ALADHAN API KEDIRI) -->
     <!-- ================================================================= -->
-    <section id="jadwal" class="bg-white hairline-b py-6 px-4 sm:px-8">
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <section id="jadwal" class="bg-white hairline-b py-5 px-4 sm:px-8">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
         
         <!-- Live Countdown Status -->
-        <div class="flex items-center gap-4 text-xs">
-          <div class="w-9 h-9 flex items-center justify-center bg-emerald-50 text-emerald-900 hairline-all">
-            <i class="fas fa-mosque text-sm"></i>
+        <div class="flex items-center gap-3 sm:gap-4 text-xs w-full md:w-auto">
+          <div class="w-9 h-9 flex-shrink-0 flex items-center justify-center bg-emerald-50 text-emerald-900 hairline-all">
+            <i class="fas fa-mosque text-xs sm:text-sm"></i>
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <span class="font-mono font-bold text-emerald-950 uppercase tracking-widest text-[11px]">WAKTU SHOLAT KEDIRI</span>
-              <span id="prayer-date" class="text-ink-muted text-[11px] font-mono">Memuat...</span>
+              <span class="font-mono font-bold text-emerald-950 uppercase tracking-widest text-[10px] sm:text-[11px]">WAKTU SHOLAT KEDIRI</span>
+              <span id="prayer-date" class="text-ink-muted text-[10px] sm:text-[11px] font-mono">Memuat...</span>
             </div>
             <div class="flex items-center gap-2 mt-0.5">
-              <span id="prayer-time-live" class="font-mono text-emerald-900 font-bold text-sm">--:--:-- WIB</span>
-              <span class="text-slate-300">•</span>
-              <span id="prayer-countdown" class="text-ink-muted font-medium">Menghitung...</span>
+              <span id="prayer-time-live" class="font-mono text-emerald-900 font-bold text-xs sm:text-sm">--:--:-- WIB</span>
+              <span class="text-slate-300">&bull;</span>
+              <span id="prayer-countdown" class="text-ink-muted font-medium text-[11px]">Zona Waktu WIB</span>
             </div>
           </div>
         </div>
 
-        <!-- Prayer Grid -->
-        <div id="prayer-grid" class="grid grid-cols-5 gap-2 sm:gap-3 w-full md:w-auto text-center font-mono">
-          <div class="hairline-all py-2 px-3 bg-chalk">
-            <span class="block text-[10px] text-ink-muted uppercase">Subuh</span>
+        <!-- Prayer Grid (Clean hairline rectangular boxes) -->
+        <div id="prayer-grid" class="grid grid-cols-5 gap-1.5 sm:gap-3 w-full md:w-auto text-center font-mono">
+          <div class="hairline-all py-1.5 sm:py-2 px-2 sm:px-3 bg-chalk">
+            <span class="block text-[9px] sm:text-[10px] text-ink-muted uppercase">Subuh</span>
             <span class="prayer-val block text-xs font-bold text-emerald-950 mt-0.5">04:05</span>
           </div>
-          <div class="hairline-all py-2 px-3 bg-chalk">
-            <span class="block text-[10px] text-ink-muted uppercase">Dzuhur</span>
+          <div class="hairline-all py-1.5 sm:py-2 px-2 sm:px-3 bg-chalk">
+            <span class="block text-[9px] sm:text-[10px] text-ink-muted uppercase">Dzuhur</span>
             <span class="prayer-val block text-xs font-bold text-emerald-950 mt-0.5">11:38</span>
           </div>
-          <div class="hairline-all py-2 px-3 bg-chalk">
-            <span class="block text-[10px] text-ink-muted uppercase">Ashar</span>
+          <div class="hairline-all py-1.5 sm:py-2 px-2 sm:px-3 bg-chalk">
+            <span class="block text-[9px] sm:text-[10px] text-ink-muted uppercase">Ashar</span>
             <span class="prayer-val block text-xs font-bold text-emerald-950 mt-0.5">14:58</span>
           </div>
-          <div class="hairline-all py-2 px-3 bg-chalk">
-            <span class="block text-[10px] text-ink-muted uppercase">Maghrib</span>
+          <div class="hairline-all py-1.5 sm:py-2 px-2 sm:px-3 bg-chalk">
+            <span class="block text-[9px] sm:text-[10px] text-ink-muted uppercase">Maghrib</span>
             <span class="prayer-val block text-xs font-bold text-emerald-950 mt-0.5">17:50</span>
           </div>
-          <div class="hairline-all py-2 px-3 bg-chalk">
-            <span class="block text-[10px] text-ink-muted uppercase">Isya</span>
+          <div class="hairline-all py-1.5 sm:py-2 px-2 sm:px-3 bg-chalk">
+            <span class="block text-[9px] sm:text-[10px] text-ink-muted uppercase">Isya</span>
             <span class="prayer-val block text-xs font-bold text-emerald-950 mt-0.5">19:02</span>
           </div>
         </div>
@@ -323,76 +334,167 @@
     </section>
 
     <!-- ================================================================= -->
-    <!-- 4 CORE ACADEMIC PILLARS -->
+    <!-- ARTISTIC EDITORIAL MANIFESTO (SWISS-ISLAMIC SYNTHESIS) -->
     <!-- ================================================================= -->
-    <section id="kurikulum" class="py-20 px-4 sm:px-8 max-w-7xl mx-auto">
-      <div class="mb-14">
-        <span class="text-xs font-mono uppercase tracking-widest text-emerald-900 block mb-2">01 / KURIKULUM &amp; TRADISI</span>
-        <h2 class="font-serif text-3xl sm:text-4xl text-emerald-950 font-normal">
-          Empat Pilar Pendidikan Santri Yambu'ul Qur'an
-        </h2>
-        <p class="text-ink-muted text-sm mt-3 max-w-2xl font-light">
-          Fondasi pembelajaran holistik yang menggabungkan kemuliaan wahyu, ketajaman akal, dan pembentukan karakter kepemimpinan.
+    <section id="manifesto" class="bg-chalk hairline-b py-14 sm:py-20 px-4 sm:px-8">
+      <div class="max-w-4xl mx-auto text-center space-y-5">
+        <div class="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-emerald-900 border-b border-emerald-900/30 pb-1">
+          <span>MANIFESTO PENDIDIKAN PESANTREN MODERN</span>
+        </div>
+        
+        <div class="font-arabic text-2xl sm:text-4xl text-emerald-950 font-normal leading-loose py-2 select-none" dir="rtl">
+          يَرْفَعِ اللّٰهُ الَّذِيْنَ اٰمَنُوْا مِنْكُمْ وَالَّذِيْنَ اُوْتُوا الْعِلْمَ دَرَجٰتٍ
+        </div>
+
+        <blockquote class="font-serif text-lg sm:text-2xl md:text-3xl text-emerald-950 italic leading-relaxed font-light">
+          &ldquo;Menjaga kemurnian sanad wahyu Al-Qur'an di tengah percepatan zaman; menegakkan adab sebelum ilmu, dan menanamkan ilmu sebelum amal.&rdquo;
+        </blockquote>
+
+        <p class="text-ink-muted text-xs sm:text-sm font-light max-w-xl mx-auto leading-relaxed">
+          Pendidikan di SMPI Yambu'ul Qur'an bukan sekadar transfer wawasan kognitif, melainkan tazkiyatun nafs (penyucian jiwa), pembiasaan akhlak mulia, dan penguasaan sains untuk kemaslahatan umat.
         </p>
+
+        <div class="pt-2 text-[10px] font-mono uppercase tracking-widest text-ink-muted">
+          QS. AL-MUJADILAH: 11 &bull; KEDIRI, JAWA TIMUR
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- 4 CORE ACADEMIC PILLARS (EDITORIAL ASYMMETRIC RHYTHM) -->
+    <!-- ================================================================= -->
+    <section id="kurikulum" class="py-16 sm:py-24 px-4 sm:px-8 max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-12">
+        <div>
+          <span class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-emerald-900 block mb-2">01 / KURIKULUM &amp; TRADISI</span>
+          <h2 class="font-serif text-2xl sm:text-4xl text-emerald-950 font-normal">
+            Pilar Pendidikan Santri Yambu'ul Qur'an
+          </h2>
+          <p class="text-ink-muted text-xs sm:text-sm mt-2 max-w-2xl font-light">
+            Memadukan kemuliaan talaqqi wahyu, nalar kritis sains kontemporer, kecakapan diplomasi dwibahasa, dan pembiasaan adab pesantren 24 jam.
+          </p>
+        </div>
+        <div class="hidden md:block text-right">
+          <span class="font-mono text-xs text-ink-muted block">INTEGRASI 3 KURIKULUM</span>
+          <span class="font-mono text-xs font-semibold text-emerald-900">Pesantren &bull; Kemendikbud &bull; Cambridge Framework</span>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Asymmetric Editorial Grid: Featured Lead Box (Left) + 3 Horizontal Rows (Right) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         
-        <article class="bg-white hairline-all p-8 flex flex-col justify-between group hover:border-emerald-900 transition-colors">
-          <div>
-            <span class="font-mono text-xs text-gold-dark font-bold tracking-widest block mb-4">01. TAHFIDZ</span>
-            <h3 class="font-serif text-xl text-emerald-950 font-bold mb-3">Sanad Al-Qur'an 30 Juz</h3>
-            <p class="text-xs text-ink-muted leading-relaxed font-light">
-              Bimbingan talaqqi intensif bersama asatidz hafidz bersanad, mengutamakan ketepatan makharijul huruf, tajwid mutqin, dan mutaba'ah harian.
+        <!-- Feature Lead Pillar: 01. TAHFIDZ AL-QUR'AN 30 JUZ BERSANAD (5 cols) -->
+        <article class="lg:col-span-5 bg-white hairline-all p-7 sm:p-9 flex flex-col justify-between hover:border-emerald-900 transition-colors relative overflow-hidden">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest">
+              <span class="text-gold-dark font-bold">PILAR UTAMA 01</span>
+              <span class="text-emerald-900 font-semibold bg-emerald-50 px-2 py-0.5 hairline-all">SANAD MUTASHIL</span>
+            </div>
+            
+            <div class="font-arabic text-xl text-emerald-900 font-bold" dir="rtl">
+              حِفْظُ القُرْآنِ بِالسَّنَدِ
+            </div>
+
+            <h3 class="font-serif text-2xl sm:text-3xl text-emerald-950 font-bold leading-tight">
+              Tahfidz Sanad Al-Qur'an 30 Juz Mutqin
+            </h3>
+
+            <p class="text-xs sm:text-sm text-ink-muted leading-relaxed font-light">
+              Bimbingan intensif sistem talaqqi langsung di hadapan para asatidz hafidz bersanad mutashil hingga Rasulullah ﷺ. Mengutamakan fashahah makharijul huruf, tajwid matan Jazariyah, dan mutaba'ah harian berkesinambungan.
             </p>
+
+            <div class="space-y-2 pt-2 text-xs font-mono text-ink-muted">
+              <div class="flex items-center justify-between py-1.5 hairline-b">
+                <span>Rasio Bimbingan</span>
+                <span class="text-emerald-950 font-bold">1 Halaqah : 12 Santri</span>
+              </div>
+              <div class="flex items-center justify-between py-1.5 hairline-b">
+                <span>Ujian Kenaikan Juz</span>
+                <span class="text-emerald-950 font-bold">Tasmi' Terbuka Sekali Duduk</span>
+              </div>
+              <div class="flex items-center justify-between py-1.5">
+                <span>Ijazah &amp; Syahadah</span>
+                <span class="text-emerald-950 font-bold">Sanad Resmi Terverifikasi</span>
+              </div>
+            </div>
           </div>
-          <div class="pt-6 hairline-t mt-6 flex items-center justify-between text-[11px] font-mono text-emerald-900">
-            <span>MUTABAH MANDIRI</span>
-            <i class="fas fa-check"></i>
+
+          <div class="pt-6 mt-6 hairline-t flex items-center justify-between text-[11px] font-mono text-emerald-900 font-semibold">
+            <span>MUTABAH TAHFIDZ HARIAN</span>
+            <i class="fas fa-check text-xs"></i>
           </div>
         </article>
 
-        <article class="bg-white hairline-all p-8 flex flex-col justify-between group hover:border-emerald-900 transition-colors">
-          <div>
-            <span class="font-mono text-xs text-gold-dark font-bold tracking-widest block mb-4">02. SAINS &amp; RISET</span>
-            <h3 class="font-serif text-xl text-emerald-950 font-bold mb-3">Integrasi Kurikulum Nasional</h3>
-            <p class="text-xs text-ink-muted leading-relaxed font-light">
-              Penguasaan matematika, sains, dan teknologi komputasi dengan standar Kemendikbudristek untuk membentuk nalar kritis dan daya analitis.
+        <!-- Stacked 3 Horizontal Editorial Rows (7 cols) -->
+        <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+          
+          <!-- Pillar 02: SAINS & RISET -->
+          <article class="bg-white hairline-all p-6 sm:p-7 hover:border-emerald-900 transition-colors">
+            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
+              <div>
+                <span class="font-mono text-[10px] text-gold-dark font-bold tracking-widest uppercase block mb-1">PILAR 02 &bull; KEMENDIKBUDRISTEK</span>
+                <h3 class="font-serif text-lg sm:text-xl text-emerald-950 font-bold">
+                  Sains Eksakta, Matematika &amp; Nalar Riset
+                </h3>
+              </div>
+              <span class="self-start text-[10px] font-mono uppercase tracking-wider text-emerald-900 bg-emerald-50 px-2 py-0.5 hairline-all whitespace-nowrap">
+                LAB SAINS
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-ink-muted leading-relaxed font-light mb-4">
+              Integrasi kurikulum nasional secara mendalam. Santri dilatih berfikir kritis melalui eksperimen laboratorium sains, komputasi terapan, dan metodologi riset ilmiah untuk membentuk generasi cendekia muslim yang solutif.
             </p>
-          </div>
-          <div class="pt-6 hairline-t mt-6 flex items-center justify-between text-[11px] font-mono text-emerald-900">
-            <span>LABORATORIUM SAINS</span>
-            <i class="fas fa-check"></i>
-          </div>
-        </article>
+            <div class="pt-3 hairline-t flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-ink-muted">
+              <span>STANDAR AKREDITASI BAN-S/M</span>
+              <span class="text-emerald-900 font-semibold">OLIMPIADE &bull; ROBOTIK</span>
+            </div>
+          </article>
 
-        <article class="bg-white hairline-all p-8 flex flex-col justify-between group hover:border-emerald-900 transition-colors">
-          <div>
-            <span class="font-mono text-xs text-gold-dark font-bold tracking-widest block mb-4">03. BILINGUAL</span>
-            <h3 class="font-serif text-xl text-emerald-950 font-bold mb-3">Dwi-Bahasa Arab &amp; Inggris</h3>
-            <p class="text-xs text-ink-muted leading-relaxed font-light">
-              Pembiasaan percakapan harian (muhadatsah &amp; public speaking) dalam bahasa Arab dan Inggris untuk membuka wawasan diplomasi global santri.
+          <!-- Pillar 03: DWI-BAHASA -->
+          <article class="bg-white hairline-all p-6 sm:p-7 hover:border-emerald-900 transition-colors">
+            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
+              <div>
+                <span class="font-mono text-[10px] text-gold-dark font-bold tracking-widest uppercase block mb-1">PILAR 03 &bull; GLOBAL DIALOGUE</span>
+                <h3 class="font-serif text-lg sm:text-xl text-emerald-950 font-bold">
+                  Dwi-Bahasa Aktif: Arab &amp; Inggris Internasional
+                </h3>
+              </div>
+              <span class="self-start text-[10px] font-mono uppercase tracking-wider text-emerald-900 bg-emerald-50 px-2 py-0.5 hairline-all whitespace-nowrap">
+                BILINGUAL ENVIRONMENT
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-ink-muted leading-relaxed font-light mb-4">
+              Lingkungan asrama dwibahasa aktif. Santri dibiasakan berdialog tematik (muhadatsah), pidato tiga bahasa (khitobah), serta kajian literatur klasik berbahasa Arab dan jurnal kontemporer berbahasa Inggris.
             </p>
-          </div>
-          <div class="pt-6 hairline-t mt-6 flex items-center justify-between text-[11px] font-mono text-emerald-900">
-            <span>DAILY CONVERSATION</span>
-            <i class="fas fa-check"></i>
-          </div>
-        </article>
+            <div class="pt-3 hairline-t flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-ink-muted">
+              <span>MUHADATSAH &bull; SPEECH CLUB</span>
+              <span class="text-emerald-900 font-semibold">DIPLOMASI GLOBAL</span>
+            </div>
+          </article>
 
-        <article class="bg-white hairline-all p-8 flex flex-col justify-between group hover:border-emerald-900 transition-colors">
-          <div>
-            <span class="font-mono text-xs text-gold-dark font-bold tracking-widest block mb-4">04. ADAB</span>
-            <h3 class="font-serif text-xl text-emerald-950 font-bold mb-3">Karakter &amp; Kemandirian</h3>
-            <p class="text-xs text-ink-muted leading-relaxed font-light">
-              Penanaman adab penuntut ilmu, kesantunan bermasyarakat, kedisiplinan asrama 24 jam, serta kepemimpinan berwawasan kebangsaan.
+          <!-- Pillar 04: ADAB & ASRAMA -->
+          <article class="bg-white hairline-all p-6 sm:p-7 hover:border-emerald-900 transition-colors">
+            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
+              <div>
+                <span class="font-mono text-[10px] text-gold-dark font-bold tracking-widest uppercase block mb-1">PILAR 04 &bull; TAZKIYATUN NAFS</span>
+                <h3 class="font-serif text-lg sm:text-xl text-emerald-950 font-bold">
+                  Adab Penuntut Ilmu &amp; Kemandirian Santri
+                </h3>
+              </div>
+              <span class="self-start text-[10px] font-mono uppercase tracking-wider text-emerald-900 bg-emerald-50 px-2 py-0.5 hairline-all whitespace-nowrap">
+                BOARDING 24 JAM
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-ink-muted leading-relaxed font-light mb-4">
+              Penggemblengan karakter kepemimpinan berbasis kitab Ta'limul Muta'allim dan akhlak nabawiyah. Kedisiplinan sholat berjamaah tepat waktu, puasa sunnah, kebersihan lingkungan pondok, dan jiwa ksatria berakhlakul karimah.
             </p>
-          </div>
-          <div class="pt-6 hairline-t mt-6 flex items-center justify-between text-[11px] font-mono text-emerald-900">
-            <span>BOARDING 24 JAM</span>
-            <i class="fas fa-check"></i>
-          </div>
-        </article>
+            <div class="pt-3 hairline-t flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-ink-muted">
+              <span>PENGAWASAN ASRAMA 24 JAM</span>
+              <span class="text-emerald-900 font-semibold">KARAKTER &bull; KEPEMIMPINAN</span>
+            </div>
+          </article>
+
+        </div>
 
       </div>
     </section>
@@ -400,135 +502,188 @@
     <!-- ================================================================= -->
     <!-- 18 DIGITAL SCHOOL APPLICATIONS ECOSYSTEM -->
     <!-- ================================================================= -->
-    <section id="aplikasi" class="bg-white hairline-t hairline-b py-20 px-4 sm:px-8">
+    <section id="aplikasi" class="bg-white hairline-t hairline-b py-16 sm:py-24 px-4 sm:px-8">
       <div class="max-w-7xl mx-auto">
         
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
-            <span class="text-xs font-mono uppercase tracking-widest text-emerald-900 block mb-2">02 / SMART PESANTREN</span>
-            <h2 class="font-serif text-3xl sm:text-4xl text-emerald-950 font-normal">
+            <span class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-emerald-900 block mb-2">02 / SMART PESANTREN</span>
+            <h2 class="font-serif text-2xl sm:text-4xl text-emerald-950 font-normal">
               Ekosistem 18 Layanan Digital Sekolah
             </h2>
-            <p class="text-ink-muted text-sm mt-2 max-w-xl font-light">
+            <p class="text-ink-muted text-xs sm:text-sm mt-2 max-w-xl font-light">
               Satu gerbang terpadu untuk administrasi, pembelajaran online, mutaba'ah tahfidz, dan tata kelola pesantren modern.
             </p>
           </div>
 
-          <!-- Search & Counter -->
+          <!-- Quick Search -->
           <div class="flex items-center gap-3">
-            <div class="relative">
+            <div class="relative w-full sm:w-auto">
               <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i>
-              <input type="text" id="app-search" oninput="filterApps(this.value)" placeholder="Cari aplikasi..." class="pl-8 pr-4 py-2 text-xs hairline-all bg-chalk focus:outline-none focus:border-emerald-900 font-sans w-52 sm:w-64">
+              <input type="text" id="app-search" oninput="handleAppSearch(this.value)" placeholder="Cari nama aplikasi..." class="pl-8 pr-4 py-2 text-xs hairline-all bg-chalk focus:outline-none focus:border-emerald-900 font-sans w-full sm:w-64">
             </div>
-            <span id="app-count" class="font-mono text-xs text-emerald-900 font-semibold px-3 py-2 bg-emerald-50 hairline-all">
-              18 Aplikasi
-            </span>
           </div>
         </div>
 
-        <!-- 3 Primary Forked Subdomain Apps Featured Strip -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          
-          <a href="https://nixon42.github.io/jurnal/" target="_blank" rel="noopener" class="bg-chalk hairline-all p-6 group hover:border-emerald-900 transition-all">
-            <div class="flex items-center justify-between mb-4">
-              <span class="w-10 h-10 flex items-center justify-center bg-emerald-950 text-gold-light text-base hairline-all">
-                <i class="fas fa-book-open"></i>
-              </span>
-              <span class="text-[10px] font-mono tracking-widest text-emerald-900 uppercase font-semibold">CORE 01</span>
-            </div>
-            <h4 class="font-serif text-lg font-bold text-emerald-950 group-hover:text-emerald-800 transition-colors">
-              Jurnal Digital Asatidz
-            </h4>
-            <p class="text-xs text-ink-muted font-light mt-2 leading-relaxed">
-              Pencatatan agenda harian pengajaran, rekap materi kurikulum, dan evaluasi capaian santri.
-            </p>
-            <div class="mt-4 pt-3 hairline-t flex items-center justify-between text-xs font-semibold text-emerald-900">
-              <span>Buka Jurnal Digital</span>
-              <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
-            </div>
-          </a>
+        <!-- 3 Primary Core Forked Subdomain Apps Featured Triad -->
+        <div class="mb-10">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-gold-dark font-bold">
+              APLIKASI INTI UTAMA (CORE PORTAL)
+            </span>
+            <span class="text-[10px] font-mono text-ink-muted hidden sm:inline">
+              TERINTEGRASI SISTEM TERPADU
+            </span>
+          </div>
 
-          <a href="https://nixon42.github.io/lms/" target="_blank" rel="noopener" class="bg-chalk hairline-all p-6 group hover:border-emerald-900 transition-all">
-            <div class="flex items-center justify-between mb-4">
-              <span class="w-10 h-10 flex items-center justify-center bg-emerald-950 text-gold-light text-base hairline-all">
-                <i class="fas fa-laptop-code"></i>
-              </span>
-              <span class="text-[10px] font-mono tracking-widest text-emerald-900 uppercase font-semibold">CORE 02</span>
-            </div>
-            <h4 class="font-serif text-lg font-bold text-emerald-950 group-hover:text-emerald-800 transition-colors">
-              LMS (E-Learning Madrasah)
-            </h4>
-            <p class="text-xs text-ink-muted font-light mt-2 leading-relaxed">
-              Portal materi terintegrasi, penugasan mandiri, kuis daring, dan repositori bahan ajar santri.
-            </p>
-            <div class="mt-4 pt-3 hairline-t flex items-center justify-between text-xs font-semibold text-emerald-900">
-              <span>Buka LMS Kampus</span>
-              <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
-            </div>
-          </a>
+          <!-- 3 Core Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            
+            <a href="https://nixon42.github.io/jurnal/" target="_blank" rel="noopener" class="bg-chalk hairline-all p-5 sm:p-6 group hover:border-emerald-900 transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-emerald-950 text-gold-light text-sm sm:text-base hairline-all">
+                    <i class="fas fa-book-open"></i>
+                  </span>
+                  <span class="text-[9px] font-mono tracking-widest text-emerald-900 uppercase font-semibold bg-emerald-50 px-2 py-0.5 hairline-all">CORE 01</span>
+                </div>
+                <h4 class="font-serif text-base sm:text-lg font-bold text-emerald-950 group-hover:text-emerald-800 transition-colors">
+                  Jurnal Digital Asatidz
+                </h4>
+                <p class="text-xs text-ink-muted font-light mt-1.5 leading-relaxed">
+                  Pencatatan agenda harian pengajaran, rekap materi kurikulum, dan evaluasi capaian santri realtime.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 hairline-t flex items-center justify-between text-xs font-semibold text-emerald-900">
+                <span>Buka Jurnal Digital</span>
+                <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
+              </div>
+            </a>
 
-          <a href="https://nixon42.github.io/absen/" target="_blank" rel="noopener" class="bg-chalk hairline-all p-6 group hover:border-emerald-900 transition-all">
-            <div class="flex items-center justify-between mb-4">
-              <span class="w-10 h-10 flex items-center justify-center bg-emerald-950 text-gold-light text-base hairline-all">
-                <i class="fas fa-user-check"></i>
-              </span>
-              <span class="text-[10px] font-mono tracking-widest text-emerald-900 uppercase font-semibold">CORE 03</span>
-            </div>
-            <h4 class="font-serif text-lg font-bold text-emerald-950 group-hover:text-emerald-800 transition-colors">
-              Presensi Face Recognition
-            </h4>
-            <p class="text-xs text-ink-muted font-light mt-2 leading-relaxed">
-              Pencatatan presensi cerdas santri dan asatidz berbasis pemindaian wajah real-time.
-            </p>
-            <div class="mt-4 pt-3 hairline-t flex items-center justify-between text-xs font-semibold text-emerald-900">
-              <span>Buka Presensi Digital</span>
-              <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
-            </div>
-          </a>
+            <a href="https://nixon42.github.io/lms/" target="_blank" rel="noopener" class="bg-chalk hairline-all p-5 sm:p-6 group hover:border-emerald-900 transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-emerald-950 text-gold-light text-sm sm:text-base hairline-all">
+                    <i class="fas fa-laptop-code"></i>
+                  </span>
+                  <span class="text-[9px] font-mono tracking-widest text-emerald-900 uppercase font-semibold bg-emerald-50 px-2 py-0.5 hairline-all">CORE 02</span>
+                </div>
+                <h4 class="font-serif text-base sm:text-lg font-bold text-emerald-950 group-hover:text-emerald-800 transition-colors">
+                  LMS (E-Learning Madrasah)
+                </h4>
+                <p class="text-xs text-ink-muted font-light mt-1.5 leading-relaxed">
+                  Portal materi terpadu, penugasan mandiri, kuis daring CBT, dan repositori bahan ajar santri.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 hairline-t flex items-center justify-between text-xs font-semibold text-emerald-900">
+                <span>Buka LMS Kampus</span>
+                <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
+              </div>
+            </a>
 
+            <a href="https://nixon42.github.io/absen/" target="_blank" rel="noopener" class="bg-chalk hairline-all p-5 sm:p-6 group hover:border-emerald-900 transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-emerald-950 text-gold-light text-sm sm:text-base hairline-all">
+                    <i class="fas fa-user-check"></i>
+                  </span>
+                  <span class="text-[9px] font-mono tracking-widest text-emerald-900 uppercase font-semibold bg-emerald-50 px-2 py-0.5 hairline-all">CORE 03</span>
+                </div>
+                <h4 class="font-serif text-base sm:text-lg font-bold text-emerald-950 group-hover:text-emerald-800 transition-colors">
+                  Presensi Face Recognition
+                </h4>
+                <p class="text-xs text-ink-muted font-light mt-1.5 leading-relaxed">
+                  Pencatatan presensi cerdas santri dan asatidz berbasis pemindaian wajah real-time terintegrasi.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 hairline-t flex items-center justify-between text-xs font-semibold text-emerald-900">
+                <span>Buka Presensi Digital</span>
+                <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
+              </div>
+            </a>
+
+          </div>
         </div>
 
-        <!-- Full 18 Application Table / Clean Minimalist Grid -->
-        <div id="apps-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <!-- Rendered dynamically by JavaScript -->
+        <!-- Interactive Category Filter Tabs (Zero Pill Slop, Crisp Editorial Buttons) -->
+        <div class="mb-6 pt-4 hairline-t">
+          <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-ink-muted">
+              KATALOG SELURUH LAYANAN:
+            </span>
+            <span id="app-count" class="font-mono text-xs text-emerald-900 font-semibold px-2.5 py-1 bg-emerald-50 hairline-all">
+              18 Aplikasi
+            </span>
+          </div>
+
+          <!-- Filter Buttons Row (Scrollable on small mobile, wrap on tablet/desktop) -->
+          <div id="category-tabs" class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar pb-1 text-xs font-mono uppercase">
+            <button onclick="setCategoryFilter('Semua')" data-cat="Semua" class="tab-btn active px-3 sm:px-4 py-2 hairline-all bg-emerald-950 text-gold-light font-semibold tracking-wider transition-all whitespace-nowrap text-[11px]">
+              Semua (18)
+            </button>
+            <button onclick="setCategoryFilter('Akademik')" data-cat="Akademik" class="tab-btn px-3 sm:px-4 py-2 hairline-all bg-chalk hover:bg-slate-100 text-ink-muted font-medium tracking-wider transition-all whitespace-nowrap text-[11px]">
+              Akademik (4)
+            </button>
+            <button onclick="setCategoryFilter('Administrasi')" data-cat="Administrasi" class="tab-btn px-3 sm:px-4 py-2 hairline-all bg-chalk hover:bg-slate-100 text-ink-muted font-medium tracking-wider transition-all whitespace-nowrap text-[11px]">
+              Administrasi (4)
+            </button>
+            <button onclick="setCategoryFilter('Tahfidz')" data-cat="Tahfidz" class="tab-btn px-3 sm:px-4 py-2 hairline-all bg-chalk hover:bg-slate-100 text-ink-muted font-medium tracking-wider transition-all whitespace-nowrap text-[11px]">
+              Tahfidz &amp; Riset (3)
+            </button>
+            <button onclick="setCategoryFilter('Layanan')" data-cat="Layanan" class="tab-btn px-3 sm:px-4 py-2 hairline-all bg-chalk hover:bg-slate-100 text-ink-muted font-medium tracking-wider transition-all whitespace-nowrap text-[11px]">
+              Layanan Santri (7)
+            </button>
+          </div>
+        </div>
+
+        <!-- Compact Responsive Application Grid (2-columns on mobile, 3-columns on desktop) -->
+        <div id="apps-container" class="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4">
+          <!-- Populated by JavaScript -->
         </div>
 
       </div>
     </section>
 
     <!-- ================================================================= -->
-    <!-- WARTA, BERITA & AGENDA SEKOLAH -->
+    <!-- WARTA, BERITA & AGENDA SEKOLAH (RHYTHMIC EDITORIAL COMPOSITION) -->
     <!-- ================================================================= -->
-    <section id="warta" class="py-20 px-4 sm:px-8 max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+    <section id="warta" class="py-16 sm:py-24 px-4 sm:px-8 max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-10">
         <div>
-          <span class="text-xs font-mono uppercase tracking-widest text-emerald-900 block mb-2">03 / DOKUMENTASI &amp; WARTA</span>
-          <h2 class="font-serif text-3xl sm:text-4xl text-emerald-950 font-normal">
+          <span class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-emerald-900 block mb-2">03 / DOKUMENTASI &amp; WARTA</span>
+          <h2 class="font-serif text-2xl sm:text-4xl text-emerald-950 font-normal">
             Kabar &amp; Aktivitas Pesantren
           </h2>
-          <p class="text-ink-muted text-sm mt-2 max-w-xl font-light">
-            Publikasi kegiatan harian santri, prestasi perlombaan, dan pengumuman resmi yayasan.
+          <p class="text-ink-muted text-xs sm:text-sm mt-2 max-w-xl font-light">
+            Publikasi kegiatan harian santri, prestasi perlombaan sains, dan agenda resmi yayasan.
           </p>
+        </div>
+        <div class="text-[11px] font-mono text-ink-muted">
+          <span>KEDIRI &bull; JAWA TIMUR</span>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10">
         
-        <!-- Left Column: Featured Editorial Articles List (8 cols) -->
+        <!-- Left Column: Featured Editorial Articles (8 cols) -->
         <div class="lg:col-span-8 space-y-6" id="news-container">
-          <!-- Populated from DB.artikel or default -->
+          <!-- Populated dynamically: Article #1 Lead Story 16:9 + Secondary Horizontal Rows -->
         </div>
 
         <!-- Right Column: Agenda Akademik Terdekat (4 cols) -->
         <div class="lg:col-span-4">
-          <div class="bg-white hairline-all p-6 sticky top-24">
-            <span class="text-xs font-mono uppercase tracking-widest text-emerald-900 block mb-4">AGENDA KEGIATAN</span>
+          <div class="bg-white hairline-all p-5 sm:p-6 sticky top-24">
+            <div class="flex items-center justify-between hairline-b pb-3 mb-4">
+              <span class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-emerald-900 font-bold">AGENDA KEGIATAN</span>
+              <span class="text-[10px] font-mono text-ink-muted">2026/2027</span>
+            </div>
             
             <div class="space-y-4" id="agenda-container">
-              <!-- Populated by JS -->
+              <!-- Populated by JS with clean calendar square badges -->
             </div>
 
-            <div class="mt-8 pt-6 hairline-t text-center">
+            <div class="mt-8 pt-5 hairline-t text-center">
               <a href="https://wa.me/6281515777911?text=Halo%20Admin,%20saya%20ingin%20bertanya%20mengenai%20agenda%20sekolah" target="_blank" rel="noopener" class="text-xs font-semibold text-emerald-900 hover:text-emerald-700 flex items-center justify-center gap-2">
                 <span>Konfirmasi Agenda via Humas</span>
                 <i class="fas fa-arrow-right text-[10px]"></i>
@@ -541,22 +696,22 @@
     </section>
 
     <!-- ================================================================= -->
-    <!-- DEWAN ASATIDZ & GURU -->
+    <!-- DEWAN ASATIDZ & GURU (SCHOLARLY SQUARE PORTRAITS) -->
     <!-- ================================================================= -->
-    <section id="guru" class="bg-white hairline-t hairline-b py-20 px-4 sm:px-8">
+    <section id="guru" class="bg-white hairline-t hairline-b py-16 sm:py-24 px-4 sm:px-8">
       <div class="max-w-7xl mx-auto">
-        <div class="mb-14">
-          <span class="text-xs font-mono uppercase tracking-widest text-emerald-900 block mb-2">04 / ASATIDZ PENGASUH</span>
-          <h2 class="font-serif text-3xl sm:text-4xl text-emerald-950 font-normal">
-            Dewan Asatidz &amp; Pendidik
+        <div class="mb-12">
+          <span class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-emerald-900 block mb-2">04 / ASATIDZ PENGASUH</span>
+          <h2 class="font-serif text-2xl sm:text-4xl text-emerald-950 font-normal">
+            Dewan Asatidz &amp; Tenaga Pendidik
           </h2>
-          <p class="text-ink-muted text-sm mt-2 max-w-xl font-light">
-            Pendidik berdedikasi yang membimbing santri dengan keteladanan akhlak dan keilmuan mendalam.
+          <p class="text-ink-muted text-xs sm:text-sm mt-2 max-w-xl font-light">
+            Para pembimbing berdedikasi yang menuntun santri dengan keteladanan adab dan sanad keilmuan yang bersambung.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="guru-container">
-          <!-- Populated by JS -->
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" id="guru-container">
+          <!-- Populated by JS with square academic portrait frames -->
         </div>
       </div>
     </section>
@@ -564,24 +719,25 @@
     <!-- ================================================================= -->
     <!-- PENDAFTARAN PPDB ONLINE -->
     <!-- ================================================================= -->
-    <section id="ppdb" class="py-20 px-4 sm:px-8 max-w-7xl mx-auto">
-      <div class="bg-emerald-950 text-white p-8 sm:p-14 lg:p-16 relative overflow-hidden">
-        <div class="relative z-10 max-w-3xl space-y-6">
-          <span class="inline-block text-[10px] font-mono uppercase tracking-widest bg-white/10 text-gold-light px-3 py-1 hairline-all">
-            PENERIMAAN PESERTA DIDIK BARU 2026/2027
-          </span>
-          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-tight text-white">
+    <section id="ppdb" class="py-16 sm:py-24 px-4 sm:px-8 max-w-7xl mx-auto">
+      <div class="bg-emerald-950 text-white p-6 sm:p-12 lg:p-16 relative overflow-hidden hairline-all">
+        <div class="relative z-10 max-w-3xl space-y-5 sm:space-y-6">
+          <div class="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest bg-white/10 text-gold-light px-3 py-1 hairline-all">
+            <span class="w-1.5 h-1.5 bg-gold-light"></span>
+            <span>PENERIMAAN PESERTA DIDIK BARU &bull; TP 2026/2027</span>
+          </div>
+          <h2 class="font-serif text-2xl sm:text-4xl lg:text-5xl font-normal leading-tight text-white">
             Mari Bergabung Menjadi Bagian Dari Keluarga Besar Qur'ani Yambu'ul Qur'an.
           </h2>
-          <p class="text-emerald-100/80 text-sm sm:text-base font-light leading-relaxed">
-            Pendaftaran santri baru dibuka melalui jalur Reguler dan Beasiswa Tahfidz. Hubungi panitia PPDB untuk konsultasi berkas, tes wawancara, dan survei asrama.
+          <p class="text-emerald-100/80 text-xs sm:text-sm lg:text-base font-light leading-relaxed">
+            Pendaftaran santri baru dibuka melalui Jalur Reguler dan Jalur Beasiswa Tahfidz. Hubungi panitia PPDB untuk konsultasi berkas persyaratan, jadwal tes wawancara santri &amp; wali, serta survei lingkungan asrama.
           </p>
-          <div class="flex flex-wrap items-center gap-4 pt-4">
-            <a href="https://wa.me/6281515777911?text=Bismillah,%20saya%20ingin%20mendaftarkan%20putra/putri%20saya%20ke%20SMPI%20Yambu'ul%20Qur'an" target="_blank" rel="noopener" class="inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-emerald-950 text-xs font-bold px-8 py-4 uppercase tracking-wider transition-colors shadow">
+          <div class="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
+            <a href="https://wa.me/6281515777911?text=Bismillah,%20saya%20ingin%20mendaftarkan%20putra/putri%20saya%20ke%20SMPI%20Yambu'ul%20Qur'an" target="_blank" rel="noopener" class="inline-flex items-center gap-2.5 bg-gold hover:bg-gold-light text-emerald-950 text-xs font-bold px-6 py-3.5 uppercase tracking-wider transition-colors shadow">
               <span>Daftar via WhatsApp Panitia</span>
               <i class="fab fa-whatsapp text-sm"></i>
             </a>
-            <a href="#kontak" class="inline-flex items-center gap-2 bg-transparent hover:bg-white/10 text-white text-xs font-semibold px-6 py-4 hairline-all uppercase tracking-wider transition-colors">
+            <a href="#kontak" class="inline-flex items-center gap-2 bg-transparent hover:bg-white/10 text-white text-xs font-semibold px-5 py-3.5 hairline-all uppercase tracking-wider transition-colors">
               <span>Informasi Syarat &amp; Biaya</span>
             </a>
           </div>
@@ -594,9 +750,10 @@
   <!-- ================================================================= -->
   <!-- INSTITUTIONAL COLOPHON & FOOTER -->
   <!-- ================================================================= -->
-  <footer id="kontak" class="bg-white hairline-t text-ink-muted text-xs font-light py-16 px-4 sm:px-8">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10">
+  <footer id="kontak" class="bg-white hairline-t text-ink-muted text-xs font-light py-14 sm:py-16 px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10">
       
+      <!-- Identity & Legal Details -->
       <div class="md:col-span-5 space-y-4">
         <div class="flex items-center gap-3">
           <img src="logo.png" alt="Logo SMPI Yambu'ul Qur'an" class="w-10 h-10 object-contain">
@@ -608,43 +765,46 @@
         <p class="text-xs leading-relaxed max-w-sm">
           Lembaga pendidikan menengah Islam terpadu di bawah naungan Yayasan Yambu'ul Qur'an. Terakreditasi B resmi Badan Akreditasi Nasional (BAN-S/M).
         </p>
-        <div class="font-mono text-[11px] text-ink-muted space-y-1">
+        <div class="font-mono text-[11px] text-ink-muted space-y-1 pt-1">
           <div>NPSN: <span class="text-ink font-semibold">70003325</span></div>
           <div>SK Operasional: <span class="text-ink">414-44/2053/418.20/2023</span></div>
+          <div>Status Akreditasi: <span class="text-emerald-900 font-semibold">Akreditasi B BAN-S/M</span></div>
         </div>
       </div>
 
+      <!-- Address & Contacts -->
       <div class="md:col-span-4 space-y-3">
-        <span class="block font-mono text-[11px] font-semibold text-emerald-950 uppercase tracking-widest">Alamat &amp; Kontak</span>
+        <span class="block font-mono text-[11px] font-semibold text-emerald-950 uppercase tracking-widest">Alamat &amp; Kontak Resmi</span>
         <p class="text-xs leading-relaxed">
           Jl. Agung Ds. Jarak RT 04/ RW 02, Desa Jarak, Kec. Plosoklaten, Kabupaten Kediri, Jawa Timur 64175
         </p>
-        <div class="space-y-1 pt-1">
-          <div><i class="fab fa-whatsapp w-4 text-emerald-800"></i> 0815-1577-7911</div>
-          <div><i class="fas fa-envelope w-4 text-emerald-800"></i> smpiyaqu@gmail.com</div>
-          <div><i class="fab fa-instagram w-4 text-emerald-800"></i> @smpiyaqu_kediri</div>
+        <div class="space-y-1.5 pt-1 text-xs">
+          <div><i class="fab fa-whatsapp w-4 text-emerald-800"></i> <a href="https://wa.me/6281515777911" target="_blank" rel="noopener" class="hover:underline">0815-1577-7911</a></div>
+          <div><i class="fas fa-envelope w-4 text-emerald-800"></i> <a href="mailto:smpiyaqu@gmail.com" class="hover:underline">smpiyaqu@gmail.com</a></div>
+          <div><i class="fab fa-instagram w-4 text-emerald-800"></i> <a href="https://instagram.com/smpiyaqu_kediri" target="_blank" rel="noopener" class="hover:underline">@smpiyaqu_kediri</a></div>
         </div>
       </div>
 
+      <!-- Quick Links -->
       <div class="md:col-span-3 space-y-3">
-        <span class="block font-mono text-[11px] font-semibold text-emerald-950 uppercase tracking-widest">Tautan Pintas</span>
+        <span class="block font-mono text-[11px] font-semibold text-emerald-950 uppercase tracking-widest">Tautan Ekosistem</span>
         <ul class="space-y-2 text-xs">
-          <li><a href="https://nixon42.github.io/jurnal/" target="_blank" rel="noopener" class="hover:text-emerald-900">Jurnal Digital Asatidz</a></li>
-          <li><a href="https://nixon42.github.io/lms/" target="_blank" rel="noopener" class="hover:text-emerald-900">LMS &amp; CBT Mandiri</a></li>
-          <li><a href="https://nixon42.github.io/absen/" target="_blank" rel="noopener" class="hover:text-emerald-900">Presensi Face Recognition</a></li>
-          <li><a href="#ppdb" class="hover:text-emerald-900">Pendaftaran PPDB</a></li>
+          <li><a href="https://nixon42.github.io/jurnal/" target="_blank" rel="noopener" class="hover:text-emerald-900 flex items-center gap-1.5">Jurnal Digital Asatidz <i class="fas fa-arrow-up-right-from-square text-[9px]"></i></a></li>
+          <li><a href="https://nixon42.github.io/lms/" target="_blank" rel="noopener" class="hover:text-emerald-900 flex items-center gap-1.5">LMS &amp; CBT Mandiri <i class="fas fa-arrow-up-right-from-square text-[9px]"></i></a></li>
+          <li><a href="https://nixon42.github.io/absen/" target="_blank" rel="noopener" class="hover:text-emerald-900 flex items-center gap-1.5">Presensi Face Recognition <i class="fas fa-arrow-up-right-from-square text-[9px]"></i></a></li>
+          <li><a href="#ppdb" class="hover:text-emerald-900">Pendaftaran PPDB Online</a></li>
           <li><a href="index.html" class="hover:text-emerald-900">Kembali ke Beranda Utama</a></li>
         </ul>
       </div>
 
     </div>
 
-    <div class="max-w-7xl mx-auto pt-10 mt-10 hairline-t flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-slate-400">
+    <div class="max-w-7xl mx-auto pt-8 mt-8 hairline-t flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] sm:text-[11px] font-mono text-slate-400">
       <div>
         &copy; <span id="year">2026</span> SMPI Yambu'ul Qur'an Plosoklaten Kediri. All rights reserved.
       </div>
       <div>
-        Edisi Tata Letak Minimalist Editorial
+        Edisi Minimalist Editorial &bull; Swiss-Islamic Architecture
       </div>
     </div>
   </footer>
@@ -663,63 +823,92 @@
 
     // 18 Standard Applications Database
     const APPS_LIST = [
-      { id: 1, nama: 'JURNAL DIGITAL', link: 'https://nixon42.github.io/jurnal/', desc: 'Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru.', cat: 'Akademik', icon: 'fas fa-book-open' },
-      { id: 2, nama: 'LMS', link: 'https://nixon42.github.io/lms/', desc: 'Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas.', cat: 'Akademik', icon: 'fas fa-laptop-code' },
-      { id: 3, nama: 'ABSENSI', link: 'https://nixon42.github.io/absen/', desc: 'Absensi santri dan asatidz berbasis face recognition realtime.', cat: 'Layanan', icon: 'fas fa-user-check' },
-      { id: 4, nama: 'TU & PERSURATAN', link: 'https://administrasi.smpitalmubarok.sch.id/', desc: 'Digitalisasi pengarsipan dan tata kelola surat-menyurat.', cat: 'Administrasi', icon: 'fas fa-envelope-open-text' },
-      { id: 5, nama: 'SUPERVISI', link: 'https://supervisi.smpitalmubarok.sch.id/', desc: 'Pemantauan evaluasi mutu dan pembinaan kinerja asatidz.', cat: 'Manajemen', icon: 'fas fa-chalkboard-user' },
-      { id: 6, nama: 'BUKU INVENTARIS', link: 'https://inventaris.smpitalmubarok.sch.id/', desc: 'Digitalisasi pendataan sarana dan prasarana pesantren.', cat: 'Administrasi', icon: 'fas fa-boxes-stacked' },
-      { id: 7, nama: 'E-RAPOR', link: 'https://erapor.smpitalmubarok.sch.id/', desc: 'Akses dan unduh e-rapor berkala santri oleh wali santri.', cat: 'Akademik', icon: 'fas fa-file-invoice' },
-      { id: 8, nama: 'SIM TAHFIDZ', link: 'https://simtahfidz.smpitalmubarok.sch.id/', desc: 'Monitoring mutabaah hafalan Al-Qur\'an dan setoran juz harian.', cat: 'Tahfidz', icon: 'fas fa-book-quran' },
-      { id: 9, nama: 'E-LIBRARY', link: 'https://elibrary.smpitalmubarok.sch.id/', desc: 'Katalog buku, kitab rujukan, dan literasi digital santri.', cat: 'Literasi', icon: 'fas fa-book-bookmark' },
-      { id: 10, nama: 'PORTAL PPDB', link: 'https://ppdb.smpitalmubarok.sch.id/', desc: 'Sistem pendaftaran dan seleksi santri baru daring.', cat: 'Layanan', icon: 'fas fa-user-plus' },
-      { id: 11, nama: 'KONSULTASI BK', link: 'https://bk.smpitalmubarok.sch.id/', desc: 'Layanan konseling perkembangan karakter dan adab santri.', cat: 'Layanan', icon: 'fas fa-comments' },
-      { id: 12, nama: 'KEUANGAN & SYAHRIYAH', link: 'https://keuangan.smpitalmubarok.sch.id/', desc: 'Informasi syahriyah bulanan dan donasi pesantren.', cat: 'Keuangan', icon: 'fas fa-wallet' },
-      { id: 13, nama: 'PELANGGARAN & DISIPLIN', link: 'https://tatatertib.smpitalmubarok.sch.id/', desc: 'Pencatatan poin kedisiplinan dan mutabaah akhlak santri.', cat: 'Kedisiplinan', icon: 'fas fa-clipboard-check' },
-      { id: 14, nama: 'PORTAL ALUMNI', link: 'https://alumni.smpitalmubarok.sch.id/', desc: 'Jejaring alumni santri Yambu\'ul Qur\'an di berbagai penjuru.', cat: 'Komunitas', icon: 'fas fa-user-graduate' },
-      { id: 15, nama: 'SISTEM KESEHATAN (POSKESTREN)', link: 'https://poskestren.smpitalmubarok.sch.id/', desc: 'Catatan rekam medis dan kesehatan santri di asrama.', cat: 'Kesehatan', icon: 'fas fa-heart-pulse' },
-      { id: 16, nama: 'KARYA & MAJALAH SANTRI', link: 'https://karya.smpitalmubarok.sch.id/', desc: 'Wadah publikasi karya sastra, kaligrafi, dan artikel santri.', cat: 'Kreativitas', icon: 'fas fa-newspaper' },
-      { id: 17, nama: 'JADWAL & KALENDER', link: 'https://kalender.smpitalmubarok.sch.id/', desc: 'Sinkronisasi agenda libur, ujian, dan khataman Qur\'an.', cat: 'Akademik', icon: 'fas fa-calendar-days' },
-      { id: 18, nama: 'PUSAT BANTUAN HUMAS', link: 'https://wa.me/6281515777911', desc: 'Saluran informasi resmi wali santri bersama pengurus.', cat: 'Layanan', icon: 'fas fa-headset' }
+      { id: 1, nama: 'JURNAL DIGITAL', link: 'https://nixon42.github.io/jurnal/', desc: 'Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru.', cat: 'Akademik', group: 'Akademik', icon: 'fas fa-book-open' },
+      { id: 2, nama: 'LMS', link: 'https://nixon42.github.io/lms/', desc: 'Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas.', cat: 'Akademik', group: 'Akademik', icon: 'fas fa-laptop-code' },
+      { id: 3, nama: 'ABSENSI', link: 'https://nixon42.github.io/absen/', desc: 'Absensi santri dan asatidz berbasis face recognition realtime.', cat: 'Layanan', group: 'Layanan', icon: 'fas fa-user-check' },
+      { id: 4, nama: 'TU & PERSURATAN', link: 'https://administrasi.smpitalmubarok.sch.id/', desc: 'Digitalisasi pengarsipan dan tata kelola surat-menyurat.', cat: 'Administrasi', group: 'Administrasi', icon: 'fas fa-envelope-open-text' },
+      { id: 5, nama: 'SUPERVISI', link: 'https://supervisi.smpitalmubarok.sch.id/', desc: 'Pemantauan evaluasi mutu dan pembinaan kinerja asatidz.', cat: 'Manajemen', group: 'Administrasi', icon: 'fas fa-chalkboard-user' },
+      { id: 6, nama: 'BUKU INVENTARIS', link: 'https://inventaris.smpitalmubarok.sch.id/', desc: 'Digitalisasi pendataan sarana dan prasarana pesantren.', cat: 'Administrasi', group: 'Administrasi', icon: 'fas fa-boxes-stacked' },
+      { id: 7, nama: 'E-RAPOR', link: 'https://erapor.smpitalmubarok.sch.id/', desc: 'Akses dan unduh e-rapor berkala santri oleh wali santri.', cat: 'Akademik', group: 'Akademik', icon: 'fas fa-file-invoice' },
+      { id: 8, nama: 'SIM TAHFIDZ', link: 'https://simtahfidz.smpitalmubarok.sch.id/', desc: 'Monitoring mutabaah hafalan Al-Qur\'an dan setoran juz harian.', cat: 'Tahfidz', group: 'Tahfidz', icon: 'fas fa-book-quran' },
+      { id: 9, nama: 'E-LIBRARY', link: 'https://elibrary.smpitalmubarok.sch.id/', desc: 'Katalog buku, kitab rujukan, dan literasi digital santri.', cat: 'Literasi', group: 'Tahfidz', icon: 'fas fa-book-bookmark' },
+      { id: 10, nama: 'PORTAL PPDB', link: 'https://ppdb.smpitalmubarok.sch.id/', desc: 'Sistem pendaftaran dan seleksi santri baru daring.', cat: 'Layanan', group: 'Layanan', icon: 'fas fa-user-plus' },
+      { id: 11, nama: 'KONSULTASI BK', link: 'https://bk.smpitalmubarok.sch.id/', desc: 'Layanan konseling perkembangan karakter dan adab santri.', cat: 'Layanan', group: 'Layanan', icon: 'fas fa-comments' },
+      { id: 12, nama: 'KEUANGAN & SYAHRIYAH', link: 'https://keuangan.smpitalmubarok.sch.id/', desc: 'Informasi syahriyah bulanan dan donasi pesantren.', cat: 'Keuangan', group: 'Administrasi', icon: 'fas fa-wallet' },
+      { id: 13, nama: 'PELANGGARAN & DISIPLIN', link: 'https://tatatertib.smpitalmubarok.sch.id/', desc: 'Pencatatan poin kedisiplinan dan mutabaah akhlak santri.', cat: 'Kedisiplinan', group: 'Layanan', icon: 'fas fa-clipboard-check' },
+      { id: 14, nama: 'PORTAL ALUMNI', link: 'https://alumni.smpitalmubarok.sch.id/', desc: 'Jejaring alumni santri Yambu\'ul Qur\'an di berbagai penjuru.', cat: 'Komunitas', group: 'Layanan', icon: 'fas fa-user-graduate' },
+      { id: 15, nama: 'SISTEM KESEHATAN (POSKESTREN)', link: 'https://poskestren.smpitalmubarok.sch.id/', desc: 'Catatan rekam medis dan kesehatan santri di asrama.', cat: 'Kesehatan', group: 'Layanan', icon: 'fas fa-heart-pulse' },
+      { id: 16, nama: 'KARYA & MAJALAH SANTRI', link: 'https://karya.smpitalmubarok.sch.id/', desc: 'Wadah publikasi karya sastra, kaligrafi, dan artikel santri.', cat: 'Kreativitas', group: 'Tahfidz', icon: 'fas fa-newspaper' },
+      { id: 17, nama: 'JADWAL & KALENDER', link: 'https://kalender.smpitalmubarok.sch.id/', desc: 'Sinkronisasi agenda libur, ujian, dan khataman Qur\'an.', cat: 'Akademik', group: 'Akademik', icon: 'fas fa-calendar-days' },
+      { id: 18, nama: 'PUSAT BANTUAN HUMAS', link: 'https://wa.me/6281515777911', desc: 'Saluran informasi resmi wali santri bersama pengurus.', cat: 'Layanan', group: 'Layanan', icon: 'fas fa-headset' }
     ];
+
+    let currentCategory = 'Semua';
+    let currentQuery = '';
+
+    function setCategoryFilter(cat) {
+      currentCategory = cat;
+      const buttons = document.querySelectorAll('#category-tabs .tab-btn');
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-cat') === cat) {
+          btn.className = 'tab-btn active px-3 sm:px-4 py-2 hairline-all bg-emerald-950 text-gold-light font-semibold tracking-wider transition-all whitespace-nowrap text-[11px]';
+        } else {
+          btn.className = 'tab-btn px-3 sm:px-4 py-2 hairline-all bg-chalk hover:bg-slate-100 text-ink-muted font-medium tracking-wider transition-all whitespace-nowrap text-[11px]';
+        }
+      });
+      applyAppsFilter();
+    }
+
+    function handleAppSearch(val) {
+      currentQuery = (val || '').toLowerCase().trim();
+      applyAppsFilter();
+    }
+
+    function applyAppsFilter() {
+      let filtered = APPS_LIST;
+      if (currentCategory !== 'Semua') {
+        filtered = filtered.filter(app => app.group === currentCategory);
+      }
+      if (currentQuery) {
+        filtered = filtered.filter(app => 
+          app.nama.toLowerCase().includes(currentQuery) || 
+          app.desc.toLowerCase().includes(currentQuery) || 
+          app.cat.toLowerCase().includes(currentQuery)
+        );
+      }
+      renderApps(filtered);
+    }
 
     function renderApps(list) {
       const container = document.getElementById('apps-container');
       const countEl = document.getElementById('app-count');
       if (countEl) countEl.textContent = list.length + ' Aplikasi';
       
+      if (!list.length) {
+        container.innerHTML = '<div class="col-span-full py-8 text-center text-xs font-mono text-ink-muted hairline-all bg-chalk">Tidak ada aplikasi yang sesuai dengan filter atau kata kunci pencarian.</div>';
+        return;
+      }
+
       container.innerHTML = list.map(function(app) {
-        return '<div class="bg-chalk hairline-all p-5 flex flex-col justify-between hover:border-emerald-900 transition-colors">' +
+        return '<div class="bg-chalk hairline-all p-3 sm:p-5 flex flex-col justify-between hover:border-emerald-900 transition-colors">' +
           '<div>' +
-            '<div class="flex items-center justify-between text-[10px] font-mono text-ink-muted mb-2">' +
-              '<span class="uppercase text-emerald-900 font-semibold">' + app.cat + '</span>' +
-              '<span>#' + (app.id < 10 ? '0' : '') + app.id + '</span>' +
+            '<div class="flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-ink-muted mb-1.5 sm:mb-2">' +
+              '<span class="uppercase text-emerald-900 font-semibold tracking-wider truncate mr-1">' + app.cat + '</span>' +
+              '<span class="text-slate-400 flex-shrink-0">#' + (app.id < 10 ? '0' : '') + app.id + '</span>' +
             '</div>' +
-            '<h4 class="font-serif text-sm font-bold text-emerald-950 mb-1.5 flex items-center gap-2">' +
-              '<i class="' + app.icon + ' text-emerald-800 text-xs"></i> ' +
-              '<span>' + app.nama + '</span>' +
+            '<h4 class="font-serif text-xs sm:text-sm font-bold text-emerald-950 mb-1 flex items-center gap-1.5">' +
+              '<i class="' + app.icon + ' text-emerald-800 text-[10px] sm:text-xs flex-shrink-0"></i> ' +
+              '<span class="truncate">' + app.nama + '</span>' +
             '</h4>' +
-            '<p class="text-xs text-ink-muted font-light leading-relaxed">' + app.desc + '</p>' +
+            '<p class="text-[10px] sm:text-xs text-ink-muted font-light leading-relaxed line-clamp-2">' + app.desc + '</p>' +
           '</div>' +
-          '<div class="pt-3 mt-3 hairline-t flex items-center justify-between text-[11px] font-semibold text-emerald-900">' +
-            '<a href="' + app.link + '" target="_blank" rel="noopener" class="hover:underline flex items-center gap-1.5">Buka Aplikasi <i class="fas fa-arrow-up-right-from-square text-[9px]"></i></a>' +
+          '<div class="pt-2 sm:pt-3 mt-2 sm:mt-3 hairline-t flex items-center justify-between text-[10px] sm:text-[11px] font-semibold text-emerald-900">' +
+            '<a href="' + app.link + '" target="_blank" rel="noopener" class="hover:underline flex items-center gap-1">Akses <i class="fas fa-arrow-up-right-from-square text-[8px] sm:text-[9px]"></i></a>' +
           '</div>' +
         '</div>';
       }).join('');
     }
     renderApps(APPS_LIST);
-
-    function filterApps(q) {
-      const query = (q || '').toLowerCase().trim();
-      if (!query) {
-        renderApps(APPS_LIST);
-        return;
-      }
-      const filtered = APPS_LIST.filter(function(a) {
-        return a.nama.toLowerCase().includes(query) || a.desc.toLowerCase().includes(query) || a.cat.toLowerCase().includes(query);
-      });
-      renderApps(filtered);
-    }
 
     // Default News Fallback
     const DEFAULT_NEWS = [
@@ -727,62 +916,112 @@
         kategori: 'TAHFIDZ',
         tanggal: '12 November 2026',
         judul: 'Wisuda Khotmil Qur\'an Bil Ghoib Angkatan III SMPI Yambu\'ul Qur\'an',
-        ringkasan: 'Sebanyak 24 santri berhasil menyelesaikan setoran hafalan Al-Qur\'an 30 Juz secara mutqin di hadapan dewan penguji sanad.',
+        ringkasan: 'Sebanyak 24 santri berhasil menyelesaikan setoran hafalan Al-Qur\'an 30 Juz secara mutqin di hadapan dewan penguji sanad. Momen penuh haru ini disaksikan oleh para masyaikh dan wali santri.',
         link: '#'
       },
       {
         kategori: 'PRESTASI',
         tanggal: '28 Oktober 2026',
         judul: 'Santri SMPI Yambu\'ul Qur\'an Raih Medali Emas Olimpiade Sains Nasional Kediri',
-        ringkasan: 'Prestasi gemilang membuktikan bahwa santri tahfidz memiliki kapasitas analitis sains yang unggul dan kompetitif.',
+        ringkasan: 'Prestasi gemilang membuktikan bahwa santri tahfidz memiliki kapasitas analitis sains dan matematika yang unggul dan berdaya saing tinggi.',
         link: '#'
       },
       {
         kategori: 'AKADEMIK',
         tanggal: '15 Oktober 2026',
-        judul: 'Penguatan Kemampuan Bahasa Arab & Inggris Melalui Program Muaskar Bahasa',
-        ringkasan: 'Intensifikasi dialek dan percakapan tematik santri asrama untuk melatih kepemimpinan santri berwawasan global.',
+        judul: 'Penguatan Kemampuan Bahasa Arab & Inggris Melalui Program Muaskar Bahasa Santri',
+        ringkasan: 'Intensifikasi dialek harian dan pidato tiga bahasa di asrama untuk melatih kepemimpinan santri berwawasan diplomasi global.',
         link: '#'
       }
     ];
 
     function renderNews(newsList) {
       const container = document.getElementById('news-container');
-      if (!container) return;
-      container.innerHTML = newsList.map(function(item) {
-        return '<article class="bg-white hairline-all p-7 hover:border-emerald-900 transition-colors">' +
-          '<div class="flex items-center gap-3 text-[11px] font-mono text-ink-muted mb-2">' +
-            '<span class="text-emerald-900 font-semibold uppercase">' + item.kategori + '</span>' +
-            '<span>•</span>' +
-            '<span>' + item.tanggal + '</span>' +
+      if (!container || !newsList.length) return;
+      
+      const lead = newsList[0];
+      const secondaries = newsList.slice(1);
+
+      let html = '';
+
+      // Lead Featured Story (16:9 Image Box)
+      html += '<article class="bg-white hairline-all p-5 sm:p-7 group hover:border-emerald-900 transition-colors">' +
+        '<div class="relative aspect-video bg-slate-900 overflow-hidden mb-5 hairline-all">' +
+          '<img src="splash-bg.webp" alt="Featured Editorial" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90">' +
+          '<div class="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-transparent to-transparent"></div>' +
+          '<div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">' +
+            '<span class="inline-block text-[9px] sm:text-[10px] font-mono uppercase tracking-widest bg-emerald-900/90 text-gold-light px-2.5 py-1 hairline-all">' +
+              'LAPORAN UTAMA &bull; ' + lead.kategori +
+            '</span>' +
           '</div>' +
-          '<h3 class="font-serif text-xl font-bold text-emerald-950 mb-2">' + item.judul + '</h3>' +
-          '<p class="text-xs text-ink-muted leading-relaxed font-light">' + item.ringkasan + '</p>' +
-          '<div class="mt-4 pt-4 hairline-t">' +
-            '<a href="' + (item.link || '#') + '" class="text-xs font-semibold text-emerald-900 hover:text-emerald-700 inline-flex items-center gap-1.5">' +
-              'Baca Selengkapnya <i class="fas fa-arrow-right text-[10px]"></i>' +
-            '</a>' +
-          '</div>' +
-        '</article>';
-      }).join('');
+        '</div>' +
+        '<div class="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] font-mono text-ink-muted mb-2">' +
+          '<span class="text-emerald-900 font-bold uppercase">' + lead.kategori + '</span>' +
+          '<span class="inline-block w-px h-2.5 bg-slate-300"></span>' +
+          '<span>' + lead.tanggal + '</span>' +
+        '</div>' +
+        '<h3 class="font-serif text-xl sm:text-2xl font-bold text-emerald-950 mb-2 leading-snug">' +
+          lead.judul +
+        '</h3>' +
+        '<p class="text-xs sm:text-sm text-ink-muted leading-relaxed font-light mb-4">' +
+          lead.ringkasan +
+        '</p>' +
+        '<div class="pt-3 hairline-t flex items-center justify-between text-xs font-semibold text-emerald-900">' +
+          '<a href="' + (lead.link || '#') + '" class="hover:underline inline-flex items-center gap-1.5">' +
+            'Baca Artikel Lengkap <i class="fas fa-arrow-right text-[10px]"></i>' +
+          '</a>' +
+          '<span class="text-[10px] font-mono text-ink-muted uppercase">EDITORIAL DISPATCH</span>' +
+        '</div>' +
+      '</article>';
+
+      // Secondary Horizontal Editorial Rows
+      if (secondaries.length > 0) {
+        html += '<div class="space-y-4 pt-1">';
+        secondaries.forEach(function(item) {
+          html += '<article class="bg-white hairline-all p-4 sm:p-5 hover:border-emerald-900 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4">' +
+            '<div class="space-y-1.5 flex-1 min-w-0">' +
+              '<div class="flex items-center gap-2 text-[10px] font-mono text-ink-muted">' +
+                '<span class="text-emerald-900 font-semibold uppercase">' + item.kategori + '</span>' +
+                '<span class="inline-block w-px h-2 bg-slate-300"></span>' +
+                '<span>' + item.tanggal + '</span>' +
+              '</div>' +
+              '<h4 class="font-serif text-sm sm:text-base font-bold text-emerald-950 leading-snug">' + item.judul + '</h4>' +
+              '<p class="text-xs text-ink-muted font-light line-clamp-2">' + item.ringkasan + '</p>' +
+            '</div>' +
+            '<div class="self-start sm:self-center flex-shrink-0 pt-1 sm:pt-0">' +
+              '<a href="' + (item.link || '#') + '" class="text-xs font-semibold text-emerald-900 hover:underline flex items-center gap-1.5 whitespace-nowrap">' +
+                'Baca <i class="fas fa-arrow-right text-[9px]"></i>' +
+              '</a>' +
+            '</div>' +
+          '</article>';
+        });
+        html += '</div>';
+      }
+
+      container.innerHTML = html;
     }
     renderNews(DEFAULT_NEWS);
 
     // Agenda Fallback
     const DEFAULT_AGENDA = [
-      { tgl: '25 Nov', event: 'Ujian Tasmi\' Terbuka 5 & 10 Juz Sekali Duduk', loc: 'Masjid Kampus' },
-      { tgl: '05 Des', event: 'Penilaian Akhir Semester Ganjil 2026/2027', loc: 'Ruang Ujian Digital' },
-      { tgl: '20 Des', event: 'Penerimaan Buku Laporan Capaian Santri (E-Rapor)', loc: 'Aula Yayasan' }
+      { day: '25', month: 'NOV', event: 'Ujian Tasmi\' Terbuka 5 & 10 Juz Sekali Duduk', loc: 'Masjid Kampus Utama' },
+      { day: '05', month: 'DES', event: 'Penilaian Akhir Semester Ganjil 2026/2027', loc: 'Ruang Ujian Digital' },
+      { day: '20', month: 'DES', event: 'Penerimaan Buku Laporan Capaian Santri (E-Rapor)', loc: 'Aula Yayasan Yambu\'ul Qur\'an' }
     ];
 
     function renderAgenda(list) {
       const container = document.getElementById('agenda-container');
       if (!container) return;
       container.innerHTML = list.map(function(ag) {
-        return '<div class="hairline-b pb-3">' +
-          '<span class="font-mono text-xs font-bold text-gold-dark block">' + ag.tgl + '</span>' +
-          '<h5 class="text-xs font-bold text-emerald-950 mt-0.5">' + ag.event + '</h5>' +
-          '<span class="text-[10px] text-ink-muted block mt-0.5"><i class="fas fa-location-dot mr-1 text-slate-400"></i>' + ag.loc + '</span>' +
+        return '<div class="hairline-b pb-3.5 flex items-start gap-3">' +
+          '<div class="w-11 h-11 flex-shrink-0 bg-chalk hairline-all flex flex-col items-center justify-center font-mono leading-none">' +
+            '<span class="text-xs font-bold text-gold-dark">' + ag.day + '</span>' +
+            '<span class="text-[8px] uppercase tracking-wider text-ink-muted mt-0.5">' + ag.month + '</span>' +
+          '</div>' +
+          '<div class="min-w-0 flex-1">' +
+            '<h5 class="text-xs font-bold text-emerald-950 leading-snug">' + ag.event + '</h5>' +
+            '<span class="text-[10px] text-ink-muted block mt-1"><i class="fas fa-location-dot mr-1 text-slate-400"></i>' + ag.loc + '</span>' +
+          '</div>' +
         '</div>';
       }).join('');
     }
@@ -800,12 +1039,17 @@
       const container = document.getElementById('guru-container');
       if (!container) return;
       container.innerHTML = list.map(function(g) {
-        return '<div class="bg-chalk hairline-all p-6 text-center">' +
-          '<div class="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-50 hairline-all flex items-center justify-center text-emerald-900 text-xl font-serif">' +
-            '<i class="fas fa-user-tie"></i>' +
+        return '<div class="bg-chalk hairline-all p-4 sm:p-6 text-center hover:border-emerald-900 transition-colors flex flex-col justify-between">' +
+          '<div>' +
+            '<div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 bg-emerald-50 hairline-all flex items-center justify-center text-emerald-900 text-lg sm:text-xl font-serif">' +
+              '<i class="fas fa-user-tie"></i>' +
+            '</div>' +
+            '<h4 class="font-serif text-xs sm:text-sm font-bold text-emerald-950 leading-snug mb-1">' + g.nama + '</h4>' +
+            '<p class="text-[10px] sm:text-[11px] text-ink-muted font-light leading-tight">' + g.peran + '</p>' +
           '</div>' +
-          '<h4 class="font-serif text-sm font-bold text-emerald-950">' + g.nama + '</h4>' +
-          '<p class="text-[11px] text-ink-muted font-light mt-1">' + g.peran + '</p>' +
+          '<div class="pt-3 mt-3 hairline-t text-[9px] font-mono uppercase tracking-widest text-emerald-900">' +
+            'DEWAN ASATIDZ' +
+          '</div>' +
         '</div>';
       }).join('');
     }
