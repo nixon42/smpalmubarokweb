@@ -150,7 +150,7 @@ function isiDemoData() {
     'Ekstrakurikuler': [
       ["Seni Hadrah & Banjari Al-Muhibbin", "Seni musik rebana Islami, pembacaan maulid Simtudduror dan sholawat nabi.", "Ust. Zainul Muttaqin", "Selasa & Kamis, 15.30 - 17.00 WIB", "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"],
       ["Pramuka Gugus Depan Yaqu", "Pendidikan kepanduan melatih kedisiplinan, kemandirian, dan kepemimpinan generasi muda muslim.", "Kak Rian Hidayat, S.Pd.", "Jumat, 14.30 - 16.30 WIB", "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=600&q=80"],
-      ["Futsal & Olahraga Prestasi", "Latihan teknik sepak bola mini, penguatan fisik, dan kebugaran santri.", "Coach Wahyu Pratama", "Sabtu, 07.00 - 09.00 WIB", "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80"],
+      ["Futsal & Olahraga Prestasi", "Latihan teknik sepak bola mini, penguatan fisik, dan kebugaran santri.", "Coach Wahyu Pratama", "Sabtu, 07.00 - 09.00 WIB", "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80"],
       ["Seni Kaligrafi Islam Kontemporer", "Pembelajaran seni khat naskhi, tsuluts, diwani, dan lukis kaligrafi kanvas.", "Ust. Mahfudz Al-Khattat", "Rabu, 15.30 - 17.00 WIB", "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=600&q=80"],
       ["Muhadharah 3 Bahasa", "Latihan pidato dan retorika dakwah dalam Bahasa Indonesia, Arab, dan Inggris.", "Ustadzah Fitria, S.Pd.", "Ahad, 19.30 - 21.00 WIB", "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80"],
       ["Klub Komputer & IT Terapan", "Belajar dasar desain grafis, pengetikan cepat, dan eksplorasi teknologi digital.", "Bpk. Hendra Saputra, S.Kom.", "Senin, 15.30 - 17.00 WIB", "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"]
@@ -196,7 +196,7 @@ function isiDemoData() {
       ["Sholat Berjamaah di Masjid Jami' Yambu'ul Qur'an", "Ibadah", "2026-11-04", "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80"],
       ["Latihan Rutin Ekstrakurikuler Hadrah Banjari", "Ekstrakurikuler", "2026-10-30", "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"],
       ["Upacara Bendera dan Pembinaan Karakter Santri", "Kesiswaan", "2026-10-25", "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"],
-      ["Kompetisi Futsal Antar Kelas (Classmeeting)", "Olahraga", "2026-10-18", "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80"]
+      ["Kompetisi Futsal Antar Kelas (Classmeeting)", "Olahraga", "2026-10-18", "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80"]
     ],
     'Karya': [
       [

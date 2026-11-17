@@ -43,7 +43,6 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="preconnect" href="https://script.google.com" crossorigin>
-<link rel="preload" as="font" type="font/woff2" crossorigin href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2">
 <link rel="preload" as="image" href="splash-logo.webp">
 <link rel="preload" as="image" href="splash-bg.webp">
 
@@ -92,8 +91,7 @@
   } catch (e) { window.__PRELOAD_DATA__ = null; }
 })();
 </script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></noscript>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 <link href="https://cdn.jsdelivr.net/npm/typeface-glacial-indifference/" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://cdn.jsdelivr.net/npm/typeface-glacial-indifference/" rel="stylesheet"></noscript>
@@ -1852,7 +1850,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
         </div>
         <p class="text-xs text-slate-500 text-center mb-4 font-semibold" id="beranda-alamat-text"></p>
         <div class="card-scholar overflow-hidden shadow-lg h-80">
-          <iframe id="beranda-maps" src="" class="w-full h-full border-0" loading="lazy"></iframe>
+          <iframe id="beranda-maps" src="about:blank" title="Peta Lokasi SMPI Yambu'ul Qur'an" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -5473,7 +5471,12 @@ function emptyState(msg) {
 // Menambah "=wLEBAR" membuat Google mengirim versi yang sudah diperkecil. Link lain dibiarkan apa adanya.
 function gambarKecil_(url, lebar) {
   try {
-    if (typeof url === 'string' && /^https:\/\/lh3\.googleusercontent\.com\/d\/[\w-]+$/.test(url)) return url + '=w' + (lebar || 800);
+    if (typeof url === 'string') {
+      if (url.indexOf('photo-1508098682722-e99c43a406b2') !== -1) {
+        url = url.replace('photo-1508098682722-e99c43a406b2', 'photo-1574629810360-7efbbe195018');
+      }
+      if (/^https:\/\/lh3\.googleusercontent\.com\/d\/[\w-]+$/.test(url)) return url + '=w' + (lebar || 800);
+    }
   } catch (e) {}
   return url;
 }
@@ -5483,13 +5486,15 @@ function fotoUrls(str, fallback) {
   return arr.length ? arr : [fallback];
 }
 function fotoSliderHtml(str, imgClass, fallback) {
-  const urls = fotoUrls(str, fallback);
+  const fb = fallback || 'https://placehold.co/400x300/0b3323/dfb342?text=SMPI+Yaqu';
+  const urls = fotoUrls(str, fb);
+  const errHandler = ' onerror="this.onerror=null;this.src=\'' + fb.replace(/'/g, "\\'") + '\';"';
   if (urls.length <= 1) {
-    return '<img loading="lazy" decoding="async" src="' + gambarKecil_(urls[0], 800) + '" class="' + imgClass + '">';
+    return '<img loading="lazy" decoding="async" src="' + gambarKecil_(urls[0], 800) + '" class="' + imgClass + '"' + errHandler + '>';
   }
   const sid = 'fotoslider' + (_fotoSliderSeq++);
   const imgs = urls.map(function (u) {
-    return '<img loading="lazy" decoding="async" src="' + gambarKecil_(u, 800) + '" class="' + imgClass + ' flex-shrink-0 snap-center w-full">';
+    return '<img loading="lazy" decoding="async" src="' + gambarKecil_(u, 800) + '" class="' + imgClass + ' flex-shrink-0 snap-center w-full"' + errHandler + '>';
   }).join('');
   const dots = urls.map(function (_, i) {
     return '<span class="w-1.5 h-1.5 rounded-full ' + (i === 0 ? 'bg-white' : 'bg-white/40') + '"></span>';
@@ -7660,13 +7665,12 @@ function donasiMasukAksi_(rowId, aksi) {
   try {
     localStorage.removeItem('smp_bahasa');
     sessionStorage.removeItem('smp_bahasa_reload');
-    const lalu = 'expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
-    document.cookie = 'googtrans=;' + lalu;
-    const bagian = location.hostname.split('.');
-    for (let i = 0; i < bagian.length - 1; i++) {
-      const dom = bagian.slice(i).join('.');
-      document.cookie = 'googtrans=;' + lalu + ' domain=' + dom + ';';
-      document.cookie = 'googtrans=;' + lalu + ' domain=.' + dom + ';';
+    if (document.cookie && document.cookie.indexOf('googtrans') !== -1) {
+      const lalu = 'expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
+      document.cookie = 'googtrans=;' + lalu;
+      if (location.hostname && location.hostname !== 'localhost') {
+        document.cookie = 'googtrans=;' + lalu + ' domain=' + location.hostname + ';';
+      }
     }
   } catch (e) {}
 })();
