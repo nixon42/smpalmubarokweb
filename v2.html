@@ -2386,7 +2386,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
                       <span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">STATUS // PENDING</span>
                     </div>
                     <h4 class="font-serif text-base font-bold text-[#062116] mb-2 leading-snug">Sinkronisasi Dokumentasi</h4>
-                    <p class="text-xs text-[#52665a] leading-relaxed font-light">Dokumentasi berkala capaian hafalan santri dan pembiasaan adab Qur'ani sedang disiapkan.</p>
+                    <p class="text-xs text-[#52665a] leading-relaxed font-light">Dokumentasi berkala capaian hafalan santri dan pembiasaan adab Qur&#39;ani sedang disiapkan.</p>
                   </div>
                   <div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[11px] font-mono text-[#7a8e82]">
                     <span>DIVISI AKADEMIK</span>
@@ -2400,7 +2400,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
                       <span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">STATUS // PENDING</span>
                     </div>
                     <h4 class="font-serif text-base font-bold text-[#062116] mb-2 leading-snug">Kurikulum Terpadu Pesantren</h4>
-                    <p class="text-xs text-[#52665a] leading-relaxed font-light">Silabus terpadu Kementerian Pendidikan dan kepesantrenan Al-Qur'an tersedia di panduan pendaftaran.</p>
+                    <p class="text-xs text-[#52665a] leading-relaxed font-light">Silabus terpadu Kementerian Pendidikan dan kepesantrenan Al-Qur&#39;an tersedia di panduan pendaftaran.</p>
                   </div>
                   <div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[11px] font-mono text-[#7a8e82]">
                     <span>DIVISI AKADEMIK</span>
@@ -2622,7 +2622,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
                   <span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">PERSIAPAN</span>
                 </div>
                 <h4 class="font-serif text-sm font-bold text-[#062116] mb-1.5 leading-snug">Pendaftaran Ekstrakurikuler</h4>
-                <p class="text-xs text-[#52665a] leading-relaxed font-light">Jadwal seleksi dan pembagian kelompok ekstrakurikuler santri akan diumumkan pada permulaan masa ta'aruf.</p>
+                <p class="text-xs text-[#52665a] leading-relaxed font-light">Jadwal seleksi dan pembagian kelompok ekstrakurikuler santri akan diumumkan pada permulaan masa ta&#39;aruf.</p>
               </div>
               <div class="mt-4 pt-2 border-t border-[#e2ece6] text-[10px] font-mono text-[#7a8e82] flex items-center justify-between">
                 <span>DIVISI KESISWAAN</span>
@@ -4803,6 +4803,11 @@ let heroSig_ = '';
 
 function renderHeroSlider() {
   const wrap = document.getElementById('hero-slides');
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
   if (!wrap) return;
   if (!wrap) return;
   if (!wrap) return;
@@ -9634,7 +9639,7 @@ setTimeout(function () {
       elFoto.innerHTML = '<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="Ust. H. Ahmad Fauzi, Lc., M.Pd.">';
     }
     if (elNama) elNama.textContent = 'Ust. H. Ahmad Fauzi, Lc., M.Pd.';
-    if (elJabatan) elJabatan.textContent = 'Kepala SMPI Yambu\'ul Qur\'an';
+    if (elJabatan) elJabatan.textContent = "Kepala SMPI Yambu'ul Qur'an";
     if (elSambutan && sambutanTxt) elSambutan.textContent = sambutanTxt;
     if (elVisi && visiTxt) elVisi.textContent = visiTxt;
     if (elMisi && misiTxt) elMisi.textContent = misiTxt;
@@ -9935,11 +9940,11 @@ setTimeout(function () {
                   (a.melanjutkan ? '<p class="text-xs text-[#7a8e82] mt-0.5">' + a.melanjutkan + '</p>' : '') +
                 '</div>' +
               '</div>' +
-              '<p class="text-xs text-[#52665a] leading-relaxed italic font-serif">"' + (a.testimoni || 'Pendidikan tahfidz dan disiplin santri di SMPI Yambu'ul Qur'an menjadi bekal berharga menuntut ilmu lanjutan.') + '"</p>' +
+              '<p class="text-xs text-[#52665a] leading-relaxed italic font-serif">"' + (a.testimoni || "Pendidikan tahfidz dan disiplin santri di SMPI Yambu'ul Qur'an menjadi bekal berharga menuntut ilmu lanjutan.") + '"</p>' +
             '</div>' +
             '<div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[11px] font-mono text-[#7a8e82]">' +
               '<span>STATUS: TERVERIFIKASI</span>' +
-              '<span class="text-[#062116] font-bold">SMPI YAMBU'UL QUR'AN</span>' +
+              '<span class="text-[#062116] font-bold">SMPI YAMBU\&#39;UL QUR\&#39;AN</span>' +
             '</div>' +
           '</div>';
         }).join('');
@@ -9948,7 +9953,7 @@ setTimeout(function () {
       // EMPTY STATE FALLBACK CARDS: Prevent collapse & show clear editorial notification
       if (track) {
         track.innerHTML = [
-          { tag: 'JEJAK ALUMNI', title: 'Belum Ada Data Alumni', desc: 'Publikasi kisah inspiratif dan testimoni lulusan SMPI Yambu'ul Qur'an sedang dihimpun oleh tim redaksi kampus.' },
+          { tag: "JEJAK ALUMNI", title: "Belum Ada Data Alumni", desc: "Publikasi kisah inspiratif dan testimoni lulusan SMPI Yambu'ul Qur'an sedang dihimpun oleh tim redaksi kampus." },
           { tag: 'DIREKTORI', title: 'Pemutakhiran Portofolio', desc: 'Sistem direktori jejaring karir dan studi lanjut santriwati-santriwan sedang dalam tahap sinkronisasi data.' },
           { tag: 'ARSIP KAMPUS', title: 'Jejaring Santriwati & Santriwan', desc: 'Data rekam jejak lulusan angkatan terintegrasi akan ditayangkan di lembaran ini secara transparan.' }
         ].map(function(item) {
@@ -9987,7 +9992,7 @@ setTimeout(function () {
       if (track) {
         track.innerHTML = dbData.map(function(e) {
           const img = (e.foto && e.foto.trim()) ? e.foto.split(',')[0].trim() : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80';
-          return '<div onclick="showSection('ekstrakurikuler')" class="border border-[#e2ece6] p-3 bg-white flex-shrink-0 w-64 md:w-72 snap-start hover:border-[#062116] cursor-pointer transition-all flex flex-col justify-between" style="min-height: 200px;">' +
+          return '<div onclick="showSection(&#39;ekstrakurikuler&#39;)" class="border border-[#e2ece6] p-3 bg-white flex-shrink-0 w-64 md:w-72 snap-start hover:border-[#062116] cursor-pointer transition-all flex flex-col justify-between" style="min-height: 200px;">' +
             '<div>' +
               '<div class="aspect-[16/10] overflow-hidden bg-[#faf9f5] mb-3 relative">' +
                 '<img src="' + img + '" class="w-full h-full object-cover" alt="' + (e.nama_ekskul || e.nama || 'Ekskul') + '">' +
@@ -10030,7 +10035,7 @@ setTimeout(function () {
         track.innerHTML = [
           { tag: 'EKSKUL SANTRI', title: 'Belum Ada Data Ekstrakurikuler', desc: 'Ragam kegiatan pengembangan minat dan bakat santri untuk semester berjalan sedang diselaraskan dengan jadwal madrasah.' },
           { tag: 'PENGEMBANGAN DIRI', title: 'Penyusunan Jadwal Pembinaan', desc: 'Ekstrakurikuler seni hadrah, multimedia santri, bahasa asing, dan keolahragaan sedang tahap penetapan pembina.' },
-          { tag: 'AGENDA RUTIN', title: 'Pendaftaran Ekstrakurikuler', desc: 'Jadwal seleksi dan pembagian kelompok ekstrakurikuler santri akan diumumkan pada permulaan masa ta'aruf.' }
+          { tag: 'AGENDA RUTIN', title: 'Pendaftaran Ekstrakurikuler', desc: 'Jadwal seleksi dan pembagian kelompok ekstrakurikuler santri akan diumumkan pada permulaan masa ta&#39;aruf.' }
         ].map(function(item) {
           return '<div class="border border-[#e2ece6] bg-white p-5 flex flex-col justify-between flex-shrink-0 w-64 md:w-72 snap-start" style="min-height: 200px;">' +
             '<div>' +
@@ -10067,14 +10072,14 @@ setTimeout(function () {
     if (dbData.length > 0) {
       const cardHtml = function(p) {
         const img = (p.foto && p.foto.trim()) ? p.foto.split(',')[0].trim() : 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=500&q=80';
-        return '<div onclick="showSection('program')" class="border border-[#e2ece6] bg-white p-5 flex flex-col justify-between hover:border-[#062116] cursor-pointer transition-all flex-shrink-0 w-80 md:w-96 snap-start" style="min-height: 220px;">' +
+        return '<div onclick="showSection(&#39;program&#39;)" class="border border-[#e2ece6] bg-white p-5 flex flex-col justify-between hover:border-[#062116] cursor-pointer transition-all flex-shrink-0 w-80 md:w-96 snap-start" style="min-height: 220px;">' +
           '<div>' +
             '<div class="aspect-[16/9] overflow-hidden bg-[#faf9f5] mb-3 relative">' +
               '<img src="' + img + '" class="w-full h-full object-cover" alt="' + (p.nama_program || 'Program') + '">' +
               '<span class="absolute bottom-2 left-2 bg-[#062116]/90 text-white font-mono text-[9px] px-2 py-0.5 uppercase tracking-wider">PROGRAM UNGGULAN</span>' +
             '</div>' +
             '<h4 class="font-serif text-base font-bold text-[#062116] leading-snug mb-1">' + (p.nama_program || '-') + '</h4>' +
-            '<p class="text-xs text-[#52665a] leading-relaxed line-clamp-3 font-light">' + (p.deskripsi || 'Program pembinaan terstruktur santri SMPI Yambu'ul Qur'an.') + '</p>' +
+            '<p class="text-xs text-[#52665a] leading-relaxed line-clamp-3 font-light">' + (p.deskripsi || 'Program pembinaan terstruktur santri SMPI Yambu&#39;ul Qur&#39;an.') + '</p>' +
           '</div>' +
           '<div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[11px] font-mono text-[#7a8e82]">' +
             '<span>KURIKULUM PESANTREN</span>' +
@@ -10112,8 +10117,8 @@ setTimeout(function () {
       // EMPTY STATE FALLBACK CARDS: Prevent collapse & show clear editorial notification
       const emptyItems = [
         { tag: 'PROGRAM SANTRI', title: 'Belum Ada Data Aktivitas Program', desc: 'Rangkaian dokumentasi aktivitas program santri dan kegiatan akademik berkala sedang dihimpun redaksi.' },
-        { tag: 'PEMBINAAN TAHFIDZ', title: 'Sinkronisasi Dokumentasi', desc: 'Dokumentasi berkala capaian hafalan santri dan pembiasaan adab Qur'ani sedang disiapkan.' },
-        { tag: 'DIRASAH ISLAMIYAH', title: 'Kurikulum Terpadu Pesantren', desc: 'Silabus terpadu Kementerian Pendidikan dan kepesantrenan Al-Qur'an tersedia di panduan pendaftaran.' }
+        { tag: 'PEMBINAAN TAHFIDZ', title: 'Sinkronisasi Dokumentasi', desc: 'Dokumentasi berkala capaian hafalan santri dan pembiasaan adab Qur&#39;ani sedang disiapkan.' },
+        { tag: 'DIRASAH ISLAMIYAH', title: 'Kurikulum Terpadu Pesantren', desc: 'Silabus terpadu Kementerian Pendidikan dan kepesantrenan Al-Qur&#39;an tersedia di panduan pendaftaran.' }
       ];
       const emptyCardHtml = function(item) {
         return '<div class="border border-[#e2ece6] bg-white p-6 flex flex-col justify-between flex-shrink-0 w-80 md:w-96 snap-start" style="min-height: 220px;">' +
@@ -10156,7 +10161,7 @@ setTimeout(function () {
       if (berandaGrid) {
         berandaGrid.innerHTML = '<div class="space-y-4">' + dbData.slice(0, 4).map(function(k) {
           const tgl = k.tanggal ? String(k.tanggal) : '--';
-          return '<div onclick="showSection('kegiatan')" class="border border-[#e2ece6] bg-white p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-[#062116] cursor-pointer transition-all">' +
+          return '<div onclick="showSection(&#39;kegiatan&#39;)" class="border border-[#e2ece6] bg-white p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-[#062116] cursor-pointer transition-all">' +
             '<div class="flex items-start gap-4">' +
               '<div class="w-14 h-14 border border-[#e2ece6] bg-[#faf9f5] flex flex-col items-center justify-center flex-shrink-0 text-[#062116]">' +
                 '<span class="font-mono text-[9px] text-[#7a8e82] uppercase">TGL</span>' +
