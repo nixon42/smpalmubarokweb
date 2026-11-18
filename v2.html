@@ -1356,6 +1356,205 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
       h1, h2, h3, h4, .font-serif {
         font-family: 'Marcellus', Georgia, serif !important;
         font-weight: 400 !important;
+        color: #062116 !important;
+      }
+      .font-mono {
+        font-family: 'JetBrains Mono', monospace !important;
+      }
+      #splash-screen, #modal-onboarding, #banner-offline {
+        display: none !important;
+      }
+      body.splash-aktif {
+        overflow: visible !important;
+      }
+
+      /* -------------------------------------------------------------
+         V2 CONTRAST & COLOR CLASS DEFINITIONS (Guarantees visible text)
+         ------------------------------------------------------------- */
+      .bg-\[\#062116\], [class*="bg-[#062116]"] {
+        background-color: #062116 !important;
+        color: #ffffff !important;
+      }
+      .bg-\[\#062116\]:hover, [class*="bg-[#062116]"]:hover {
+        background-color: #c39328 !important;
+        color: #ffffff !important;
+      }
+      .text-\[\#062116\], [class*="text-[#062116]"] {
+        color: #062116 !important;
+      }
+      .border-\[\#062116\], [class*="border-[#062116]"] {
+        border-color: #062116 !important;
+      }
+      .bg-\[\#c39328\], [class*="bg-[#c39328]"] {
+        background-color: #c39328 !important;
+        color: #ffffff !important;
+      }
+      .text-\[\#c39328\], [class*="text-[#c39328]"] {
+        color: #c39328 !important;
+      }
+      .border-\[\#c39328\], [class*="border-[#c39328]"] {
+        border-color: #c39328 !important;
+      }
+      .text-\[\#52665a\], [class*="text-[#52665a]"] {
+        color: #52665a !important;
+      }
+      .text-\[\#7a8e82\], [class*="text-[#7a8e82]"] {
+        color: #7a8e82 !important;
+      }
+      .border-\[\#e2ece6\], [class*="border-[#e2ece6]"] {
+        border-color: #e2ece6 !important;
+      }
+      .bg-\[\#faf9f5\], [class*="bg-[#faf9f5]"] {
+        background-color: #faf9f5 !important;
+      }
+      .bg-\[\#25D366\], [class*="bg-[#25D366]"] {
+        background-color: #25D366 !important;
+        color: #ffffff !important;
+      }
+
+      /* -------------------------------------------------------------
+         HERO SECTION: OVERRIDE V1 INHERITED STYLES
+         ------------------------------------------------------------- */
+      #hero-slider {
+        background-color: #faf9f5 !important;
+        background-image: none !important;
+        color: #062116 !important;
+        border-bottom: 1px solid #e2ece6 !important;
+      }
+      #hero-slider h1,
+      #hero-slider .font-serif,
+      #hero-slider [class*="font-serif"] {
+        color: #062116 !important;
+      }
+      #hero-slider h1 span,
+      #hero-slider h1 em {
+        color: #c39328 !important;
+      }
+      #hero-slider p {
+        color: #52665a !important;
+      }
+      #hero-slider button:first-child,
+      #hero-slider button[onclick*="klikPendaftaran"] {
+        background-color: #062116 !important;
+        color: #ffffff !important;
+        border: 1px solid #062116 !important;
+      }
+      #hero-slider button:first-child:hover,
+      #hero-slider button[onclick*="klikPendaftaran"]:hover {
+        background-color: #c39328 !important;
+        color: #ffffff !important;
+        border-color: #c39328 !important;
+      }
+      #hero-slider button[onclick*="showSection"] {
+        background-color: transparent !important;
+        color: #062116 !important;
+        border: 1px solid #062116 !important;
+      }
+      #hero-slider button[onclick*="showSection"]:hover {
+        background-color: #062116 !important;
+        color: #ffffff !important;
+      }
+
+      /* -------------------------------------------------------------
+         FOOTER: STRICT SWISS EDITORIAL CONTRAST
+         ------------------------------------------------------------- */
+      footer {
+        background-color: #faf9f5 !important;
+        background-image: none !important;
+        color: #52665a !important;
+        border-top: 1px solid #e2ece6 !important;
+      }
+      footer h1, footer h2, footer h3, footer h4,
+      footer .font-serif, footer [class*="font-serif"] {
+        color: #062116 !important;
+      }
+      footer p, footer li, footer div {
+        color: #52665a !important;
+      }
+      footer a, footer span {
+        color: #52665a !important;
+      }
+      footer a:hover, footer button:hover {
+        color: #c39328 !important;
+      }
+      footer [class*="text-[#062116]"] {
+        color: #062116 !important;
+      }
+      footer [class*="text-[#c39328]"] {
+        color: #c39328 !important;
+      }
+      footer .border {
+        border-color: #e2ece6 !important;
+        background-color: #ffffff !important;
+        color: #062116 !important;
+      }
+      footer .border span {
+        color: #062116 !important;
+      }
+
+      /* -------------------------------------------------------------
+         PRAYER CARDS (JADWAL SHOLAT V2)
+         ------------------------------------------------------------- */
+      .sholat-card {
+        border-radius: 0px !important;
+        border: 1px solid #e2ece6 !important;
+        background: #faf9f5 !important;
+        color: #062116 !important;
+      }
+      .sholat-card .sholat-nama {
+        color: #52665a !important;
+      }
+      .sholat-card .sholat-jam {
+        color: #062116 !important;
+      }
+      .sholat-card.sholat-card-aktif {
+        background: #062116 !important;
+        border-color: #062116 !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 12px rgba(6, 33, 22, 0.15) !important;
+      }
+      .sholat-card.sholat-card-aktif .sholat-icon,
+      .sholat-card.sholat-card-aktif .sholat-nama {
+        color: #c39328 !important;
+      }
+      .sholat-card.sholat-card-aktif .sholat-jam {
+        color: #ffffff !important;
+      }
+
+      /* -------------------------------------------------------------
+         MEDIA GALLERIES (FOTO & VIDEO V2)
+         ------------------------------------------------------------- */
+      .v2-gallery-card, .v2-video-card {
+        border-radius: 0px !important;
+        border: 1px solid #e2ece6 !important;
+        background: #ffffff !important;
+        transition: border-color 0.2s ease, transform 0.2s ease !important;
+      }
+      .v2-gallery-card:hover, .v2-video-card:hover {
+        border-color: #062116 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(6, 33, 22, 0.06) !important;
+      }
+      :root {
+        --color-primary: #062116;
+        --color-primary-dark: #020b07;
+        --color-accent: #c39328;
+        --color-accent-light: #dfb342;
+        --bg-main: #ffffff;
+        --bg-surface: #faf9f5;
+        --text-main: #062116;
+        --text-muted: #52665a;
+        --border-color: #e2ece6;
+        --theme-border: #e2ece6 !important;
+      }
+      body {
+        background-color: #ffffff !important;
+        color: #062116 !important;
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+      }
+      h1, h2, h3, h4, .font-serif {
+        font-family: 'Marcellus', Georgia, serif !important;
+        font-weight: 400 !important;
       }
       .font-mono {
         font-family: 'JetBrains Mono', monospace !important;
@@ -1835,19 +2034,19 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
               <span class="font-mono text-xs text-[#52665a] uppercase tracking-wider whitespace-nowrap">TAHUN AKADEMIK 2026/2027</span>
             </div>
 
-            <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#062116] font-normal tracking-tight leading-[1.14]">
-              Kearifan Qur'ani dalam <span class="italic text-[#c39328]">Cakrawala</span> Intelektual Modern.
+            <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.14]" style="color:#062116 !important;">
+              Kearifan Qur'ani dalam <span class="italic" style="color:#c39328 !important;">Cakrawala</span> Intelektual Modern.
             </h1>
 
-            <p class="text-sm sm:text-base text-[#52665a] font-light leading-relaxed mt-6 max-w-xl">
+            <p class="text-sm sm:text-base font-light leading-relaxed mt-6 max-w-xl" style="color:#52665a !important;">
               SMPI Yambu'ul Qur'an memadukan sanad hafalan Al-Qur'an 30 juz berstandar internasional dengan kedalaman kurikulum nasional dan integritas kepemimpinan santri.
             </p>
 
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mt-8 pt-6 border-t border-[#e2ece6]">
-              <button onclick="klikPendaftaran()" class="w-full sm:w-auto text-center px-6 py-3.5 bg-[#062116] hover:bg-[#c39328] text-white text-xs font-mono uppercase tracking-wider font-bold rounded-none transition-colors shadow-sm">
+              <button onclick="klikPendaftaran()" class="w-full sm:w-auto text-center px-6 py-3.5 text-xs font-mono uppercase tracking-wider font-bold rounded-none transition-colors shadow-sm" style="background-color:#062116 !important; color:#ffffff !important; border:1px solid #062116 !important;">
                 Daftar Santri Baru &rarr;
               </button>
-              <button onclick="showSection('sambutan')" class="w-full sm:w-auto text-center px-6 py-3.5 bg-transparent hover:bg-[#062116] text-[#062116] hover:text-white border border-[#062116] text-xs font-mono uppercase tracking-wider font-bold rounded-none transition-colors">
+              <button onclick="showSection('sambutan')" class="w-full sm:w-auto text-center px-6 py-3.5 text-xs font-mono uppercase tracking-wider font-bold rounded-none transition-colors" style="background-color:transparent !important; color:#062116 !important; border:1px solid #062116 !important;">
                 Wacana Pimpinan
               </button>
             </div>
@@ -2351,16 +2550,72 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       </div>
     </div>
 
-    <!-- Lokasi Sekolah -->
-    <div class="bg-[#f4efe6]/50 py-12 md:py-16 border-t border-[var(--theme-border)]">
+    <!-- SWISS EDITORIAL CAMPUS COORDINATES & MAP (V2) -->
+    <div id="beranda-lokasi-section" class="py-14 md:py-20 border-t border-[#e2ece6]" style="background-color:#faf9f5 !important;">
       <div class="max-w-7xl mx-auto px-4 md:px-6">
-        <div class="text-center mb-6">
-          <h2 class="font-serif text-2xl md:text-3xl font-black text-primary">Kampus &amp; Lokasi Sekolah</h2>
-          <p class="text-xs md:text-sm text-slate-500 mt-2 max-w-xl mx-auto font-medium">Suasana asri dan tenang yang kondusif bagi santri untuk menghafal Al-Qur'an dan menuntut ilmu.</p>
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 pb-4 border-b border-[#e2ece6]">
+          <div>
+            <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest block mb-1.5">[ DIREKTORI SPASIAL &bull; KOORDINAT KAMPUS ]</span>
+            <h2 class="font-serif text-2xl md:text-4xl text-[#062116] font-normal tracking-tight">Titik Lokasi &amp; Akses Kampus</h2>
+            <p class="text-xs md:text-sm text-[#52665a] font-light mt-1.5">Kawasan asri dan kondusif untuk pembinaan santri dan penghafal Al-Qur'an di Plosoklaten Kediri.</p>
+          </div>
+          <div class="flex items-center gap-2.5 font-mono text-xs">
+            <a href="https://www.google.com/maps/search/?api=1&query=SMPI+Yambu%27ul+Qur%27an+Plosoklaten+Kediri" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2.5 text-white font-bold uppercase tracking-wider transition-colors" style="background-color:#062116 !important;">
+              <i class="fas fa-map-marker-alt text-[#c39328]"></i> Buka Google Maps &nearr;
+            </a>
+            <a href="https://maps.google.com/maps/dir//SMPI+Yambu%27ul+Qur%27an+Plosoklaten+Kediri" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2.5 bg-white border border-[#e2ece6] hover:border-[#062116] text-[#062116] font-bold uppercase tracking-wider transition-colors">
+              <i class="fas fa-diamond-turn-right text-[#52665a]"></i> Rute &nearr;
+            </a>
+          </div>
         </div>
-        <p class="text-xs text-slate-500 text-center mb-4 font-semibold" id="beranda-alamat-text"></p>
-        <div class="card-scholar overflow-hidden shadow-lg h-80">
-          <iframe id="beranda-maps" src="about:blank" title="Peta Lokasi SMPI Yambu'ul Qur'an" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          <!-- Colophon Info Card (4 cols) -->
+          <div class="lg:col-span-4 border border-[#e2ece6] bg-white p-6 flex flex-col justify-between">
+            <div>
+              <div class="font-mono text-[11px] text-[#c39328] uppercase tracking-widest pb-3 border-b border-[#e2ece6]">
+                LEMBARAN GEOGRAFIS RESMI
+              </div>
+              <div class="mt-4">
+                <p class="font-mono text-[10px] text-[#7a8e82] uppercase tracking-wider">ALAMAT LENGKAP</p>
+                <p class="font-serif text-base text-[#062116] font-bold mt-1 leading-snug" id="beranda-alamat-text">
+                  Jl. Agung Ds. Jarak RT 04/RW 02, Desa Jarak, Kec. Plosoklaten, Kab. Kediri, Jawa Timur
+                </p>
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-[#e2ece6] space-y-3 font-mono text-xs text-[#52665a]">
+                <div class="flex items-start justify-between gap-2">
+                  <span class="text-[#7a8e82]">KOORDINAT:</span>
+                  <span class="text-[#062116] font-bold text-right">-7.8920° S, 112.1850° E</span>
+                </div>
+                <div class="flex items-start justify-between gap-2">
+                  <span class="text-[#7a8e82]">KODE POS:</span>
+                  <span class="text-[#062116] font-bold text-right">64175</span>
+                </div>
+                <div class="flex items-start justify-between gap-2">
+                  <span class="text-[#7a8e82]">KONTAK:</span>
+                  <span class="text-[#062116] font-bold text-right">0815-1577-7911</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-[#e2ece6]">
+              <button onclick="navigator.clipboard?.writeText('Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri');Swal.fire({icon:'success',title:'Tersalin',text:'Alamat berhasil disalin ke clipboard!',timer:1500,showConfirmButton:false});" class="w-full text-center py-2.5 bg-[#faf9f5] hover:bg-[#e2ece6] text-[#062116] font-mono text-xs uppercase tracking-wider border border-[#e2ece6] transition-colors">
+                <i class="far fa-copy mr-1.5"></i> Salin Teks Alamat
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Embedded Map Frame (8 cols) -->
+          <div class="lg:col-span-8 border border-[#e2ece6] bg-white p-2">
+            <div class="w-full h-80 sm:h-96 bg-[#faf9f5] relative overflow-hidden">
+              <iframe id="beranda-maps" src="https://www.openstreetmap.org/export/embed.html?bbox=112.14,-7.93,112.22,-7.86&amp;layer=mapnik&amp;marker=-7.892,112.185" title="Peta Lokasi SMPI Yambu'ul Qur'an" class="w-full h-full border-0" loading="lazy"></iframe>
+            </div>
+            <div class="flex items-center justify-between px-2 pt-2 text-[11px] font-mono text-[#7a8e82]">
+              <span>[ PETA INTERAKTIF KAMPUS SMPI YAQU ]</span>
+              <a href="https://www.openstreetmap.org/?mlat=-7.892&amp;mlon=112.185#map=15/-7.892/112.185" target="_blank" rel="noopener noreferrer" class="hover:text-[#062116] underline">Perbesar Peta &nearr;</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -4342,6 +4597,12 @@ function renderHeroSlider() {
   if (!wrap) return;
   if (!wrap) return;
   if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
   const dotsWrap = document.getElementById('hero-dots');
   if (heroSlideTimer) { clearInterval(heroSlideTimer); heroSlideTimer = null; }
 
@@ -4572,13 +4833,14 @@ function renderFasilitas() {
 // RENDER: LOKASI SEKOLAH (peta dari alamat di sheet Pengaturan)
 // ---------------------------------------------------------------
 function renderLokasi() {
-  const alamat = cfg('alamat', '');
-  document.getElementById('beranda-alamat-text').textContent = alamat || 'Alamat sekolah belum diisi di sheet Pengaturan.';
-  // Default: titik lokasi SMPI Yambu'ul Qur'an Plosoklaten Kediri
-  const defaultMapsLink = 'https://www.google.com/maps?q=' + encodeURIComponent("SMPI Yambu'ul Qur'an Plosoklaten Kediri") + '&output=embed';
-  document.getElementById('beranda-maps').src = buatEmbedMaps_(cfg('maps_link', defaultMapsLink), alamat);
+  const alamat = 'Jl. Agung Ds. Jarak RT 04/RW 02, Desa Jarak, Kec. Plosoklaten, Kab. Kediri, Jawa Timur';
+  const elAlamat = document.getElementById('beranda-alamat-text');
+  if (elAlamat) elAlamat.textContent = alamat;
+  const elMap = document.getElementById('beranda-maps');
+  if (elMap) {
+    elMap.src = 'https://www.openstreetmap.org/export/embed.html?bbox=112.14,-7.93,112.22,-7.86&layer=mapnik&marker=-7.892,112.185';
+  }
 }
-
 // Ubah LINK GOOGLE MAPS (yang admin tempel di sheet Pengaturan, key:
 // "maps_link") jadi URL iframe peta yang akurat -- admin cukup buka lokasi
 // sekolah di Google Maps, klik "Bagikan"/"Share", copy link-nya (atau copy
@@ -5484,27 +5746,115 @@ function toggleSukaDetailUmum() {
 // ---------------------------------------------------------------
 // RENDER: GALERI FOTO
 // ---------------------------------------------------------------
-function renderGaleri() {
-  const rows = (DB.galeri || []).slice().reverse();
-  const cardHtml = function (g) {
-    return '<div class="block rounded-xl overflow-hidden aspect-video bg-slate-100 group">' +
-      fotoSliderHtml(g.gambar, 'w-full h-full object-cover hover:scale-105 transition-transform', 'https://placehold.co/400x225/0b3323/dfb342?text=Foto') +
-      '</div>';
-  };
-  document.getElementById('galeri-grid').innerHTML = rows.map(cardHtml).join('') || emptyState('Belum ada foto di galeri.');
+const DEFAULT_GALERI_V2_ = [
+  {
+    judul: "Halaqah Tahfidz Al-Qur'an Santri Pagi Hari",
+    kategori: "Tahfidz",
+    tanggal: "12 Nov 2026",
+    gambar: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    judul: "Praktikum Sains di Laboratorium Terpadu",
+    kategori: "Akademik",
+    tanggal: "08 Nov 2026",
+    gambar: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    judul: "Sholat Berjamaah di Masjid Jami' Yambu'ul Qur'an",
+    kategori: "Ibadah",
+    tanggal: "04 Nov 2026",
+    gambar: "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    judul: "Latihan Rutin Seni Hadrah Banjari Santri",
+    kategori: "Ekstrakurikuler",
+    tanggal: "30 Okt 2026",
+    gambar: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    judul: "Upacara Bendera & Pembinaan Karakter Santri",
+    kategori: "Kesiswaan",
+    tanggal: "25 Okt 2026",
+    gambar: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    judul: "Kompetisi Olahraga Futsal Antar Kelas",
+    kategori: "Olahraga",
+    tanggal: "18 Okt 2026",
+    gambar: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    judul: "Pojok Literasi & Perpustakaan Digital Kampus",
+    kategori: "Literasi",
+    tanggal: "12 Okt 2026",
+    gambar: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    judul: "Kajian Kitab Kuning Bersama Dewan Asatidz",
+    kategori: "Keagamaan",
+    tanggal: "05 Okt 2026",
+    gambar: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80"
+  }
+];
 
-  // Galeri Kegiatan di Beranda: satu baris foto, digulir horizontal
-  // (bukan lagi carousel berhalaman/auto-slide).
+function renderGaleri() {
+  let rows = (DB && DB.galeri && DB.galeri.length) ? DB.galeri.slice().reverse() : DEFAULT_GALERI_V2_;
   const track = document.getElementById('beranda-galeri-carousel');
+  const fullGrid = document.getElementById('galeri-grid');
+
+  const formatTgl_ = function(d) {
+    if (!d) return '2026';
+    const s = String(d).split('T')[0];
+    const p = s.split('-');
+    if (p.length === 3) {
+      const bln = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+      return parseInt(p[2], 10) + ' ' + (bln[parseInt(p[1], 10)] || p[1]) + ' ' + p[0];
+    }
+    return s;
+  };
+  const cardHtml = function (g, i) {
+    const num = String(i + 1).padStart(2, '0');
+    const img = g.gambar || g.foto || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80';
+    const tgl = formatTgl_(g.tanggal);
+    return '<div class="border border-[#e2ece6] p-3 bg-white flex-shrink-0 w-64 md:w-72 snap-start hover:border-[#062116] transition-colors">' +
+      '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-3 relative group">' +
+        '<img src="' + img + '" data-fallback="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" onerror="this.onerror=null;this.src=this.dataset.fallback;" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (g.judul || '') + '">' +
+        '<span class="absolute bottom-2 left-2 bg-[#062116]/90 text-white font-mono text-[9px] px-2 py-0.5 uppercase">' + (g.kategori || 'DOKUMENTASI') + '</span>' +
+      '</div>' +
+      '<div class="flex items-center justify-between text-[10px] font-mono text-[#c39328] mb-1">' +
+        '<span>[ FIG. ' + num + ' ]</span>' +
+        '<span class="text-[#7a8e82]">' + tgl + '</span>' +
+      '</div>' +
+      '<h4 class="font-serif text-sm font-bold text-[#062116] leading-snug line-clamp-2">' + (g.judul || 'Dokumentasi Santri') + '</h4>' +
+    '</div>';
+  };
+
   if (track) {
-    track.innerHTML = rows.slice(0, 16).map(function (g) {
-      return '<div class="flex-shrink-0 w-56 md:w-64 snap-start rounded-xl overflow-hidden aspect-video bg-slate-100 group">' +
-        fotoSliderHtml(g.gambar, 'w-full h-full object-cover hover:scale-105 transition-transform', 'https://placehold.co/400x225/0b3323/dfb342?text=Foto') +
-        '</div>';
-    }).join('') || emptyState('Belum ada foto di galeri.');
+    track.innerHTML = rows.slice(0, 10).map(cardHtml).join('');
+  }
+  if (fullGrid) {
+    fullGrid.innerHTML = rows.map(function (g, i) {
+      const num = String(i + 1).padStart(2, '0');
+      const img = g.gambar || g.foto || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80';
+      return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+        '<div>' +
+          '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-3 relative">' +
+            '<img src="' + img + '" data-fallback="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" onerror="this.onerror=null;this.src=this.dataset.fallback;" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (g.judul || '') + '">' +
+          '</div>' +
+          '<div class="flex items-center justify-between text-[11px] font-mono text-[#c39328] mb-1.5">' +
+            '<span>[ DOKUMEN ' + num + ' ]</span>' +
+            '<span class="text-[#7a8e82]">' + formatTgl_(g.tanggal) + '</span>' +
+          '</div>' +
+          '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug">' + (g.judul || '-') + '</h3>' +
+        '</div>' +
+        '<div class="mt-4 pt-2.5 border-t border-[#e2ece6] flex items-center justify-between font-mono text-[10px] text-[#7a8e82]">' +
+          '<span>KATEGORI: ' + (g.kategori || 'UMUM') + '</span>' +
+          '<span class="text-[#062116] font-bold">ARSIP KAMPUS</span>' +
+        '</div>' +
+      '</div>';
+    }).join('');
   }
 }
-
 // ---------------------------------------------------------------
 // RENDER: GALERI VIDEO
 // ---------------------------------------------------------------
@@ -5548,33 +5898,119 @@ document.addEventListener('click', function (e) {
   f.setAttribute('title', 'Video');
   b.replaceWith(f);
 });
+const DEFAULT_VIDEO_V2_ = [
+  {
+    judul: "Profil Lengkap SMPI Yambu'ul Qur'an Plosoklaten Kediri",
+    deskripsi: "Mengenal lebih dekat ekosistem pesantren tahfidzul Qur'an dan kurikulum terpadu.",
+    url_video: "https://www.youtube.com/watch?v=ScMzIvxBSi4",
+    youtube_id: "ScMzIvxBSi4",
+    durasi: "04:12",
+    kategori: "PROFIL RESMI"
+  },
+  {
+    judul: "Wisuda & Khotmil Qur'an Santri Tahfidz 30 Juz Bersanad",
+    deskripsi: "Prosesi khidmat pelepasan santri hafiz & hafizah berprestasi tinggi.",
+    url_video: "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+    youtube_id: "ysz5S6PUM-U",
+    durasi: "06:45",
+    kategori: "WISUDA SANTRI"
+  },
+  {
+    judul: "Kemandirian Santri Boarding School: Aktivitas Fajar Hingga Malam",
+    deskripsi: "Disiplin pembinaan akhlak, sholat berjamaah, dan pola belajar mandiri.",
+    url_video: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+    youtube_id: "jNQXAC9IVRw",
+    durasi: "05:18",
+    kategori: "KEGIATAN SANTRI"
+  },
+  {
+    judul: "Asesmen Digital Berbasis CBT Mandiri & Smart-Campus",
+    deskripsi: "Implementasi ujian online terpadu di laboratorium komputer modern.",
+    url_video: "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
+    youtube_id: "kJQP7kiw5Fk",
+    durasi: "03:50",
+    kategori: "AKADEMIK DIGITAL"
+  },
+  {
+    judul: "Kajian Kitab Kuning & Tausiyah Bersama Dewan Asatidz",
+    deskripsi: "Kupasan fiqih dan akhlakul karimah untuk membekali generasi masa depan.",
+    url_video: "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+    youtube_id: "3JZ_D3ELwOQ",
+    durasi: "08:30",
+    kategori: "KAJIAN ASATIDZ"
+  },
+  {
+    judul: "Juara Seni Hadrah Banjari Santri SMPI Yambu'ul Qur'an",
+    deskripsi: "Penampilan kreasi seni sholawat rebana kontemporer santri.",
+    url_video: "https://www.youtube.com/watch?v=L_LUpnjgPso",
+    youtube_id: "L_LUpnjgPso",
+    durasi: "04:55",
+    kategori: "PRESTASI SENI"
+  }
+];
+
 function renderGaleriVideo() {
-  // Gabung: video OTOMATIS dari channel YouTube (deteksi sendiri, tidak
-  // ada di spreadsheet, jadi tidak muncul di tabel Admin) + video MANUAL
-  // dari sheet GaleriVideo (bisa diedit/hapus di Admin). Kalau link
-  // videonya sama, versi manual disembunyikan (biar tidak dobel).
-  const otomatis = (DB.galeri_video_otomatis || []);
-  const urlOtomatis = otomatis.map(function (o) { return (o.url_video || '').trim(); });
-  const manual = (DB.galeri_video || []).slice().reverse()
-    .filter(function (m) { return urlOtomatis.indexOf((m.url_video || '').trim()) === -1; });
-  const rows = otomatis.concat(manual);
+  let rows = (DB && DB.galeri_video && DB.galeri_video.length) ? DB.galeri_video.slice().reverse() : DEFAULT_VIDEO_V2_;
+  const elGridBeranda = document.getElementById('beranda-galerivideo-grid');
+  const elGridFull = document.getElementById('galerivideo-grid');
 
-  document.getElementById('galerivideo-grid').innerHTML = rows.map(function (v) {
-    return '<div class="bg-white rounded-2xl shadow-sm overflow-hidden">' +
-      '<div class="relative aspect-video">' + ytFacadeHtml_(v.url_video) + '' +
-      (v.sumber === 'youtube_otomatis' ? '<span class="absolute top-2 left-2 bg-primary/90 text-white text-[8px] font-black px-2 py-1 rounded-full"><i class="fab fa-youtube mr-1"></i>Otomatis dari YouTube</span>' : '') + '</div>' +
-      '<div class="p-4"><p class="font-black text-primary text-xs">' + (v.judul || '-') + '</p>' +
-      (v.deskripsi ? '<p class="text-xs text-slate-500 mt-1 line-clamp-2">' + v.deskripsi + '</p>' : '') + '</div></div>';
-  }).join('') || emptyState('Belum ada video.');
+  const cardVideoHtml = function (v, i) {
+    const num = String(i + 1).padStart(2, '0');
+    const ytId = v.youtube_id || (v.url_video.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{6,})/) || [])[1] || 'ScMzIvxBSi4';
+    const thumb = 'https://img.youtube.com/vi/' + ytId + '/hqdefault.jpg';
+    return '<div class="border border-[#e2ece6] p-3 bg-white flex-shrink-0 w-72 md:w-80 snap-start hover:border-[#062116] transition-colors">' +
+      '<div class="aspect-video bg-black relative overflow-hidden mb-3 group cursor-pointer" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' +
+        '<img src="' + thumb + '" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" alt="' + (v.judul || '') + '">' +
+        '<div class="absolute inset-0 bg-black/30 flex items-center justify-center">' +
+          '<div class="w-12 h-12 rounded-none bg-[#062116] text-[#c39328] border border-[#c39328] flex items-center justify-center shadow-lg group-hover:bg-[#c39328] group-hover:text-[#062116] transition-colors">' +
+            '<i class="fas fa-play text-sm ml-0.5"></i>' +
+          '</div>' +
+        '</div>' +
+        '<span class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[9px] px-2 py-0.5">' + (v.durasi || 'VIDEO') + '</span>' +
+      '</div>' +
+      '<div class="flex items-center justify-between text-[10px] font-mono text-[#c39328] mb-1">' +
+        '<span>[ VIDEO ' + num + ' ]</span>' +
+        '<span class="text-[#7a8e82]">' + (v.kategori || 'LIPUTAN') + '</span>' +
+      '</div>' +
+      '<h4 class="font-serif text-sm font-bold text-[#062116] leading-snug line-clamp-2 cursor-pointer hover:text-[#c39328]" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' + (v.judul || 'Video Liputan') + '</h4>' +
+      '<p class="text-[11px] text-[#52665a] font-light mt-1 line-clamp-1">' + (v.deskripsi || '') + '</p>' +
+    '</div>';
+  };
 
-  document.getElementById('beranda-galerivideo-grid').innerHTML = rows.slice(0, 8).map(function (v) {
-    return '<div onclick="showSection(\'galerivideo\')" class="relative rounded-2xl overflow-hidden aspect-video cursor-pointer group flex-shrink-0 w-56 md:w-64 snap-start">' +
-      '<img loading="lazy" decoding="async" src="' + youtubeThumb(v.url_video) + '" class="w-full h-full object-cover group-hover:scale-105 transition-transform">' +
-      '<div class="absolute inset-0 bg-black/30 flex items-center justify-center"><div class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center"><i class="fas fa-play text-red-500 text-sm ml-0.5"></i></div></div>' +
-      '<div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent"><p class="text-white text-[11px] font-bold line-clamp-1">' + (v.judul || '-') + '</p></div></div>';
-  }).join('') || emptyState('Belum ada video.');
+  if (elGridBeranda) {
+    elGridBeranda.innerHTML = rows.slice(0, 8).map(cardVideoHtml).join('');
+  }
+  if (elGridFull) {
+    elGridFull.innerHTML = rows.map(function (v, i) {
+      const num = String(i + 1).padStart(2, '0');
+      const ytId = v.youtube_id || (v.url_video.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{6,})/) || [])[1] || 'ScMzIvxBSi4';
+      const thumb = 'https://img.youtube.com/vi/' + ytId + '/hqdefault.jpg';
+      return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+        '<div>' +
+          '<div class="aspect-video bg-black relative overflow-hidden mb-3 group cursor-pointer" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' +
+            '<img src="' + thumb + '" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" alt="' + (v.judul || '') + '">' +
+            '<div class="absolute inset-0 bg-black/30 flex items-center justify-center">' +
+              '<div class="w-12 h-12 rounded-none bg-[#062116] text-[#c39328] border border-[#c39328] flex items-center justify-center shadow-lg group-hover:bg-[#c39328] group-hover:text-[#062116] transition-colors">' +
+                '<i class="fas fa-play text-sm ml-0.5"></i>' +
+              '</div>' +
+            '</div>' +
+            '<span class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[9px] px-2 py-0.5">' + (v.durasi || 'VIDEO') + '</span>' +
+          '</div>' +
+          '<div class="flex items-center justify-between text-[11px] font-mono text-[#c39328] mb-1.5">' +
+            '<span>[ LIPUTAN ' + num + ' ]</span>' +
+            '<span class="text-[#7a8e82]">' + (v.durasi || '05:00') + '</span>' +
+          '</div>' +
+          '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug mb-1 cursor-pointer hover:text-[#c39328]" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' + (v.judul || '-') + '</h3>' +
+          '<p class="text-xs text-[#52665a] font-light leading-relaxed line-clamp-2">' + (v.deskripsi || '') + '</p>' +
+        '</div>' +
+        '<div class="mt-4 pt-2.5 border-t border-[#e2ece6] flex items-center justify-between font-mono text-[10px] text-[#7a8e82]">' +
+          '<span>KATEGORI: ' + (v.kategori || 'VIDEO') + '</span>' +
+          '<button data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)" class="text-[#062116] hover:text-[#c39328] font-bold uppercase tracking-wider">PUTAR SEKARANG &rarr;</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
 }
-
 // ---------------------------------------------------------------
 // BERANDA: VIRTUAL TOUR 360 LANGSUNG (bisa diputar di Beranda)
 // Viewer Pannellum baru dimuat saat section terlihat di layar (desktop)
@@ -8987,7 +9423,268 @@ setTimeout(function () {
     if (elMisi && misiTxt) elMisi.textContent = misiTxt;
   };
 
-  // Re-run renderers on load & API readiness
+
+  // 8. CURATED EDITORIAL PLACEHOLDERS & OVERRIDES FOR GALERI FOTO
+  const DEFAULT_GALERI_ = [
+    {
+      judul: "Halaqah Tahfidz Al-Qur'an Santri Pagi Hari",
+      kategori: "Tahfidz",
+      tanggal: "12 Nov 2026",
+      gambar: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      judul: "Praktikum Sains di Laboratorium Terpadu",
+      kategori: "Akademik",
+      tanggal: "08 Nov 2026",
+      gambar: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      judul: "Sholat Berjamaah di Masjid Jami' Yambu'ul Qur'an",
+      kategori: "Ibadah",
+      tanggal: "04 Nov 2026",
+      gambar: "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      judul: "Latihan Rutin Seni Hadrah Banjari Santri",
+      kategori: "Ekstrakurikuler",
+      tanggal: "30 Okt 2026",
+      gambar: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      judul: "Upacara Bendera & Pembinaan Karakter Santri",
+      kategori: "Kesiswaan",
+      tanggal: "25 Okt 2026",
+      gambar: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      judul: "Kompetisi Olahraga Futsal Antar Kelas",
+      kategori: "Olahraga",
+      tanggal: "18 Okt 2026",
+      gambar: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      judul: "Pojok Literasi & Perpustakaan Digital Kampus",
+      kategori: "Literasi",
+      tanggal: "12 Okt 2026",
+      gambar: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      judul: "Kajian Kitab Kuning Bersama Dewan Asatidz",
+      kategori: "Keagamaan",
+      tanggal: "05 Okt 2026",
+      gambar: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80"
+    }
+  ];
+
+  window.renderGaleri = function() {
+    let rows = (getDB().galeri && getDB().galeri.length) ? getDB().galeri.slice().reverse() : DEFAULT_GALERI_;
+    const elCarousel = document.getElementById('beranda-galeri-carousel');
+    const elGrid = document.getElementById('galeri-grid');
+
+  const formatTgl_ = function(d) {
+    if (!d) return '2026';
+    const s = String(d).split('T')[0];
+    const p = s.split('-');
+    if (p.length === 3) {
+      const bln = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+      return parseInt(p[2], 10) + ' ' + (bln[parseInt(p[1], 10)] || p[1]) + ' ' + p[0];
+    }
+    return s;
+  };
+    const cardHtml = function(g, i) {
+      const num = String(i + 1).padStart(2, '0');
+      const img = g.gambar || g.foto || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80';
+      const tgl = formatTgl_(g.tanggal);
+      return '<div class="border border-[#e2ece6] p-3 bg-white flex-shrink-0 w-64 md:w-72 snap-start hover:border-[#062116] transition-colors">' +
+        '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-3 relative group">' +
+          '<img src="' + img + '" data-fallback="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" onerror="this.onerror=null;this.src=this.dataset.fallback;" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (g.judul || '') + '">' +
+          '<span class="absolute bottom-2 left-2 bg-[#062116]/90 text-white font-mono text-[9px] px-2 py-0.5 uppercase">' + (g.kategori || 'DOKUMENTASI') + '</span>' +
+        '</div>' +
+        '<div class="flex items-center justify-between text-[10px] font-mono text-[#c39328] mb-1">' +
+          '<span>[ FIG. ' + num + ' ]</span>' +
+          '<span class="text-[#7a8e82]">' + tgl + '</span>' +
+        '</div>' +
+        '<h4 class="font-serif text-sm font-bold text-[#062116] leading-snug line-clamp-2">' + (g.judul || 'Dokumentasi Santri') + '</h4>' +
+      '</div>';
+    };
+
+    if (elCarousel) {
+      elCarousel.innerHTML = rows.slice(0, 10).map(cardHtml).join('');
+    }
+    if (elGrid) {
+      elGrid.innerHTML = rows.map(function(g, i) {
+        const num = String(i + 1).padStart(2, '0');
+        const img = g.gambar || g.foto || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80';
+        return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+          '<div>' +
+            '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-3 relative">' +
+              '<img src="' + img + '" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (g.judul || '') + '">' +
+            '</div>' +
+            '<div class="flex items-center justify-between text-[11px] font-mono text-[#c39328] mb-1.5">' +
+              '<span>[ DOKUMEN ' + num + ' ]</span>' +
+              '<span class="text-[#7a8e82]">' + (g.tanggal || '2026') + '</span>' +
+            '</div>' +
+            '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug">' + (g.judul || '-') + '</h3>' +
+          '</div>' +
+          '<div class="mt-4 pt-2.5 border-t border-[#e2ece6] flex items-center justify-between font-mono text-[10px] text-[#7a8e82]">' +
+            '<span>KATEGORI: ' + (g.kategori || 'UMUM') + '</span>' +
+            '<span class="text-[#062116] font-bold">ARSIP KAMPUS</span>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+  };
+
+  // 9. CURATED EDITORIAL PLACEHOLDERS & OVERRIDES FOR GALERI VIDEO
+  const DEFAULT_VIDEO_ = [
+    {
+      judul: "Profil Lengkap SMPI Yambu'ul Qur'an Plosoklaten Kediri",
+      deskripsi: "Mengenal lebih dekat ekosistem pesantren tahfidzul Qur'an dan kurikulum terpadu.",
+      url_video: "https://www.youtube.com/watch?v=ScMzIvxBSi4",
+      youtube_id: "ScMzIvxBSi4",
+      durasi: "04:12",
+      kategori: "PROFIL RESMI"
+    },
+    {
+      judul: "Wisuda & Khotmil Qur'an Santri Tahfidz 30 Juz Bersanad",
+      deskripsi: "Prosesi khidmat pelepasan santri hafiz & hafizah berprestasi tinggi.",
+      url_video: "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+      youtube_id: "ysz5S6PUM-U",
+      durasi: "06:45",
+      kategori: "WISUDA SANTRI"
+    },
+    {
+      judul: "Kemandirian Santri Boarding School: Aktivitas Fajar Hingga Malam",
+      deskripsi: "Disiplin pembinaan akhlak, sholat berjamaah, dan pola belajar mandiri.",
+      url_video: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+      youtube_id: "jNQXAC9IVRw",
+      durasi: "05:18",
+      kategori: "KEGIATAN SANTRI"
+    },
+    {
+      judul: "Asesmen Digital Berbasis CBT Mandiri & Smart-Campus",
+      deskripsi: "Implementasi ujian online terpadu di laboratorium komputer modern.",
+      url_video: "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
+      youtube_id: "kJQP7kiw5Fk",
+      durasi: "03:50",
+      kategori: "AKADEMIK DIGITAL"
+    },
+    {
+      judul: "Kajian Kitab Kuning & Tausiyah Bersama Dewan Asatidz",
+      deskripsi: "Kupasan fiqih dan akhlakul karimah untuk membekali generasi masa depan.",
+      url_video: "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+      youtube_id: "3JZ_D3ELwOQ",
+      durasi: "08:30",
+      kategori: "KAJIAN ASATIDZ"
+    },
+    {
+      judul: "Juara Seni Hadrah Banjari Santri SMPI Yambu'ul Qur'an",
+      deskripsi: "Penampilan kreasi seni sholawat rebana kontemporer santri.",
+      url_video: "https://www.youtube.com/watch?v=L_LUpnjgPso",
+      youtube_id: "L_LUpnjgPso",
+      durasi: "04:55",
+      kategori: "PRESTASI SENI"
+    }
+  ];
+
+  window.renderGaleriVideo = function() {
+    let rows = (getDB().galeri_video && getDB().galeri_video.length) ? getDB().galeri_video.slice().reverse() : DEFAULT_VIDEO_;
+    const elGridBeranda = document.getElementById('beranda-galerivideo-grid');
+    const elGridFull = document.getElementById('galerivideo-grid');
+
+    const cardVideoHtml = function(v, i) {
+      const num = String(i + 1).padStart(2, '0');
+      const ytId = v.youtube_id || (v.url_video.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{6,})/) || [])[1] || 'ScMzIvxBSi4';
+      const thumb = 'https://img.youtube.com/vi/' + ytId + '/hqdefault.jpg';
+      return '<div class="border border-[#e2ece6] p-3 bg-white flex-shrink-0 w-72 md:w-80 snap-start hover:border-[#062116] transition-colors">' +
+        '<div class="aspect-video bg-black relative overflow-hidden mb-3 group cursor-pointer" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' +
+          '<img src="' + thumb + '" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" alt="' + (v.judul || '') + '">' +
+          '<div class="absolute inset-0 bg-black/30 flex items-center justify-center">' +
+            '<div class="w-12 h-12 rounded-none bg-[#062116] text-[#c39328] border border-[#c39328] flex items-center justify-center shadow-lg group-hover:bg-[#c39328] group-hover:text-[#062116] transition-colors">' +
+              '<i class="fas fa-play text-sm ml-0.5"></i>' +
+            '</div>' +
+          '</div>' +
+          '<span class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[9px] px-2 py-0.5">' + (v.durasi || 'VIDEO') + '</span>' +
+        '</div>' +
+        '<div class="flex items-center justify-between text-[10px] font-mono text-[#c39328] mb-1">' +
+          '<span>[ VIDEO ' + num + ' ]</span>' +
+          '<span class="text-[#7a8e82]">' + (v.kategori || 'LIPUTAN') + '</span>' +
+        '</div>' +
+        '<h4 class="font-serif text-sm font-bold text-[#062116] leading-snug line-clamp-2 cursor-pointer hover:text-[#c39328]" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' + (v.judul || 'Video Liputan') + '</h4>' +
+        '<p class="text-[11px] text-[#52665a] font-light mt-1 line-clamp-1">' + (v.deskripsi || '') + '</p>' +
+      '</div>';
+    };
+
+    if (elGridBeranda) {
+      elGridBeranda.innerHTML = rows.slice(0, 8).map(cardVideoHtml).join('');
+    }
+    if (elGridFull) {
+      elGridFull.innerHTML = rows.map(function(v, i) {
+        const num = String(i + 1).padStart(2, '0');
+        const ytId = v.youtube_id || (v.url_video.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{6,})/) || [])[1] || 'ScMzIvxBSi4';
+        const thumb = 'https://img.youtube.com/vi/' + ytId + '/hqdefault.jpg';
+        return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+          '<div>' +
+            '<div class="aspect-video bg-black relative overflow-hidden mb-3 group cursor-pointer" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' +
+              '<img src="' + thumb + '" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" alt="' + (v.judul || '') + '">' +
+              '<div class="absolute inset-0 bg-black/30 flex items-center justify-center">' +
+                '<div class="w-12 h-12 rounded-none bg-[#062116] text-[#c39328] border border-[#c39328] flex items-center justify-center shadow-lg group-hover:bg-[#c39328] group-hover:text-[#062116] transition-colors">' +
+                  '<i class="fas fa-play text-sm ml-0.5"></i>' +
+                '</div>' +
+              '</div>' +
+              '<span class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[9px] px-2 py-0.5">' + (v.durasi || 'VIDEO') + '</span>' +
+            '</div>' +
+            '<div class="flex items-center justify-between text-[11px] font-mono text-[#c39328] mb-1.5">' +
+              '<span>[ LIPUTAN ' + num + ' ]</span>' +
+              '<span class="text-[#7a8e82]">' + (v.durasi || '05:00') + '</span>' +
+            '</div>' +
+            '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug mb-1 cursor-pointer hover:text-[#c39328]" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' + (v.judul || '-') + '</h3>' +
+            '<p class="text-xs text-[#52665a] font-light leading-relaxed line-clamp-2">' + (v.deskripsi || '') + '</p>' +
+          '</div>' +
+          '<div class="mt-4 pt-2.5 border-t border-[#e2ece6] flex items-center justify-between font-mono text-[10px] text-[#7a8e82]">' +
+            '<span>KATEGORI: ' + (v.kategori || 'VIDEO') + '</span>' +
+            '<button data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)" class="text-[#062116] hover:text-[#c39328] font-bold uppercase tracking-wider">PUTAR SEKARANG &rarr;</button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+  };
+
+  // Helper video modal player
+  window.putarVideoModal_ = function(ytId, encTitle) {
+    const title = decodeURIComponent(encTitle || 'Video Kegiatan');
+    Swal.fire({
+      title: '<span style="font-family:Marcellus,serif;font-size:16px;color:#062116;">' + title + '</span>',
+      html: '<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#000;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/' + ytId + '?autoplay=1&rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>',
+      showCloseButton: true,
+      showConfirmButton: false,
+      width: '800px',
+      background: '#faf9f5'
+    });
+  };
+
+  // 10. OVERRIDE LOKASI SEKOLAH DENGAN OPENSTREETMAP RESILIENCE
+  window.renderLokasi = function() {
+    const alamatEl = document.getElementById('beranda-alamat-text');
+    const mapsEl = document.getElementById('beranda-maps');
+    const fullAlamat = 'Jl. Agung Ds. Jarak RT 04/RW 02, Desa Jarak, Kec. Plosoklaten, Kab. Kediri, Jawa Timur';
+    if (alamatEl) alamatEl.textContent = fullAlamat;
+    if (mapsEl && (!mapsEl.src || mapsEl.src.indexOf('about:blank') !== -1)) {
+      mapsEl.src = 'https://www.openstreetmap.org/export/embed.html?bbox=112.14,-7.93,112.22,-7.86&layer=mapnik&marker=-7.892,112.185';
+    }
+  };
+
+  // Geser helper untuk Galeri & Video V2
+  window.geserGaleri = function(dir) {
+    const el = document.getElementById('beranda-galeri-carousel');
+    if (el) el.scrollBy({ left: dir * 320, behavior: 'smooth' });
+  };
+  window.geserGaleriVideo = function(dir) {
+    const el = document.getElementById('beranda-galerivideo-grid');
+    if (el) el.scrollBy({ left: dir * 340, behavior: 'smooth' });
+  };
+
+  // Re-run all renderers on load & API readiness
   setTimeout(function() {
     renderMenuAplikasi();
     renderStatistik();
@@ -8996,6 +9693,9 @@ setTimeout(function () {
     renderPrestasi();
     renderArtikel();
     renderKepsek();
+    renderGaleri();
+    renderGaleriVideo();
+    renderLokasi();
   }, 50);
 })();
 </script>
