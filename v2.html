@@ -80,8 +80,8 @@
 (function () {
   try {
     if (typeof google !== 'undefined' && google.script && google.script.run) return; // dibuka lewat Apps Script asli -> tak perlu
-    var url = ('__APPS_SCRIPT_URL__' === ('_' + '_APPS_SCRIPT_URL_' + '_')) ? 'https://script.google.com/macros/s/AKfycbzayy9zLbwLUho6AA1gAYc11bl6IVY8rs_9KjD14BbGh4JA9pDi0_qvVBAGqFjD0cjC/exec' : '__APPS_SCRIPT_URL__'
-            + '?fn=getFullData&args=' + encodeURIComponent(JSON.stringify(['id']));
+    var baseExec = ('__APPS_SCRIPT_URL__' === ('_' + '_APPS_SCRIPT_URL_' + '_')) ? 'https://script.google.com/macros/s/AKfycbzayy9zLbwLUho6AA1gAYc11bl6IVY8rs_9KjD14BbGh4JA9pDi0_qvVBAGqFjD0cjC/exec' : '__APPS_SCRIPT_URL__';
+    var url = baseExec + '?fn=getFullData&args=' + encodeURIComponent(JSON.stringify(['id']));
     var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 30000);
     window.__PRELOAD_DATA__ = fetch(url, ctrl ? { signal: ctrl.signal } : undefined)
@@ -1319,6 +1319,7 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
         --text-main: #062116;
         --text-muted: #52665a;
         --border-color: #e2ece6;
+        --theme-border: #e2ece6 !important;
       }
       body {
         background-color: #ffffff !important;
@@ -1327,6 +1328,7 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
       }
       h1, h2, h3, h4, .font-serif {
         font-family: 'Marcellus', Georgia, serif !important;
+        font-weight: 400 !important;
       }
       .font-mono {
         font-family: 'JetBrains Mono', monospace !important;
@@ -1337,36 +1339,14 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
       body.splash-aktif {
         overflow: visible !important;
       }
-      /* V2 Hero Text Contrast Override */
-      #hero-slider {
-        background: #faf9f5 !important;
-        color: #062116 !important;
-      }
-      #hero-slider h1, #hero-slider h1 * {
-        color: #062116 !important;
-      }
-      #hero-slider p, #hero-slider p * {
-        color: #52665a !important;
-      }
-      #hero-slider span {
-        color: inherit;
-      }
-      #hero-slider .text-\[\#c39328\], #hero-slider .text-secondary {
-        color: #c39328 !important;
-      }
-
-      /* Clean Editorial Rules */
-      footer {
-        background: #faf9f5 !important;
+      /* Contrast & Tone Guards */
+      .bg-\[\#f4efe6\]\/50 {
         background-color: #faf9f5 !important;
-        color: #52665a !important;
       }
-      footer h3, footer p.font-serif, footer .text-white {
-        color: #062116 !important;
+      .border-\[\#e6dfd1\], .border-\[var\(--theme-border\)\] {
+        border-color: #e2ece6 !important;
       }
-      footer button:not(.dn-topbtn), footer a, footer p, footer span, footer li {
-        color: #52665a !important;
-      }
+      /* Clean Editorial Colors */
       .bg-primary {
         background-color: #062116 !important;
         color: #ffffff !important;
@@ -1384,31 +1364,33 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
       .text-secondary {
         color: #c39328 !important;
       }
-      .subpage-hero-banner {
+      /* Subpage Hero Banners (Pure Porcelain) */
+      .subpage-hero-banner,
+      .app-section:not(#section-beranda) > div.relative.overflow-hidden:first-child,
+      [class*="from-primary-900"],
+      [class*="from-primary"] {
         background: #faf9f5 !important;
+        background-image: none !important;
         color: #062116 !important;
         border-bottom: 1px solid #e2ece6 !important;
+      }
+      .subpage-hero-banner h1,
+      .subpage-hero-banner h2,
+      .app-section:not(#section-beranda) > div.relative.overflow-hidden:first-child h1 {
+        color: #062116 !important;
+        font-family: 'Marcellus', Georgia, serif !important;
+        font-weight: 400 !important;
+      }
+      .subpage-hero-banner p,
+      .app-section:not(#section-beranda) > div.relative.overflow-hidden:first-child p {
+        color: #52665a !important;
       }
       /* Eliminate rounded pills in V2 */
       .rounded-full:not(.nav-circle):not(.hero-dot):not(.avatar-img):not(#wa-btn),
       .rounded-2xl, .rounded-3xl, .rounded-xl {
         border-radius: 0px !important;
       }
-      /* V2 Pure Swiss Architecture Overrides */
-      .program-card-header {
-        background: #faf9f5 !important;
-        color: #062116 !important;
-        border-bottom: 1px solid #e2ece6 !important;
-      }
-      .program-card-header span {
-        color: #c39328 !important;
-        font-family: 'JetBrains Mono', monospace !important;
-      }
-      .program-card-header div {
-        background: #ffffff !important;
-        border: 1px solid #e2ece6 !important;
-        color: #062116 !important;
-      }
+      /* V2 Card Architectures */
       .card-scholar {
         border-radius: 0px !important;
         border: 1px solid #e2ece6 !important;
@@ -1426,6 +1408,72 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
         border-top: 1px solid #e2ece6 !important;
         border-bottom: 1px solid #e2ece6 !important;
       }
+      /* Donasi Section Pure Alabaster Styling */
+      #section-donasi, .donasi-container {
+        background: #ffffff !important;
+      }
+      #section-donasi .dn-card,
+      #section-donasi .dn-step,
+      #section-donasi .dn-quote,
+      #section-donasi .card-donasi {
+        background: #faf9f5 !important;
+        border: 1px solid #e2ece6 !important;
+        border-radius: 0px !important;
+        box-shadow: none !important;
+      }
+      #section-donasi .dn-quote p,
+      #section-donasi .dn-quote .dn-ar,
+      #section-donasi .dn-quote .dn-id {
+        color: #062116 !important;
+      }
+      #section-donasi .dn-quote i {
+        color: #c39328 !important;
+      }
+      #section-donasi .dn-rekcard {
+        background: #062116 !important;
+        border-radius: 0px !important;
+        border: 1px solid #062116 !important;
+      }
+      #section-donasi .dn-btn,
+      #section-donasi button[type="submit"] {
+        border-radius: 0px !important;
+        background: #062116 !important;
+        color: #ffffff !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        text-transform: uppercase !important;
+        font-size: 11px !important;
+        letter-spacing: 0.05em !important;
+      }
+      #section-donasi .dn-btn:hover,
+      #section-donasi button[type="submit"]:hover {
+        background: #c39328 !important;
+        color: #ffffff !important;
+      }
+      #section-donasi .dn-chip {
+        border-radius: 0px !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        border: 1px solid #e2ece6 !important;
+        background: #ffffff !important;
+        color: #062116 !important;
+      }
+      #section-donasi .dn-chip.aktif {
+        background: #062116 !important;
+        color: #ffffff !important;
+        border-color: #062116 !important;
+      }
+      /* Sharp Slider Buttons */
+      button[onclick*="geser"], button[onclick*="scroll"] {
+        border-radius: 0px !important;
+        border: 1px solid #e2ece6 !important;
+        background: #ffffff !important;
+        color: #062116 !important;
+        box-shadow: none !important;
+        transition: all 0.2s ease !important;
+      }
+      button[onclick*="geser"]:hover, button[onclick*="scroll"]:hover {
+        border-color: #062116 !important;
+        background: #faf9f5 !important;
+      }
       #mobile-menu {
         background-color: #faf9f5 !important;
         color: #062116 !important;
@@ -1441,13 +1489,76 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
           flex-direction: row !important;
           overflow-x: auto !important;
           scroll-snap-type: x mandatory !important;
+          -webkit-overflow-scrolling: touch !important;
           padding-bottom: 1rem !important;
           gap: 1rem !important;
         }
-        #beranda-aplikasi-grid > div, #beranda-guru-grid > div, #beranda-fasilitas-grid > div, #beranda-prestasi-grid > div, #beranda-artikel-grid > div {
-          flex: 0 0 85% !important;
+        #beranda-aplikasi-grid > div,
+        #beranda-guru-grid > div,
+        #beranda-fasilitas-grid > div,
+        #beranda-prestasi-grid > div,
+        #beranda-artikel-grid > div {
+          flex: 0 0 82% !important;
+          max-width: 320px !important;
           scroll-snap-align: start !important;
+          box-sizing: border-box !important;
         }
+      }
+
+      
+      /* Sambutan Kepsek Asymmetric Grid Layout */
+      #beranda-kepsek .grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 2.5rem !important;
+      }
+      @media (min-width: 1024px) {
+        #beranda-kepsek .grid {
+          grid-template-columns: 320px 1fr !important;
+          align-items: start !important;
+        }
+      }
+      #beranda-kepsek-foto {
+        width: 100% !important;
+        max-width: 320px !important;
+        height: 380px !important;
+        overflow: hidden !important;
+      }
+      #beranda-kepsek-foto img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center top !important;
+      }
+
+      /* Clean Editorial Floating Controls (Keep discreet, eliminate pill slop) */
+      #bottom-nav-bar {
+        right: 1.25rem !important;
+        bottom: 1.25rem !important;
+        gap: 0.6rem !important;
+      }
+      #bottom-nav-bar button, #bottom-nav-bar a {
+        border-radius: 0px !important;
+        box-shadow: 0 2px 8px rgba(6, 33, 22, 0.08) !important;
+        border: 1px solid #e2ece6 !important;
+      }
+      #bottom-nav-bar button:hover, #bottom-nav-bar a:hover {
+        border-color: #062116 !important;
+      }
+      /* Subpage Aplikasi Styling */
+      #section-aplikasi .subpage-hero-banner {
+        background: #faf9f5 !important;
+        border-bottom: 1px solid #e2ece6 !important;
+      }
+      #aplikasi-jumlah {
+        border-radius: 0px !important;
+        background: #faf9f5 !important;
+        border: 1px solid #e2ece6 !important;
+        color: #062116 !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 11px !important;
+        letter-spacing: 0.05em !important;
+        text-transform: uppercase !important;
       }
     </style>
 
@@ -1607,15 +1718,15 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       </div>
 
       <button onclick="showSection('donasi')" class="px-3 py-2 rounded-none hover:bg-[#f2f7f4] text-[#062116] transition-colors">Donasi</button>
-      <button onclick="klikPendaftaran()" class="px-4 py-2 bg-[#062116] hover:bg-[#0b3323] text-[#dfb342] text-xs font-bold uppercase tracking-wider rounded-none transition-all ml-1">Pendaftaran PPDB</button>
+      <button onclick="klikPendaftaran()" id="nav-daftar-btn" class="px-5 py-2.5 bg-[#062116] hover:bg-[#c39328] text-white text-xs font-mono font-bold uppercase tracking-wider rounded-none transition-colors ml-2 shadow-sm">Pendaftaran PPDB</button>
       <button onclick="bukaPencarian()" class="w-8 h-8 flex items-center justify-center hover:bg-[#f2f7f4] text-[#062116]"><i class="fas fa-search text-xs"></i></button>
       <button onclick="toggleModeGelap()" class="w-8 h-8 flex items-center justify-center hover:bg-[#f2f7f4] text-[#062116]"><i class="fas fa-moon text-xs"></i></button>
     </nav>
 
     <!-- Mobile Toggle -->
     <div class="flex items-center gap-2 lg:hidden">
-      <button onclick="bukaPencarian()" class="w-9 h-9 flex items-center justify-center text-[#062116]"><i class="fas fa-search"></i></button>
-      <button onclick="toggleMobileMenu()" class="w-9 h-9 flex items-center justify-center text-[#062116] border border-[#e2ece6]"><i class="fas fa-bars"></i></button>
+      <button onclick="bukaPencarian()" class="w-9 h-9 flex items-center justify-center text-[#062116] border border-[#e2ece6] bg-white rounded-none"><i class="fas fa-search"></i></button>
+      <button onclick="toggleMobileMenu()" class="w-9 h-9 flex items-center justify-center text-[#062116] border border-[#e2ece6] bg-white rounded-none"><i class="fas fa-bars"></i></button>
     </div>
   </div>
 </header>
@@ -1634,13 +1745,13 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <!-- Left Column (7 cols): Editorial Typography -->
           <div class="lg:col-span-7 flex flex-col justify-center">
-            <div class="flex items-center gap-2 mb-4">
-              <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ LEMBARAN RESMI ]</span>
-              <span class="w-12 h-px bg-[#c39328]/40"></span>
-              <span class="font-mono text-xs text-[#52665a] uppercase tracking-wider">TAHUN AKADEMIK 2026/2027</span>
+            <div class="flex items-center gap-2 mb-4 flex-wrap">
+              <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest whitespace-nowrap">[ LEMBARAN RESMI ]</span>
+              <span class="w-8 sm:w-12 h-px bg-[#c39328]/40"></span>
+              <span class="font-mono text-xs text-[#52665a] uppercase tracking-wider whitespace-nowrap">TAHUN AKADEMIK 2026/2027</span>
             </div>
 
-            <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#062116] font-normal tracking-tight leading-[1.12]">
+            <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#062116] font-normal tracking-tight leading-[1.14]">
               Kearifan Qur'ani dalam <span class="italic text-[#c39328]">Cakrawala</span> Intelektual Modern.
             </h1>
 
@@ -1648,11 +1759,11 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
               SMPI Yambu'ul Qur'an memadukan sanad hafalan Al-Qur'an 30 juz berstandar internasional dengan kedalaman kurikulum nasional dan integritas kepemimpinan santri.
             </p>
 
-            <div class="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-[#e2ece6]">
-              <button onclick="klikPendaftaran()" class="px-6 py-3.5 bg-[#062116] hover:bg-[#0b3323] text-[#dfb342] text-xs font-mono uppercase tracking-wider font-bold rounded-none transition-colors">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mt-8 pt-6 border-t border-[#e2ece6]">
+              <button onclick="klikPendaftaran()" class="w-full sm:w-auto text-center px-6 py-3.5 bg-[#062116] hover:bg-[#c39328] text-white text-xs font-mono uppercase tracking-wider font-bold rounded-none transition-colors shadow-sm">
                 Daftar Santri Baru &rarr;
               </button>
-              <button onclick="showSection('sambutan')" class="px-6 py-3.5 bg-transparent hover:bg-white text-[#062116] border border-[#062116] text-xs font-mono uppercase tracking-wider font-bold rounded-none transition-colors">
+              <button onclick="showSection('sambutan')" class="w-full sm:w-auto text-center px-6 py-3.5 bg-transparent hover:bg-[#062116] text-[#062116] hover:text-white border border-[#062116] text-xs font-mono uppercase tracking-wider font-bold rounded-none transition-colors">
                 Wacana Pimpinan
               </button>
             </div>
@@ -1680,40 +1791,40 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     <!-- SWISS HORIZONTAL SHOLAT TIMETABLE (V2) -->
     <div id="jadwal-sholat-wrap" class="max-w-7xl mx-auto px-4 md:px-6 py-6 border-b border-[#e2ece6]" style="background:#ffffff !important;">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-[#e2ece6]">
-        <div class="flex items-center gap-3">
-          <span class="font-mono text-xs text-[#c39328] font-bold uppercase tracking-widest">[ WAKTU SHOLAT ]</span>
-          <span class="text-xs font-mono text-[#52665a]" id="jadwal-sholat-tanggal"></span>
+        <div>
+          <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest whitespace-nowrap">[ JADWAL SHOLAT &amp; IMSAKIYAH &bull; KEDIRI ]</span>
+          <p class="font-serif text-lg text-[#062116] font-normal mt-0.5" id="jadwal-sholat-tanggal"></p>
         </div>
         <div class="flex items-center gap-4 text-xs font-mono">
-          <span class="text-[#062116] font-bold" id="jadwal-sholat-jam">--:--:-- WIB</span>
-          <span class="text-[#c39328]" id="jadwal-sholat-countdown">Menghitung...</span>
+          <span class="border border-[#e2ece6] px-3 py-1.5 bg-[#faf9f5] text-[#062116]" id="jadwal-sholat-jam">--:--:-- WIB</span>
+          <span class="text-[#52665a]" id="jadwal-sholat-countdown">Menghitung...</span>
         </div>
       </div>
-      <div id="jadwal-sholat-grid" class="grid grid-cols-5 divide-x divide-[#e2ece6] border-b border-[#e2ece6] text-center" style="min-height:70px"></div>
+      <div id="jadwal-sholat-grid" class="grid grid-cols-5 divide-x divide-[#e2ece6] pt-4"></div>
     </div>
 
 
     <!-- SWISS ACADEMIC LEDGER PREVIEW (V2) -->
-    <div id="beranda-aplikasi-wrap" class="max-w-7xl mx-auto px-4 md:px-6 py-12 border-b border-[#e2ece6]" style="background:#ffffff !important;">
-      <div class="flex items-end justify-between pb-4 mb-6 border-b border-[#e2ece6]">
+    <div id="beranda-aplikasi-wrap" class="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16 border-b border-[#e2ece6] scroll-mt-28" style="background:#ffffff !important;">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between pb-4 mb-6 border-b border-[#e2ece6] gap-3">
         <div>
-          <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ DIREKTORI SISTEM RESMI ]</span>
+          <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest whitespace-nowrap">[ DIREKTORI SISTEM RESMI ]</span>
           <h2 class="font-serif text-2xl md:text-3xl font-normal text-[#062116] mt-1">Layanan &amp; Portal Digital Sekolah</h2>
         </div>
-        <button onclick="showSection('aplikasi')" class="font-mono text-xs text-[#062116] hover:text-[#c39328] uppercase tracking-wider font-bold">Semua 18 Layanan &rarr;</button>
+        <button onclick="showSection('aplikasi')" class="font-mono text-xs text-[#062116] hover:text-[#c39328] uppercase tracking-wider font-bold whitespace-nowrap inline-flex items-center gap-1.5 self-start sm:self-auto">Semua 18 Layanan &rarr;</button>
       </div>
       <div id="beranda-aplikasi-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
     </div>
 
 
     <!-- MAGAZINE INTERVIEW: SAMBUTAN KEPALA SEKOLAH (V2) -->
-    <div id="beranda-kepsek" class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 border-b border-[#e2ece6] scroll-mt-24" style="background:#faf9f5 !important;">
+    <div id="beranda-kepsek" class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 border-b border-[#e2ece6] scroll-mt-28" style="background:#faf9f5 !important;">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         <!-- Asymmetric Portrait (4 cols) -->
         <div class="lg:col-span-4">
           <div class="border border-[#e2ece6] p-2 bg-white">
             <div id="beranda-kepsek-foto" class="aspect-[3/4] overflow-hidden bg-[#e2ece6] relative">
-              <img src="https://placehold.co/400x500/062116/dfb342?text=Kepala+Sekolah" class="w-full h-full object-cover grayscale contrast-125" alt="Kepala Sekolah SMPI Yambu'ul Qur'an">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="Ust. H. Ahmad Fauzi, Lc., M.Pd.">
             </div>
             <div class="mt-3 text-center">
               <p class="font-serif text-base font-bold text-[#062116]" id="beranda-kepsek-nama">Ust. H. Ahmad Fauzi, Lc., M.Pd.</p>
@@ -1733,18 +1844,21 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
               "Pendidikan bukan sekadar transfer ilmu, melainkan pembiasaan adab dan penyelarasan jiwa dengan kalam Ilahi."
             </h2>
             <div class="mt-6 text-sm sm:text-base text-[#52665a] font-light leading-relaxed whitespace-pre-line" id="beranda-sambutan">
-              Memuat naskah sambutan resmi kepala sekolah...
+              Assalamu'alaikum Warahmatullahi Wabarakatuh. Selamat datang di website resmi SMPI Yambu'ul Qur'an Plosoklaten Kediri. Kami berkomitmen menyelenggarakan pendidikan berkualitas yang memadukan kurikulum nasional dan nilai-nilai luhur Al-Qur'an guna melahirkan generasi yang unggul dalam ilmu, kuat dalam iman, dan berakhlakul karimah.
             </div>
           </div>
 
           <div class="grid sm:grid-cols-2 gap-6 mt-10 pt-8 border-t border-[#e2ece6]">
             <div>
               <span class="font-mono text-xs text-[#062116] uppercase tracking-widest block font-bold mb-2">VISI UTAMA</span>
-              <p class="text-xs text-[#52665a] leading-relaxed font-light" id="beranda-visi">Memuat visi kelembagaan...</p>
+              <p class="text-xs text-[#52665a] leading-relaxed font-light" id="beranda-visi">Terwujudnya generasi yang beriman, bertakwa, berakhlak mulia, berprestasi, berwawasan Al-Qur'an, dan berdaya saing global.</p>
             </div>
             <div>
               <span class="font-mono text-xs text-[#062116] uppercase tracking-widest block font-bold mb-2">MISI STRATEGIS</span>
-              <p class="text-xs text-[#52665a] leading-relaxed font-light" id="beranda-misi">Memuat misi kelembagaan...</p>
+              <p class="text-xs text-[#52665a] leading-relaxed font-light" id="beranda-misi">1. Menyelenggarakan pembelajaran berkualitas berbasis nilai-nilai Islam dan Al-Qur'an.
+2. Membina karakter dan akhlakul karimah siswa dalam kehidupan sehari-hari.
+3. Mengembangkan potensi akademik, minat, dan bakat peserta didik secara optimal.
+4. Membangun lingkungan sekolah yang asri, disiplin, dan berwawasan teknologi.</p>
             </div>
           </div>
 
@@ -1807,7 +1921,8 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     <div id="beranda-program-unggulan" class="pu-section relative overflow-hidden py-14 md:py-20 scroll-mt-24">
       <div class="relative max-w-7xl mx-auto px-4 md:px-6">
         <div class="text-center max-w-3xl mx-auto mb-12">
-          <h2 class="font-serif text-2xl md:text-4xl font-black text-primary leading-tight">Kurikulum &amp; Program Pembinaan Unggulan</h2>
+          <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest block mb-2">[ ARSIP DOKUMEN &bull; PROGRAM AKADEMIK ]</span>
+<h2 class="font-serif text-2xl md:text-4xl font-normal text-[#062116] leading-tight">Kurikulum &amp; Program Pembinaan Unggulan</h2>
           <p class="text-sm md:text-base text-slate-500 leading-relaxed mt-2.5 font-medium">Empat pilar keunggulan SMPI Yambu'ul Qur'an yang membentuk karakter santri berakhlak mulia, cinta Al-Qur'an, unggul dalam sains, dan berdaya saing global.</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -1914,7 +2029,8 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-8">
       <div class="flex items-end justify-between mb-8">
         <div>
-          <h2 class="font-serif text-2xl md:text-3xl font-black text-primary">Aktivitas Program Santri</h2>
+          <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest block mb-1">[ AKTIVITAS &amp; PEMBINAAN SANTRI ]</span>
+<h2 class="font-serif text-2xl md:text-3xl font-normal text-[#062116]">Aktivitas Program Santri</h2>
           <p class="text-xs text-slate-500 mt-1 font-medium">Dokumentasi dan ragam kegiatan pembinaan siswa SMPI Yambu'ul Qur'an</p>
         </div>
         <button onclick="showSection('program')" class="hidden md:block text-primary hover:text-secondary-600 font-bold text-xs uppercase tracking-wider transition-colors">Semua Program &rarr;</button>
@@ -1942,7 +2058,8 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       <div class="max-w-7xl mx-auto px-4 md:px-6">
         <div class="flex items-end justify-between mb-8">
           <div>
-            <h2 class="font-serif text-2xl md:text-3xl font-black text-primary">Agenda &amp; Kalender Kegiatan</h2>
+            <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest block mb-1">[ ARSIP DOKUMEN &bull; AGENDA KEGIATAN ]</span>
+<h2 class="font-serif text-2xl md:text-3xl font-normal text-[#062116]">Agenda &amp; Kalender Kegiatan</h2>
             <p class="text-xs md:text-sm text-slate-500 mt-1 font-medium">Jadwal pembinaan, ujian, dan kegiatan akademik santri SMPI Yambu'ul Qur'an</p>
           </div>
           <button onclick="showSection('kegiatan')" class="hidden md:block text-primary hover:text-secondary-600 font-bold text-xs uppercase tracking-wider transition-colors">Kalender Lengkap &rarr;</button>
@@ -1955,7 +2072,8 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16">
       <div class="flex items-end justify-between mb-8">
         <div>
-          <h2 class="font-serif text-2xl md:text-3xl font-black text-primary">Capaian Prestasi Santri</h2>
+          <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest block mb-1">[ ARSIP DOKUMEN &bull; PRESTASI SANTRI ]</span>
+<h2 class="font-serif text-2xl md:text-3xl font-normal text-[#062116]">Capaian Prestasi Santri</h2>
           <p class="text-xs text-slate-500 mt-1 font-medium">Dedikasi santri dalam kompetisi tahfidz, sains, keagamaan, dan seni Islam</p>
         </div>
         <button onclick="showSection('prestasi')" class="hidden md:block text-primary hover:text-secondary-600 font-bold text-xs uppercase tracking-wider transition-colors">Semua Prestasi &rarr;</button>
@@ -1976,7 +2094,8 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       <div class="max-w-7xl mx-auto px-4 md:px-6">
         <div class="flex items-end justify-between mb-8">
           <div>
-            <h2 class="font-serif text-2xl md:text-3xl font-black text-primary">Dewan Asatidz &amp; Tenaga Pendidik</h2>
+            <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest block mb-1">[ DEWAN ASATIDZ &bull; TENAGA PENDIDIK ]</span>
+<h2 class="font-serif text-2xl md:text-3xl font-normal text-[#062116]">Dewan Asatidz &amp; Tenaga Pendidik</h2>
             <p class="text-xs md:text-sm text-slate-500 mt-1 font-medium">Para pendidik berdedikasi membimbing dan mengasuh santri dengan keteladanan</p>
           </div>
           <button onclick="showSection('guru')" class="hidden md:block text-primary hover:text-secondary-600 font-bold text-xs uppercase tracking-wider transition-colors">Profil Dewan Guru &rarr;</button>
@@ -1997,7 +2116,8 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16 border-t border-slate-100">
       <div class="flex items-end justify-between mb-8">
         <div>
-          <h2 class="font-serif text-2xl md:text-3xl font-black text-primary">Warta &amp; Artikel Terkini</h2>
+          <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest block mb-1">[ WARTA &amp; ARTIKEL RESMI ]</span>
+<h2 class="font-serif text-2xl md:text-3xl font-normal text-[#062116]">Warta &amp; Artikel Terkini</h2>
           <p class="text-xs md:text-sm text-slate-500 mt-1 font-medium">Informasi, kabar prestasi, dan wawasan pendidikan SMPI Yambu'ul Qur'an</p>
         </div>
         <button onclick="showSection('artikel')" class="hidden md:block text-primary hover:text-secondary-600 font-bold text-xs uppercase tracking-wider transition-colors">Semua Warta &rarr;</button>
@@ -2165,12 +2285,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
   <!-- ================= PROFIL ================= -->
   <!-- ================= FASILITAS (HALAMAN FULL) ================= -->
   <section id="section-fasilitas" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Fasilitas ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Fasilitas <span class="text-secondary">Sekolah</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Ruang belajar, laboratorium, dan sarana penunjang yang nyaman untuk mendukung tumbuh kembang siswa.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-school pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-flask pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-futbol pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Fasilitas <span class="text-secondary">Sekolah</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Ruang belajar, laboratorium, dan sarana penunjang yang nyaman untuk mendukung tumbuh kembang siswa.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Fasilitas</p>
       </div>
     </div>
     <div class="max-w-6xl mx-auto px-4 md:px-6 py-12">
@@ -2181,12 +2306,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= SAMBUTAN KEPALA SEKOLAH (HALAMAN FULL) ================= -->
   <section id="section-sambutan" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Sambutan ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Sambutan <span class="text-secondary">Kepala</span> Sekolah</h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Salam hangat dan pesan dari Kepala SMPI Yambu'ul Qur'an untuk seluruh keluarga besar sekolah.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-quote-left pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-user-tie pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-star-and-crescent pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Sambutan <span class="text-secondary">Kepala</span> Sekolah</h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Salam hangat dan pesan dari Kepala SMPI Yambu'ul Qur'an untuk seluruh keluarga besar sekolah.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Sambutan</p>
       </div>
     </div>
     <div class="max-w-5xl mx-auto px-4 md:px-6 py-12 space-y-12">
@@ -2224,16 +2354,21 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= APLIKASI DIGITAL SEKOLAH ================= -->
   <section id="section-aplikasi" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Aplikasi Digital Sekolah ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Yambu'ul Qur'an <span class="text-secondary">Smart School</span> Ecosystem</h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Satu pintu untuk seluruh layanan digital SMPI Yambu'ul Qur'an &mdash; praktis, cepat, dan bisa diakses dari mana saja.</p>
-        
-        <div class="mt-6 max-w-md relative">
-          <input id="aplikasi-cari" type="search" oninput="setCariAplikasi_(this.value)" placeholder="Ketik nama atau kata kunci aplikasi..." class="w-full bg-white border border-[#e2ece6] rounded-none px-4 py-3 text-xs font-mono text-[#062116] placeholder-[#7a8e82] focus:outline-none focus:border-[#062116]">
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-laptop-code pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-cloud pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-chart-line pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto px-4">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Yambu'ul Qur'an <span class="text-secondary">Smart School</span> Ecosystem</h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Satu pintu untuk seluruh layanan digital SMPI Yambu'ul Qur'an &mdash; praktis, cepat, dan bisa diakses dari mana saja.</p>
+        <div class="mt-7 max-w-md mx-auto relative">
+          <i class="fas fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+          <input id="aplikasi-cari" type="search" oninput="setCariAplikasi_(this.value)" placeholder="Cari aplikasi..." class="w-full bg-white rounded-full pl-12 pr-5 py-3.5 text-sm text-primary placeholder-slate-400 shadow-2xl focus:outline-none focus:ring-4 focus:ring-secondary/50">
         </div>
-
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Aplikasi Digital Sekolah</p>
       </div>
     </div>
     <div class="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-12">
@@ -2258,12 +2393,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= AKADEMIK: KALENDER AKADEMIK ================= -->
   <section id="section-kalender" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Akademik / Kalender Akademik ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Kalender <span class="text-secondary">Akademik</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Pantau jadwal penting tahun ajaran: awal semester, libur, ujian, hingga pembagian rapor.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-calendar-check pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-bell pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-clock pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Kalender <span class="text-secondary">Akademik</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Pantau jadwal penting tahun ajaran: awal semester, libur, ujian, hingga pembagian rapor.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Akademik / Kalender Akademik</p>
       </div>
     </div>
     <div class="max-w-6xl mx-auto px-4 md:px-6 py-12">
@@ -2276,12 +2416,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= AKADEMIK: JADWAL PELAJARAN ================= -->
   <section id="section-jadwalpelajaran" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Akademik / Jadwal Pelajaran ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Jadwal <span class="text-secondary">Pelajaran</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Jadwal pelajaran tiap kelas, tersusun rapi dan mudah dibuka dari mana saja.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-book-open pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-chalkboard pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-clock pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Jadwal <span class="text-secondary">Pelajaran</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Jadwal pelajaran tiap kelas, tersusun rapi dan mudah dibuka dari mana saja.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Akademik / Jadwal Pelajaran</p>
       </div>
     </div>
     <div class="max-w-6xl mx-auto px-4 md:px-6 py-12">
@@ -2294,12 +2439,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= AKADEMIK: JADWAL UJIAN ================= -->
   <section id="section-jadwalujian" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Akademik / Jadwal Ujian ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Jadwal <span class="text-secondary">Ujian</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Informasi jadwal ujian agar siswa dan orang tua dapat mempersiapkan diri dengan baik.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-pen-to-square pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-clipboard-check pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-hourglass-half pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Jadwal <span class="text-secondary">Ujian</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Informasi jadwal ujian agar siswa dan orang tua dapat mempersiapkan diri dengan baik.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Akademik / Jadwal Ujian</p>
       </div>
     </div>
     <div class="max-w-6xl mx-auto px-4 md:px-6 py-12">
@@ -2312,12 +2462,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= SEJARAH SEKOLAH ================= -->
   <section id="section-sejarah" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Profil / Sejarah Sekolah ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Sejarah <span class="text-secondary">Sekolah</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Perjalanan SMPI Yambu'ul Qur'an dari awal berdiri hingga hari ini.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-monument pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-scroll pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-timeline pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Sejarah <span class="text-secondary">Sekolah</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Perjalanan SMPI Yambu'ul Qur'an dari awal berdiri hingga hari ini.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Profil / Sejarah Sekolah</p>
       </div>
     </div>
     <div class="max-w-3xl mx-auto px-4 md:px-6 py-12">
@@ -2328,12 +2483,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= DONASI ================= -->
   <section id="section-donasi" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Donasi ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Donasi <span class="text-secondary">Sekolah</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Mari berbagi kebaikan untuk kemajuan SMPI Yambu'ul Qur'an. Semoga menjadi amal jariyah yang terus mengalir.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-hand-holding-heart pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-mosque pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-heart pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight" id="donasi-judul">Donasi <span class="text-secondary">Sekolah</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto" id="donasi-deskripsi">Mari berbagi kebaikan untuk kemajuan SMPI Yambu'ul Qur'an. Semoga menjadi amal jariyah yang terus mengalir.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Donasi</p>
       </div>
     </div>
     <div class="dn-wrap">
@@ -2390,12 +2550,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= GURU ================= -->
   <section id="section-guru" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Guru &amp; Staf ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Guru &amp; <span class="text-secondary">Staf</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Para pendidik dan tenaga kependidikan yang membimbing siswa dengan keteladanan dan dedikasi.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-graduation-cap pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-users pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-book-open-reader pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Guru &amp; <span class="text-secondary">Staf</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Para pendidik dan tenaga kependidikan yang membimbing siswa dengan keteladanan dan dedikasi.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Guru &amp; Staf</p>
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2406,12 +2571,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= PROGRAM ================= -->
   <section id="section-program" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Program ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Program <span class="text-secondary">Unggulan</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Program pilihan yang membentuk karakter islami, prestasi akademik, dan kecakapan masa depan.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-lightbulb pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-medal pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-seedling pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Program <span class="text-secondary">Unggulan</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Program pilihan yang membentuk karakter islami, prestasi akademik, dan kecakapan masa depan.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Program</p>
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2422,12 +2592,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= EKSTRAKURIKULER ================= -->
   <section id="section-ekstrakurikuler" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Ekstrakurikuler ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Ekstra<span class="text-secondary">kurikuler</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Wadah mengembangkan bakat, minat, dan kepemimpinan siswa di luar jam pelajaran.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-futbol pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-music pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-palette pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Ekstra<span class="text-secondary">kurikuler</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Wadah mengembangkan bakat, minat, dan kepemimpinan siswa di luar jam pelajaran.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Ekstrakurikuler</p>
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2438,12 +2613,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= PRESTASI ================= -->
   <section id="section-prestasi" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Prestasi ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Prestasi <span class="text-secondary">Sekolah</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Capaian siswa dan sekolah di berbagai bidang, bukti kerja keras dan doa bersama.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-medal pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-award pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-ranking-star pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Prestasi <span class="text-secondary">Sekolah</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Capaian siswa dan sekolah di berbagai bidang, bukti kerja keras dan doa bersama.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Prestasi</p>
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2454,12 +2634,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= ALUMNI ================= -->
   <section id="section-alumni" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Alumni ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight"><span class="text-secondary">Alumni</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Jejak lulusan SMPI Yambu'ul Qur'an yang terus berkarya dan berkontribusi di berbagai bidang.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-graduation-cap pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-handshake pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-earth-asia pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight"><span class="text-secondary">Alumni</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Jejak lulusan SMPI Yambu'ul Qur'an yang terus berkarya dan berkontribusi di berbagai bidang.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Alumni</p>
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2470,12 +2655,53 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= KEGIATAN / AGENDA ================= -->
   <section id="section-kegiatan" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Artikel ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Agenda <span class="text-secondary">Sekolah</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Jadwal kegiatan belajar mengajar, ujian, serta agenda sekolah lainnya di SMPI Yambu'ul Qur'an.</p>
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-calendar-days pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-bullhorn pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-clock pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Agenda <span class="text-secondary">Sekolah</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Jadwal kegiatan belajar mengajar, ujian, serta agenda sekolah lainnya di SMPI Yambu'ul Qur'an.</p>
+
+        <div id="agenda-ringkasan" class="flex flex-wrap justify-center gap-2.5 mt-6"></div>
         
+      </div>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 md:px-6 py-12">
+      <button onclick="kembaliKeBeranda('beranda-kegiatan-grid')" class="text-primary hover:text-primary-600 text-xs font-bold inline-flex items-center gap-1.5 mb-6"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</button>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-3 md:p-4 flex flex-col sm:flex-row gap-3 mb-4">
+        <div class="flex-1 flex items-center gap-2 bg-slate-50 rounded-xl px-4 py-2.5">
+          <i class="fas fa-search text-slate-400 text-sm"></i>
+          <input id="agenda-cari" type="text" placeholder="Cari agenda (contoh: Ujian, Upacara, Rapat)..." class="flex-1 min-w-0 bg-transparent text-sm focus:outline-none" oninput="renderAgendaList()">
+        </div>
+        <select id="agenda-filter-kategori" class="bg-slate-50 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-600 focus:outline-none sm:w-56" onchange="renderAgendaList()">
+          <option value="">Semua Kategori</option>
+        </select>
+      </div>
+
+      <div id="agenda-tab" class="flex gap-2 mb-8 overflow-x-auto scrollbar-hide pb-1"></div>
+
+      <div id="agenda-list"></div>
+    </div>
+  </section>
+
+  <!-- ================= ARTIKEL (list) ================= -->
+  <section id="section-artikel" class="app-section">
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-pen-nib pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-bullhorn pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-rss pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Artikel <span class="text-secondary">&amp;</span> Berita</h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Berita, tulisan, dan informasi terbaru seputar kegiatan SMPI Yambu'ul Qur'an.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Artikel</p>
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2555,12 +2781,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= GALERI FOTO ================= -->
   <section id="section-galeri" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Galeri Foto ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Galeri <span class="text-secondary">Foto</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Potret momen belajar, kegiatan, dan kebersamaan keluarga besar sekolah.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-camera pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-image pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-photo-film pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Galeri <span class="text-secondary">Foto</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Potret momen belajar, kegiatan, dan kebersamaan keluarga besar sekolah.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Galeri Foto</p>
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2571,12 +2802,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= GALERI VIDEO ================= -->
   <section id="section-galerivideo" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Galeri Video ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Galeri <span class="text-secondary">Video</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Tonton cuplikan kegiatan dan kebersamaan di SMPI Yambu'ul Qur'an.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-video pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-circle-play pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-clapperboard pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Galeri <span class="text-secondary">Video</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Tonton cuplikan kegiatan dan kebersamaan di SMPI Yambu'ul Qur'an.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Galeri Video</p>
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2587,12 +2823,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= VIRTUAL TOUR 360 ================= -->
   <section id="section-virtualtour" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Virtual Tour ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Virtual <span class="text-secondary">Tour</span> 360&deg;</h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Keliling lingkungan sekolah secara virtual, seolah-olah berada langsung di lokasi.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-street-view pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-compass pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-map-location-dot pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Virtual <span class="text-secondary">Tour</span> 360&deg;</h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Keliling lingkungan sekolah secara virtual, seolah-olah berada langsung di lokasi.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Virtual Tour</p>
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
@@ -2605,12 +2846,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= LIVE STREAMING ================= -->
   <section id="section-livestreaming" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Live Streaming ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Live <span class="text-secondary">Streaming</span></h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Ikuti siaran langsung kegiatan sekolah dan lihat arsip siaran sebelumnya.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-video pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-satellite-dish pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-circle-play pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Live <span class="text-secondary">Streaming</span></h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Ikuti siaran langsung kegiatan sekolah dan lihat arsip siaran sebelumnya.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Live Streaming</p>
       </div>
     </div>
     <div class="max-w-5xl mx-auto px-4 md:px-6 py-12">
@@ -2629,12 +2875,17 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
 
   <!-- ================= KARYA ================= -->
   <section id="section-karya" class="app-section">
-    <div class="subpage-hero-banner border-b border-[#e2ece6] py-12 md:py-16 px-4 md:px-8" style="background:#faf9f5 !important; color:#062116 !important;">
-      <div class="max-w-6xl mx-auto">
-        <span class="font-mono text-xs text-[#c39328] uppercase tracking-widest">[ ARSIP DOKUMEN &bull; Beranda / Karya ]</span>
-        <h1 class="font-serif text-3xl md:text-5xl text-[#062116] font-normal mt-2 tracking-tight">Karya <span class="text-secondary">Siswa</span> &amp; Guru</h1>
-        <p class="text-sm md:text-base text-[#52665a] font-light mt-3 max-w-2xl leading-relaxed">Kumpulan puisi, cerpen, lukisan, gambar, dan video hasil kreativitas keluarga besar SMPI Yambu'ul Qur'an.</p>
-        
+    <div class="subpage-hero-banner relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary to-primary-700 pt-14 pb-16 md:pt-16 md:pb-20 text-center px-4">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.12]" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px"></div>
+      
+      
+      <i class="fas fa-paintbrush pointer-events-none absolute left-[6%] top-12 text-6xl text-white/[0.06] -rotate-12 hidden md:block"></i>
+      <i class="fas fa-feather-pointed pointer-events-none absolute right-[8%] top-16 text-7xl text-white/[0.06] hidden md:block"></i>
+      <i class="fas fa-lightbulb pointer-events-none absolute right-[18%] bottom-8 text-5xl text-white/[0.06] rotate-6 hidden md:block"></i>
+      <div class="relative max-w-3xl mx-auto">
+        <h1 class="text-3xl md:text-5xl font-black text-white mt-4 leading-tight">Karya <span class="text-secondary">Siswa</span> &amp; Guru</h1>
+        <p class="text-white/65 text-sm md:text-base mt-3 max-w-xl mx-auto">Kumpulan puisi, cerpen, lukisan, gambar, dan video hasil kreativitas keluarga besar SMPI Yambu'ul Qur'an.</p>
+        <p class="text-white/45 text-[11px] mt-4 font-semibold">Beranda / Karya</p>
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-12">
@@ -2672,17 +2923,23 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
           <span class="border border-[#e2ece6] px-2.5 py-1 bg-white text-[#062116]">AKREDITASI: B</span>
         </div>
       </div>
-      <div class="md:col-span-4">
-        <span class="font-mono text-xs uppercase tracking-widest text-[#062116] block mb-4 font-bold">[ INDEKS DIREKTORI ]</span>
-        <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-          <a href="#" onclick="showSection('sambutan');return false;" class="hover:text-[#c39328]">Wacana Pimpinan</a>
-          <a href="#" onclick="showSection('program');return false;" class="hover:text-[#c39328]">Kurikulum</a>
-          <a href="#" onclick="showSection('guru');return false;" class="hover:text-[#c39328]">Dewan Asatidz</a>
-          <a href="#" onclick="showSection('fasilitas');return false;" class="hover:text-[#c39328]">Fasilitas</a>
-          <a href="#" onclick="showSection('aplikasi');return false;" class="hover:text-[#c39328] font-bold text-[#062116]">18 Aplikasi</a>
-          <a href="#" onclick="showSection('prestasi');return false;" class="hover:text-[#c39328]">Prestasi</a>
-          <a href="#" onclick="showSection('artikel');return false;" class="hover:text-[#c39328]">Warta Sekolah</a>
-          <a href="#" onclick="klikPendaftaran();return false;" class="hover:text-[#c39328] text-[#c39328]">Pendaftaran</a>
+      <div class="md:col-span-2">
+        <span class="font-mono text-xs uppercase tracking-widest text-[#062116] block mb-4 font-bold">[ INDEKS PROFIL ]</span>
+        <div class="text-xs space-y-2.5">
+          <div><a href="#" onclick="showSection('sambutan');return false;" class="hover:text-[#c39328]">Sambutan &amp; Visi</a></div>
+          <div><a href="#" onclick="showSection('sejarah');return false;" class="hover:text-[#c39328]">Sejarah Lembaga</a></div>
+          <div><a href="#" onclick="showSection('guru');return false;" class="hover:text-[#c39328]">Dewan Asatidz</a></div>
+          <div><a href="#" onclick="showSection('fasilitas');return false;" class="hover:text-[#c39328]">Fasilitas Kampus</a></div>
+          <div><a href="#" onclick="showSection('prestasi');return false;" class="hover:text-[#c39328]">Prestasi Santri</a></div>
+        </div>
+      </div>
+      <div class="md:col-span-2">
+        <span class="font-mono text-xs uppercase tracking-widest text-[#062116] block mb-4 font-bold">[ DIREKTORI ]</span>
+        <div class="text-xs space-y-2.5 font-mono">
+          <div><a href="#" onclick="showSection('aplikasi');return false;" class="hover:text-[#c39328]">18 Aplikasi</a></div>
+          <div><a href="#" onclick="showSection('kalender');return false;" class="hover:text-[#c39328]">Kalender Akademik</a></div>
+          <div><a href="#" onclick="showSection('donasi');return false;" class="hover:text-[#c39328]">Wakaf &amp; Donasi</a></div>
+          <div><a href="#" onclick="klikPendaftaran();return false;" class="hover:text-[#c39328] text-[#c39328]">Pendaftaran</a></div>
         </div>
       </div>
       <div class="md:col-span-3">
@@ -3187,7 +3444,8 @@ if (typeof google === 'undefined' || !google.script || !google.script.run) {
   });
 }
 
-let DB = {};
+window.__INITIAL_DATA__ = {"sheet1": [], "herobanner": [{"_rowId": 2, "gambar": "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1280&q=80", "urutan": 1}, {"_rowId": 3, "gambar": "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1280&q=80", "urutan": 2}, {"_rowId": 4, "gambar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1280&q=80", "urutan": 3}], "artikel": [{"_rowId": 2, "judul": "Penerimaan Peserta Didik Baru (PPDB) SMPI Yambu'ul Qur'an Tahun Ajaran 2026/2027 Resmi Dibuka", "kategori": "PPDB", "tanggal": "2026-11-15T00:00:00.000Z", "ringkasan": "SMPI Yambu'ul Qur'an Plosoklaten membuka pendaftaran peserta didik dan santri baru dengan kuota terbatas serta program beasiswa tahfidz Al-Qur'an.", "konten": "<p>Assalamu'alaikum Warahmatullahi Wabarakatuh.</p><p>Kabar gembira bagi para orang tua dan calon peserta didik yang mendambakan pendidikan berkualitas berbasis nilai-nilai Islam dan Al-Qur'an. <strong>SMPI Yambu'ul Qur'an</strong> secara resmi membuka Penerimaan Peserta Didik Baru (PPDB) untuk Tahun Ajaran 2026/2027.</p><h3>Program Unggulan:</h3><ul><li>Tahfidzul Qur'an Intensif bersanad</li><li>Pendidikan Karakter dan Adab Islami</li><li>Kelas Digital & Eksplorasi Sains</li><li>Pembiasaan Bahasa Arab dan Inggris</li></ul><p>Pendaftaran dapat dilakukan langsung di kampus SMPI Yambu'ul Qur'an atau via WhatsApp panitia di <strong>0815-1577-7911</strong>.</p>", "gambar": "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80", "penulis": "Panitia PPDB", "views": 249, "suka": 37}, {"_rowId": 3, "judul": "Khotmil Qur'an & Imtihan Tahfidz: 42 Santri Sukses Uji Publik Hafalan Al-Qur'an", "kategori": "Prestasi", "tanggal": "2026-11-10T00:00:00.000Z", "ringkasan": "Suasana khidmat dan penuh haru mewarnai gelaran Khotmil Qur'an dan Uji Publik Hafalan santri SMPI Yambu'ul Qur'an di hadapan para orang tua dan asatidz.", "konten": "<p>Sebanyak 42 santri SMPI Yambu'ul Qur'an sukses menuntaskan uji hafalan Al-Qur'an pada acara Khotmil Qur'an dan Imtihan Tahfidz di Masjid Jami' Yambu'ul Qur'an.</p><p>Uji publik ini menguji kelancaran (itqan), tajwid, makharijul huruf, dan fashahah hafalan Al-Qur'an secara acak oleh para penguji berkompeten dan wali santri. Semoga melahirkan generasi Qur'ani yang berakhlak mulia.</p>", "gambar": "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80", "penulis": "Humas Sekolah", "views": 315, "suka": 52}, {"_rowId": 4, "judul": "Santri SMPI Yaqu Raih Juara 1 MTQ dan Kaligrafi Tingkat Kabupaten Kediri", "kategori": "Prestasi", "tanggal": "2026-11-05T00:00:00.000Z", "ringkasan": "Prestasi membanggakan kembali ditorehkan santri SMPI Yambu'ul Qur'an pada ajang Pekan Seni dan Keterampilan Islam tingkat Kabupaten Kediri.", "konten": "<p>Delegasi SMPI Yambu'ul Qur'an berhasil membawa pulang trofi Juara 1 pada cabang Musabaqah Tilawatil Qur'an (MTQ) dan Juara 1 Seni Kaligrafi Islam Kontemporer.</p><p>Keberhasilan ini membuktikan komitmen sekolah dalam membina bakat seni dan spiritualitas generasi muda.</p>", "gambar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80", "penulis": "Tim Redaksi Yaqu", "views": 189, "suka": 41}, {"_rowId": 5, "judul": "Integrasi Kurikulum Merdeka dan Nilai Al-Qur'an di Era Digital", "kategori": "Pendidikan", "tanggal": "2026-10-28T00:00:00.000Z", "ringkasan": "Bagaimana SMPI Yambu'ul Qur'an memadukan penguasaan sains teknologi modern dengan pembentukan karakter akhlakul karimah.", "konten": "<p>Pendidikan di abad ke-21 menuntut keseimbangan antara kecerdasan intelektual, kemahiran digital, dan keteguhan spiritual. Di SMPI Yambu'ul Qur'an, proses pembelajaran dirancang untuk mengembangkan nalar kritis siswa tanpa meninggalkan adab Islami.</p>", "gambar": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80", "penulis": "Ust. H. Ahmad Fauzi, Lc.", "views": 172, "suka": 29}, {"_rowId": 6, "judul": "Peringatan Hari Santri Nasional: Meneladani Semangat Juang Para Ulama", "kategori": "Kegiatan", "tanggal": "2026-10-22T00:00:00.000Z", "ringkasan": "Upacara peringatan Hari Santri Nasional di SMPI Yambu'ul Qur'an berlangsung khidmat diikuti seluruh santri, guru, dan pengurus yayasan.", "konten": "<p>Dengan mengenakan busana muslim dan sarung khas santri, seluruh keluarga besar SMPI Yambu'ul Qur'an menggelar apel akbar Hari Santri Nasional yang dimeriahkan lomba khitobah 3 bahasa dan hadrah.</p>", "gambar": "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=800&q=80", "penulis": "OSIS SMPI Yaqu", "views": 210, "suka": 48}, {"_rowId": 7, "judul": "Kiat Praktis Menghafal Al-Qur'an dan Menjaga Hafalan bagi Pelajar Remaja", "kategori": "Edukasi", "tanggal": "2026-10-15T00:00:00.000Z", "ringkasan": "Tips efektif mengelola waktu antara target ziyadah hafalan Al-Qur'an harian dan kewajiban belajar pelajaran umum di sekolah.", "konten": "<p>Koordinator Tahfidz SMPI Yambu'ul Qur'an membagikan tips kunci: niat ikhlas, istiqomah muroja'ah bakda subuh, menjaga pandangan serta adab, dan menggunakan mushaf standar yang sama.</p>", "gambar": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80", "penulis": "Ust. Muhammad Ilham, Al-Hafidz", "views": 340, "suka": 65}], "kegiatan": [{"_rowId": 2, "judul": "Ujian Sumatif Akhir Semester (SAS) Ganjil", "tanggal": "2026-12-01T00:00:00.000Z", "kategori": "Akademik", "jam": "07.30 - 12.00 WIB", "lokasi": "Gedung Kelas SMPI Yaqu", "deskripsi": "Evaluasi pembelajaran semester ganjil berbasis Computer Based Test (CBT) dan tertulis.", "foto": "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 3, "judul": "Munaqosyah & Uji Publik Tahfidz Al-Qur'an Ke-4", "tanggal": "2026-12-18T00:00:00.000Z", "kategori": "Keagamaan", "jam": "08.00 - 15.00 WIB", "lokasi": "Masjid Jami' Yambu'ul Qur'an", "deskripsi": "Ujian kelayakan hafalan 5 Juz, 10 Juz, dan 30 Juz bagi santri tahfidz intensif.", "foto": "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 4, "judul": "Penerimaan Rapor & Wisuda Tahfidz Semester Ganjil", "tanggal": "2026-12-23T00:00:00.000Z", "kategori": "Akademik", "jam": "08.00 - 11.30 WIB", "lokasi": "Aula Pertemuan Sekolah", "deskripsi": "Penyerahan laporan hasil belajar siswa semester ganjil kepada orang tua / wali santri.", "foto": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 5, "judul": "Kemah Bhakti Santri & Pelantikan Penggalang", "tanggal": "2027-01-15T00:00:00.000Z", "kategori": "Kesiswaan", "jam": "07.00 WIB - Selesai", "lokasi": "Bumi Perkemahan Kediri", "deskripsi": "Kegiatan pembinaan kemandirian dan kepanduan Pramuka Gugus Depan SMPI Yambu'ul Qur'an.", "foto": "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=600&q=80"}], "kalenderakademik": [], "jadwalpelajaran": [], "jadwalujian": [], "dokumenakademik": [], "sejarah": [], "donasi": [], "rekeningdonasi": [{"_rowId": 2, "bank": "Bank Syariah Indonesia (BSI)", "nomor_rekening": "7188-2938-11", "atas_nama": "Yayasan Yambu'ul Qur'an Kediri", "keterangan": "Infaq & Donasi Pengembangan Sarana Pendidikan SMPI Yaqu"}, {"_rowId": 3, "bank": "Bank Jatim Syariah", "nomor_rekening": "6102-4889-01", "atas_nama": "Yayasan Yambu'ul Qur'an", "keterangan": "Wakaf Mushaf Al-Qur'an & Beasiswa Santri Yatim/Dhuafa"}], "guru": [{"_rowId": 2, "nama": "Ust. H. Ahmad Fauzi, Lc., M.Pd.", "jabatan": "Kepala Sekolah", "mapel": "PAI & Ulumul Qur'an", "nip": "19820415 200801 1 008", "foto": "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80"}, {"_rowId": 3, "nama": "Ustadzah Siti Nur Azizah, S.Pd.I., M.Pd.", "jabatan": "Waka Kurikulum", "mapel": "Bahasa Arab", "nip": "19860920 201101 2 012", "foto": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"}, {"_rowId": 4, "nama": "Ust. Muhammad Ilham, Al-Hafidz", "jabatan": "Koordinator Tahfidz", "mapel": "Tahsin & Tahfidzul Qur'an", "nip": "-", "foto": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"}, {"_rowId": 5, "nama": "Bpk. Rian Hidayat, S.Pd.", "jabatan": "Waka Kesiswaan & Pembina Pramuka", "mapel": "Ilmu Pengetahuan Alam (IPA)", "nip": "19900312 201503 1 005", "foto": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"}, {"_rowId": 6, "nama": "Ibu Dwi Rahayu, S.Si., M.Pd.", "jabatan": "Guru Senior", "mapel": "Matematika", "nip": "19850118 200902 2 006", "foto": "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=400&q=80"}, {"_rowId": 7, "nama": "Ustadzah Fitria Handayani, S.Pd.", "jabatan": "Pembina Bahasa", "mapel": "Bahasa Inggris", "nip": "19930704 201903 2 015", "foto": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80"}, {"_rowId": 8, "nama": "Ust. Zainul Muttaqin, S.Pd.I.", "jabatan": "Pembina Seni & Ekskul", "mapel": "Seni Budaya & Kaligrafi", "nip": "-", "foto": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"}, {"_rowId": 9, "nama": "Bpk. Hendra Saputra, S.Kom.", "jabatan": "Kepala Lab Komputer", "mapel": "Informatika", "nip": "-", "foto": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=400&q=80"}], "program": [{"_rowId": 2, "nama_program": "Tahfidzul Qur'an Intensif (30 Juz)", "deskripsi": "Bimbingan hafalan dan talaqqi Al-Qur'an bersanad setiap hari dengan target mutqin dan wisuda tahfidz berkala.", "icon": "fa-book-quran", "foto": "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 3, "nama_program": "Pendidikan Karakter & Adab Qur'ani", "deskripsi": "Pembiasaan sholat fardhu berjamaah, sholat dhuha, tadarus Al-Qur'an, dan penanaman akhlakul karimah dalam keseharian santri.", "icon": "fa-heart", "foto": "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 4, "nama_program": "Bilingual Language Program", "deskripsi": "Penguasaan komunikasi aktif Bahasa Arab dan Bahasa Inggris melalui muhadharah, yaumul lughah, dan mufrodat harian.", "icon": "fa-language", "foto": "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 5, "nama_program": "Smart School & Digital Learning", "deskripsi": "Integrasi kurikulum nasional dengan fasilitas laboratorium komputer multimedia, e-learning, dan literasi teknologi modern.", "icon": "fa-laptop-code", "foto": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"}], "ekstrakurikuler": [{"_rowId": 2, "nama_ekskul": "Seni Hadrah & Banjari Al-Muhibbin", "deskripsi": "Seni musik rebana Islami, pembacaan maulid Simtudduror dan sholawat nabi.", "pembina": "Ust. Zainul Muttaqin", "jadwal": "Selasa & Kamis, 15.30 - 17.00 WIB", "foto": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 3, "nama_ekskul": "Pramuka Gugus Depan Yaqu", "deskripsi": "Pendidikan kepanduan melatih kedisiplinan, kemandirian, dan kepemimpinan generasi muda muslim.", "pembina": "Kak Rian Hidayat, S.Pd.", "jadwal": "Jumat, 14.30 - 16.30 WIB", "foto": "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 4, "nama_ekskul": "Futsal & Olahraga Prestasi", "deskripsi": "Latihan teknik sepak bola mini, penguatan fisik, dan kebugaran santri.", "pembina": "Coach Wahyu Pratama", "jadwal": "Sabtu, 07.00 - 09.00 WIB", "foto": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 5, "nama_ekskul": "Seni Kaligrafi Islam Kontemporer", "deskripsi": "Pembelajaran seni khat naskhi, tsuluts, diwani, dan lukis kaligrafi kanvas.", "pembina": "Ust. Mahfudz Al-Khattat", "jadwal": "Rabu, 15.30 - 17.00 WIB", "foto": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 6, "nama_ekskul": "Muhadharah 3 Bahasa", "deskripsi": "Latihan pidato dan retorika dakwah dalam Bahasa Indonesia, Arab, dan Inggris.", "pembina": "Ustadzah Fitria, S.Pd.", "jadwal": "Ahad, 19.30 - 21.00 WIB", "foto": "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 7, "nama_ekskul": "Klub Komputer & IT Terapan", "deskripsi": "Belajar dasar desain grafis, pengetikan cepat, dan eksplorasi teknologi digital.", "pembina": "Bpk. Hendra Saputra, S.Kom.", "jadwal": "Senin, 15.30 - 17.00 WIB", "foto": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"}], "prestasi": [{"_rowId": 2, "nama_prestasi": "Juara 1 Musabaqah Hifdzil Qur'an (MHQ) 5 Juz", "nama_siswa": "Muhammad Ridwan (Kelas 8)", "tingkat": "Kabupaten Kediri", "tahun": 2026, "keterangan": "Pekan Olahraga dan Seni Islami Kabupaten Kediri", "foto": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 3, "nama_prestasi": "Juara 2 Lomba Pidato Bahasa Arab Pelajar", "nama_siswa": "Aisyah Syifa Ramadhani (Kelas 9)", "tingkat": "Provinsi Jawa Timur", "tahun": 2026, "keterangan": "Festival Bahasa Arab Se-Jawa Timur", "foto": "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 4, "nama_prestasi": "Juara 1 Festival Seni Hadrah Pelajar", "nama_siswa": "Grup Hadrah Syauqul Qolbi Yaqu", "tingkat": "Karesidenan Kediri", "tahun": 2025, "keterangan": "Festival Maulid Pelajar Karesidenan Kediri", "foto": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 5, "nama_prestasi": "Medali Perak Olimpiade Sains & PAI Nasional", "nama_siswa": "Fatimah Az-Zahra (Kelas 8)", "tingkat": "Nasional", "tahun": 2025, "keterangan": "Olimpiade Sains PAI Pelajar Menengah Tingkat Nasional", "foto": "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80"}], "alumni": [{"_rowId": 2, "nama": "Muhammad Faiz Al-Farisi", "angkatan": 2024, "melanjutkan": "MA PK MAN 1 Yogyakarta", "testimoni": "Fondasi Al-Qur'an dan kedisiplinan di SMPI Yambu'ul Qur'an membuat saya sangat siap bersaing dan mandiri di madrasah unggulan.", "foto": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"}, {"_rowId": 3, "nama": "Nabila Salma Nur Izzati", "angkatan": 2024, "melanjutkan": "Pondok Modern Gontor Putri", "testimoni": "Alhamdulillah, bimbingan ustadz-ustadzah di SMPI Yaqu sangat berharga, baik hafalan Al-Qur'an maupun penanaman akhlak harian.", "foto": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"}, {"_rowId": 4, "nama": "Ahmad Zaki Robbani", "angkatan": 2025, "melanjutkan": "SMA Taruna Nusantara", "testimoni": "Di SMPI Yaqu kami dididik untuk berprestasi akademik sekaligus menjaga sholat berjamaah dan Al-Qur'an. Bekal luar biasa!", "foto": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"}], "fasilitas": [{"_rowId": 2, "nama_fasilitas": "Masjid Jami' Yambu'ul Qur'an", "deskripsi": "Masjid megah pusat ibadah sholat 5 waktu berjamaah, kajian kitab salaf, dan halaqah tahfidz yang nyaman.", "foto": "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 3, "nama_fasilitas": "Gedung Asrama Santri (Boarding)", "deskripsi": "Hunian santri yang bersih, tertata rapi, berfasilitas kasur & lemari pribadi, serta dibimbing musyrif 24 jam.", "foto": "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 4, "nama_fasilitas": "Laboratorium Komputer Multimedia", "deskripsi": "Laboratorium ber-AC dengan 32 unit komputer modern dan jaringan internet berkecepatan tinggi.", "foto": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 5, "nama_fasilitas": "Perpustakaan & Pojok Literasi Qur'an", "deskripsi": "Koleksi ribuan buku pelajaran, ensiklopedia Islam, kitab tafsir, dan ruang baca santai.", "foto": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 6, "nama_fasilitas": "Lapangan Olahraga Serbaguna", "deskripsi": "Lapangan futsal, voli, dan bulutangkis beralas cor halus untuk menjaga kebugaran dan sportivitas santri.", "foto": "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 7, "nama_fasilitas": "Ruang Kelas Modern & Ber-AC", "deskripsi": "Ruang belajar representatif dilengkapi proyektor LCD, papan tulis ganda, dan ventilasi udara yang sejuk.", "foto": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80"}], "galeri": [{"_rowId": 2, "judul": "Halaqah Tahfidz Al-Qur'an Santri Pagi Hari", "kategori": "Tahfidz", "tanggal": "2026-11-12T00:00:00.000Z", "gambar": "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 3, "judul": "Praktikum Sains di Laboratorium Terpadu", "kategori": "Akademik", "tanggal": "2026-11-08T00:00:00.000Z", "gambar": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 4, "judul": "Sholat Berjamaah di Masjid Jami' Yambu'ul Qur'an", "kategori": "Ibadah", "tanggal": "2026-11-04T00:00:00.000Z", "gambar": "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 5, "judul": "Latihan Rutin Ekstrakurikuler Hadrah Banjari", "kategori": "Ekstrakurikuler", "tanggal": "2026-10-30T00:00:00.000Z", "gambar": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 6, "judul": "Upacara Bendera dan Pembinaan Karakter Santri", "kategori": "Kesiswaan", "tanggal": "2026-10-25T00:00:00.000Z", "gambar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"}, {"_rowId": 7, "judul": "Kompetisi Futsal Antar Kelas (Classmeeting)", "kategori": "Olahraga", "tanggal": "2026-10-18T00:00:00.000Z", "gambar": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80"}], "galerivideo": [], "virtualtour360": [], "livestreaming": [], "statistik": [{"_rowId": 2, "label": "Santri & Siswa Aktif", "jumlah": 348}, {"_rowId": 3, "label": "Guru & Asatidz", "jumlah": 28}, {"_rowId": 4, "label": "Santri Tahfidz 5-30 Juz", "jumlah": 115}, {"_rowId": 5, "label": "Trofi & Prestasi Juara", "jumlah": 42}], "menu": [{"_rowId": 2, "nama_menu": "JURNAL DIGITAL", "link": "https://nixon42.github.io/jurnal/", "deskripsi": "Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru secara terstruktur.", "urutan": 1, "tampil": "ya"}, {"_rowId": 3, "nama_menu": "LMS", "link": "https://nixon42.github.io/lms/", "deskripsi": "Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas terpadu.", "urutan": 2, "tampil": "ya"}, {"_rowId": 4, "nama_menu": "Absensi", "link": "https://nixon42.github.io/absen/", "deskripsi": "Absensi berbasis face recognition, pencatatan secara realtime dan akurat.", "urutan": 3, "tampil": "ya"}, {"_rowId": 5, "nama_menu": "TU & Persuratan Online", "link": "https://administrasi.smpitalmubarok.sch.id/", "deskripsi": "Digitalisasi pengarsipan, permintaan surat, dan tata kelola administrasi surat-menyurat sekolah.", "urutan": 4, "tampil": "ya"}, {"_rowId": 6, "nama_menu": "Supervisi", "link": "https://supervisi.smpitalmubarok.sch.id/", "deskripsi": "Platform digital yang dirancang untuk mempermudah, mempercepat, dan mengoptimalkan proses pemantauan, evaluasi, serta pembinaan kinerja secara real-time dari mana saja.", "urutan": 5, "tampil": "ya"}, {"_rowId": 7, "nama_menu": "Buku Inventaris Barang", "link": "https://inventaris.smpitalmubarok.sch.id/", "deskripsi": "Digitalisasi pendataan dan pemantauan kondisi serta aset sarana-prasarana sekolah.", "urutan": 6, "tampil": "ya"}, {"_rowId": 8, "nama_menu": "Layanan Perpustakaan", "link": "https://perpustakaan.smpitalmubarok.sch.id/", "deskripsi": "Sistem katalog, peminjaman, dan pengembalian buku fisik sekolah.", "urutan": 7, "tampil": "ya"}, {"_rowId": 9, "nama_menu": "E-Rapor Tahfidz", "link": "https://eraportahfidz.smpitalmubarok.sch.id/", "deskripsi": "Laporan capaian hafalan Al-Qur'an dan perkembangan Tahsin siswa secara transparan.", "urutan": 8, "tampil": "ya"}, {"_rowId": 10, "nama_menu": "Al-Qur'an Digital", "link": "https://quran.smpitalmubarok.sch.id/", "deskripsi": "Akses teks dan bacaan Al-Qur'an interaktif untuk mendukung kegiatan keagamaan.", "urutan": 9, "tampil": "ya"}, {"_rowId": 11, "nama_menu": "Buku Induk Siswa", "link": "https://edosis.disdikkedirikab.com/auth/login", "deskripsi": "Database rekam jejak biodata dan histori akademis siswa terlengkap secara digital.", "urutan": 10, "tampil": "ya"}, {"_rowId": 12, "nama_menu": "Sistem Mutasi Siswa", "link": "https://mutasi.disdikkedirikab.com/auth/login", "deskripsi": "Pengelolaan proses kepindahan siswa (masuk/keluar) yang tertib administrasi.", "urutan": 11, "tampil": "ya"}, {"_rowId": 13, "nama_menu": "Ujian Online", "link": "https://app.e-ujian.com/SMPIT_AlMubarok/login", "deskripsi": "Platform ujian dan evaluasi belajar digital yang praktis, fleksibel, dan aman.", "urutan": 12, "tampil": "ya"}, {"_rowId": 14, "nama_menu": "Portal TKA", "link": "https://tka.onedumind.com/", "deskripsi": "Pelaksanaan dan analisis hasil pemetaan potensi akademik siswa.", "urutan": 13, "tampil": "ya"}, {"_rowId": 15, "nama_menu": "Buku Digital", "link": "https://buku.kemendikdasmen.go.id/daftar-katalog", "deskripsi": "Perpustakaan digital berisi koleksi modul dan buku paket pembelajaran elektronik.", "urutan": 14, "tampil": "ya"}, {"_rowId": 16, "nama_menu": "Cek NISN", "link": "https://nisn.data.kemendikdasmen.go.id/", "deskripsi": "Fitur validasi dan verifikasi Nomor Induk Siswa Nasional secara instan.", "urutan": 15, "tampil": "ya"}, {"_rowId": 17, "nama_menu": "Layanan PIP", "link": "https://pip.kemendikdasmen.go.id/home_v1", "deskripsi": "Pengelolaan data dan bantuan Program Indonesia Pintar bagi siswa penerima manfaat.", "urutan": 16, "tampil": "ya"}, {"_rowId": 18, "nama_menu": "Portal Admin Belajar id", "link": "https://akun.belajar.id/sso/login?flow=2a90194c-a623-44d5-ae60-45bd0d988c35", "deskripsi": "Integrasi dan pengelolaan akun pembelajaran resmi dari Kemendikbudristek.", "urutan": 17, "tampil": "ya"}, {"_rowId": 19, "nama_menu": "Menejemen E-Ijazah", "link": "https://ijazah.data.kemendikdasmen.go.id/manajemen/#/sign-in", "deskripsi": "Penerbitan, pengarsipan, dan verifikasi keabsahan ijazah kelulusan digital.", "urutan": 18, "tampil": "ya"}], "karya": [{"_rowId": 2, "judul_karya": "Lantunan Cahaya Kalam Ilahi", "jenis_karya": "Puisi", "nama_pembuat": "Ahmad Raihan", "peran": "Siswa", "kelas": "Kelas 8A", "deskripsi": "Puisi ungkapan kecintaan santri kepada Al-Qur'an dan bimbingan asatidz.", "isi_karya": "Di setiap hening fajar menyingsing,\nKalam-Mu mengalun lembut menentramkan jiwa.\nSetiap ayat adalah lentera,\nPenuntun langkah di belantara dunia.\n\nYambu'ul Qur'an, sumber mata air suci,\nTempat kami menyemai mimpi,\nMenjadi generasi yang berbakti,\nKuat iman, luhur pekerti.", "file_url": "", "link_youtube": "", "views": 1}, {"_rowId": 3, "judul_karya": "Khat Tsuluts Surat Al-Fatihah", "jenis_karya": "Gambar", "nama_pembuat": "Fathur Rahman", "peran": "Siswa", "kelas": "Kelas 9B", "deskripsi": "Karya kaligrafi tinta emas di atas kanvas hitam karya santri ekstra kaligrafi.", "isi_karya": "", "file_url": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=800&q=80", "link_youtube": "", "views": 1}], "profil": [{"_rowId": 2, "section": "sambutan", "isi": "Assalamu'alaikum Warahmatullahi Wabarakatuh. Selamat datang di website resmi SMPI Yambu'ul Qur'an Plosoklaten Kediri. Kami berkomitmen menyelenggarakan pendidikan berkualitas yang memadukan kurikulum nasional dan nilai-nilai luhur Al-Qur'an guna melahirkan generasi yang unggul dalam ilmu, kuat dalam iman, dan berakhlakul karimah."}, {"_rowId": 3, "section": "visi", "isi": "Terwujudnya generasi yang beriman, bertakwa, berakhlak mulia, berprestasi, berwawasan Al-Qur'an, dan berdaya saing global."}, {"_rowId": 4, "section": "misi", "isi": "1. Menyelenggarakan pembelajaran berkualitas berbasis nilai-nilai Islam dan Al-Qur'an.\n2. Membina karakter dan akhlakul karimah siswa dalam kehidupan sehari-hari.\n3. Mengembangkan potensi akademik, minat, dan bakat peserta didik secara optimal.\n4. Membangun lingkungan sekolah yang asri, disiplin, dan berwawasan teknologi."}, {"_rowId": 5, "section": "sejarah", "isi": "SMPI Yambu'ul Qur'an berdiri di bawah naungan Yayasan Yambu'ul Qur'an di Desa Jarak, Kecamatan Plosoklaten, Kabupaten Kediri. Berangkat dari tekad mencetak generasi penghafal Al-Qur'an yang cerdas dan berkarakter, sekolah ini terus berkembang menjadi lembaga pendidikan Islam terpercaya dengan akreditasi B dan legalitas resmi SK Operasional 414-44/2053/418.20/2023."}, {"_rowId": 6, "section": "npsn", "isi": 70003325}, {"_rowId": 7, "section": "akreditasi", "isi": "B"}, {"_rowId": 8, "section": "yayasan", "isi": "Yayasan Yambu'ul Qur'an"}, {"_rowId": 9, "section": "sk", "isi": "414-44/2053/418.20/2023"}], "pengaturan": [{"_rowId": 2, "key": "nama_sekolah", "value": "SMPI Yambu'ul Qur'an"}, {"_rowId": 3, "key": "alamat", "value": "Jl. Agung Ds. Jarak RT 04/ RW 02, Desa Jarak, Kecamatan Plosoklaten, Kabupaten Kediri, Jawa Timur"}, {"_rowId": 4, "key": "telepon", "value": "0815-1577-7911"}, {"_rowId": 5, "key": "wa_number", "value": 6281515777911}, {"_rowId": 6, "key": "whatsapp", "value": "0815-1577-7911"}, {"_rowId": 7, "key": "email", "value": "smpiyaqu@gmail.com"}, {"_rowId": 8, "key": "instagram", "value": "https://www.instagram.com/smpiyaqu_kediri/"}, {"_rowId": 9, "key": "npsn", "value": 70003325}, {"_rowId": 10, "key": "yayasan", "value": "Yayasan Yambu'ul Qur'an"}, {"_rowId": 11, "key": "status", "value": "Swasta (Akreditasi B)"}, {"_rowId": 12, "key": "sk_operasional", "value": "414-44/2053/418.20/2023"}, {"_rowId": 13, "key": "logo", "value": "https://nixon42.github.io/smpalmubarokweb/logo.png"}, {"_rowId": 14, "key": "splash_logo", "value": "https://nixon42.github.io/smpalmubarokweb/splash-logo.webp"}, {"_rowId": 15, "key": "splash_judul", "value": "SMPI YAMBU'UL QUR'AN"}, {"_rowId": 16, "key": "splash_tagline", "value": "Mencetak Generasi Qur'ani & Berakhlak Mulia"}], "admin": [{"_rowId": 2, "username": "admin", "password": "admin123", "nama": "Administrator", "token": "8d566c0f-5973-4632-aed2-f41d30b225a3", "token_exp": 1795528738787}]};
+let DB = (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.__hasil) ? window.__INITIAL_DATA__.__hasil : (window.__INITIAL_DATA__ || {});
 // Status navigasi bawah & scroll. SENGAJA dideklarasikan di atas (bukan dekat
 // listener scroll) karena showSection() bisa dipanggil sangat awal saat reload
 // di URL ?page=karya dst; kalau deklarasinya di bawah -> ReferenceError -> script
@@ -3361,7 +3619,20 @@ function _ambilFullData_(onOk, onFail) {
   const pre = window.__PRELOAD_DATA__;
   window.__PRELOAD_DATA__ = null; // hanya dipakai sekali
   const biasa = function () {
-    google.script.run.withSuccessHandler(onOk).withFailureHandler(onFail || function () {}).getFullData('id');
+    if (typeof google !== 'undefined' && google.script && google.script.run) {
+      google.script.run.withSuccessHandler(onOk).withFailureHandler(onFail || function () {}).getFullData('id');
+    } else {
+      var execUrl = ('__APPS_SCRIPT_URL__' === ('_' + '_APPS_SCRIPT_URL_' + '_')) ? 'https://script.google.com/macros/s/AKfycbzayy9zLbwLUho6AA1gAYc11bl6IVY8rs_9KjD14BbGh4JA9pDi0_qvVBAGqFjD0cjC/exec' : '__APPS_SCRIPT_URL__';
+      fetch(execUrl + '?fn=getFullData&args=' + encodeURIComponent(JSON.stringify(['id'])))
+        .then(function(r) { return r.json(); })
+        .then(function(j) {
+          if (j && !j.__error && j.__hasil !== undefined) onOk(j.__hasil);
+          else if (onFail) onFail({ message: 'Format data tidak valid' });
+        })
+        .catch(function(err) {
+          if (onFail) onFail(err);
+        });
+    }
   };
   if (!pre) { biasa(); return; }
   pre.then(function (json) {
@@ -8323,18 +8594,18 @@ setTimeout(function () {
 // ============================================================================
 (function() {
   const DEFAULT_APLIKASI_ = [
-    { nama_menu: 'JURNAL DIGITAL', link: 'https://nixon42.github.io/jurnal/', deskripsi: 'Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru secara terstruktur.', urutan: 1, kategori: 'AKADEMIK & GURU' },
-    { nama_menu: 'LMS', link: 'https://nixon42.github.io/lms/', deskripsi: 'Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas terpadu.', urutan: 2, kategori: 'AKADEMIK & UJIAN' },
-    { nama_menu: 'Absensi', link: 'https://nixon42.github.io/absen/', deskripsi: 'Absensi berbasis face recognition, pencatatan secara realtime dan akurat.', urutan: 3, kategori: 'LAYANAN SISWA' },
-    { nama_menu: 'TU & Persuratan Online', link: 'https://administrasi.smpitalmubarok.sch.id/', deskripsi: 'Digitalisasi pengarsipan, permintaan surat, dan tata kelola administrasi surat-menyurat sekolah.', urutan: 4, kategori: 'ADMINISTRASI' },
-    { nama_menu: 'Supervisi', link: 'https://supervisi.smpitalmubarok.sch.id/', deskripsi: 'Platform digital untuk pemantauan, evaluasi, serta pembinaan kinerja secara real-time.', urutan: 5, kategori: 'ADMINISTRASI' },
-    { nama_menu: 'Buku Inventaris Barang', link: 'https://inventaris.smpitalmubarok.sch.id/', deskripsi: 'Digitalisasi pendataan dan pemantauan kondisi serta aset sarana-prasarana sekolah.', urutan: 6, kategori: 'SARPRAS' },
+    { nama_menu: 'JURNAL DIGITAL', link: 'https://nixon42.github.io/jurnal/', deskripsi: 'Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru secara terstruktur.', urutan: 1, kategori: 'AKADEMIK' },
+    { nama_menu: 'LMS', link: 'https://nixon42.github.io/lms/', deskripsi: 'Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas terpadu.', urutan: 2, kategori: 'AKADEMIK' },
+    { nama_menu: 'Absensi', link: 'https://nixon42.github.io/absen/', deskripsi: 'Absensi berbasis face recognition, pencatatan secara realtime dan akurat.', urutan: 3, kategori: 'AKADEMIK' },
+    { nama_menu: 'TU & Persuratan Online', link: 'https://administrasi.smpitalmubarok.sch.id/', deskripsi: 'Digitalisasi pengarsipan, permintaan surat, dan tata kelola administrasi surat-menyurat.', urutan: 4, kategori: 'MANAJEMEN' },
+    { nama_menu: 'Supervisi', link: 'https://supervisi.smpitalmubarok.sch.id/', deskripsi: 'Platform digital untuk pemantauan, evaluasi, serta pembinaan kinerja secara real-time.', urutan: 5, kategori: 'MANAJEMEN' },
+    { nama_menu: 'Buku Inventaris Barang', link: 'https://inventaris.smpitalmubarok.sch.id/', deskripsi: 'Digitalisasi pendataan dan pemantauan kondisi serta aset sarana-prasarana sekolah.', urutan: 6, kategori: 'SARANA' },
     { nama_menu: 'Layanan Perpustakaan', link: 'https://perpustakaan.smpitalmubarok.sch.id/', deskripsi: 'Sistem katalog, peminjaman, dan pengembalian buku fisik sekolah.', urutan: 7, kategori: 'LITERASI' },
-    { nama_menu: 'E-Rapor Tahfidz', link: 'https://eraportahfidz.smpitalmubarok.sch.id/', deskripsi: "Laporan capaian hafalan Al-Qur'an dan perkembangan Tahsin siswa secara transparan.", urutan: 8, kategori: 'TAHFIDZ' },
-    { nama_menu: "Al-Qur'an Digital", link: 'https://quran.smpitalmubarok.sch.id/', deskripsi: "Akses teks dan bacaan Al-Qur'an interaktif untuk mendukung kegiatan keagamaan.", urutan: 9, kategori: 'TAHFIDZ' },
-    { nama_menu: 'Buku Induk Siswa', link: 'https://edosis.disdikkedirikab.com/auth/login', deskripsi: 'Database rekam jejak biodata dan histori akademis siswa terlengkap secara digital.', urutan: 10, kategori: 'PORTAL RESMI' },
-    { nama_menu: 'Sistem Mutasi Siswa', link: 'https://mutasi.disdikkedirikab.com/auth/login', deskripsi: 'Pengelolaan proses kepindahan siswa (masuk/keluar) yang tertib administrasi.', urutan: 11, kategori: 'PORTAL RESMI' },
-    { nama_menu: 'Ujian Online', link: 'https://app.e-ujian.com/SMPIT_AlMubarok/login', deskripsi: 'Platform ujian dan evaluasi belajar digital yang praktis, fleksibel, dan aman.', urutan: 12, kategori: 'AKADEMIK & UJIAN' },
+    { nama_menu: 'E-Rapor Tahfidz', link: 'https://eraportahfidz.smpitalmubarok.sch.id/', deskripsi: "Laporan capaian hafalan Al-Qur'an dan perkembangan Tahsin siswa secara transparan.", urutan: 8, kategori: 'QURAN' },
+    { nama_menu: "Al-Qur'an Digital", link: 'https://quran.smpitalmubarok.sch.id/', deskripsi: "Akses teks dan bacaan Al-Qur'an interaktif untuk mendukung kegiatan keagamaan.", urutan: 9, kategori: 'QURAN' },
+    { nama_menu: 'Buku Induk Siswa', link: 'https://edosis.disdikkedirikab.com/auth/login', deskripsi: 'Database rekam jejak biodata dan histori akademis siswa terlengkap secara digital.', urutan: 10, kategori: 'KEMDIKBUD' },
+    { nama_menu: 'Sistem Mutasi Siswa', link: 'https://mutasi.disdikkedirikab.com/auth/login', deskripsi: 'Pengelolaan proses kepindahan siswa (masuk/keluar) yang tertib administrasi.', urutan: 11, kategori: 'KEMDIKBUD' },
+    { nama_menu: 'Ujian Online', link: 'https://app.e-ujian.com/SMPIT_AlMubarok/login', deskripsi: 'Platform ujian dan evaluasi belajar digital yang praktis, fleksibel, dan aman.', urutan: 12, kategori: 'AKADEMIK' },
     { nama_menu: 'Portal TKA', link: 'https://tka.onedumind.com/', deskripsi: 'Pelaksanaan dan analisis hasil pemetaan potensi akademik siswa.', urutan: 13, kategori: 'AKADEMIK' },
     { nama_menu: 'Buku Digital', link: 'https://buku.kemendikdasmen.go.id/daftar-katalog', deskripsi: 'Perpustakaan digital berisi koleksi modul dan buku paket pembelajaran elektronik.', urutan: 14, kategori: 'LITERASI' },
     { nama_menu: 'Cek NISN', link: 'https://nisn.data.kemendikdasmen.go.id/', deskripsi: 'Fitur validasi dan verifikasi Nomor Induk Siswa Nasional secara instan.', urutan: 15, kategori: 'KEMDIKBUD' },
@@ -8441,9 +8712,10 @@ setTimeout(function () {
     if (elB) {
       elB.innerHTML = rows.map(function(f, i) {
         const num = String(i + 1).padStart(2, '0');
+        const foto = f.foto || 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=600&q=80';
         return '<div class="border border-[#e2ece6] p-2 bg-white flex-shrink-0 w-64 snap-start cursor-pointer hover:border-[#062116] transition-colors" onclick="showSection(\'fasilitas\')">' +
           '<div class="aspect-[4/3] overflow-hidden bg-[#e2ece6] mb-2">' +
-            fotoSliderHtml(f.foto, 'w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500', 'https://placehold.co/400x300/062116/dfb342?text=Fasilitas') +
+            '<img src="' + foto + '" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (f.nama_fasilitas || '') + '">' +
           '</div>' +
           '<p class="font-mono text-[10px] text-[#7a8e82] uppercase tracking-widest">[ FIG. ' + num + ' ]</p>' +
           '<p class="font-serif text-sm font-bold text-[#062116] line-clamp-1 mt-0.5">' + (f.nama_fasilitas || '-') + '</p>' +
@@ -8453,10 +8725,11 @@ setTimeout(function () {
     if (elF) {
       elF.innerHTML = rows.map(function(f, i) {
         const num = String(i + 1).padStart(2, '0');
+        const foto = f.foto || 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=600&q=80';
         return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
           '<div>' +
             '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-4">' +
-              fotoSliderHtml(f.foto, 'w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500', 'https://placehold.co/400x300/062116/dfb342?text=Fasilitas') +
+              '<img src="' + foto + '" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (f.nama_fasilitas || '') + '">' +
             '</div>' +
             '<p class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ FIG. ' + num + ' &bull; KAMPUS PLOSOKLATEN ]</p>' +
             '<h3 class="font-serif text-lg font-bold text-[#062116] mt-1 mb-2">' + (f.nama_fasilitas || '-') + '</h3>' +
@@ -8475,10 +8748,11 @@ setTimeout(function () {
     const elG = document.getElementById('guru-grid');
     const cardHtml = function(g, i) {
       const num = String(i + 1).padStart(2, '0');
+      const foto = g.foto || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80';
       return '<div class="border border-[#e2ece6] p-3 bg-white text-center flex flex-col justify-between hover:border-[#062116] transition-colors">' +
         '<div>' +
           '<div class="aspect-[3/4] overflow-hidden bg-[#e2ece6] mb-3">' +
-            fotoSliderHtml(g.foto, 'w-full h-full object-cover object-top grayscale contrast-125 hover:grayscale-0 transition-all duration-500', 'https://placehold.co/300x400/062116/dfb342?text=Guru') +
+            '<img src="' + foto + '" class="w-full h-full object-cover object-top grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (g.nama || '') + '">' +
           '</div>' +
           '<p class="font-mono text-[10px] text-[#7a8e82] uppercase tracking-widest">[ ASATIDZ ' + num + ' ]</p>' +
           '<h4 class="font-serif text-sm font-bold text-[#062116] mt-1 leading-snug line-clamp-2">' + (g.nama || '-') + '</h4>' +
@@ -8488,9 +8762,10 @@ setTimeout(function () {
     };
     const cardHtmlScroll = function(g, i) {
       const num = String(i + 1).padStart(2, '0');
+      const foto = g.foto || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80';
       return '<div class="border border-[#e2ece6] p-3 bg-white text-center flex-shrink-0 w-44 snap-start hover:border-[#062116] transition-colors">' +
         '<div class="aspect-[3/4] overflow-hidden bg-[#e2ece6] mb-2.5">' +
-          fotoSliderHtml(g.foto, 'w-full h-full object-cover object-top grayscale contrast-125 hover:grayscale-0 transition-all duration-500', 'https://placehold.co/300x400/062116/dfb342?text=Guru') +
+          '<img src="' + foto + '" class="w-full h-full object-cover object-top grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (g.nama || '') + '">' +
         '</div>' +
         '<p class="font-mono text-[9px] text-[#7a8e82] uppercase tracking-widest">[ ' + num + ' ]</p>' +
         '<h4 class="font-serif text-xs font-bold text-[#062116] mt-0.5 leading-snug line-clamp-1">' + (g.nama || '-') + '</h4>' +
@@ -8501,13 +8776,126 @@ setTimeout(function () {
     if (elB) elB.innerHTML = rows.map(cardHtmlScroll).join('') || '<div class="py-8 font-mono text-xs text-[#7a8e82]">Belum ada data guru.</div>';
   };
 
+  // 5. OVERRIDE PRESTASI UNTUK V2 (Academic Honors Archive)
+  window.renderPrestasi = function() {
+    const rows = (window.DB && window.DB.prestasi) || [];
+    const elB = document.getElementById('beranda-prestasi-grid');
+    const elP = document.getElementById('prestasi-grid');
+    const cardHtml = function(p, i) {
+      const num = String(i + 1).padStart(2, '0');
+      const foto = p.foto || 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80';
+      return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+        '<div>' +
+          '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-3">' +
+            '<img src="' + foto + '" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (p.nama_prestasi || '') + '">' +
+          '</div>' +
+          '<div class="flex items-center justify-between text-[11px] font-mono text-[#c39328] mb-1.5">' +
+            '<span>[ PRESTASI ' + num + ' ]</span>' +
+            '<span class="text-[#7a8e82]">' + (p.tahun || '2026') + '</span>' +
+          '</div>' +
+          '<h4 class="font-serif text-base font-bold text-[#062116] leading-snug mb-1">' + (p.nama_prestasi || '-') + '</h4>' +
+          '<p class="text-xs text-[#52665a] font-light leading-relaxed">' + (p.nama_siswa || '') + ' &bull; ' + (p.tingkat || '') + '</p>' +
+        '</div>' +
+        '<div class="mt-3 pt-2.5 border-t border-[#e2ece6] text-[10px] font-mono text-[#7a8e82] uppercase tracking-wider">' + (p.keterangan || 'Penghargaan Resmi') + '</div>' +
+      '</div>';
+    };
+    const cardHtmlScroll = function(p, i) {
+      const num = String(i + 1).padStart(2, '0');
+      const foto = p.foto || 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80';
+      return '<div class="border border-[#e2ece6] p-3 bg-white flex-shrink-0 w-64 snap-start hover:border-[#062116] transition-colors">' +
+        '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-2.5">' +
+          '<img src="' + foto + '" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (p.nama_prestasi || '') + '">' +
+        '</div>' +
+        '<p class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ PRESTASI ' + num + ' ]</p>' +
+        '<h4 class="font-serif text-sm font-bold text-[#062116] mt-0.5 leading-snug line-clamp-1">' + (p.nama_prestasi || '-') + '</h4>' +
+        '<p class="text-[11px] text-[#52665a] font-light mt-1 line-clamp-1">' + (p.nama_siswa || '') + '</p>' +
+      '</div>';
+    };
+    if (elP) elP.innerHTML = rows.map(cardHtml).join('') || '<div class="col-span-full py-12 font-mono text-xs text-[#7a8e82] text-center">Belum ada data prestasi.</div>';
+    if (elB) elB.innerHTML = rows.map(cardHtmlScroll).join('') || '<div class="py-8 font-mono text-xs text-[#7a8e82]">Belum ada data prestasi.</div>';
+  };
+
+  // 6. OVERRIDE ARTIKEL UNTUK V2 (Editorial Dispatch Ledger)
+  window.renderArtikel = function() {
+    const rows = (window.DB && window.DB.artikel) || [];
+    const elB = document.getElementById('beranda-artikel-grid');
+    const elA = document.getElementById('artikel-grid');
+    const cardHtml = function(a, i) {
+      const num = String(i + 1).padStart(2, '0');
+      const foto = a.foto || 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=600&q=80';
+      return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+        '<div>' +
+          '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-3">' +
+            '<img src="' + foto + '" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (a.judul || '') + '">' +
+          '</div>' +
+          '<div class="flex items-center justify-between text-[11px] font-mono mb-2">' +
+            '<span class="text-[#c39328] font-bold">[ WARTA ' + num + ' ]</span>' +
+            '<span class="text-[#7a8e82]">' + (a.tanggal || '2026') + '</span>' +
+          '</div>' +
+          '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug mb-2">' + (a.judul || '-') + '</h3>' +
+          '<p class="text-xs text-[#52665a] font-light leading-relaxed line-clamp-2">' + (a.ringkasan || a.isi || '') + '</p>' +
+        '</div>' +
+        '<div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between">' +
+          '<button onclick="bacaArtikel_(' + (a._rowId || (i+2)) + ')" class="font-mono text-xs text-[#062116] hover:text-[#c39328] uppercase tracking-wider font-bold">Baca Lengkap &rarr;</button>' +
+          '<span class="font-mono text-[10px] text-[#7a8e82]">' + (a.kategori || 'WARTA') + '</span>' +
+        '</div>' +
+      '</div>';
+    };
+    const cardHtmlScroll = function(a, i) {
+      const num = String(i + 1).padStart(2, '0');
+      const foto = a.foto || 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=600&q=80';
+      return '<div class="border border-[#e2ece6] p-3 bg-white flex-shrink-0 w-64 snap-start hover:border-[#062116] transition-colors">' +
+        '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-2.5">' +
+          '<img src="' + foto + '" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (a.judul || '') + '">' +
+        '</div>' +
+        '<p class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ WARTA ' + num + ' ]</p>' +
+        '<h4 class="font-serif text-sm font-bold text-[#062116] mt-0.5 leading-snug line-clamp-1">' + (a.judul || '-') + '</h4>' +
+        '<p class="text-[11px] text-[#52665a] font-light mt-1 line-clamp-1">' + (a.ringkasan || a.judul || '') + '</p>' +
+      '</div>';
+    };
+    if (elA) elA.innerHTML = rows.map(cardHtml).join('') || '<div class="col-span-full py-12 font-mono text-xs text-[#7a8e82] text-center">Belum ada warta atau artikel.</div>';
+    if (elB) elB.innerHTML = rows.map(cardHtmlScroll).join('') || '<div class="py-8 font-mono text-xs text-[#7a8e82]">Belum ada warta atau artikel.</div>';
+  };
+
+  // 7. OVERRIDE SAMBUTAN KEPSEK
+  window.renderKepsek = function() {
+    const elFoto = document.getElementById('beranda-kepsek-foto');
+    const elNama = document.getElementById('beranda-kepsek-nama');
+    const elJabatan = document.getElementById('beranda-kepsek-jabatan');
+    const elSambutan = document.getElementById('beranda-sambutan');
+    const elVisi = document.getElementById('beranda-visi');
+    const elMisi = document.getElementById('beranda-misi');
+    
+    let profilList = (window.DB && window.DB.profil) || [];
+    let sambutanTxt = '';
+    let visiTxt = '';
+    let misiTxt = '';
+    profilList.forEach(function(p) {
+      if (p.section === 'sambutan') sambutanTxt = p.isi;
+      if (p.section === 'visi') visiTxt = p.isi;
+      if (p.section === 'misi') misiTxt = p.isi;
+    });
+
+    if (elFoto) {
+      elFoto.innerHTML = '<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="Ust. H. Ahmad Fauzi, Lc., M.Pd.">';
+    }
+    if (elNama) elNama.textContent = 'Ust. H. Ahmad Fauzi, Lc., M.Pd.';
+    if (elJabatan) elJabatan.textContent = 'Kepala SMPI Yambu\'ul Qur\'an';
+    if (elSambutan && sambutanTxt) elSambutan.textContent = sambutanTxt;
+    if (elVisi && visiTxt) elVisi.textContent = visiTxt;
+    if (elMisi && misiTxt) elMisi.textContent = misiTxt;
+  };
+
   // Re-run renderers on load & API readiness
   setTimeout(function() {
     renderMenuAplikasi();
     renderStatistik();
     renderFasilitas();
     renderGuru();
-  }, 100);
+    renderPrestasi();
+    renderArtikel();
+    renderKepsek();
+  }, 50);
 })();
 </script>
 
