@@ -3784,11 +3784,11 @@ function profilIsi(section, fallback) {
 function renderPengaturan() {
   const tlp = cfg('telepon', '0815-1577-7911');
   const email = cfg('email', 'smpiyaqu@gmail.com');
-  document.getElementById('topbar-phone').innerHTML = '<i class="fab fa-whatsapp mr-1.5"></i> ' + tlp;
-  document.getElementById('topbar-email').innerHTML = '<i class="fas fa-envelope mr-1.5"></i> ' + email;
-  document.getElementById('footer-phone').innerHTML = '<i class="fab fa-whatsapp w-4 text-secondary"></i> <span>' + tlp + '</span>';
-  document.getElementById('footer-email').innerHTML = '<i class="fas fa-envelope w-4 text-secondary"></i> <span>' + email + '</span>';
-  document.getElementById('footer-alamat').textContent = cfg('alamat', 'Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri');
+  const _tp = document.getElementById('topbar-phone'); if (_tp) _tp.innerHTML = '<i class="fab fa-whatsapp mr-1.5"></i> ' + tlp;
+  const _te = document.getElementById('topbar-email'); if (_te) _te.innerHTML = '<i class="fas fa-envelope mr-1.5"></i> ' + email;
+  const _fp = document.getElementById('footer-phone'); if (_fp) _fp.innerHTML = '<i class="fab fa-whatsapp w-4 text-secondary"></i> <span>' + tlp + '</span>';
+  const _fe = document.getElementById('footer-email'); if (_fe) _fe.innerHTML = '<i class="fas fa-envelope w-4 text-secondary"></i> <span>' + email + '</span>';
+  const _fa = document.getElementById('footer-alamat'); if (_fa) _fa.textContent = cfg('alamat', 'Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri');
 
   // Logo navbar: kalau admin sudah upload logo (key "logo" di sheet
   // Pengaturan, lewat panel Admin > Pengaturan), tampilkan fotonya saja
@@ -4082,6 +4082,13 @@ let heroSig_ = '';
 
 function renderHeroSlider() {
   const wrap = document.getElementById('hero-slides');
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
   const dotsWrap = document.getElementById('hero-dots');
   if (heroSlideTimer) { clearInterval(heroSlideTimer); heroSlideTimer = null; }
 
@@ -5943,7 +5950,7 @@ function showSection(name, _dariLuar) {
   document.querySelectorAll('.app-section').forEach(function (s) { s.classList.remove('active'); });
   const target = document.getElementById('section-' + name);
   if (target) target.classList.add('active');
-  document.getElementById('mobile-menu').classList.add('hidden');
+  var _mob = document.getElementById('mobile-menu'); if (_mob) _mob.classList.add('hidden');
   tutupSemuaSubmenuMobile_();
   const barNav = document.getElementById('bottom-nav-bar');
   if (barNav) { barNav.classList.remove('opacity-0'); barNav.classList.remove('pointer-events-none'); }
@@ -6011,6 +6018,7 @@ function kembaliKeBeranda(anchorId) {
 }
 function toggleMobileMenu() {
   const menu = document.getElementById('mobile-menu');
+  if (!menu) return;
   const sedangTerbuka = menu.classList.toggle('hidden') === false;
   const bar = document.getElementById('bottom-nav-bar');
   if (bar) {

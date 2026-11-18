@@ -1308,12 +1308,15 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
 </style>
 
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <style id="theme-v3">
       :root {
-        --color-primary: #1e3a8a;
-        --color-primary-dark: #0f172a;
+        --color-primary: #0f172a;
+        --color-primary-dark: #020617;
         --color-accent: #2563eb;
-        --color-accent-light: #60a5fa;
+        --color-accent-light: #38bdf8;
         --bg-main: #f8fafc;
         --bg-surface: #ffffff;
         --text-main: #0f172a;
@@ -1323,7 +1326,14 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
       body {
         background-color: #f8fafc !important;
         color: #0f172a !important;
-        font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+      }
+      h1, h2, h3, h4, .font-serif, .font-heading {
+        font-family: 'Outfit', system-ui, -apple-system, sans-serif !important;
+        letter-spacing: -0.02em !important;
+      }
+      .font-mono {
+        font-family: 'JetBrains Mono', monospace !important;
       }
       #splash-screen, #modal-onboarding, #banner-offline {
         display: none !important;
@@ -1331,9 +1341,19 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
       body.splash-aktif {
         overflow: visible !important;
       }
+
+      /* Core Utility Fallbacks for Precompiled Tailwind */
+      .bg-blue-600 { background-color: #2563eb !important; color: #ffffff !important; }
+      .bg-blue-500 { background-color: #3b82f6 !important; color: #ffffff !important; }
+      .bg-slate-900 { background-color: #0f172a !important; color: #ffffff !important; }
+      .bg-slate-800 { background-color: #1e293b !important; color: #ffffff !important; }
+      .bg-slate-700 { background-color: #334155 !important; color: #ffffff !important; }
+      .hover\:bg-blue-600:hover, .hover\:bg-blue-500:hover { background-color: #1d4ed8 !important; }
+      .hover\:bg-slate-800:hover, .hover\:bg-slate-700:hover { background-color: #334155 !important; }
+
       /* Clean Bento Overrides */
       .bg-primary {
-        background-color: #1e3a8a !important;
+        background-color: #0f172a !important;
         color: #ffffff !important;
       }
       .bg-secondary {
@@ -1344,29 +1364,192 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
         color: #2563eb !important;
       }
       .border-primary {
-        border-color: #1e3a8a !important;
+        border-color: #0f172a !important;
       }
-      /* Subpage Hero Banners for V3: Deep Slate Tech Header */
-      .subpage-hero-banner {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%) !important;
+
+      /* DESKTOP NAVBAR LINKS */
+      #main-header .nav-desktop-main button,
+      #main-header .nav-desktop-main a {
+        color: #e2e8f0 !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-weight: 600 !important;
+        font-size: 13px !important;
+        transition: all 0.2s ease !important;
+      }
+      #main-header .nav-desktop-main button:hover,
+      #main-header .nav-desktop-main a:hover {
+        color: #38bdf8 !important;
+        background-color: #1e293b !important;
+      }
+      #main-header .dropdown-menu {
+        background-color: #0f172a !important;
+        border: 1px solid #334155 !important;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5) !important;
+      }
+      #main-header .dropdown-menu button,
+      #main-header .dropdown-menu a {
+        color: #cbd5e1 !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 12px !important;
+      }
+      #main-header .dropdown-menu button:hover,
+      #main-header .dropdown-menu a:hover {
+        color: #38bdf8 !important;
+        background-color: #1e293b !important;
+      }
+
+      /* SUBPAGE HERO BANNER OVERRIDES: DEEP SLATE HIGH-TECH GRADIENTS */
+      .subpage-hero-banner,
+      .app-section:not(#section-beranda) > div.relative.overflow-hidden:first-child,
+      .app-section:not(#section-beranda) > div:first-child[class*="from-primary"],
+      [class*="from-primary-900"],
+      [class*="from-primary-800"],
+      [class*="from-primary-700"],
+      [class*="from-primary"] {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0f172a 100%) !important;
+        background-image: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0f172a 100%) !important;
         color: #ffffff !important;
         border-bottom: 1px solid #334155 !important;
       }
-      .subpage-hero-banner h1, .subpage-hero-banner h2 {
+      .app-section:not(#section-beranda) > div.relative.overflow-hidden:first-child h1,
+      .app-section:not(#section-beranda) > div.relative.overflow-hidden:first-child h2,
+      .subpage-hero-banner h1,
+      .subpage-hero-banner h2 {
         color: #ffffff !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-weight: 800 !important;
+        letter-spacing: -0.02em !important;
       }
+      .app-section:not(#section-beranda) > div.relative.overflow-hidden:first-child p,
       .subpage-hero-banner p {
         color: #94a3b8 !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
       }
-      /* Horizontal scroll for mobile sections */
-      @media (max-width: 640px) {
-        #beranda-aplikasi-grid, #beranda-guru-grid, #beranda-fasilitas-grid, #beranda-prestasi-grid, #beranda-artikel-grid {
+      .app-section:not(#section-beranda) > div.relative.overflow-hidden:first-child span,
+      .subpage-hero-banner span {
+        color: #38bdf8 !important;
+      }
+      .from-primary-900, .from-primary-800, .from-primary-700, .from-primary {
+        --tw-gradient-from: #0f172a var(--tw-gradient-from-position) !important;
+        --tw-gradient-to: rgba(15, 23, 42, 0) var(--tw-gradient-to-position) !important;
+        --tw-gradient-stops: var(--tw-gradient-from), #1e293b var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+      }
+
+      /* V3 APP BUTTONS */
+      .v3-app-btn {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+        padding: 0.625rem 1rem !important;
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+        font-family: 'Outfit', sans-serif !important;
+        border-radius: 0.75rem !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        text-decoration: none !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+      }
+      .v3-app-btn:hover {
+        background-color: #2563eb !important;
+        color: #ffffff !important;
+        border-color: #3b82f6 !important;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important;
+      }
+      .v3-app-btn-blue {
+        background-color: #2563eb !important;
+        color: #ffffff !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+        padding: 0.625rem 1.25rem !important;
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+        font-family: 'Outfit', sans-serif !important;
+        border-radius: 0.75rem !important;
+        text-decoration: none !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important;
+      }
+      .v3-app-btn-blue:hover {
+        background-color: #1d4ed8 !important;
+        transform: translateY(-1px) !important;
+      }
+
+      /* CATEGORY FILTER TABS */
+      .v3-cat-btn {
+        padding: 0.5rem 1.125rem !important;
+        border-radius: 0.75rem !important;
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+        font-family: 'Outfit', sans-serif !important;
+        transition: all 0.2s ease !important;
+        border: 1px solid #e2e8f0 !important;
+        background-color: #ffffff !important;
+        color: #475569 !important;
+        cursor: pointer !important;
+        white-space: nowrap !important;
+      }
+      .v3-cat-btn:hover {
+        background-color: #f1f5f9 !important;
+        color: #0f172a !important;
+        border-color: #cbd5e1 !important;
+      }
+      .v3-cat-btn.active {
+        background-color: #2563eb !important;
+        color: #ffffff !important;
+        border-color: #2563eb !important;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important;
+      }
+
+      /* BERANDA KEPSEK SAMBUTAN GRID */
+      #beranda-kepsek .grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+      @media (min-width: 1024px) {
+        #beranda-kepsek .grid {
+          grid-template-columns: 340px 1fr !important;
+          align-items: center !important;
+        }
+      }
+      #beranda-kepsek-foto {
+        max-width: 340px !important;
+        max-height: 420px !important;
+        margin: 0 auto !important;
+        overflow: hidden !important;
+        border-radius: 1rem !important;
+      }
+      #beranda-kepsek-foto img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
+
+      /* SCROLL MARGIN TOP */
+      .app-section, [id^="beranda-"], [id^="section-"] {
+        scroll-margin-top: 5rem !important;
+      }
+
+      /* MOBILE HORIZONTAL CARDS SNAP FOR BERANDA */
+      @media (max-width: 767px) {
+        #beranda-aplikasi-grid,
+        #beranda-guru-grid,
+        #beranda-fasilitas-grid,
+        #beranda-prestasi-grid,
+        #beranda-artikel-grid {
           display: flex !important;
-          flex-direction: row !important;
+          flex-wrap: nowrap !important;
           overflow-x: auto !important;
           scroll-snap-type: x mandatory !important;
           padding-bottom: 1rem !important;
           gap: 1rem !important;
+          -webkit-overflow-scrolling: touch;
         }
         #beranda-aplikasi-grid > div,
         #beranda-guru-grid > div,
@@ -1463,8 +1646,8 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
   </div>
   <div class="flex items-center gap-6">
     <div class="flex items-center gap-4 text-slate-300">
-      <span><i class="fab fa-whatsapp text-emerald-400 mr-1.5"></i>0815-1577-7911</span>
-      <span><i class="fas fa-envelope text-blue-400 mr-1.5"></i>smpiyaqu@gmail.com</span>
+      <span id="topbar-phone"><i class="fab fa-whatsapp text-emerald-400 mr-1.5"></i>0815-1577-7911</span>
+      <span id="topbar-email"><i class="fas fa-envelope text-blue-400 mr-1.5"></i>smpiyaqu@gmail.com</span>
     </div>
     <div class="flex items-center gap-2 text-slate-300" id="topbar-social"></div>
   </div>
@@ -1547,6 +1730,63 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
     <div class="flex items-center gap-2 lg:hidden">
       <button onclick="bukaPencarian()" class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-200 bg-slate-800"><i class="fas fa-search"></i></button>
       <button onclick="toggleMobileMenu()" class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-200 bg-slate-800 border border-slate-700"><i class="fas fa-bars"></i></button>
+    </div>
+    <!-- Mobile menu for V3 Smart-Campus Bento -->
+    <div id="mobile-menu" class="hidden px-4 py-4 space-y-1 text-slate-200 text-sm font-semibold border-b border-slate-800" style="background:#0f172a !important;">
+      <button onclick="showSection('beranda')" class="block w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white">Beranda</button>
+      <div>
+        <button onclick="toggleMobileSubmenu('mobile-sub-profil', this)" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white">
+          <span>Profil</span>
+          <i class="fas fa-chevron-down text-[10px] transition-transform duration-200 text-blue-400"></i>
+        </button>
+        <div id="mobile-sub-profil" class="hidden pl-4 space-y-1 normal-case font-normal text-xs text-slate-300">
+          <button onclick="showSection('sambutan')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Sambutan Pimpinan</button>
+          <button onclick="showSection('sejarah')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Sejarah Lembaga</button>
+          <button onclick="showSection('fasilitas')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Fasilitas</button>
+          <button onclick="showSection('guru')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Dewan Asatidz</button>
+          <button onclick="showSection('prestasi')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Prestasi</button>
+        </div>
+      </div>
+      <div>
+        <button onclick="toggleMobileSubmenu('mobile-sub-akademik', this)" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white">
+          <span>Akademik</span>
+          <i class="fas fa-chevron-down text-[10px] transition-transform duration-200 text-blue-400"></i>
+        </button>
+        <div id="mobile-sub-akademik" class="hidden pl-4 space-y-1 normal-case font-normal text-xs text-slate-300">
+          <button onclick="showSection('program')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Program Unggulan</button>
+          <button onclick="showSection('ekstrakurikuler')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Ekstrakurikuler</button>
+          <button onclick="showSection('kalender')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Kalender Akademik</button>
+          <button onclick="showSection('jadwalpelajaran')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Jadwal Pelajaran</button>
+          <button onclick="showSection('jadwalujian')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Jadwal Ujian</button>
+        </div>
+      </div>
+      <div>
+        <button onclick="toggleMobileSubmenu('mobile-sub-informasi', this)" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white">
+          <span>Portal Info</span>
+          <i class="fas fa-chevron-down text-[10px] transition-transform duration-200 text-blue-400"></i>
+        </button>
+        <div id="mobile-sub-informasi" class="hidden pl-4 space-y-1 normal-case font-normal text-xs text-slate-300">
+          <button onclick="showSection('artikel')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Berita &amp; Artikel</button>
+          <button onclick="showSection('kegiatan')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Agenda Kegiatan</button>
+          <button onclick="showSection('galeri')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Galeri Foto</button>
+          <button onclick="showSection('galerivideo')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Galeri Video</button>
+          <button onclick="showSection('virtualtour')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Virtual Tour 360&deg;</button>
+          <button onclick="showSection('livestreaming')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400 flex items-center justify-between">Live Streaming <span id="mobile-live-badge" class="hidden text-[9px] font-black text-red-400"><span class="live-dot inline-block w-1.5 h-1.5 rounded-full bg-red-400 mr-1"></span>LIVE</span></button>
+          <button onclick="showSection('alumni')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Alumni</button>
+        </div>
+      </div>
+      <div>
+        <button onclick="toggleMobileSubmenu('mobile-sub-layanan', this)" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white">
+          <span>Layanan Digital</span>
+          <i class="fas fa-chevron-down text-[10px] transition-transform duration-200 text-blue-400"></i>
+        </button>
+        <div id="mobile-sub-layanan" class="hidden pl-4 space-y-1 normal-case font-normal text-xs text-slate-300">
+          <button onclick="showSection('aplikasi')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400 font-bold text-white">18 Layanan Digital Sekolah</button>
+          <button onclick="showSection('karya')" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-blue-400">Karya Santri</button>
+        </div>
+      </div>
+      <button onclick="showSection('donasi')" class="mob-donasi w-full text-left px-3 py-2.5 rounded-lg flex items-center justify-between bg-blue-900/30 text-blue-300 border border-blue-500/30"><span>Donasi</span><i class="fas fa-hand-holding-heart text-blue-400"></i></button>
+      <button id="nav-daftar-btn-mobile" onclick="klikPendaftaran()" class="block w-full text-center px-3 py-2.5 rounded-lg bg-blue-600 text-white font-bold mt-2 shadow-md hover:bg-blue-500">Pendaftaran PPDB</button>
     </div>
   </div>
 </header>
@@ -2296,6 +2536,15 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
         <button onclick="kembaliKeBeranda('beranda-aplikasi-wrap')" class="text-primary hover:text-primary-600 text-xs font-bold inline-flex items-center gap-1.5"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</button>
         <span id="aplikasi-jumlah" class="text-[11px] font-black text-primary bg-primary-50 px-3.5 py-1.5 rounded-full"></span>
       </div>
+      
+      <div class="flex flex-wrap items-center gap-2 mb-8 overflow-x-auto pb-2" id="v3-aplikasi-categories">
+        <button data-filter="all" onclick="setFilterV3_('all')" class="v3-cat-btn active">Semua (18)</button>
+        <button data-filter="guru" onclick="setFilterV3_('guru')" class="v3-cat-btn">Administrasi &amp; Guru</button>
+        <button data-filter="akademik" onclick="setFilterV3_('akademik')" class="v3-cat-btn">LMS &amp; Ujian Online</button>
+        <button data-filter="quran" onclick="setFilterV3_('quran')" class="v3-cat-btn">Tahfidz &amp; Perpustakaan</button>
+        <button data-filter="kemdikbud" onclick="setFilterV3_('kemdikbud')" class="v3-cat-btn">Kemdikbud &amp; Dapodik</button>
+      </div>
+
       <div id="aplikasi-grid-full" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"></div>
       <div class="subpage-hero-banner mt-12 relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary-900 via-primary to-primary-600 p-7 md:p-9 flex flex-col md:flex-row md:items-center justify-between gap-5">
         
@@ -2872,9 +3121,9 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       <div class="md:col-span-3">
         <span class="text-xs uppercase tracking-wider text-slate-100 font-bold block mb-4 font-mono">KOMUNIKASI KAMPUS</span>
         <div class="text-xs text-slate-400 space-y-2 font-mono">
-          <div>Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri, Jawa Timur</div>
-          <div>WA: 0815-1577-7911</div>
-          <div>Email: smpiyaqu@gmail.com</div>
+          <div id="footer-alamat">Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri, Jawa Timur</div>
+          <div id="footer-phone">WA: 0815-1577-7911</div>
+          <div id="footer-email">Email: smpiyaqu@gmail.com</div>
         </div>
       </div>
     </div>
@@ -3879,11 +4128,11 @@ function profilIsi(section, fallback) {
 function renderPengaturan() {
   const tlp = cfg('telepon', '0815-1577-7911');
   const email = cfg('email', 'smpiyaqu@gmail.com');
-  document.getElementById('topbar-phone').innerHTML = '<i class="fab fa-whatsapp mr-1.5"></i> ' + tlp;
-  document.getElementById('topbar-email').innerHTML = '<i class="fas fa-envelope mr-1.5"></i> ' + email;
-  document.getElementById('footer-phone').innerHTML = '<i class="fab fa-whatsapp w-4 text-secondary"></i> <span>' + tlp + '</span>';
-  document.getElementById('footer-email').innerHTML = '<i class="fas fa-envelope w-4 text-secondary"></i> <span>' + email + '</span>';
-  document.getElementById('footer-alamat').textContent = cfg('alamat', 'Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri');
+  const _tp = document.getElementById('topbar-phone'); if (_tp) _tp.innerHTML = '<i class="fab fa-whatsapp mr-1.5"></i> ' + tlp;
+  const _te = document.getElementById('topbar-email'); if (_te) _te.innerHTML = '<i class="fas fa-envelope mr-1.5"></i> ' + email;
+  const _fp = document.getElementById('footer-phone'); if (_fp) _fp.innerHTML = '<i class="fab fa-whatsapp w-4 text-secondary"></i> <span>' + tlp + '</span>';
+  const _fe = document.getElementById('footer-email'); if (_fe) _fe.innerHTML = '<i class="fas fa-envelope w-4 text-secondary"></i> <span>' + email + '</span>';
+  const _fa = document.getElementById('footer-alamat'); if (_fa) _fa.textContent = cfg('alamat', 'Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri');
 
   // Logo navbar: kalau admin sudah upload logo (key "logo" di sheet
   // Pengaturan, lewat panel Admin > Pengaturan), tampilkan fotonya saja
@@ -4177,6 +4426,13 @@ let heroSig_ = '';
 
 function renderHeroSlider() {
   const wrap = document.getElementById('hero-slides');
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
   const dotsWrap = document.getElementById('hero-dots');
   if (heroSlideTimer) { clearInterval(heroSlideTimer); heroSlideTimer = null; }
 
@@ -6038,7 +6294,7 @@ function showSection(name, _dariLuar) {
   document.querySelectorAll('.app-section').forEach(function (s) { s.classList.remove('active'); });
   const target = document.getElementById('section-' + name);
   if (target) target.classList.add('active');
-  document.getElementById('mobile-menu').classList.add('hidden');
+  var _mob = document.getElementById('mobile-menu'); if (_mob) _mob.classList.add('hidden');
   tutupSemuaSubmenuMobile_();
   const barNav = document.getElementById('bottom-nav-bar');
   if (barNav) { barNav.classList.remove('opacity-0'); barNav.classList.remove('pointer-events-none'); }
@@ -6106,6 +6362,7 @@ function kembaliKeBeranda(anchorId) {
 }
 function toggleMobileMenu() {
   const menu = document.getElementById('mobile-menu');
+  if (!menu) return;
   const sedangTerbuka = menu.classList.toggle('hidden') === false;
   const bar = document.getElementById('bottom-nav-bar');
   if (bar) {
@@ -8517,9 +8774,17 @@ setTimeout(function () {
 
 <script>
 // ============================================================================
-// V3 SMART-CAMPUS BENTO ENGINE: FULL SECTION OVERRIDES WITH CATEGORY FILTER
+// V3 SMART-CAMPUS BENTO ENGINE: FULL SECTION OVERRIDES & RESILIENCE
 // ============================================================================
 (function() {
+  function getDB() {
+    if (typeof DB !== 'undefined' && DB && Object.keys(DB).length) return DB;
+    if (typeof window !== 'undefined' && window.DB && Object.keys(window.DB).length) return window.DB;
+    if (typeof window !== 'undefined' && window.__INITIAL_DATA__) {
+      return window.__INITIAL_DATA__.__hasil || window.__INITIAL_DATA__;
+    }
+    return {};
+  }
   const DEFAULT_APLIKASI_ = [
     { nama_menu: 'JURNAL DIGITAL', link: 'https://nixon42.github.io/jurnal/', deskripsi: 'Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru secara terstruktur.', urutan: 1, kategori: 'guru', code: 'SYS//01', icon: 'fas fa-book-reader', grad: 'linear-gradient(135deg, #2563eb, #1d4ed8)' },
     { nama_menu: 'LMS', link: 'https://nixon42.github.io/lms/', deskripsi: 'Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas terpadu.', urutan: 2, kategori: 'akademik', code: 'SYS//02', icon: 'fas fa-laptop-code', grad: 'linear-gradient(135deg, #059669, #047857)' },
@@ -8541,21 +8806,27 @@ setTimeout(function () {
     { nama_menu: 'Menejemen E-Ijazah', link: 'https://ijazah.data.kemendikdasmen.go.id/manajemen/#/sign-in', deskripsi: 'Penerbitan, pengarsipan, dan verifikasi keabsahan ijazah kelulusan digital.', urutan: 18, kategori: 'kemdikbud', code: 'SYS//18', icon: 'fas fa-certificate', grad: 'linear-gradient(135deg, #b91c1c, #991b1b)' }
   ];
 
+  window.aplikasiCari_ = '';
+  window.setCariAplikasi_ = function(v) {
+    window.aplikasiCari_ = (v || '').toString();
+    renderAplikasiFull_();
+  };
+
   let v3Filter_ = 'all';
   window.setFilterV3_ = function(cat) {
     v3Filter_ = cat || 'all';
     document.querySelectorAll('.v3-cat-btn').forEach(function(b) {
       if (b.getAttribute('data-filter') === v3Filter_) {
-        b.className = 'v3-cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-blue-600 text-white shadow-md';
+        b.className = 'v3-cat-btn active';
       } else {
-        b.className = 'v3-cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:text-white';
+        b.className = 'v3-cat-btn';
       }
     });
     renderAplikasiFull_();
   };
 
   function getApps() {
-    let raw = (window.DB && window.DB.menu && window.DB.menu.length) ? window.DB.menu : DEFAULT_APLIKASI_;
+    let raw = (getDB().menu && getDB().menu.length) ? getDB().menu : DEFAULT_APLIKASI_;
     return raw.map(function(m, i) {
       const def = DEFAULT_APLIKASI_[i % DEFAULT_APLIKASI_.length];
       return Object.assign({}, def, m);
@@ -8588,7 +8859,7 @@ setTimeout(function () {
           '<p class="text-xs text-slate-500 leading-relaxed line-clamp-2 mt-1.5 font-normal">' + (m.deskripsi || '') + '</p>' +
         '</div>' +
         '<div class="mt-4 pt-3 border-t border-slate-100">' +
-          '<a href="' + (link || '#') + '" target="_blank" rel="noopener" class="w-full py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-blue-600 text-white font-bold text-xs flex items-center justify-between transition-colors shadow-sm">Buka Aplikasi <i class="fas fa-arrow-up-right-from-square text-[10px]"></i></a>' +
+          '<a href="' + (link || '#') + '" target="_blank" rel="noopener" class="v3-app-btn w-full"><span>Buka Aplikasi</span> <i class="fas fa-arrow-up-right-from-square text-[10px]"></i></a>' +
         '</div>' +
       '</div>';
     }).join('');
@@ -8600,7 +8871,7 @@ setTimeout(function () {
     const elFull = document.getElementById('aplikasi-grid-full');
     const jml = document.getElementById('aplikasi-jumlah');
     if (!elFull) return;
-    const q = (window.aplikasiCari_ || '').trim().toLowerCase();
+    const q = (window.aplikasiCari_ || (typeof aplikasiCari_ !== 'undefined' ? aplikasiCari_ : '')).trim().toLowerCase();
     const semua = getApps();
     const rows = semua.filter(function(m) {
       if (v3Filter_ !== 'all' && m.kategori !== v3Filter_) return false;
@@ -8623,7 +8894,7 @@ setTimeout(function () {
           '<p class="text-xs text-slate-500 leading-relaxed font-normal mb-6">' + (m.deskripsi || '') + '</p>' +
         '</div>' +
         '<div class="pt-4 border-t border-slate-100 flex items-center justify-between">' +
-          (link ? '<a href="' + link + '" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs inline-flex items-center gap-2 shadow-sm transition-all">Buka Layanan <i class="fas fa-external-link-alt text-[10px]"></i></a>' : '<span class="text-xs font-mono text-slate-400">Offline</span>') +
+          (link ? '<a href="' + link + '" target="_blank" rel="noopener" class="v3-app-btn-blue"><span>Buka Layanan</span> <i class="fas fa-external-link-alt text-[10px]"></i></a>' : '<span class="text-xs font-mono text-slate-400">Offline</span>') +
           '<span class="text-[10px] font-mono font-bold text-emerald-600 uppercase">ONLINE</span>' +
         '</div>' +
       '</div>';
@@ -8632,7 +8903,7 @@ setTimeout(function () {
 
   // 2. OVERRIDE STATISTIK UNTUK V3 (High-Tech Metric Bento Tiles)
   window.renderStatistik = function() {
-    const rows = (window.DB && window.DB.statistik) || [];
+    const rows = (getDB().statistik) || [];
     const el = document.getElementById('statistik-grid');
     if (!el || !rows.length) return;
     el.innerHTML = rows.map(function(s, i) {
@@ -8647,13 +8918,13 @@ setTimeout(function () {
 
   // 3. OVERRIDE FASILITAS UNTUK V3 (Interactive Campus Blueprint)
   window.renderFasilitas = function() {
-    const rows = (window.DB && window.DB.fasilitas) || [];
+    const rows = (getDB().fasilitas) || [];
     const elB = document.getElementById('beranda-fasilitas-grid');
     const elF = document.getElementById('fasilitas-full-grid');
     if (elB) {
       elB.innerHTML = rows.map(function(f, i) {
         const foto = f.foto || 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=600&q=80';
-        return '<div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-3.5 flex-shrink-0 w-64 snap-start cursor-pointer hover:shadow-lg hover:border-blue-400 transition-all group" onclick="showSection(\'fasilitas\')">' +
+        return '<div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-3.5 flex-shrink-0 w-64 snap-start cursor-pointer hover:shadow-lg hover:border-blue-400 transition-all group" onclick="showSection(&#39;fasilitas&#39;)">' +
           '<div class="aspect-[4/3] rounded-xl overflow-hidden bg-slate-800 mb-3 relative">' +
             '<img src="' + foto + '" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="' + (f.nama_fasilitas || '') + '">' +
             '<div class="absolute bottom-2 left-2 bg-slate-900/80 backdrop-blur-md text-white font-mono text-[9px] px-2 py-0.5 rounded-md font-bold">FASILITAS ' + (i+1) + '</div>' +
@@ -8687,7 +8958,7 @@ setTimeout(function () {
 
   // 4. OVERRIDE GURU UNTUK V3 (Faculty ID Bento Badges)
   window.renderGuru = function() {
-    const rows = (window.DB && window.DB.guru) || [];
+    const rows = (getDB().guru) || [];
     const elB = document.getElementById('beranda-guru-grid');
     const elG = document.getElementById('guru-grid');
     const cardHtml = function(g, i) {
@@ -8719,12 +8990,129 @@ setTimeout(function () {
     if (elB) elB.innerHTML = rows.map(cardHtmlScroll).join('') || '<div class="py-8 text-xs text-slate-400">Belum ada data guru.</div>';
   };
 
+  // 5. OVERRIDE PRESTASI UNTUK V3 (Smart-Campus Bento Award Cards)
+  window.renderPrestasi = function() {
+    const rows = (getDB().prestasi) || [];
+    const elB = document.getElementById('beranda-prestasi-grid');
+    const elP = document.getElementById('prestasi-list') || document.getElementById('prestasi-grid');
+    const cardHtml = function(p, i) {
+      const num = String(i + 1).padStart(2, '0');
+      const foto = p.foto || 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80';
+      return '<div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-5 flex flex-col justify-between hover:shadow-xl hover:border-blue-400 transition-all group">' +
+        '<div>' +
+          '<div class="aspect-[16/10] rounded-2xl overflow-hidden bg-slate-800 mb-4 relative">' +
+            '<img src="' + foto + '" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="' + (p.nama_prestasi || '') + '">' +
+            '<div class="absolute top-3 left-3 bg-blue-600 text-white font-mono text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-md">ACHIEVEMENT #' + num + '</div>' +
+          '</div>' +
+          '<div class="flex items-center justify-between text-[11px] font-mono text-blue-600 mb-1.5">' +
+            '<span>[ ' + (p.tingkat || 'KABUPATEN') + ' ]</span>' +
+            '<span class="text-slate-400 font-bold">' + (p.tahun || '2026') + '</span>' +
+          '</div>' +
+          '<h4 class="font-extrabold text-slate-900 text-base leading-snug mb-1 group-hover:text-blue-600 transition-colors">' + (p.nama_prestasi || '-') + '</h4>' +
+          '<p class="text-xs text-slate-500 font-normal leading-relaxed">' + (p.nama_siswa || '') + '</p>' +
+        '</div>' +
+        '<div class="mt-4 pt-3 border-t border-slate-100 text-[10px] font-mono text-slate-400 uppercase tracking-wider flex items-center justify-between">' +
+          '<span>' + (p.keterangan || 'Penghargaan Resmi') + '</span>' +
+          '<i class="fas fa-award text-amber-500"></i>' +
+        '</div>' +
+      '</div>';
+    };
+    const cardHtmlScroll = function(p, i) {
+      const num = String(i + 1).padStart(2, '0');
+      const foto = p.foto || 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80';
+      return '<div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-3.5 flex-shrink-0 w-64 snap-start hover:shadow-md transition-all group">' +
+        '<div class="aspect-[16/10] rounded-xl overflow-hidden bg-slate-800 mb-3">' +
+          '<img src="' + foto + '" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="' + (p.nama_prestasi || '') + '">' +
+        '</div>' +
+        '<p class="font-mono text-[10px] text-blue-600 mb-1">JUARA &bull; ' + (p.tahun || '2026') + '</p>' +
+        '<h4 class="font-bold text-slate-900 text-xs line-clamp-1 leading-snug group-hover:text-blue-600 transition-colors">' + (p.nama_prestasi || '-') + '</h4>' +
+        '<p class="text-[11px] text-slate-500 truncate mt-0.5">' + (p.nama_siswa || '') + '</p>' +
+      '</div>';
+    };
+    if (elP) elP.innerHTML = rows.map(cardHtml).join('') || '<div class="col-span-full py-16 text-center text-slate-400 text-xs">Belum ada data prestasi.</div>';
+    if (elB) elB.innerHTML = rows.map(cardHtmlScroll).join('') || '<div class="py-8 text-xs text-slate-400">Belum ada data prestasi.</div>';
+  };
+
+  // 6. OVERRIDE ARTIKEL UNTUK V3 (Smart-Campus Bento News Feed)
+  window.renderArtikel = function() {
+    const rows = (getDB().artikel) || [];
+    const elB = document.getElementById('beranda-artikel-grid');
+    const elA = document.getElementById('artikel-grid');
+    const cardHtml = function(a, i) {
+      const foto = a.foto || 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80';
+      return '<div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-xl hover:border-blue-400 transition-all group">' +
+        '<div>' +
+          '<div class="aspect-[16/10] overflow-hidden bg-slate-800 relative">' +
+            '<img src="' + foto + '" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="' + (a.judul || '') + '">' +
+            '<div class="absolute top-3 left-3 bg-blue-600 text-white font-mono text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-md">' + (a.kategori || 'WARTA') + '</div>' +
+          '</div>' +
+          '<div class="p-6">' +
+            '<div class="text-[11px] font-mono text-slate-400 mb-2 flex items-center gap-2">' +
+              '<i class="far fa-calendar-alt text-blue-500"></i>' +
+              '<span>' + (a.tanggal || '2026') + '</span>' +
+            '</div>' +
+            '<h3 class="font-extrabold text-slate-900 text-base leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">' + (a.judul || '-') + '</h3>' +
+            '<p class="text-xs text-slate-500 leading-relaxed line-clamp-2 mt-2 font-normal">' + (a.ringkasan || a.isi || '') + '</p>' +
+          '</div>' +
+        '</div>' +
+        '<div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between text-xs">' +
+          '<button onclick="openArtikelDetail(&#39;' + (a._rowId || '') + '&#39;)">Baca Artikel <i class="fas fa-arrow-right text-[10px]"></i></button>' +
+          '<span class="text-[10px] font-mono text-slate-400 uppercase font-semibold">CAMPUS NEWS</span>' +
+        '</div>' +
+      '</div>';
+    };
+    const cardHtmlScroll = function(a, i) {
+      const foto = a.foto || 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80';
+      return '<div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-3.5 flex-shrink-0 w-64 snap-start hover:shadow-md transition-all group cursor-pointer" onclick="openArtikelDetail(&#39;' + (a._rowId || '') + '&#39;)">' +
+        '<div class="aspect-[16/10] rounded-xl overflow-hidden bg-slate-800 mb-3">' +
+          '<img src="' + foto + '" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="' + (a.judul || '') + '">' +
+        '</div>' +
+        '<p class="font-mono text-[10px] text-blue-600 mb-1">' + (a.tanggal || '2026') + '</p>' +
+        '<h4 class="font-bold text-slate-900 text-xs line-clamp-2 leading-snug group-hover:text-blue-600 transition-colors">' + (a.judul || '-') + '</h4>' +
+      '</div>';
+    };
+    if (elA) elA.innerHTML = rows.map(cardHtml).join('') || '<div class="col-span-full py-16 text-center text-slate-400 text-xs">Belum ada artikel.</div>';
+    if (elB) elB.innerHTML = rows.map(cardHtmlScroll).join('') || '<div class="py-8 text-xs text-slate-400">Belum ada artikel.</div>';
+  };
+
+  // 7. OVERRIDE SAMBUTAN KEPSEK
+  window.renderKepsek = function() {
+    const elFoto = document.getElementById('beranda-kepsek-foto');
+    const elNama = document.getElementById('beranda-kepsek-nama');
+    const elJabatan = document.getElementById('beranda-kepsek-jabatan');
+    const elSambutan = document.getElementById('beranda-sambutan');
+    const elVisi = document.getElementById('beranda-visi');
+    const elMisi = document.getElementById('beranda-misi');
+    
+    let profilList = (getDB().profil) || [];
+    let sambutanTxt = '';
+    let visiTxt = '';
+    let misiTxt = '';
+    profilList.forEach(function(p) {
+      if (p.section === 'sambutan') sambutanTxt = p.isi;
+      if (p.section === 'visi') visiTxt = p.isi;
+      if (p.section === 'misi') misiTxt = p.isi;
+    });
+
+    if (elFoto) {
+      elFoto.innerHTML = '<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="Ust. H. Ahmad Fauzi, Lc., M.Pd.">';
+    }
+    if (elNama) elNama.textContent = 'Ust. H. Ahmad Fauzi, Lc., M.Pd.';
+    if (elJabatan) elJabatan.textContent = 'Kepala SMPI Yambu\'ul Qur\'an';
+    if (elSambutan && sambutanTxt) elSambutan.textContent = sambutanTxt;
+    if (elVisi && visiTxt) elVisi.textContent = visiTxt;
+    if (elMisi && misiTxt) elMisi.textContent = misiTxt;
+  };
+
   // Re-run renderers on load & API readiness
   setTimeout(function() {
     renderMenuAplikasi();
     renderStatistik();
     renderFasilitas();
     renderGuru();
+    renderPrestasi();
+    renderArtikel();
+    renderKepsek();
   }, 100);
 })();
 </script>

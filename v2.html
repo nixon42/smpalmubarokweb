@@ -1728,6 +1728,63 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       <button onclick="bukaPencarian()" class="w-9 h-9 flex items-center justify-center text-[#062116] border border-[#e2ece6] bg-white rounded-none"><i class="fas fa-search"></i></button>
       <button onclick="toggleMobileMenu()" class="w-9 h-9 flex items-center justify-center text-[#062116] border border-[#e2ece6] bg-white rounded-none"><i class="fas fa-bars"></i></button>
     </div>
+    <!-- Mobile Menu for V2 Editorial -->
+    <div id="mobile-menu" class="hidden bg-[#faf9f5] border-b border-[#e2ece6] px-4 py-4 space-y-1 text-[#062116] text-sm font-semibold font-serif">
+      <button onclick="showSection('beranda')" class="block w-full text-left px-3 py-2.5 hover:bg-[#f2f7f4]">Beranda</button>
+      <div>
+        <button onclick="toggleMobileSubmenu('mobile-sub-profil', this)" class="w-full flex items-center justify-between px-3 py-2.5 hover:bg-[#f2f7f4]">
+          <span>Profil</span>
+          <i class="fas fa-chevron-down text-[10px] transition-transform duration-200 text-[#c39328]"></i>
+        </button>
+        <div id="mobile-sub-profil" class="hidden pl-4 space-y-1 font-sans font-normal text-xs text-[#52665a]">
+          <button onclick="showSection('sambutan')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Sambutan Pimpinan</button>
+          <button onclick="showSection('sejarah')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Sejarah Lembaga</button>
+          <button onclick="showSection('fasilitas')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Fasilitas</button>
+          <button onclick="showSection('guru')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Dewan Guru</button>
+          <button onclick="showSection('prestasi')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Prestasi</button>
+        </div>
+      </div>
+      <div>
+        <button onclick="toggleMobileSubmenu('mobile-sub-akademik', this)" class="w-full flex items-center justify-between px-3 py-2.5 hover:bg-[#f2f7f4]">
+          <span>Akademik</span>
+          <i class="fas fa-chevron-down text-[10px] transition-transform duration-200 text-[#c39328]"></i>
+        </button>
+        <div id="mobile-sub-akademik" class="hidden pl-4 space-y-1 font-sans font-normal text-xs text-[#52665a]">
+          <button onclick="showSection('program')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Program Unggulan</button>
+          <button onclick="showSection('ekstrakurikuler')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Ekstrakurikuler</button>
+          <button onclick="showSection('kalender')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Kalender Akademik</button>
+          <button onclick="showSection('jadwalpelajaran')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Jadwal Pelajaran</button>
+          <button onclick="showSection('jadwalujian')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Jadwal Ujian</button>
+        </div>
+      </div>
+      <div>
+        <button onclick="toggleMobileSubmenu('mobile-sub-informasi', this)" class="w-full flex items-center justify-between px-3 py-2.5 hover:bg-[#f2f7f4]">
+          <span>Informasi</span>
+          <i class="fas fa-chevron-down text-[10px] transition-transform duration-200 text-[#c39328]"></i>
+        </button>
+        <div id="mobile-sub-informasi" class="hidden pl-4 space-y-1 font-sans font-normal text-xs text-[#52665a]">
+          <button onclick="showSection('artikel')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Warta &amp; Artikel</button>
+          <button onclick="showSection('kegiatan')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Agenda Kegiatan</button>
+          <button onclick="showSection('galeri')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Galeri Foto</button>
+          <button onclick="showSection('galerivideo')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Galeri Video</button>
+          <button onclick="showSection('virtualtour')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Virtual Tour 360&deg;</button>
+          <button onclick="showSection('livestreaming')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Live Streaming</button>
+          <button onclick="showSection('alumni')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Alumni</button>
+        </div>
+      </div>
+      <div>
+        <button onclick="toggleMobileSubmenu('mobile-sub-layanan', this)" class="w-full flex items-center justify-between px-3 py-2.5 hover:bg-[#f2f7f4]">
+          <span>Layanan &amp; Aplikasi</span>
+          <i class="fas fa-chevron-down text-[10px] transition-transform duration-200 text-[#c39328]"></i>
+        </button>
+        <div id="mobile-sub-layanan" class="hidden pl-4 space-y-1 font-sans font-normal text-xs text-[#52665a]">
+          <button onclick="showSection('aplikasi')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4] font-bold text-[#062116]">18 Layanan Digital Sekolah</button>
+          <button onclick="showSection('karya')" class="block w-full text-left px-3 py-2 hover:bg-[#f2f7f4]">Karya Santri</button>
+        </div>
+      </div>
+      <button onclick="showSection('donasi')" class="w-full text-left px-3 py-2.5 hover:bg-[#f2f7f4] flex items-center justify-between text-[#c39328] font-bold"><span>Donasi</span><i class="fas fa-hand-holding-heart"></i></button>
+      <button id="nav-daftar-btn-mobile" onclick="klikPendaftaran()" class="block w-full text-center px-3 py-2.5 bg-[#062116] text-white font-mono uppercase tracking-wider text-xs font-bold mt-2">Pendaftaran PPDB</button>
+    </div>
   </div>
 </header>
 
@@ -3952,11 +4009,11 @@ function profilIsi(section, fallback) {
 function renderPengaturan() {
   const tlp = cfg('telepon', '0815-1577-7911');
   const email = cfg('email', 'smpiyaqu@gmail.com');
-  document.getElementById('topbar-phone').innerHTML = '<i class="fab fa-whatsapp mr-1.5"></i> ' + tlp;
-  document.getElementById('topbar-email').innerHTML = '<i class="fas fa-envelope mr-1.5"></i> ' + email;
-  document.getElementById('footer-phone').innerHTML = '<i class="fab fa-whatsapp w-4 text-secondary"></i> <span>' + tlp + '</span>';
-  document.getElementById('footer-email').innerHTML = '<i class="fas fa-envelope w-4 text-secondary"></i> <span>' + email + '</span>';
-  document.getElementById('footer-alamat').textContent = cfg('alamat', 'Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri');
+  const _tp = document.getElementById('topbar-phone'); if (_tp) _tp.innerHTML = '<i class="fab fa-whatsapp mr-1.5"></i> ' + tlp;
+  const _te = document.getElementById('topbar-email'); if (_te) _te.innerHTML = '<i class="fas fa-envelope mr-1.5"></i> ' + email;
+  const _fp = document.getElementById('footer-phone'); if (_fp) _fp.innerHTML = '<i class="fab fa-whatsapp w-4 text-secondary"></i> <span>' + tlp + '</span>';
+  const _fe = document.getElementById('footer-email'); if (_fe) _fe.innerHTML = '<i class="fas fa-envelope w-4 text-secondary"></i> <span>' + email + '</span>';
+  const _fa = document.getElementById('footer-alamat'); if (_fa) _fa.textContent = cfg('alamat', 'Jl. Agung Ds. Jarak RT 04/RW 02 Plosoklaten Kediri');
 
   // Logo navbar: kalau admin sudah upload logo (key "logo" di sheet
   // Pengaturan, lewat panel Admin > Pengaturan), tampilkan fotonya saja
@@ -4250,6 +4307,13 @@ let heroSig_ = '';
 
 function renderHeroSlider() {
   const wrap = document.getElementById('hero-slides');
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
+  if (!wrap) return;
   const dotsWrap = document.getElementById('hero-dots');
   if (heroSlideTimer) { clearInterval(heroSlideTimer); heroSlideTimer = null; }
 
@@ -6111,7 +6175,7 @@ function showSection(name, _dariLuar) {
   document.querySelectorAll('.app-section').forEach(function (s) { s.classList.remove('active'); });
   const target = document.getElementById('section-' + name);
   if (target) target.classList.add('active');
-  document.getElementById('mobile-menu').classList.add('hidden');
+  var _mob = document.getElementById('mobile-menu'); if (_mob) _mob.classList.add('hidden');
   tutupSemuaSubmenuMobile_();
   const barNav = document.getElementById('bottom-nav-bar');
   if (barNav) { barNav.classList.remove('opacity-0'); barNav.classList.remove('pointer-events-none'); }
@@ -6179,6 +6243,7 @@ function kembaliKeBeranda(anchorId) {
 }
 function toggleMobileMenu() {
   const menu = document.getElementById('mobile-menu');
+  if (!menu) return;
   const sedangTerbuka = menu.classList.toggle('hidden') === false;
   const bar = document.getElementById('bottom-nav-bar');
   if (bar) {
@@ -8593,6 +8658,14 @@ setTimeout(function () {
 // V2 SWISS MINIMALIST EDITORIAL ENGINE: FULL SECTION OVERRIDES
 // ============================================================================
 (function() {
+  function getDB() {
+    if (typeof DB !== 'undefined' && DB && Object.keys(DB).length) return DB;
+    if (typeof window !== 'undefined' && window.DB && Object.keys(window.DB).length) return window.DB;
+    if (typeof window !== 'undefined' && window.__INITIAL_DATA__) {
+      return window.__INITIAL_DATA__.__hasil || window.__INITIAL_DATA__;
+    }
+    return {};
+  }
   const DEFAULT_APLIKASI_ = [
     { nama_menu: 'JURNAL DIGITAL', link: 'https://nixon42.github.io/jurnal/', deskripsi: 'Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru secara terstruktur.', urutan: 1, kategori: 'AKADEMIK' },
     { nama_menu: 'LMS', link: 'https://nixon42.github.io/lms/', deskripsi: 'Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas terpadu.', urutan: 2, kategori: 'AKADEMIK' },
@@ -8615,7 +8688,7 @@ setTimeout(function () {
   ];
 
   function getApps() {
-    let raw = (window.DB && window.DB.menu && window.DB.menu.length) ? window.DB.menu : DEFAULT_APLIKASI_;
+    let raw = (getDB().menu && getDB().menu.length) ? getDB().menu : DEFAULT_APLIKASI_;
     return raw.filter(function(m) {
       const t = (m.tampil || '').toString().toLowerCase();
       return t !== 'tidak' && t !== 'no' && t !== '0' && t !== 'false';
@@ -8691,7 +8764,7 @@ setTimeout(function () {
 
   // 2. OVERRIDE STATISTIK UNTUK V2 (Swiss Data Counter)
   window.renderStatistik = function() {
-    const rows = (window.DB && window.DB.statistik) || [];
+    const rows = (getDB().statistik) || [];
     const el = document.getElementById('statistik-grid');
     if (!el || !rows.length) return;
     el.innerHTML = rows.map(function(s) {
@@ -8706,14 +8779,14 @@ setTimeout(function () {
 
   // 3. OVERRIDE FASILITAS UNTUK V2 (Architectural Exhibition Gallery)
   window.renderFasilitas = function() {
-    const rows = (window.DB && window.DB.fasilitas) || [];
+    const rows = (getDB().fasilitas) || [];
     const elB = document.getElementById('beranda-fasilitas-grid');
     const elF = document.getElementById('fasilitas-full-grid');
     if (elB) {
       elB.innerHTML = rows.map(function(f, i) {
         const num = String(i + 1).padStart(2, '0');
         const foto = f.foto || 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=600&q=80';
-        return '<div class="border border-[#e2ece6] p-2 bg-white flex-shrink-0 w-64 snap-start cursor-pointer hover:border-[#062116] transition-colors" onclick="showSection(\'fasilitas\')">' +
+        return '<div class="border border-[#e2ece6] p-2 bg-white flex-shrink-0 w-64 snap-start cursor-pointer hover:border-[#062116] transition-colors" onclick="showSection(&#39;fasilitas&#39;)">' +
           '<div class="aspect-[4/3] overflow-hidden bg-[#e2ece6] mb-2">' +
             '<img src="' + foto + '" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (f.nama_fasilitas || '') + '">' +
           '</div>' +
@@ -8743,7 +8816,7 @@ setTimeout(function () {
 
   // 4. OVERRIDE GURU UNTUK V2 (Academic Faculty Ledger)
   window.renderGuru = function() {
-    const rows = (window.DB && window.DB.guru) || [];
+    const rows = (getDB().guru) || [];
     const elB = document.getElementById('beranda-guru-grid');
     const elG = document.getElementById('guru-grid');
     const cardHtml = function(g, i) {
@@ -8778,9 +8851,9 @@ setTimeout(function () {
 
   // 5. OVERRIDE PRESTASI UNTUK V2 (Academic Honors Archive)
   window.renderPrestasi = function() {
-    const rows = (window.DB && window.DB.prestasi) || [];
+    const rows = (getDB().prestasi) || [];
     const elB = document.getElementById('beranda-prestasi-grid');
-    const elP = document.getElementById('prestasi-grid');
+    const elP = document.getElementById('prestasi-list') || document.getElementById('prestasi-grid');
     const cardHtml = function(p, i) {
       const num = String(i + 1).padStart(2, '0');
       const foto = p.foto || 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80';
@@ -8817,7 +8890,7 @@ setTimeout(function () {
 
   // 6. OVERRIDE ARTIKEL UNTUK V2 (Editorial Dispatch Ledger)
   window.renderArtikel = function() {
-    const rows = (window.DB && window.DB.artikel) || [];
+    const rows = (getDB().artikel) || [];
     const elB = document.getElementById('beranda-artikel-grid');
     const elA = document.getElementById('artikel-grid');
     const cardHtml = function(a, i) {
@@ -8866,7 +8939,7 @@ setTimeout(function () {
     const elVisi = document.getElementById('beranda-visi');
     const elMisi = document.getElementById('beranda-misi');
     
-    let profilList = (window.DB && window.DB.profil) || [];
+    let profilList = (getDB().profil) || [];
     let sambutanTxt = '';
     let visiTxt = '';
     let misiTxt = '';
