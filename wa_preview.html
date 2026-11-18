@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulasi WhatsApp Share Preview — V1, V2, V3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: #0b141a;
+    color: #e9edef;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 40px 24px;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #00a884;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .header p {
+    color: #8696a0;
+    margin-top: 8px;
+    font-size: 15px;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(0, 168, 132, 0.15);
+    border: 1px solid rgba(0, 168, 132, 0.4);
+    color: #25d366;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 960px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+  .chat-column {
+    background: #111b21;
+    border-radius: 16px;
+    border: 1px solid #222e35;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .chat-header {
+    background: #202c33;
+    padding: 16px 20px;
+    border-bottom: 1px solid #222e35;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .version-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .v1-tag { background: #064e3b; color: #34d399; }
+  .v2-tag { background: #1e293b; color: #f59e0b; border: 1px solid #475569; }
+  .v3-tag { background: #0f172a; color: #38bdf8; border: 1px solid #0284c7; }
+
+  .chat-body {
+    padding: 24px 18px;
+    background-image: radial-gradient(#182229 1px, transparent 1px);
+    background-size: 16px 16px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  /* WhatsApp Outgoing Bubble */
+  .bubble-out {
+    align-self: flex-end;
+    max-width: 92%;
+    background: #005c4b;
+    border-radius: 10px 0 10px 10px;
+    padding: 6px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  .bubble-url {
+    color: #53bdeb;
+    text-decoration: underline;
+    font-size: 13px;
+    padding: 4px 6px;
+    word-break: break-all;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  /* WhatsApp Rich Card Preview */
+  .wa-card {
+    background: #025144;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .wa-card img {
+    width: 100%;
+    aspect-ratio: 1.91 / 1;
+    object-fit: cover;
+    display: block;
+    background: #000;
+  }
+  .wa-card-body {
+    padding: 10px 12px;
+  }
+  .wa-domain {
+    font-size: 11px;
+    color: #8696a0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .wa-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #e9edef;
+    line-height: 1.35;
+    margin-bottom: 4px;
+  }
+  .wa-desc {
+    font-size: 12px;
+    color: #8696a0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .bubble-meta {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: #8696a0;
+    padding: 2px 6px 0 0;
+  }
+  .checks {
+    color: #53bdeb;
+    font-size: 14px;
+  }
+  .meta-checklist {
+    background: #182229;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 12px;
+    margin-top: 10px;
+    border: 1px solid #222e35;
+  }
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .meta-row:last-child { border-bottom: none; }
+  .meta-label { color: #8696a0; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+  .meta-val { color: #34d399; font-weight: 600; text-align: right; word-break: break-all; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="#00a884"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08s.89 2.41 1.02 2.58c.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.53.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.32"/></svg>
+        Simulasi WhatsApp Rich Share Preview
+      </h1>
+      <p>Verifikasi visual kartu pratinjau tautan ketika dibagikan ke WhatsApp Chat / Grup</p>
+      <div class="badge">WHATSAPP OPEN GRAPH SPECIFICATION v1.0 • 1200x630 PX</div>
+    </div>
+
+    <div class="grid">
+      <!-- COLUMN V1 -->
+      <div class="chat-column">
+        <div class="chat-header">
+          <div>
+            <div style="font-weight: 700; font-size: 15px;">V1: Heritage Islamic</div>
+            <div style="font-size: 12px; color: #8696a0;">Traditional Madrasah Edition</div>
+          </div>
+          <span class="version-tag v1-tag">VERSI 1</span>
+        </div>
+        <div class="chat-body">
+          <div class="bubble-out">
+            <div class="bubble-url">https://nixon42.github.io/smpalmubarokweb/</div>
+            <div class="wa-card">
+              <img src="og-v1.jpg" alt="V1 Preview">
+              <div class="wa-card-body">
+                <div class="wa-domain">nixon42.github.io</div>
+                <div class="wa-title">SMPI Yambu'ul Qur'an — Pesantren Terpadu & Tahfidzul Qur'an Kediri</div>
+                <div class="wa-desc">Pendidikan Islam modern berbasis Tahfidzul Qur'an & kurikulum nasional terpadu di Plosoklaten Kediri. Mencetak generasi Qur'ani berakhlak mulia. Info PPDB 2026/2027.</div>
+              </div>
+            </div>
+            <div class="bubble-meta">08:15 <span class="checks">✓✓</span></div>
+          </div>
+
+          <div class="meta-checklist">
+            <div class="meta-row"><span class="meta-label">og:title</span><span class="meta-val">Pesantren Terpadu & Tahfidz</span></div>
+            <div class="meta-row"><span class="meta-label">og:image</span><span class="meta-val">og-v1.jpg (103 KB)</span></div>
+            <div class="meta-row"><span class="meta-label">og:url</span><span class="meta-val">/ (base URL)</span></div>
+            <div class="meta-row"><span class="meta-label">theme-color</span><span class="meta-val" style="color:#10b981;">#0b3323</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN V2 -->
+      <div class="chat-column">
+        <div class="chat-header">
+          <div>
+            <div style="font-weight: 700; font-size: 15px;">V2: Minimalist Editorial</div>
+            <div style="font-size: 12px; color: #8696a0;">Swiss-Islamic Broadside Edition</div>
+          </div>
+          <span class="version-tag v2-tag">VERSI 2</span>
+        </div>
+        <div class="chat-body">
+          <div class="bubble-out">
+            <div class="bubble-url">https://nixon42.github.io/smpalmubarokweb/v2.html</div>
+            <div class="wa-card">
+              <img src="og-v2.jpg" alt="V2 Preview">
+              <div class="wa-card-body">
+                <div class="wa-domain">nixon42.github.io</div>
+                <div class="wa-title">SMPI Yambu'ul Qur'an — Edisi Editorial & Direktori Akademik</div>
+                <div class="wa-desc">Lembaran resmi & direktori akademik SMPI Yambu'ul Qur'an Kediri: panduan kurikulum unggulan, dewan asatidz terkemuka, warta prestasi, dan arsip publikasi santri.</div>
+              </div>
+            </div>
+            <div class="bubble-meta">08:16 <span class="checks">✓✓</span></div>
+          </div>
+
+          <div class="meta-checklist">
+            <div class="meta-row"><span class="meta-label">og:title</span><span class="meta-val">Edisi Editorial & Direktori</span></div>
+            <div class="meta-row"><span class="meta-label">og:image</span><span class="meta-val">og-v2.jpg (89 KB)</span></div>
+            <div class="meta-row"><span class="meta-label">og:url</span><span class="meta-val">/v2.html</span></div>
+            <div class="meta-row"><span class="meta-label">theme-color</span><span class="meta-val" style="color:#f59e0b;">#1e293b</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN V3 -->
+      <div class="chat-column">
+        <div class="chat-header">
+          <div>
+            <div style="font-weight: 700; font-size: 15px;">V3: Smart-Campus Bento</div>
+            <div style="font-size: 12px; color: #8696a0;">Dynamic Cloud & CBT Portal</div>
+          </div>
+          <span class="version-tag v3-tag">VERSI 3</span>
+        </div>
+        <div class="chat-body">
+          <div class="bubble-out">
+            <div class="bubble-url">https://nixon42.github.io/smpalmubarokweb/v3.html</div>
+            <div class="wa-card">
+              <img src="og-v3.jpg" alt="V3 Preview">
+              <div class="wa-card-body">
+                <div class="wa-domain">nixon42.github.io</div>
+                <div class="wa-title">SMPI Yambu'ul Qur'an — Smart-Campus Portal & Layanan Digital</div>
+                <div class="wa-desc">Pusat layanan digital sekolah terpadu: akses instan ke 18 aplikasi cloud, CBT mandiri, presensi online, e-rapor tahfidz, dan portal PPDB realtime SMPI Yambu'ul Qur'an.</div>
+              </div>
+            </div>
+            <div class="bubble-meta">08:17 <span class="checks">✓✓</span></div>
+          </div>
+
+          <div class="meta-checklist">
+            <div class="meta-row"><span class="meta-label">og:title</span><span class="meta-val">Smart-Campus & Layanan Digital</span></div>
+            <div class="meta-row"><span class="meta-label">og:image</span><span class="meta-val">og-v3.jpg (100 KB)</span></div>
+            <div class="meta-row"><span class="meta-label">og:url</span><span class="meta-val">/v3.html</span></div>
+            <div class="meta-row"><span class="meta-label">theme-color</span><span class="meta-val" style="color:#38bdf8;">#0f172a</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

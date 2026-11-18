@@ -28,7 +28,7 @@
 
 <!-- PWA: bisa dipasang / dipintas di layar utama HP -->
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#0b3323">
+<meta name="theme-color" content="#0f172a">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="SMPI Yambu'ul Qur'an">
@@ -47,28 +47,55 @@
 <link rel="preload" as="image" href="splash-bg.webp">
 
 <!-- ========================================== -->
-<!-- SEO META TAGS -->
+<!-- SEO & WHATSAPP SOCIAL SHARE META TAGS (V3: SMART-CAMPUS BENTO) -->
 <!-- ========================================== -->
-<title>SMPI YAMBU'UL QUR'AN — Smart-Campus Bento Portal (V3)</title>
-<meta name="description" content="Website Resmi SMPI Yambu'ul Qur'an Plosoklaten Kediri. Sekolah menengah pertama berbasis Al-Qur'an dan akhlak mulia, mencetak generasi Qur'ani yang beriman, bertakwa, dan berprestasi. Info PPDB, Profil, Program, dan Berita Sekolah.">
-<meta name="keywords" content="SMPI YAMBU'UL QUR'AN, SMPI Yaqu, SMP Islam Yambu'ul Qur'an, PPDB SMP Kediri, SMP Plosoklaten, Sekolah Tahfidz Kediri">
+<title>SMPI Yambu'ul Qur'an — Smart-Campus Portal & Layanan Digital</title>
+<meta name="description" content="Pusat layanan digital sekolah terpadu: akses instan ke 18 aplikasi cloud, CBT mandiri, presensi online, e-rapor tahfidz, dan portal PPDB realtime SMPI Yambu'ul Qur'an.">
+<meta name="keywords" content="SMPI YAMBU'UL QUR'AN, Smart Campus Kediri, CBT Mandiri SMP, Absensi Wajah Sekolah, E-Rapor Tahfidz, Portal Digital Yaqu">
 <meta name="author" content="SMPI Yambu'ul Qur'an">
 <meta name="robots" content="index, follow">
 <meta name="language" content="id">
+<link rel="canonical" href="https://nixon42.github.io/smpalmubarokweb/v3.html">
 
+<!-- Open Graph / WhatsApp Meta Tags -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="SMPI YAMBU'UL QUR'AN">
-<meta property="og:description" content="Website Resmi SMPI Yambu'ul Qur'an Plosoklaten Kediri. Sekolah menengah pertama berbasis Al-Qur'an dan akhlak mulia, mencetak generasi Qur'ani yang beriman, bertakwa, dan berprestasi.">
+<meta property="og:site_name" content="SMPI Yambu'ul Qur'an">
+<meta property="og:locale" content="id_ID">
+<meta property="og:title" content="SMPI Yambu'ul Qur'an — Smart-Campus Portal & Layanan Digital">
+<meta property="og:description" content="Pusat layanan digital sekolah terpadu: akses instan ke 18 aplikasi cloud, CBT mandiri, presensi online, e-rapor tahfidz, dan portal PPDB realtime SMPI Yambu'ul Qur'an.">
+<meta property="og:url" content="https://nixon42.github.io/smpalmubarokweb/v3.html">
+<meta property="og:image" content="https://nixon42.github.io/smpalmubarokweb/og-v3.jpg">
+<meta property="og:image:secure_url" content="https://nixon42.github.io/smpalmubarokweb/og-v3.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SMPI Yambu'ul Qur'an - Smart-Campus Portal & Layanan Digital">
 
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:title" content="SMPI YAMBU'UL QUR'AN">
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://nixon42.github.io/smpalmubarokweb/v3.html">
+<meta name="twitter:title" content="SMPI Yambu'ul Qur'an — Smart-Campus Portal & Layanan Digital">
+<meta name="twitter:description" content="Pusat layanan digital sekolah terpadu: akses instan ke 18 aplikasi cloud, CBT mandiri, presensi online, e-rapor tahfidz, dan portal PPDB realtime SMPI Yambu'ul Qur'an.">
+<meta name="twitter:image" content="https://nixon42.github.io/smpalmubarokweb/og-v3.jpg">
 
 <script type="application/ld+json">
 {
   "@context" : "https://schema.org",
-  "@type" : "WebSite",
-  "name" : "SMPI YAMBU'UL QUR'AN",
-  "alternateName" : "SMP Islam Yambu'ul Qur'an"
+  "@type" : "School",
+  "name" : "SMPI YAMBU'UL QUR'AN (Smart-Campus Portal)",
+  "alternateName" : "SMP Islam Yambu'ul Qur'an",
+  "url" : "https://nixon42.github.io/smpalmubarokweb/v3.html",
+  "logo" : "https://nixon42.github.io/smpalmubarokweb/logo.png",
+  "image" : "https://nixon42.github.io/smpalmubarokweb/og-v3.jpg",
+  "description" : "Pusat layanan digital sekolah terpadu: akses instan ke 18 aplikasi cloud, CBT mandiri, presensi online, e-rapor tahfidz, dan portal PPDB realtime SMPI Yambu'ul Qur'an.",
+  "address" : {
+    "@type": "PostalAddress",
+    "streetAddress": "Jl. Agung Ds. Jarak RT 04/RW 02",
+    "addressLocality": "Plosoklaten",
+    "addressRegion": "Kediri, Jawa Timur",
+    "addressCountry": "ID"
+  },
+  "telephone": "+6281515777911"
 }
 </script>
 
@@ -4426,6 +4453,7 @@ let heroSig_ = '';
 
 function renderHeroSlider() {
   const wrap = document.getElementById('hero-slides');
+  if (!wrap) return;
   if (!wrap) return;
   if (!wrap) return;
   if (!wrap) return;
