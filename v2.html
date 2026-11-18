@@ -1371,44 +1371,86 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
       /* -------------------------------------------------------------
          V2 CONTRAST & COLOR CLASS DEFINITIONS (Guarantees visible text)
          ------------------------------------------------------------- */
-      .bg-\[\#062116\], [class*="bg-[#062116]"] {
+      .bg-\[\#062116\], [class~="bg-[#062116]"] {
         background-color: #062116 !important;
         color: #ffffff !important;
       }
-      .bg-\[\#062116\]:hover, [class*="bg-[#062116]"]:hover {
-        background-color: #c39328 !important;
-        color: #ffffff !important;
-      }
-      .text-\[\#062116\], [class*="text-[#062116]"] {
+      .text-\[\#062116\], [class~="text-[#062116]"] {
         color: #062116 !important;
       }
-      .border-\[\#062116\], [class*="border-[#062116]"] {
+      .border-\[\#062116\], [class~="border-[#062116]"] {
         border-color: #062116 !important;
       }
-      .bg-\[\#c39328\], [class*="bg-[#c39328]"] {
+      .bg-\[\#c39328\], [class~="bg-[#c39328]"] {
         background-color: #c39328 !important;
         color: #ffffff !important;
       }
-      .text-\[\#c39328\], [class*="text-[#c39328]"] {
+      .text-\[\#c39328\], [class~="text-[#c39328]"] {
         color: #c39328 !important;
       }
-      .border-\[\#c39328\], [class*="border-[#c39328]"] {
+      .border-\[\#c39328\], [class~="border-[#c39328]"] {
         border-color: #c39328 !important;
       }
-      .text-\[\#52665a\], [class*="text-[#52665a]"] {
+      .text-\[\#52665a\], [class~="text-[#52665a]"] {
         color: #52665a !important;
       }
-      .text-\[\#7a8e82\], [class*="text-[#7a8e82]"] {
+      .text-\[\#7a8e82\], [class~="text-[#7a8e82]"] {
         color: #7a8e82 !important;
       }
-      .border-\[\#e2ece6\], [class*="border-[#e2ece6]"] {
+      .border-\[\#e2ece6\], [class~="border-[#e2ece6]"] {
         border-color: #e2ece6 !important;
       }
-      .bg-\[\#faf9f5\], [class*="bg-[#faf9f5]"] {
+      .bg-\[\#faf9f5\], [class~="bg-[#faf9f5]"] {
         background-color: #faf9f5 !important;
       }
-      .bg-\[\#25D366\], [class*="bg-[#25D366]"] {
+      .bg-\[\#25D366\], [class~="bg-[#25D366]"] {
         background-color: #25D366 !important;
+        color: #ffffff !important;
+      }
+
+      /* Specific Swiss Editorial Buttons */
+      button.btn-editorial-outline, .btn-editorial-outline {
+        background-color: transparent !important;
+        color: #062116 !important;
+        border: 1px solid #062116 !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 11px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        transition: all 0.2s ease !important;
+        border-radius: 0px !important;
+        cursor: pointer !important;
+      }
+      button.btn-editorial-outline:hover, .btn-editorial-outline:hover {
+        background-color: #062116 !important;
+        color: #ffffff !important;
+      }
+      button.btn-editorial-solid, .btn-editorial-solid {
+        background-color: #062116 !important;
+        color: #ffffff !important;
+        border: 1px solid #062116 !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 11px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        transition: all 0.2s ease !important;
+        border-radius: 0px !important;
+        cursor: pointer !important;
+      }
+      button.btn-editorial-solid:hover, .btn-editorial-solid:hover {
+        background-color: #c39328 !important;
+        color: #062116 !important;
+        border-color: #c39328 !important;
+      }
+      #beranda-kepsek button,
+      #hero-slider button[style*="transparent"] {
+        background-color: transparent !important;
+        color: #062116 !important;
+        border: 1px solid #062116 !important;
+      }
+      #beranda-kepsek button:hover,
+      #hero-slider button[style*="transparent"]:hover {
+        background-color: #062116 !important;
         color: #ffffff !important;
       }
 
@@ -2146,7 +2188,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
           </div>
 
           <div class="mt-8">
-            <button onclick="showSection('sambutan')" class="px-5 py-3 border border-[#062116] text-[#062116] hover:bg-[#062116] hover:text-white font-mono text-xs uppercase tracking-wider transition-colors inline-flex items-center gap-2">
+            <button onclick="showSection('sambutan')" class="btn-editorial-outline px-5 py-3 font-mono text-xs uppercase tracking-wider inline-flex items-center gap-2">
               <span>Baca Wacana Lengkap &rarr;</span>
             </button>
           </div>
@@ -2321,7 +2363,52 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       <div class="relative">
         <div class="hidden sm:block">
           <div class="overflow-hidden">
-            <div id="beranda-program-carousel" class="flex transition-transform duration-500 ease-out"></div>
+            <div id="beranda-program-carousel" class="flex transition-transform duration-500 ease-out">
+              <div class="flex gap-4 md:gap-6 overflow-x-auto pb-2 scrollbar-hide w-full">
+                <div class="border border-[#e2ece6] bg-white p-6 flex flex-col justify-between flex-shrink-0 w-80 md:w-96 snap-start" style="min-height: 220px;">
+                  <div>
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ PROGRAM SANTRI ]</span>
+                      <span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">STATUS // PENDING</span>
+                    </div>
+                    <h4 class="font-serif text-base font-bold text-[#062116] mb-2 leading-snug">Belum Ada Data Aktivitas Program</h4>
+                    <p class="text-xs text-[#52665a] leading-relaxed font-light">Rangkaian dokumentasi aktivitas program santri dan kegiatan akademik berkala sedang dihimpun redaksi.</p>
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[11px] font-mono text-[#7a8e82]">
+                    <span>DIVISI AKADEMIK</span>
+                    <span class="text-[#062116] font-bold">SMPI YQ</span>
+                  </div>
+                </div>
+                <div class="border border-[#e2ece6] bg-white p-6 flex flex-col justify-between flex-shrink-0 w-80 md:w-96 snap-start" style="min-height: 220px;">
+                  <div>
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ PEMBINAAN TAHFIDZ ]</span>
+                      <span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">STATUS // PENDING</span>
+                    </div>
+                    <h4 class="font-serif text-base font-bold text-[#062116] mb-2 leading-snug">Sinkronisasi Dokumentasi</h4>
+                    <p class="text-xs text-[#52665a] leading-relaxed font-light">Dokumentasi berkala capaian hafalan santri dan pembiasaan adab Qur'ani sedang disiapkan.</p>
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[11px] font-mono text-[#7a8e82]">
+                    <span>DIVISI AKADEMIK</span>
+                    <span class="text-[#062116] font-bold">SMPI YQ</span>
+                  </div>
+                </div>
+                <div class="border border-[#e2ece6] bg-white p-6 flex flex-col justify-between flex-shrink-0 w-80 md:w-96 snap-start" style="min-height: 220px;">
+                  <div>
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ DIRASAH ISLAMIYAH ]</span>
+                      <span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">STATUS // PENDING</span>
+                    </div>
+                    <h4 class="font-serif text-base font-bold text-[#062116] mb-2 leading-snug">Kurikulum Terpadu Pesantren</h4>
+                    <p class="text-xs text-[#52665a] leading-relaxed font-light">Silabus terpadu Kementerian Pendidikan dan kepesantrenan Al-Qur'an tersedia di panduan pendaftaran.</p>
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[11px] font-mono text-[#7a8e82]">
+                    <span>DIVISI AKADEMIK</span>
+                    <span class="text-[#062116] font-bold">SMPI YQ</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <button onclick="geserProgram(-1)" aria-label="Sebelumnya" class="hidden sm:flex absolute -left-3 md:-left-5 top-1/2 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white text-primary shadow-lg items-center justify-center hover:bg-secondary hover:text-primary transition-colors z-10"><i class="fas fa-chevron-left text-xs md:text-sm"></i></button>
           <button onclick="geserProgram(1)" aria-label="Berikutnya" class="hidden sm:flex absolute -right-3 md:-right-5 top-1/2 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white text-primary shadow-lg items-center justify-center hover:bg-secondary hover:text-primary transition-colors z-10"><i class="fas fa-chevron-right text-xs md:text-sm"></i></button>
@@ -2347,7 +2434,48 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
           </div>
           <button onclick="showSection('kegiatan')" class="hidden md:block text-primary hover:text-secondary-600 font-bold text-xs uppercase tracking-wider transition-colors">Kalender Lengkap &rarr;</button>
         </div>
-        <div id="beranda-kegiatan-grid" class="max-w-4xl mx-auto"></div>
+        <div id="beranda-kegiatan-grid" class="max-w-4xl mx-auto">
+          <div class="space-y-4">
+            <div class="border border-[#e2ece6] bg-white p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 border border-[#e2ece6] bg-[#faf9f5] flex flex-col items-center justify-center flex-shrink-0 text-[#062116]">
+                  <span class="font-mono text-[9px] text-[#7a8e82]">AGENDA</span>
+                  <span class="font-serif text-base font-bold">--</span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="font-mono text-[9px] uppercase tracking-wider text-[#c39328] border border-[#c39328]/30 px-1.5 py-0.5">AGENDA MADRASAH</span>
+                    <span class="font-mono text-[9px] text-[#7a8e82]">STATUS: BELUM ADA DATA</span>
+                  </div>
+                  <h4 class="font-serif text-base font-bold text-[#062116] leading-snug">Belum Ada Agenda Terdekat</h4>
+                  <p class="text-xs text-[#52665a] mt-1 font-light">Kalender kegiatan dan agenda resmi madrasah untuk periode ini belum dipublikasikan.</p>
+                </div>
+              </div>
+              <div class="text-right flex-shrink-0 font-mono text-[11px] text-[#7a8e82]">
+                <span>SEKRETARIAT SMPI YQ</span>
+              </div>
+            </div>
+            <div class="border border-[#e2ece6] bg-white p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 border border-[#e2ece6] bg-[#faf9f5] flex flex-col items-center justify-center flex-shrink-0 text-[#062116]">
+                  <span class="font-mono text-[9px] text-[#7a8e82]">AGENDA</span>
+                  <span class="font-serif text-base font-bold">--</span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="font-mono text-[9px] uppercase tracking-wider text-[#c39328] border border-[#c39328]/30 px-1.5 py-0.5">KALENDER AKADEMIK</span>
+                    <span class="font-mono text-[9px] text-[#7a8e82]">STATUS: BELUM ADA DATA</span>
+                  </div>
+                  <h4 class="font-serif text-base font-bold text-[#062116] leading-snug">Penyusunan Rangkaian Kegiatan</h4>
+                  <p class="text-xs text-[#52665a] mt-1 font-light">Rangkaian kegiatan santri, evaluasi belajar, dan peringatan hari besar Islam sedang diselaraskan.</p>
+                </div>
+              </div>
+              <div class="text-right flex-shrink-0 font-mono text-[11px] text-[#7a8e82]">
+                <span>SEKRETARIAT SMPI YQ</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -2458,7 +2586,50 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
           <button onclick="geserEkskul(-1)" aria-label="Geser ke kiri" class="flex items-center justify-center absolute -left-2 md:-left-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white text-primary shadow-lg hover:bg-secondary hover:text-primary transition-colors">
             <i class="fas fa-chevron-left text-xs md:text-sm"></i>
           </button>
-          <div id="beranda-ekskul-grid" class="flex gap-4 md:gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide"></div>
+          <div id="beranda-ekskul-grid" class="flex gap-4 md:gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide">
+            <div class="border border-[#e2ece6] bg-white p-5 flex flex-col justify-between flex-shrink-0 w-64 md:w-72 snap-start" style="min-height: 200px;">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ EKSKUL SANTRI ]</span>
+                  <span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">PERSIAPAN</span>
+                </div>
+                <h4 class="font-serif text-sm font-bold text-[#062116] mb-1.5 leading-snug">Belum Ada Data Ekstrakurikuler</h4>
+                <p class="text-xs text-[#52665a] leading-relaxed font-light">Ragam kegiatan pengembangan minat dan bakat santri untuk semester berjalan sedang diselaraskan dengan jadwal madrasah.</p>
+              </div>
+              <div class="mt-4 pt-2 border-t border-[#e2ece6] text-[10px] font-mono text-[#7a8e82] flex items-center justify-between">
+                <span>DIVISI KESISWAAN</span>
+                <span class="text-[#062116] font-bold">2026/2027</span>
+              </div>
+            </div>
+            <div class="border border-[#e2ece6] bg-white p-5 flex flex-col justify-between flex-shrink-0 w-64 md:w-72 snap-start" style="min-height: 200px;">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ PENGEMBANGAN DIRI ]</span>
+                  <span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">PERSIAPAN</span>
+                </div>
+                <h4 class="font-serif text-sm font-bold text-[#062116] mb-1.5 leading-snug">Penyusunan Jadwal Pembinaan</h4>
+                <p class="text-xs text-[#52665a] leading-relaxed font-light">Ekstrakurikuler seni hadrah, multimedia santri, bahasa asing, dan keolahragaan sedang tahap penetapan pembina.</p>
+              </div>
+              <div class="mt-4 pt-2 border-t border-[#e2ece6] text-[10px] font-mono text-[#7a8e82] flex items-center justify-between">
+                <span>DIVISI KESISWAAN</span>
+                <span class="text-[#062116] font-bold">2026/2027</span>
+              </div>
+            </div>
+            <div class="border border-[#e2ece6] bg-white p-5 flex flex-col justify-between flex-shrink-0 w-64 md:w-72 snap-start" style="min-height: 200px;">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ AGENDA RUTIN ]</span>
+                  <span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">PERSIAPAN</span>
+                </div>
+                <h4 class="font-serif text-sm font-bold text-[#062116] mb-1.5 leading-snug">Pendaftaran Ekstrakurikuler</h4>
+                <p class="text-xs text-[#52665a] leading-relaxed font-light">Jadwal seleksi dan pembagian kelompok ekstrakurikuler santri akan diumumkan pada permulaan masa ta'aruf.</p>
+              </div>
+              <div class="mt-4 pt-2 border-t border-[#e2ece6] text-[10px] font-mono text-[#7a8e82] flex items-center justify-between">
+                <span>DIVISI KESISWAAN</span>
+                <span class="text-[#062116] font-bold">2026/2027</span>
+              </div>
+            </div>
+          </div>
           <button onclick="geserEkskul(1)" aria-label="Geser ke kanan" class="flex items-center justify-center absolute -right-2 md:-right-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white text-primary shadow-lg hover:bg-secondary hover:text-primary transition-colors">
             <i class="fas fa-chevron-right text-xs md:text-sm"></i>
           </button>
@@ -2543,7 +2714,50 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
         <button onclick="geserAlumni(-1)" aria-label="Geser ke kiri" class="flex items-center justify-center absolute -left-2 md:-left-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white text-primary shadow-lg hover:bg-secondary hover:text-primary transition-colors">
           <i class="fas fa-chevron-left text-xs md:text-sm"></i>
         </button>
-        <div id="beranda-alumni-carousel" class="flex gap-4 md:gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide"></div>
+        <div id="beranda-alumni-carousel" class="flex gap-4 md:gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide">
+          <div class="border border-[#e2ece6] bg-white p-6 flex flex-col justify-between flex-shrink-0 w-72 md:w-80 snap-start" style="min-height: 220px;">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ JEJAK ALUMNI ]</span>
+                <span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">STATUS // NIHIL</span>
+              </div>
+              <h4 class="font-serif text-base font-bold text-[#062116] mb-1.5 leading-snug">Belum Ada Data Alumni</h4>
+              <p class="text-xs text-[#52665a] leading-relaxed font-light">Publikasi kisah inspiratif dan testimoni lulusan SMPI Yambu'ul Qur'an sedang dihimpun oleh tim redaksi kampus.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[10px] font-mono text-[#7a8e82]">
+              <span>TAHUN AJARAN 2026/2027</span>
+              <span class="text-[#062116] font-bold">SMPI YQ</span>
+            </div>
+          </div>
+          <div class="border border-[#e2ece6] bg-white p-6 flex flex-col justify-between flex-shrink-0 w-72 md:w-80 snap-start" style="min-height: 220px;">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ DIREKTORI ]</span>
+                <span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">STATUS // NIHIL</span>
+              </div>
+              <h4 class="font-serif text-base font-bold text-[#062116] mb-1.5 leading-snug">Pemutakhiran Portofolio</h4>
+              <p class="text-xs text-[#52665a] leading-relaxed font-light">Sistem direktori jejaring karir dan studi lanjut santriwati-santriwan sedang dalam tahap sinkronisasi data.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[10px] font-mono text-[#7a8e82]">
+              <span>TAHUN AJARAN 2026/2027</span>
+              <span class="text-[#062116] font-bold">SMPI YQ</span>
+            </div>
+          </div>
+          <div class="border border-[#e2ece6] bg-white p-6 flex flex-col justify-between flex-shrink-0 w-72 md:w-80 snap-start" style="min-height: 220px;">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ ARSIP KAMPUS ]</span>
+                <span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">STATUS // NIHIL</span>
+              </div>
+              <h4 class="font-serif text-base font-bold text-[#062116] mb-1.5 leading-snug">Jejaring Santriwati & Santriwan</h4>
+              <p class="text-xs text-[#52665a] leading-relaxed font-light">Data rekam jejak lulusan angkatan terintegrasi akan ditayangkan di lembaran ini secara transparan.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[10px] font-mono text-[#7a8e82]">
+              <span>TAHUN AJARAN 2026/2027</span>
+              <span class="text-[#062116] font-bold">SMPI YQ</span>
+            </div>
+          </div>
+        </div>
         <button onclick="geserAlumni(1)" aria-label="Geser ke kanan" class="flex items-center justify-center absolute -right-2 md:-right-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white text-primary shadow-lg hover:bg-secondary hover:text-primary transition-colors">
           <i class="fas fa-chevron-right text-xs md:text-sm"></i>
         </button>
@@ -4589,6 +4803,8 @@ let heroSig_ = '';
 
 function renderHeroSlider() {
   const wrap = document.getElementById('hero-slides');
+  if (!wrap) return;
+  if (!wrap) return;
   if (!wrap) return;
   if (!wrap) return;
   if (!wrap) return;
@@ -9675,7 +9891,372 @@ setTimeout(function () {
     }
   };
 
-  // Geser helper untuk Galeri & Video V2
+
+  // ---------------------------------------------------------------------------
+  // V2 RENDERERS: ALUMNI, EKSKUL, PROGRAM, KEGIATAN (WITH EDITORIAL EMPTY STATES)
+  // ---------------------------------------------------------------------------
+  window.renderAlumni = function() {
+    const dbData = (getDB().alumni && getDB().alumni.length) ? getDB().alumni : [];
+    const track = document.getElementById('beranda-alumni-carousel');
+    const fullGrid = document.getElementById('alumni-grid');
+
+    if (dbData.length > 0) {
+      if (track) {
+        track.innerHTML = dbData.map(function(a) {
+          const foto = (a.foto && a.foto.trim()) ? a.foto.split(',')[0].trim() : 'https://placehold.co/120x120/062116/c39328?text=' + encodeURIComponent((a.nama || 'A')[0]);
+          return '<div class="border border-[#e2ece6] bg-white p-6 flex flex-col justify-between flex-shrink-0 w-72 md:w-80 snap-start hover:border-[#062116] transition-all" style="min-height: 220px;">' +
+            '<div>' +
+              '<div class="flex items-center gap-3 mb-4">' +
+                '<img src="' + foto + '" class="w-12 h-12 object-cover border border-[#e2ece6]" alt="' + (a.nama || 'Alumni') + '">' +
+                '<div>' +
+                  '<h4 class="font-serif text-sm font-bold text-[#062116] leading-tight">' + (a.nama || '-') + '</h4>' +
+                  '<span class="font-mono text-[10px] text-[#c39328] uppercase tracking-wider block mt-0.5">' + (a.angkatan ? 'Angkatan ' + a.angkatan : 'Alumni Santri') + '</span>' +
+                '</div>' +
+              '</div>' +
+              '<p class="text-xs text-[#52665a] leading-relaxed line-clamp-4 font-light italic font-serif">"' + (a.testimoni || a.melanjutkan || 'Menjadi bagian dari santri SMPI YQ merupakan fondasi keilmuan dan adab yang berharga.') + '"</p>' +
+            '</div>' +
+            '<div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[10px] font-mono text-[#7a8e82]">' +
+              '<span>' + (a.melanjutkan ? a.melanjutkan.slice(0, 22) : 'ALUMNI BERPRESTASI') + '</span>' +
+              '<span class="text-[#062116] font-bold">SMPI YQ</span>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+      }
+      if (fullGrid) {
+        fullGrid.innerHTML = dbData.map(function(a) {
+          const foto = (a.foto && a.foto.trim()) ? a.foto.split(',')[0].trim() : 'https://placehold.co/200x200/062116/c39328?text=' + encodeURIComponent((a.nama || 'A')[0]);
+          return '<div class="border border-[#e2ece6] bg-white p-6 flex flex-col justify-between hover:border-[#062116] transition-all">' +
+            '<div>' +
+              '<div class="flex items-center gap-4 mb-4">' +
+                '<img src="' + foto + '" class="w-14 h-14 object-cover border border-[#e2ece6]" alt="' + (a.nama || 'Alumni') + '">' +
+                '<div>' +
+                  '<h3 class="font-serif text-base font-bold text-[#062116] leading-tight">' + (a.nama || '-') + '</h3>' +
+                  '<span class="font-mono text-[11px] text-[#c39328] uppercase tracking-wider block mt-0.5">' + (a.angkatan ? 'Angkatan ' + a.angkatan : 'Alumni') + '</span>' +
+                  (a.melanjutkan ? '<p class="text-xs text-[#7a8e82] mt-0.5">' + a.melanjutkan + '</p>' : '') +
+                '</div>' +
+              '</div>' +
+              '<p class="text-xs text-[#52665a] leading-relaxed italic font-serif">"' + (a.testimoni || 'Pendidikan tahfidz dan disiplin santri di SMPI Yambu'ul Qur'an menjadi bekal berharga menuntut ilmu lanjutan.') + '"</p>' +
+            '</div>' +
+            '<div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[11px] font-mono text-[#7a8e82]">' +
+              '<span>STATUS: TERVERIFIKASI</span>' +
+              '<span class="text-[#062116] font-bold">SMPI YAMBU'UL QUR'AN</span>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+      }
+    } else {
+      // EMPTY STATE FALLBACK CARDS: Prevent collapse & show clear editorial notification
+      if (track) {
+        track.innerHTML = [
+          { tag: 'JEJAK ALUMNI', title: 'Belum Ada Data Alumni', desc: 'Publikasi kisah inspiratif dan testimoni lulusan SMPI Yambu'ul Qur'an sedang dihimpun oleh tim redaksi kampus.' },
+          { tag: 'DIREKTORI', title: 'Pemutakhiran Portofolio', desc: 'Sistem direktori jejaring karir dan studi lanjut santriwati-santriwan sedang dalam tahap sinkronisasi data.' },
+          { tag: 'ARSIP KAMPUS', title: 'Jejaring Santriwati & Santriwan', desc: 'Data rekam jejak lulusan angkatan terintegrasi akan ditayangkan di lembaran ini secara transparan.' }
+        ].map(function(item) {
+          return '<div class="border border-[#e2ece6] bg-white p-6 flex flex-col justify-between flex-shrink-0 w-72 md:w-80 snap-start" style="min-height: 220px;">' +
+            '<div>' +
+              '<div class="flex items-center justify-between mb-3">' +
+                '<span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ ' + item.tag + ' ]</span>' +
+                '<span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">STATUS // NIHIL</span>' +
+              '</div>' +
+              '<h4 class="font-serif text-base font-bold text-[#062116] mb-1.5 leading-snug">' + item.title + '</h4>' +
+              '<p class="text-xs text-[#52665a] leading-relaxed font-light">' + item.desc + '</p>' +
+            '</div>' +
+            '<div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[10px] font-mono text-[#7a8e82]">' +
+              '<span>TAHUN AJARAN 2026/2027</span>' +
+              '<span class="text-[#062116] font-bold">SMPI YQ</span>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+      }
+      if (fullGrid) {
+        fullGrid.innerHTML = '<div class="col-span-full border border-dashed border-[#e2ece6] bg-[#faf9f5] p-10 md:p-14 text-center">' +
+          '<span class="font-mono text-xs text-[#c39328] uppercase tracking-widest block mb-2">[ ARSIP DOKUMEN &bull; ALUMNI ]</span>' +
+          '<h3 class="font-serif text-xl md:text-2xl font-normal text-[#062116] mb-2">Belum Ada Data Alumni Terpublikasi</h3>' +
+          '<p class="text-xs text-[#52665a] max-w-md mx-auto leading-relaxed font-light">Data testimoni dan rekam jejak kelulusan santri sedang diperbarui melalui sistem data madrasah.</p>' +
+        '</div>';
+      }
+    }
+  };
+
+  window.renderEkstrakurikuler = function() {
+    const dbData = (getDB().ekstrakurikuler && getDB().ekstrakurikuler.length) ? getDB().ekstrakurikuler : [];
+    const track = document.getElementById('beranda-ekskul-grid');
+    const fullGrid = document.getElementById('ekskul-grid');
+
+    if (dbData.length > 0) {
+      if (track) {
+        track.innerHTML = dbData.map(function(e) {
+          const img = (e.foto && e.foto.trim()) ? e.foto.split(',')[0].trim() : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80';
+          return '<div onclick="showSection('ekstrakurikuler')" class="border border-[#e2ece6] p-3 bg-white flex-shrink-0 w-64 md:w-72 snap-start hover:border-[#062116] cursor-pointer transition-all flex flex-col justify-between" style="min-height: 200px;">' +
+            '<div>' +
+              '<div class="aspect-[16/10] overflow-hidden bg-[#faf9f5] mb-3 relative">' +
+                '<img src="' + img + '" class="w-full h-full object-cover" alt="' + (e.nama_ekskul || e.nama || 'Ekskul') + '">' +
+                '<span class="absolute bottom-2 left-2 bg-[#062116]/90 text-white font-mono text-[9px] px-2 py-0.5 uppercase tracking-wider">EKSKUL</span>' +
+              '</div>' +
+              '<h4 class="font-serif text-sm font-bold text-[#062116] leading-snug line-clamp-1">' + (e.nama_ekskul || e.nama || '-') + '</h4>' +
+              (e.pembina ? '<p class="font-mono text-[10px] text-[#7a8e82] mt-0.5">Pembina: ' + e.pembina + '</p>' : '') +
+              '<p class="text-xs text-[#52665a] leading-relaxed line-clamp-2 mt-1 font-light">' + (e.deskripsi || 'Kegiatan pembinaan minat dan bakat santri.') + '</p>' +
+            '</div>' +
+            '<div class="mt-3 pt-2 border-t border-[#e2ece6] flex items-center justify-between text-[10px] font-mono text-[#7a8e82]">' +
+              '<span>PELAKSANAAN RUTIN</span>' +
+              '<span class="text-[#062116] font-bold">DETAIL &rarr;</span>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+      }
+      if (fullGrid) {
+        fullGrid.innerHTML = dbData.map(function(e) {
+          const img = (e.foto && e.foto.trim()) ? e.foto.split(',')[0].trim() : 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80';
+          return '<div class="border border-[#e2ece6] bg-white p-5 flex flex-col justify-between hover:border-[#062116] transition-all">' +
+            '<div>' +
+              '<div class="aspect-[16/9] overflow-hidden bg-[#faf9f5] mb-4 relative">' +
+                '<img src="' + img + '" class="w-full h-full object-cover" alt="' + (e.nama_ekskul || e.nama || 'Ekskul') + '">' +
+                '<span class="absolute top-2 left-2 font-mono text-[10px] uppercase tracking-wider bg-[#062116] text-white px-2 py-0.5">PENGEMBANGAN DIRI</span>' +
+              '</div>' +
+              '<h3 class="font-serif text-lg font-bold text-[#062116] mb-1">' + (e.nama_ekskul || e.nama || '-') + '</h3>' +
+              (e.pembina ? '<p class="font-mono text-xs text-[#c39328] mb-2">Pembina: ' + e.pembina + '</p>' : '') +
+              '<p class="text-xs text-[#52665a] leading-relaxed whitespace-pre-line font-light">' + (e.deskripsi || 'Program ekstrakurikuler unggulan untuk mencetak santri yang berprestasi dan mandiri.') + '</p>' +
+            '</div>' +
+            '<div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[11px] font-mono text-[#7a8e82]">' +
+              '<span>JADWAL: AKADEMIK 2026/2027</span>' +
+              '<span class="text-[#062116] font-bold">SMPI YQ</span>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+      }
+    } else {
+      // EMPTY STATE FALLBACK CARDS: Prevent collapse & show clear editorial notification
+      if (track) {
+        track.innerHTML = [
+          { tag: 'EKSKUL SANTRI', title: 'Belum Ada Data Ekstrakurikuler', desc: 'Ragam kegiatan pengembangan minat dan bakat santri untuk semester berjalan sedang diselaraskan dengan jadwal madrasah.' },
+          { tag: 'PENGEMBANGAN DIRI', title: 'Penyusunan Jadwal Pembinaan', desc: 'Ekstrakurikuler seni hadrah, multimedia santri, bahasa asing, dan keolahragaan sedang tahap penetapan pembina.' },
+          { tag: 'AGENDA RUTIN', title: 'Pendaftaran Ekstrakurikuler', desc: 'Jadwal seleksi dan pembagian kelompok ekstrakurikuler santri akan diumumkan pada permulaan masa ta'aruf.' }
+        ].map(function(item) {
+          return '<div class="border border-[#e2ece6] bg-white p-5 flex flex-col justify-between flex-shrink-0 w-64 md:w-72 snap-start" style="min-height: 200px;">' +
+            '<div>' +
+              '<div class="flex items-center justify-between mb-2">' +
+                '<span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ ' + item.tag + ' ]</span>' +
+                '<span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">PERSIAPAN</span>' +
+              '</div>' +
+              '<h4 class="font-serif text-sm font-bold text-[#062116] mb-1.5 leading-snug">' + item.title + '</h4>' +
+              '<p class="text-xs text-[#52665a] leading-relaxed font-light">' + item.desc + '</p>' +
+            '</div>' +
+            '<div class="mt-4 pt-2 border-t border-[#e2ece6] text-[10px] font-mono text-[#7a8e82] flex items-center justify-between">' +
+              '<span>DIVISI KESISWAAN</span>' +
+              '<span class="text-[#062116] font-bold">2026/2027</span>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+      }
+      if (fullGrid) {
+        fullGrid.innerHTML = '<div class="col-span-full border border-dashed border-[#e2ece6] bg-[#faf9f5] p-10 md:p-14 text-center">' +
+          '<span class="font-mono text-xs text-[#c39328] uppercase tracking-widest block mb-2">[ PENGEMBANGAN DIRI &bull; EKSKUL ]</span>' +
+          '<h3 class="font-serif text-xl md:text-2xl font-normal text-[#062116] mb-2">Belum Ada Data Ekstrakurikuler Terjadwal</h3>' +
+          '<p class="text-xs text-[#52665a] max-w-md mx-auto leading-relaxed font-light">Daftar ekstrakurikuler dan nama pembina santri sedang dalam proses sinkronisasi kalender kesiswaan.</p>' +
+        '</div>';
+      }
+    }
+  };
+
+  window.renderProgram = function() {
+    const dbData = (getDB().program && getDB().program.length) ? getDB().program : [];
+    const trackDesktop = document.getElementById('beranda-program-carousel');
+    const trackMobile = document.getElementById('beranda-program-scroll-mobile');
+    const fullGrid = document.getElementById('program-grid');
+
+    if (dbData.length > 0) {
+      const cardHtml = function(p) {
+        const img = (p.foto && p.foto.trim()) ? p.foto.split(',')[0].trim() : 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=500&q=80';
+        return '<div onclick="showSection('program')" class="border border-[#e2ece6] bg-white p-5 flex flex-col justify-between hover:border-[#062116] cursor-pointer transition-all flex-shrink-0 w-80 md:w-96 snap-start" style="min-height: 220px;">' +
+          '<div>' +
+            '<div class="aspect-[16/9] overflow-hidden bg-[#faf9f5] mb-3 relative">' +
+              '<img src="' + img + '" class="w-full h-full object-cover" alt="' + (p.nama_program || 'Program') + '">' +
+              '<span class="absolute bottom-2 left-2 bg-[#062116]/90 text-white font-mono text-[9px] px-2 py-0.5 uppercase tracking-wider">PROGRAM UNGGULAN</span>' +
+            '</div>' +
+            '<h4 class="font-serif text-base font-bold text-[#062116] leading-snug mb-1">' + (p.nama_program || '-') + '</h4>' +
+            '<p class="text-xs text-[#52665a] leading-relaxed line-clamp-3 font-light">' + (p.deskripsi || 'Program pembinaan terstruktur santri SMPI Yambu'ul Qur'an.') + '</p>' +
+          '</div>' +
+          '<div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[11px] font-mono text-[#7a8e82]">' +
+            '<span>KURIKULUM PESANTREN</span>' +
+            '<span class="text-[#062116] font-bold">SELENGKAPNYA &rarr;</span>' +
+          '</div>' +
+        '</div>';
+      };
+
+      if (trackDesktop) {
+        trackDesktop.innerHTML = '<div class="flex gap-4 md:gap-6 overflow-x-auto pb-2 scrollbar-hide">' + dbData.map(cardHtml).join('') + '</div>';
+      }
+      if (trackMobile) {
+        trackMobile.innerHTML = dbData.map(cardHtml).join('');
+      }
+      if (fullGrid) {
+        fullGrid.innerHTML = dbData.map(function(p) {
+          const img = (p.foto && p.foto.trim()) ? p.foto.split(',')[0].trim() : 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=500&q=80';
+          return '<div class="border border-[#e2ece6] bg-white p-6 flex flex-col justify-between hover:border-[#062116] transition-all">' +
+            '<div>' +
+              '<div class="aspect-[16/9] overflow-hidden bg-[#faf9f5] mb-4 relative">' +
+                '<img src="' + img + '" class="w-full h-full object-cover" alt="' + (p.nama_program || 'Program') + '">' +
+                '<span class="absolute top-2 left-2 font-mono text-[10px] uppercase tracking-wider bg-[#062116] text-white px-2.5 py-1">AKADEMIK & TAHFIDZ</span>' +
+              '</div>' +
+              '<h3 class="font-serif text-xl font-bold text-[#062116] mb-2">' + (p.nama_program || '-') + '</h3>' +
+              '<p class="text-xs text-[#52665a] leading-relaxed whitespace-pre-line font-light">' + (p.deskripsi || 'Program pembinaan santri terintegrasi.') + '</p>' +
+            '</div>' +
+            '<div class="mt-6 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[11px] font-mono text-[#7a8e82]">' +
+              '<span>KURIKULUM TERPADU</span>' +
+              '<span class="text-[#062116] font-bold">SMPI YQ</span>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+      }
+    } else {
+      // EMPTY STATE FALLBACK CARDS: Prevent collapse & show clear editorial notification
+      const emptyItems = [
+        { tag: 'PROGRAM SANTRI', title: 'Belum Ada Data Aktivitas Program', desc: 'Rangkaian dokumentasi aktivitas program santri dan kegiatan akademik berkala sedang dihimpun redaksi.' },
+        { tag: 'PEMBINAAN TAHFIDZ', title: 'Sinkronisasi Dokumentasi', desc: 'Dokumentasi berkala capaian hafalan santri dan pembiasaan adab Qur'ani sedang disiapkan.' },
+        { tag: 'DIRASAH ISLAMIYAH', title: 'Kurikulum Terpadu Pesantren', desc: 'Silabus terpadu Kementerian Pendidikan dan kepesantrenan Al-Qur'an tersedia di panduan pendaftaran.' }
+      ];
+      const emptyCardHtml = function(item) {
+        return '<div class="border border-[#e2ece6] bg-white p-6 flex flex-col justify-between flex-shrink-0 w-80 md:w-96 snap-start" style="min-height: 220px;">' +
+          '<div>' +
+            '<div class="flex items-center justify-between mb-3">' +
+              '<span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest">[ ' + item.tag + ' ]</span>' +
+              '<span class="font-mono text-[9px] text-[#7a8e82] border border-[#e2ece6] px-1.5 py-0.5">STATUS // PENDING</span>' +
+            '</div>' +
+            '<h4 class="font-serif text-base font-bold text-[#062116] mb-2 leading-snug">' + item.title + '</h4>' +
+            '<p class="text-xs text-[#52665a] leading-relaxed font-light">' + item.desc + '</p>' +
+          '</div>' +
+          '<div class="mt-4 pt-3 border-t border-[#e2ece6] flex items-center justify-between text-[11px] font-mono text-[#7a8e82]">' +
+            '<span>DIVISI AKADEMIK</span>' +
+            '<span class="text-[#062116] font-bold">SMPI YQ</span>' +
+          '</div>' +
+        '</div>';
+      };
+
+      if (trackDesktop) {
+        trackDesktop.innerHTML = '<div class="flex gap-4 md:gap-6 overflow-x-auto pb-2 scrollbar-hide">' + emptyItems.map(emptyCardHtml).join('') + '</div>';
+      }
+      if (trackMobile) {
+        trackMobile.innerHTML = emptyItems.map(emptyCardHtml).join('');
+      }
+      if (fullGrid) {
+        fullGrid.innerHTML = '<div class="col-span-full border border-dashed border-[#e2ece6] bg-[#faf9f5] p-10 md:p-14 text-center">' +
+          '<span class="font-mono text-xs text-[#c39328] uppercase tracking-widest block mb-2">[ PROGRAM & AKTIVITAS SANTRI ]</span>' +
+          '<h3 class="font-serif text-xl md:text-2xl font-normal text-[#062116] mb-2">Belum Ada Data Program Terpublikasi</h3>' +
+          '<p class="text-xs text-[#52665a] max-w-md mx-auto leading-relaxed font-light">Dokumentasi dan silabus program pembinaan santri sedang dalam proses sinkronisasi arsip akademik.</p>' +
+        '</div>';
+      }
+    }
+  };
+
+  window.renderKegiatan = function() {
+    const dbData = (getDB().kegiatan && getDB().kegiatan.length) ? getDB().kegiatan : [];
+    const berandaGrid = document.getElementById('beranda-kegiatan-grid');
+
+    if (dbData.length > 0) {
+      if (berandaGrid) {
+        berandaGrid.innerHTML = '<div class="space-y-4">' + dbData.slice(0, 4).map(function(k) {
+          const tgl = k.tanggal ? String(k.tanggal) : '--';
+          return '<div onclick="showSection('kegiatan')" class="border border-[#e2ece6] bg-white p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-[#062116] cursor-pointer transition-all">' +
+            '<div class="flex items-start gap-4">' +
+              '<div class="w-14 h-14 border border-[#e2ece6] bg-[#faf9f5] flex flex-col items-center justify-center flex-shrink-0 text-[#062116]">' +
+                '<span class="font-mono text-[9px] text-[#7a8e82] uppercase">TGL</span>' +
+                '<span class="font-serif text-base font-bold leading-tight">' + (tgl.length > 6 ? tgl.slice(0, 6) : tgl) + '</span>' +
+              '</div>' +
+              '<div>' +
+                '<div class="flex items-center gap-2 mb-1">' +
+                  (k.kategori ? '<span class="font-mono text-[9px] uppercase tracking-wider text-[#c39328] border border-[#c39328]/30 px-1.5 py-0.5">' + k.kategori + '</span>' : '') +
+                  (k.jam ? '<span class="font-mono text-[9px] text-[#7a8e82]">' + k.jam + '</span>' : '') +
+                '</div>' +
+                '<h4 class="font-serif text-base font-bold text-[#062116] leading-snug">' + (k.judul || '-') + '</h4>' +
+                (k.lokasi ? '<p class="text-xs text-[#52665a] mt-1 font-light"><i class="fas fa-location-dot text-[10px] text-[#c39328] mr-1"></i>' + k.lokasi + '</p>' : '') +
+              '</div>' +
+            '</div>' +
+            '<div class="text-right flex-shrink-0 font-mono text-[11px] text-[#062116] font-bold">' +
+              '<span>DETAIL AGENDA &rarr;</span>' +
+            '</div>' +
+          '</div>';
+        }).join('') + '</div>';
+      }
+    } else {
+      // EMPTY STATE FALLBACK CARDS: Prevent collapse & show clear editorial notification
+      if (berandaGrid) {
+        berandaGrid.innerHTML = '<div class="space-y-4">' + [
+          { tag: 'AGENDA MADRASAH', title: 'Belum Ada Agenda Terdekat', desc: 'Kalender kegiatan dan agenda resmi madrasah untuk periode ini belum dipublikasikan.' },
+          { tag: 'KALENDER AKADEMIK', title: 'Penyusunan Rangkaian Kegiatan', desc: 'Rangkaian kegiatan santri, evaluasi belajar, dan peringatan hari besar Islam sedang diselaraskan.' }
+        ].map(function(item) {
+          return '<div class="border border-[#e2ece6] bg-white p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">' +
+            '<div class="flex items-start gap-4">' +
+              '<div class="w-14 h-14 border border-[#e2ece6] bg-[#faf9f5] flex flex-col items-center justify-center flex-shrink-0 text-[#062116]">' +
+                '<span class="font-mono text-[9px] text-[#7a8e82]">AGENDA</span>' +
+                '<span class="font-serif text-base font-bold">--</span>' +
+              '</div>' +
+              '<div>' +
+                '<div class="flex items-center gap-2 mb-1">' +
+                  '<span class="font-mono text-[9px] uppercase tracking-wider text-[#c39328] border border-[#c39328]/30 px-1.5 py-0.5">' + item.tag + '</span>' +
+                  '<span class="font-mono text-[9px] text-[#7a8e82]">STATUS: BELUM ADA DATA</span>' +
+                '</div>' +
+                '<h4 class="font-serif text-base font-bold text-[#062116] leading-snug">' + item.title + '</h4>' +
+                '<p class="text-xs text-[#52665a] mt-1 font-light">' + item.desc + '</p>' +
+              '</div>' +
+            '</div>' +
+            '<div class="text-right flex-shrink-0 font-mono text-[11px] text-[#7a8e82]">' +
+              '<span>SEKRETARIAT SMPI YQ</span>' +
+            '</div>' +
+          '</div>';
+        }).join('') + '</div>';
+      }
+    }
+    renderAgendaList();
+  };
+
+  window.renderAgendaList = function() {
+    const listEl = document.getElementById('agenda-list');
+    if (!listEl) return;
+    const dbData = (getDB().kegiatan && getDB().kegiatan.length) ? getDB().kegiatan : [];
+    if (dbData.length > 0) {
+      listEl.innerHTML = dbData.map(function(k) {
+        return '<div class="border border-[#e2ece6] bg-white p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-[#062116] transition-all">' +
+          '<div>' +
+            '<div class="flex items-center gap-2 mb-1">' +
+              (k.kategori ? '<span class="font-mono text-[9px] uppercase tracking-wider text-[#c39328] border border-[#c39328]/30 px-1.5 py-0.5">' + k.kategori + '</span>' : '') +
+              (k.tanggal ? '<span class="font-mono text-[11px] text-[#7a8e82]">' + k.tanggal + '</span>' : '') +
+            '</div>' +
+            '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug">' + (k.judul || '-') + '</h3>' +
+            (k.lokasi ? '<p class="text-xs text-[#52665a] mt-1"><i class="fas fa-location-dot text-[#c39328] mr-1"></i>' + k.lokasi + '</p>' : '') +
+          '</div>' +
+          '<div class="text-right flex-shrink-0 font-mono text-[11px] text-[#062116] font-bold">' +
+            '<span>' + (k.jam || 'SELESAI') + '</span>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    } else {
+      listEl.innerHTML = '<div class="border border-dashed border-[#e2ece6] bg-[#faf9f5] p-10 md:p-14 text-center">' +
+        '<span class="font-mono text-xs text-[#c39328] uppercase tracking-widest block mb-2">[ KALENDER KEGIATAN &bull; AGENDA ]</span>' +
+        '<h3 class="font-serif text-xl md:text-2xl font-normal text-[#062116] mb-2">Belum Ada Agenda Terjadwal</h3>' +
+        '<p class="text-xs text-[#52665a] max-w-md mx-auto leading-relaxed font-light">Agenda kegiatan santri, rapat wali santri, dan evaluasi pembelajaran akan ditampilkan di sini setelah dirilis resmi oleh madrasah.</p>' +
+      '</div>';
+    }
+  };
+
+  // Geser helpers
+  window.geserAlumni = function(dir) {
+    const el = document.getElementById('beranda-alumni-carousel');
+    if (el) el.scrollBy({ left: dir * 320, behavior: 'smooth' });
+  };
+  window.geserEkskul = function(dir) {
+    const el = document.getElementById('beranda-ekskul-grid');
+    if (el) el.scrollBy({ left: dir * 300, behavior: 'smooth' });
+  };
+  window.geserProgram = function(dir) {
+    const el = document.getElementById('beranda-program-carousel') ? document.getElementById('beranda-program-carousel').querySelector('.overflow-x-auto') : null;
+    if (el) el.scrollBy({ left: dir * 360, behavior: 'smooth' });
+  };
+  window.geserProgramMobile = function(dir) {
+    const el = document.getElementById('beranda-program-scroll-mobile');
+    if (el) el.scrollBy({ left: dir * 300, behavior: 'smooth' });
+  };
+
+    // Geser helper untuk Galeri & Video V2
   window.geserGaleri = function(dir) {
     const el = document.getElementById('beranda-galeri-carousel');
     if (el) el.scrollBy({ left: dir * 320, behavior: 'smooth' });
@@ -9686,18 +10267,26 @@ setTimeout(function () {
   };
 
   // Re-run all renderers on load & API readiness
-  setTimeout(function() {
-    renderMenuAplikasi();
-    renderStatistik();
-    renderFasilitas();
-    renderGuru();
-    renderPrestasi();
-    renderArtikel();
-    renderKepsek();
-    renderGaleri();
-    renderGaleriVideo();
-    renderLokasi();
-  }, 50);
+  function runAllV2Renderers() {
+    try { renderMenuAplikasi(); } catch(e){}
+    try { renderStatistik(); } catch(e){}
+    try { renderFasilitas(); } catch(e){}
+    try { renderGuru(); } catch(e){}
+    try { renderPrestasi(); } catch(e){}
+    try { renderArtikel(); } catch(e){}
+    try { renderKepsek(); } catch(e){}
+    try { renderGaleri(); } catch(e){}
+    try { renderGaleriVideo(); } catch(e){}
+    try { renderLokasi(); } catch(e){}
+    try { renderAlumni(); } catch(e){}
+    try { renderEkstrakurikuler(); } catch(e){}
+    try { renderProgram(); } catch(e){}
+    try { renderKegiatan(); } catch(e){}
+  }
+  runAllV2Renderers();
+  setTimeout(runAllV2Renderers, 50);
+  setTimeout(runAllV2Renderers, 300);
+  setTimeout(runAllV2Renderers, 1000);
 })();
 </script>
 
