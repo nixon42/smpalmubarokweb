@@ -16,6 +16,7 @@ function initSpreadsheet() {
     'DokumenAkademik': ['jenis', 'judul', 'tahun_ajaran', 'kelas', 'file'],
     'Sejarah': ['tahun', 'judul', 'isi', 'foto'],
     'Donasi': ['nama_donatur', 'jumlah', 'tanggal', 'keterangan'],
+    'DonasiMasuk': ['kode', 'nama_donatur', 'jumlah', 'kontak', 'pesan', 'anonim', 'status', 'tanggal'],
     'RekeningDonasi': ['bank', 'nomor_rekening', 'atas_nama', 'keterangan'],
     'Guru': ['nama', 'jabatan', 'mapel', 'nip', 'foto'],
     'Program': ['nama_program', 'deskripsi', 'icon', 'foto'],
@@ -316,6 +317,14 @@ function doGet(e) {
       hasil = updateSukaKarya(args[0], args[1]);
     } else if (fn === 'cekSandiKarya') {
       hasil = cekSandiKarya(args[0]);
+    } else if (fn === 'getDonasiMasuk') {
+      hasil = getDonasiMasuk(args[0]);
+    } else if (fn === 'kirimDonasi') {
+      hasil = kirimDonasi(args[0], args[1], args[2], args[3], args[4]);
+    } else if (fn === 'konfirmasiDonasi') {
+      hasil = konfirmasiDonasi(args[0], args[1]);
+    } else if (fn === 'tolakDonasi') {
+      hasil = tolakDonasi(args[0], args[1]);
     } else if (fn === 'ping') {
       hasil = { status: 'ok', time: new Date().toISOString() };
     } else {
@@ -362,6 +371,14 @@ function doPost(e) {
       hasil = cekSandiKarya(args[0]);
     } else if (fn === 'cekKodeAkses') {
       hasil = cekKodeAkses(args[0]);
+    } else if (fn === 'getDonasiMasuk') {
+      hasil = getDonasiMasuk(args[0]);
+    } else if (fn === 'kirimDonasi') {
+      hasil = kirimDonasi(args[0], args[1], args[2], args[3], args[4]);
+    } else if (fn === 'konfirmasiDonasi') {
+      hasil = konfirmasiDonasi(args[0], args[1]);
+    } else if (fn === 'tolakDonasi') {
+      hasil = tolakDonasi(args[0], args[1]);
     } else {
       throw new Error('Fungsi ' + fn + ' tidak dikenali.');
     }
@@ -457,6 +474,95 @@ function logoutAdmin(token) {
     }
   }
   return { sukses: true };
+}
+
+function getDonasiMasuk(token) {
+  verifikasiToken_(token);
+  const ss = getDb_();
+  let sheet = ss.getSheetByName('DonasiMasuk');
+  if (!sheet) {
+    sheet = ss.insertSheet('DonasiMasuk');
+    const headers = ['kode', 'nama_donatur', 'jumlah', 'kontak', 'pesan', 'anonim', 'status', 'tanggal'];
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
+    return [];
+  }
+  const lastRow = sheet.getLastRow();
+  if (lastRow <= 1) return [];
+  const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const values = sheet.getRange(2, 1, lastRow - 1, sheet.getLastColumn()).getValues();
+  return values.map((row, idx) => {
+    const obj = { _rowId: idx + 2 };
+    headers.forEach((h, i) => {
+      obj[h] = row[i];
+    });
+    return obj;
+  });
+}
+
+function kirimDonasi(nama, jumlah, kontak, pesan, anonim) {
+  const ss = getDb_();
+  let sheet = ss.getSheetByName('DonasiMasuk');
+  if (!sheet) {
+    sheet = ss.insertSheet('DonasiMasuk');
+    const headers = ['kode', 'nama_donatur', 'jumlah', 'kontak', 'pesan', 'anonim', 'status', 'tanggal'];
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
+  }
+  const kode = 'DON-' + Math.floor(100000 + Math.random() * 900000);
+  const d = new Date();
+  const pad = (n) => n < 10 ? '0' + n : n;
+  const tanggal = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+  sheet.appendRow([kode, nama, parseInt(jumlah, 10) || 0, kontak || '', pesan || '', anonim ? 'ya' : 'tidak', 'menunggu', tanggal]);
+  return { sukses: true, kode: kode, jumlah: parseInt(jumlah, 10) || 0 };
+}
+
+function konfirmasiDonasi(rowId, token) {
+  verifikasiToken_(token);
+  const ss = getDb_();
+  const sheetMasuk = ss.getSheetByName('DonasiMasuk');
+  if (!sheetMasuk) throw new Error('Sheet DonasiMasuk tidak ditemukan.');
+  const rId = parseInt(rowId, 10);
+  if (rId <= 1 || rId > sheetMasuk.getLastRow()) throw new Error('Data donasi tidak valid.');
+  
+  const headers = sheetMasuk.getRange(1, 1, 1, sheetMasuk.getLastColumn()).getValues()[0];
+  const rowVals = sheetMasuk.getRange(rId, 1, 1, headers.length).getValues()[0];
+  const donasi = {};
+  headers.forEach((h, i) => { donasi[h] = rowVals[i]; });
+  
+  const statusIdx = headers.indexOf('status') + 1;
+  if (statusIdx > 0) {
+    sheetMasuk.getRange(rId, statusIdx).setValue('terkonfirmasi');
+  }
+  
+  // Masukkan ke sheet Donasi publik
+  let sheetDonasi = ss.getSheetByName('Donasi');
+  if (!sheetDonasi) {
+    sheetDonasi = ss.insertSheet('Donasi');
+    const dHeaders = ['nama_donatur', 'jumlah', 'tanggal', 'keterangan'];
+    sheetDonasi.getRange(1, 1, 1, dHeaders.length).setValues([dHeaders]);
+    sheetDonasi.getRange(1, 1, 1, dHeaders.length).setFontWeight('bold');
+  }
+  const namaPublik = (String(donasi.anonim).toLowerCase() === 'ya') ? 'Hamba Allah' : (donasi.nama_donatur || 'Hamba Allah');
+  const tglStr = donasi.tanggal ? String(donasi.tanggal).split(' ')[0] : new Date().toISOString().slice(0, 10);
+  sheetDonasi.appendRow([namaPublik, donasi.jumlah, tglStr, donasi.pesan || donasi.keterangan || '']);
+  
+  return 'Donasi berhasil dikonfirmasi dan ditambahkan ke daftar donatur.';
+}
+
+function tolakDonasi(rowId, token) {
+  verifikasiToken_(token);
+  const ss = getDb_();
+  const sheetMasuk = ss.getSheetByName('DonasiMasuk');
+  if (!sheetMasuk) throw new Error('Sheet DonasiMasuk tidak ditemukan.');
+  const rId = parseInt(rowId, 10);
+  if (rId <= 1 || rId > sheetMasuk.getLastRow()) throw new Error('Data donasi tidak valid.');
+  const headers = sheetMasuk.getRange(1, 1, 1, sheetMasuk.getLastColumn()).getValues()[0];
+  const statusIdx = headers.indexOf('status') + 1;
+  if (statusIdx > 0) {
+    sheetMasuk.getRange(rId, statusIdx).setValue('ditolak');
+  }
+  return 'Donasi telah ditolak.';
 }
 
 function saveData(sheetName, dataObj, rowId, token) {

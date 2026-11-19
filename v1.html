@@ -4110,30 +4110,6 @@ let heroSig_ = '';
 function renderHeroSlider() {
   const wrap = document.getElementById('hero-slides');
   if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
-  if (!wrap) return;
   const dotsWrap = document.getElementById('hero-dots');
   if (heroSlideTimer) { clearInterval(heroSlideTimer); heroSlideTimer = null; }
 
@@ -7932,7 +7908,15 @@ function renderDonasiMasukAdminPanel() {
   body.innerHTML = '<div class="dn-card" style="text-align:center;color:#94a3b8"><i class="fas fa-spinner fa-spin"></i> Memuat donasi masuk...</div>';
   google.script.run.withSuccessHandler(function (rows) {
     if (!adminActiveSheet || adminActiveSheet.khusus !== 'donasi_masuk') return;
-    donasiMasukRows_ = rows || [];
+    if (Array.isArray(rows)) {
+      donasiMasukRows_ = rows;
+    } else if (rows && Array.isArray(rows.data)) {
+      donasiMasukRows_ = rows.data;
+    } else if (rows && Array.isArray(rows.rows)) {
+      donasiMasukRows_ = rows.rows;
+    } else {
+      donasiMasukRows_ = [];
+    }
     tampilDonasiMasukAdmin_();
   }).withFailureHandler(function (err) {
     if (_sesiAdminBerakhir_(err)) return;
@@ -7941,19 +7925,20 @@ function renderDonasiMasukAdminPanel() {
 }
 function tampilDonasiMasukAdmin_() {
   const body = document.getElementById('admin-panel-body');
-  const st = function (r) { return String(r.status || '').trim().toLowerCase(); };
-  const urut = donasiMasukRows_.slice().sort(function (a, b) { return b._rowId - a._rowId; });
-  const menunggu = urut.filter(function (r) { return st(r) === 'menunggu'; });
-  const riwayat = urut.filter(function (r) { return st(r) !== 'menunggu'; });
+  if (!Array.isArray(donasiMasukRows_)) donasiMasukRows_ = [];
+  const st = function (r) { return String((r && r.status) || '').trim().toLowerCase(); };
+  const urut = donasiMasukRows_.slice().sort(function (a, b) { return ((b && b._rowId) || 0) - ((a && a._rowId) || 0); });
+  const menunggu = urut.filter(function (r) { return r && st(r) === 'menunggu'; });
+  const riwayat = urut.filter(function (r) { return r && st(r) !== 'menunggu'; });
   const kontakHtml = function (r) {
-    const n = String(r.kontak || '').replace(/\D/g, '');
+    const n = String((r && r.kontak) || '').replace(/\D/g, '');
     return n ? '<p class="dn-tg"><i class="fab fa-whatsapp" style="color:#25d366"></i> <a href="https://wa.me/' + n + '" target="_blank" rel="noopener" style="color:#0b3323;font-weight:700">' + _ak(n) + '</a></p>' : '';
   };
   const info = function (r) {
-    return '<div class="dn-top"><span class="dn-nm">' + _ak(r.nama_donatur) + (String(r.anonim).toLowerCase() === 'ya' ? '<span class="dn-badge">sembunyikan nama</span>' : '') + '</span>' +
-      '<span class="dn-amt">' + _rupiahDonasi_(_angkaDonasi_(r.jumlah)) + '</span></div>' +
-      '<p class="dn-tg">' + _ak(r.kode) + ' &middot; ' + _ak(r.tanggal) + '</p>' + kontakHtml(r) +
-      (r.keterangan ? '<p class="dn-ps">' + _ak(r.keterangan) + '</p>' : '');
+    return '<div class="dn-top"><span class="dn-nm">' + _ak((r && r.nama_donatur) || 'Donatur') + (String((r && r.anonim) || '').toLowerCase() === 'ya' ? '<span class="dn-badge">sembunyikan nama</span>' : '') + '</span>' +
+      '<span class="dn-amt">' + _rupiahDonasi_(_angkaDonasi_((r && r.jumlah) || 0)) + '</span></div>' +
+      '<p class="dn-tg">' + _ak((r && r.kode) || '-') + ' &middot; ' + _ak((r && r.tanggal) || '-') + '</p>' + kontakHtml(r) +
+      (r && r.pesan ? '<p class="dn-ps">' + _ak(r.pesan) + '</p>' : (r && r.keterangan ? '<p class="dn-ps">' + _ak(r.keterangan) + '</p>' : ''));
   };
   let html = '<div style="max-width:42rem"><p class="dn-label" style="margin-bottom:12px">Menunggu konfirmasi (' + menunggu.length + ')</p>';
   html += menunggu.length ? menunggu.map(function (r) {
@@ -7961,7 +7946,7 @@ function tampilDonasiMasukAdmin_() {
       '<div style="display:flex;gap:8px;margin-top:14px">' +
       '<button type="button" class="dn-btn ok" style="margin:0" onclick="donasiMasukAksi_(' + r._rowId + ',\'konfirmasi\')"><i class="fas fa-check"></i> Konfirmasi</button>' +
       '<button type="button" class="dn-btn no" style="margin:0" onclick="donasiMasukAksi_(' + r._rowId + ',\'tolak\')"><i class="fas fa-xmark"></i> Tolak</button></div></div>';
-  }).join('') : '<div class="dn-card" style="text-align:center;color:#94a3b8;font-size:13px">Tidak ada donasi yang menunggu.</div>';
+  }).join('') : '<div class="dn-card" style="text-align:center;color:#94a3b8;font-size:13px">Tidak ada donasi yang menunggu konfirmasi.</div>';
   if (riwayat.length) {
     html += '<p class="dn-label" style="margin:28px 0 12px">Riwayat</p>' + riwayat.slice(0, 50).map(function (r) {
       const ok = st(r) === 'terkonfirmasi';
@@ -7971,7 +7956,8 @@ function tampilDonasiMasukAdmin_() {
   body.innerHTML = html + '</div>';
 }
 function donasiMasukAksi_(rowId, aksi) {
-  const r = donasiMasukRows_.find(function (x) { return x._rowId === rowId; });
+  if (!Array.isArray(donasiMasukRows_)) return;
+  const r = donasiMasukRows_.find(function (x) { return x && x._rowId === rowId; });
   if (!r) return;
   const ya = aksi === 'konfirmasi';
   Swal.fire({
