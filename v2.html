@@ -8066,54 +8066,255 @@ function simpanPendaftaranAdmin_() {
 }
 
 function adminDataKey(sheetKey) {
-  // getFullData mengembalikan 'galeri_video' untuk sheet GaleriVideo, 'komentar_karya' untuk KomentarKarya, dst -> pakai key langsung
   return sheetKey;
 }
 
+let adminSearchQuery_ = '';
+let adminInFormView_ = false;
+
+function formatAdminFieldLabel_(f) {
+  const map = {
+    'judul': 'Judul',
+    'judul_karya': 'Judul Karya',
+    'nama_program': 'Nama Program',
+    'nama_ekskul': 'Nama Ekstrakurikuler',
+    'nama_prestasi': 'Nama Prestasi',
+    'nama_fasilitas': 'Nama Fasilitas',
+    'nama_siswa': 'Nama Siswa',
+    'nama_pembuat': 'Nama Pembuat / Siswa',
+    'nama_donatur': 'Nama Donatur',
+    'nama_menu': 'Nama Layanan / Menu',
+    'ringkasan': 'Ringkasan Singkat',
+    'konten': 'Konten Lengkap',
+    'deskripsi': 'Deskripsi Lengkap',
+    'isi': 'Isi Teks',
+    'isi_karya': 'Isi Karya / Naskah',
+    'testimoni': 'Testimoni Alumni',
+    'keterangan': 'Keterangan Tambahan',
+    'gambar': 'Foto / Gambar',
+    'foto': 'Foto / Berkas',
+    'file': 'Berkas Dokumen / Foto',
+    'file_url': 'Foto / Berkas Karya',
+    'url_video': 'URL Video (YouTube)',
+    'link_youtube': 'Link YouTube',
+    'tanggal': 'Tanggal',
+    'tanggal_mulai': 'Tanggal Mulai',
+    'tanggal_selesai': 'Tanggal Selesai',
+    'jam': 'Jam Pelaksanaan',
+    'jam_ke': 'Jam Ke-',
+    'waktu': 'Rentang Waktu',
+    'tahun_ajaran': 'Tahun Ajaran',
+    'semester': 'Semester',
+    'kategori': 'Kategori',
+    'jenis': 'Jenis Dokumen',
+    'jenis_karya': 'Jenis Karya',
+    'jenis_ujian': 'Jenis Ujian',
+    'peran': 'Status / Peran',
+    'kelas': 'Tingkat / Kelas',
+    'mapel': 'Mata Pelajaran',
+    'guru': 'Guru Pengampu',
+    'ruang': 'Ruang Kelas / Lab',
+    'pengawas': 'Pengawas Ujian',
+    'pembina': 'Guru Pembina',
+    'jadwal': 'Jadwal Rutin',
+    'tingkat': 'Tingkat Prestasi',
+    'tahun': 'Tahun',
+    'angkatan': 'Tahun Angkatan',
+    'melanjutkan': 'Studi Lanjutan / Profesi',
+    'bank': 'Nama Bank',
+    'nomor_rekening': 'Nomor Rekening',
+    'atas_nama': 'Atas Nama (Pemilik Rekening)',
+    'urutan': 'Nomor Urutan',
+    'tampil': 'Status Tampil (ya / tidak)',
+    'status': 'Status',
+    'nip': 'NIP / NUPTK',
+    'jabatan': 'Jabatan / Posisi',
+    'lokasi': 'Lokasi Tempat',
+    'penulis': 'Nama Penulis / Redaksi',
+    'key': 'Kunci Pengaturan',
+    'value': 'Nilai Pengaturan',
+    'section': 'Bagian Profil',
+    'username': 'Username Akun',
+    'password': 'Kata Sandi',
+    'label': 'Label Statistik',
+    'jumlah': 'Jumlah / Angka',
+    'link': 'Link URL Tujuan'
+  };
+  return map[f] || (f ? (f.charAt(0).toUpperCase() + f.slice(1).replace(/_/g, ' ')) : '');
+}
+
+function bukaPreviewFoto(url, judul) {
+  if (!url) return;
+  if (typeof Swal !== 'undefined') {
+    Swal.fire({
+      imageUrl: url,
+      imageAlt: judul || 'Pratinjau Foto',
+      title: judul ? '<span class="text-sm font-bold text-slate-800">' + _ak(judul) + '</span>' : '',
+      showCloseButton: true,
+      showConfirmButton: false,
+      imageMaxHeight: 520,
+      background: '#ffffff',
+      customClass: {
+        popup: 'rounded-2xl p-4 shadow-2xl border border-slate-100',
+        image: 'rounded-xl object-contain max-h-[70vh]'
+      }
+    });
+  } else {
+    window.open(url, '_blank');
+  }
+}
+
+function adminRenderCellContent_(f, val, r) {
+  const isLogo = adminActiveSheet.key === 'pengaturan' && (r.key || '').toString().trim().toLowerCase() === 'logo' && f === 'value';
+  const isFoto = PHOTO_FIELDS.indexOf(f) !== -1 || f.indexOf('foto') !== -1 || f.indexOf('gambar') !== -1 || isLogo;
+
+  if (isFoto) {
+    const urls = (val || '').toString().split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+    if (!urls.length) {
+      return '<div class="inline-flex items-center gap-1.5 text-slate-300 py-1"><div class="w-9 h-9 rounded-lg bg-slate-100 border border-slate-200/80 flex items-center justify-center text-slate-300 text-xs"><i class="fas fa-image"></i></div><span class="italic text-[11px] text-slate-400">Tidak ada</span></div>';
+    }
+    let html = '<div class="flex items-center gap-1.5 py-1">';
+    urls.slice(0, 2).forEach(function (u) {
+      if (_pdfAk(u)) {
+        html += '<a href="' + _ak(u) + '" target="_blank" rel="noopener" class="w-10 h-10 rounded-lg bg-red-50 text-red-600 border border-red-200 flex flex-col items-center justify-center hover:bg-red-100 transition-colors shadow-xs" title="Buka Dokumen PDF"><i class="fas fa-file-pdf text-sm"></i><span class="text-[8px] font-black uppercase">PDF</span></a>';
+      } else {
+        const itemTitle = (r.judul || r.nama || r.nama_program || r.nama_prestasi || r.nama_fasilitas || '').toString();
+        html += '<img src="' + _ak(u) + '" onclick="bukaPreviewFoto(\'' + u.replace(/'/g, "\\'") + '\', \'' + itemTitle.replace(/'/g, "\\'") + '\')" class="w-10 h-10 rounded-lg object-cover bg-slate-100 border border-slate-200 shadow-xs cursor-pointer hover:ring-2 hover:ring-emerald-500 hover:scale-105 transition-all" alt="Foto" title="Klik untuk memperbesar foto" onerror="this.onerror=null;this.src=\'https://placehold.co/80x80/f1f5f9/94a3b8?text=Foto\';">';
+      }
+    });
+    if (urls.length > 2) {
+      html += '<span class="px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-600 font-bold text-[10px] border border-slate-200" title="' + urls.length + ' foto total">+' + (urls.length - 2) + '</span>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  const sVal = (val !== undefined && val !== null) ? val.toString() : '';
+  if (!sVal) return '<span class="text-slate-300 italic">-</span>';
+
+  if (f === 'kategori' || f === 'jenis' || f === 'jenis_karya' || f === 'jenis_ujian') {
+    return '<span class="inline-block px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[11px] font-bold border border-emerald-200/60 whitespace-nowrap">' + _ak(sVal) + '</span>';
+  }
+
+  if (f === 'status' || f === 'tampil') {
+    const isOk = ['aktif', 'ya', 'terkonfirmasi', 'buka'].indexOf(sVal.toLowerCase()) !== -1;
+    return '<span class="inline-block px-2.5 py-0.5 rounded-full ' + (isOk ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-slate-100 text-slate-600 border-slate-200') + ' text-[10px] font-bold border whitespace-nowrap">' + _ak(sVal) + '</span>';
+  }
+
+  if (f === 'url_video' || f === 'link_youtube') {
+    return '<a href="' + _ak(sVal) + '" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 font-bold text-xs border border-red-200/60 transition-colors whitespace-nowrap"><i class="fab fa-youtube"></i> Video</a>';
+  }
+
+  if (f === 'link') {
+    return '<a href="' + _ak(sVal) + '" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-blue-600 hover:underline max-w-[200px] truncate"><i class="fas fa-arrow-up-right-from-square text-[10px]"></i> ' + _ak(sVal) + '</a>';
+  }
+
+  if (['judul', 'judul_karya', 'nama_program', 'nama_prestasi', 'nama_fasilitas', 'nama_ekskul', 'nama'].indexOf(f) !== -1) {
+    return '<div class="max-w-[200px] font-bold text-slate-800 line-clamp-2 leading-tight" title="' + sVal.replace(/"/g, '&quot;') + '">' + _ak(sVal) + '</div>';
+  }
+
+  if (['konten', 'ringkasan', 'deskripsi', 'isi', 'isi_karya', 'testimoni', 'keterangan'].indexOf(f) !== -1) {
+    const teksBersih = sVal.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    return '<div class="max-w-[160px] truncate text-slate-600 text-[11px]" title="' + teksBersih.replace(/"/g, '&quot;') + '">' + (_ak(teksBersih) || '<span class="text-slate-300 italic">-</span>') + '</div>';
+  }
+
+  return '<div class="max-w-[160px] truncate text-slate-700 font-medium" title="' + sVal.replace(/"/g, '&quot;') + '">' + _ak(sVal) + '</div>';
+}
+
+function adminFilterTable(q) {
+  adminSearchQuery_ = (q || '').toLowerCase().trim();
+  renderAdminTable();
+}
+
 function renderAdminTable() {
+  adminInFormView_ = false;
   const body = document.getElementById('admin-panel-body');
+  if (!body) return;
+  document.getElementById('admin-panel-title').textContent = adminActiveSheet.label;
+
   let rows = DB[adminDataKey(adminActiveSheet.key)] || [];
-  // Baris lama "fasilitas" di sheet Profil sudah digantikan menu Fasilitas
-  // tersendiri (dengan upload foto per-item) -> tidak perlu ditampilkan lagi di sini.
   if (adminActiveSheet.key === 'profil') {
     rows = rows.filter(function (r) { return (r.section || '').toString().trim().toLowerCase() !== 'fasilitas'; });
   }
   adminTableRows = rows;
   const fields = adminActiveSheet.fields;
-  let html = '<div class="sticky -top-5 z-10 bg-slate-100 pt-1 pb-4 -mx-5 px-5 flex justify-between items-center">' +
-    '<p class="text-xs text-slate-400 font-semibold">' + rows.length + ' data</p>' +
-    '<button onclick="openAdminForm(null)" class="px-4 py-2.5 rounded-xl bg-primary hover:bg-primary-600 text-white text-xs font-black uppercase tracking-widest shadow-sm transition-colors"><i class="fas fa-plus mr-2"></i>Tambah</button></div>';
-  html += '<div class="w-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden"><div class="overflow-x-auto"><table class="w-full text-xs">';
-  html += '<thead><tr class="bg-slate-50 text-slate-400 uppercase text-[10px] tracking-widest">';
-  fields.forEach(function (f) { html += '<th class="px-5 py-3.5 text-left whitespace-nowrap font-black">' + f + '</th>'; });
-  html += '<th class="px-5 py-3.5 text-right font-black">Aksi</th></tr></thead><tbody>';
-  if (!rows.length) {
-    html += '<tr><td colspan="' + (fields.length + 1) + '" class="px-5 py-12 text-center text-slate-400">Belum ada data.</td></tr>';
-  } else {
-    rows.forEach(function (r) {
-      html += '<tr class="border-t border-slate-100 hover:bg-slate-50/70 transition-colors">';
-      fields.forEach(function (f) {
-        const nilai = (r[f] !== undefined && r[f] !== null) ? r[f].toString() : '';
-        html += '<td class="px-5 py-3.5 max-w-[220px] truncate text-slate-600" title="' + nilai.replace(/"/g, '&quot;') + '">' + (nilai || '<span class="text-slate-300 italic">-</span>') + '</td>';
+  // Di tampilan tabel (bukan form editor), sembunyikan kolom konten panjang
+  // agar kolom foto dan tombol aksi tidak tergeser jauh ke kanan
+  let tableFields = fields.filter(function (f) {
+    if (adminActiveSheet.key === 'profil' || adminActiveSheet.key === 'sejarah') return true;
+    return ['konten', 'isi_karya'].indexOf(f) === -1;
+  });
+  // Tempatkan kolom foto/gambar di kolom ke-2 (tepat setelah nama/judul) agar langsung terlihat tanpa perlu scroll jauh
+  const photoIndex = tableFields.findIndex(function (f) { return PHOTO_FIELDS.indexOf(f) !== -1; });
+  if (photoIndex > 1) {
+    const pf = tableFields.splice(photoIndex, 1)[0];
+    tableFields.splice(1, 0, pf);
+  }
+
+  let filteredRows = rows;
+  if (adminSearchQuery_) {
+    const q = adminSearchQuery_.toLowerCase();
+    filteredRows = rows.filter(function (r) {
+      return fields.some(function (f) {
+        return (r[f] !== undefined && r[f] !== null && r[f].toString().toLowerCase().indexOf(q) !== -1);
       });
-      html += '<td class="px-5 py-3.5 text-right whitespace-nowrap">' +
-        '<button onclick="openAdminFormByRowId(' + r._rowId + ')" title="Edit" class="w-8 h-8 rounded-lg hover:bg-primary/10 text-primary inline-flex items-center justify-center mr-1.5 transition-colors"><i class="fas fa-pen text-xs"></i></button>' +
-        '<button onclick="adminDeleteRow(' + r._rowId + ')" title="Hapus" class="w-8 h-8 rounded-lg hover:bg-red-50 text-red-500 inline-flex items-center justify-center transition-colors"><i class="fas fa-trash text-xs"></i></button></td></tr>';
     });
   }
-  html += '</tbody></table></div></div>';
+
+  let html = '<div class="space-y-4">' +
+    '<div class="flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs">' +
+      '<div class="flex items-center gap-3">' +
+        '<div class="relative">' +
+          '<i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>' +
+          '<input type="text" id="admin-table-search" oninput="adminFilterTable(this.value)" value="' + (adminSearchQuery_ || '').replace(/"/g, '&quot;') + '" placeholder="Cari di ' + _ak(adminActiveSheet.label) + '..." class="pl-9 pr-3.5 py-2 rounded-xl border border-slate-200 text-xs w-48 sm:w-64 bg-slate-50/60 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all">' +
+        '</div>' +
+        '<span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 font-bold text-xs border border-slate-200/60">' + filteredRows.length + ' / ' + rows.length + ' data</span>' +
+      '</div>' +
+      '<div class="flex items-center gap-2">' +
+        '<button type="button" onclick="loadDataSilent()" title="Segarkan Data" class="w-9 h-9 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 inline-flex items-center justify-center transition-colors shadow-xs"><i class="fas fa-rotate text-xs"></i></button>' +
+        '<button type="button" onclick="openAdminForm(null)" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black uppercase tracking-wider shadow-sm transition-all flex items-center gap-2"><i class="fas fa-plus"></i><span>Tambah ' + _ak(adminActiveSheet.label) + '</span></button>' +
+      '</div>' +
+    '</div>';
+
+  html += '<div class="w-full bg-white rounded-2xl shadow-xs border border-slate-200/80 overflow-hidden">' +
+    '<div class="overflow-x-auto">' +
+    '<table class="w-full text-xs text-left">' +
+    '<thead><tr class="bg-slate-50/90 text-slate-500 uppercase text-[10px] tracking-wider border-b border-slate-200/80 font-black">';
+  
+  tableFields.forEach(function (f) {
+    html += '<th class="px-5 py-3.5 whitespace-nowrap">' + formatAdminFieldLabel_(f) + '</th>';
+  });
+  html += '<th class="px-5 py-3.5 text-right font-black whitespace-nowrap">Aksi</th></tr></thead>' +
+    '<tbody class="divide-y divide-slate-100">';
+
+  if (!filteredRows.length) {
+    html += '<tr><td colspan="' + (tableFields.length + 1) + '" class="px-5 py-16 text-center text-slate-400">' +
+      '<div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-300 flex items-center justify-center mx-auto mb-2 text-lg"><i class="fas fa-folder-open"></i></div>' +
+      '<p class="font-bold text-slate-600">' + (adminSearchQuery_ ? 'Tidak ditemukan data yang sesuai.' : 'Belum ada data ' + _ak(adminActiveSheet.label) + '.') + '</p>' +
+      (adminSearchQuery_ ? '<button type="button" onclick="adminFilterTable(\'\')" class="mt-2 text-xs font-bold text-emerald-600 hover:underline">Hapus pencarian</button>' : '') +
+      '</td></tr>';
+  } else {
+    filteredRows.forEach(function (r) {
+      html += '<tr class="hover:bg-slate-50/80 transition-colors">';
+      tableFields.forEach(function (f) {
+        html += '<td class="px-5 py-3.5 align-middle">' + adminRenderCellContent_(f, r[f], r) + '</td>';
+      });
+      html += '<td class="px-5 py-3.5 text-right whitespace-nowrap align-middle">' +
+        '<button type="button" onclick="openAdminFormByRowId(' + r._rowId + ')" title="Edit" class="w-8 h-8 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 inline-flex items-center justify-center mr-1 transition-colors shadow-2xs"><i class="fas fa-pen text-xs"></i></button>' +
+        '<button type="button" onclick="adminDeleteRow(' + r._rowId + ')" title="Hapus" class="w-8 h-8 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 inline-flex items-center justify-center transition-colors shadow-2xs"><i class="fas fa-trash text-xs"></i></button>' +
+        '</td></tr>';
+    });
+  }
+
+  html += '</tbody></table></div></div></div>';
   body.innerHTML = html;
 }
 
-// Ambil data baris dari adminTableRows (bukan dari atribut HTML) supaya
-// isi teks yang mengandung tanda kutip (') tidak merusak tombolnya.
 function openAdminFormByRowId(rowId) {
-  const row = adminTableRows.find(function (r) { return r._rowId === rowId; });
+  const row = adminTableRows.find(function (r) { return String(r._rowId) === String(rowId); });
   openAdminForm(row || null);
 }
 
-// Ubah teks tanggal apa pun ("18 Sep 2026", dll) jadi format yyyy-mm-dd
-// yang dibutuhkan <input type="date"> supaya nilai lama ikut terisi saat Edit.
 function tanggalKeInputDate_(str) {
   if (!str) return '';
   const s = str.toString().trim();
@@ -8124,8 +8325,6 @@ function tanggalKeInputDate_(str) {
   return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
 }
 
-// Ubah teks jam apa pun ("08.00 WIB", "8:00", dll) jadi format HH:MM
-// yang dibutuhkan <input type="time"> supaya nilai lama ikut terisi saat Edit.
 function jamKeInputTime_(str) {
   if (!str) return '';
   const m = str.toString().trim().match(/^(\d{1,2})[.:](\d{2})/);
@@ -8133,95 +8332,275 @@ function jamKeInputTime_(str) {
   return ('0' + m[1]).slice(-2) + ':' + m[2];
 }
 
-function openAdminForm(row) {
-  document.getElementById('admin-form-title').textContent = row ? ('Edit ' + adminActiveSheet.label) : ('Tambah ' + adminActiveSheet.label);
-  const fieldsWrap = document.getElementById('admin-form-fields');
-  fieldsWrap.innerHTML = adminActiveSheet.fields.map(function (f) {
-    const val = row && row[f] !== undefined ? row[f] : '';
+function adminToggleEditorTab(field, tab) {
+  const editor = document.getElementById('editor-' + field);
+  const preview = document.getElementById('preview-' + field);
+  const toolbar = document.getElementById('toolbar-' + field);
+  const tabEdit = document.getElementById('tab-edit-' + field);
+  const tabPrev = document.getElementById('tab-prev-' + field);
+  if (!editor || !preview) return;
 
-    // Field foto/gambar/file_url -> bisa upload LEBIH DARI SATU foto
-    // sekaligus (multi-upload). Foto lama tampil sebagai thumbnail
-    // yang bisa dihapus satu-satu, foto baru ditambah lewat tombol "+".
-    // Semua URL hasil upload digabung dipisah koma ke input hidden,
-    // lalu di sisi tampilan otomatis dirender sebagai slide (geser).
-    // KHUSUS sheet Pengaturan, baris dengan key "logo" -> field
-    // "value"-nya JUGA dianggap field foto (dipakai buat logo navbar).
-    const isLogoValue = adminActiveSheet.key === 'pengaturan' && f === 'value' &&
-      row && (row.key || '').toString().trim().toLowerCase() === 'logo';
-    if (PHOTO_FIELDS.indexOf(f) !== -1 || isLogoValue) {
-      const urls = (val || '').toString().split(',').map(function (s) { return s.trim(); }).filter(Boolean);
-      const thumbs = urls.map(function (u) {
-        return '<div class="relative w-16 h-16 flex-shrink-0" data-thumb>' +
-          (_pdfAk(u) ? '<div data-existing-url="' + u.replace(/"/g, '&quot;') + '" class="w-16 h-16 rounded-xl bg-red-50 border border-slate-200 flex items-center justify-center"><i class="fas fa-file-pdf text-red-500 text-2xl"></i></div>' : '<img src="' + u + '" data-existing-url="' + u.replace(/"/g, '&quot;') + '" class="w-16 h-16 rounded-xl object-cover bg-slate-100 border border-slate-200">') +
-          '<button type="button" onclick="adminHapusThumbFoto(this)" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] flex items-center justify-center shadow"><i class="fas fa-times"></i></button></div>';
-      }).join('');
-      return '<div class="space-y-2" data-foto-wrap>' +
-        '<label class="text-[10px] font-black uppercase tracking-widest text-slate-400 block">' + f + ' <span class="normal-case font-semibold text-slate-300">(bisa lebih dari satu, nanti otomatis bisa digeser)</span></label>' +
-        '<div class="flex flex-wrap gap-2" data-foto-thumbs>' + thumbs +
-        '<label class="w-16 h-16 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 cursor-pointer flex-shrink-0 hover:border-primary hover:text-primary transition-colors">' +
-        '<i class="fas fa-plus"></i>' +
-        '<input type="file" accept="' + (f === 'file' ? 'image/*,application/pdf' : 'image/*') + '" multiple data-photo-field="' + f + '" onchange="adminTambahFotoBaru(this)" class="hidden"></label>' +
-        '</div>' +
-        '<input type="hidden" data-field="' + f + '" value="' + (val + '').replace(/"/g, '&quot;') + '">' +
-        '</div>';
-    }
-
-    // KHUSUS FORM AGENDA (Kegiatan): tanggal & jam pakai date/time
-    // picker bawaan browser, kategori pakai dropdown pilihan -> jadi
-    // admin tinggal pilih, tidak perlu ketik manual lagi.
-    if (['kegiatan', 'kalender_akademik', 'jadwal_ujian', 'donasi'].indexOf(adminActiveSheet.key) !== -1 && ['tanggal', 'tanggal_mulai', 'tanggal_selesai', 'jam'].indexOf(f) !== -1) {
-      const tipeInput = f === 'jam' ? 'time' : 'date';
-      const valInput = f === 'jam' ? jamKeInputTime_(val) : tanggalKeInputDate_(val);
-      return '<label class="text-[10px] font-black uppercase tracking-widest text-slate-400 block mb-1.5">' + f + '</label>' +
-        '<input type="' + tipeInput + '" data-field="' + f + '" value="' + valInput + '" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm">';
-    }
-    if (adminActiveSheet.key === 'kegiatan' && f === 'kategori') {
-      const daftarKategoriAgenda = Array.from(new Set(
-        KATEGORI_AGENDA_DEFAULT.concat(
-          (DB.kegiatan || []).map(function (k) { return (k.kategori || '').toString().trim(); }).filter(Boolean)
-        )
-      ));
-      const opsiKategori = daftarKategoriAgenda.map(function (kt) {
-        return '<option value="' + kt.replace(/"/g, '&quot;') + '"' + (val === kt ? ' selected' : '') + '>' + kt + '</option>';
-      }).join('');
-      return '<label class="text-[10px] font-black uppercase tracking-widest text-slate-400 block mb-1.5">' + f + '</label>' +
-        '<select data-field="' + f + '" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm bg-white">' +
-        '<option value="">Pilih kategori...</option>' + opsiKategori + '</select>';
-    }
-
-    // Dropdown pilihan untuk field menu Akademik (biar admin tidak salah ketik)
-    const opsiAk = (OPSI_ADMIN_AKADEMIK[adminActiveSheet.key] || {})[f];
-    if (opsiAk) {
-      const daftar = opsiAk.indexOf(val) === -1 && val ? opsiAk.concat([val]) : opsiAk;
-      return '<label class="text-[10px] font-black uppercase tracking-widest text-slate-400 block mb-1.5">' + f + '</label>' +
-        '<select data-field="' + f + '" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm bg-white"><option value="">Pilih...</option>' +
-        daftar.map(function (o) { return '<option value="' + _ak(o) + '"' + (val === o ? ' selected' : '') + '>' + _ak(o) + '</option>'; }).join('') + '</select>';
-    }
-    const isLong = ['deskripsi', 'konten', 'ringkasan', 'isi', 'isi_karya', 'keterangan', 'testimoni'].indexOf(f) !== -1;
-    if (isLong) return '<textarea data-field="' + f + '" placeholder="' + f + '" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm h-24 resize-y">' + val + '</textarea>';
-    return '<input data-field="' + f + '" placeholder="' + f + '" value="' + (val + '').replace(/"/g, '&quot;') + '" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm">';
-  }).join('');
-  document.getElementById('admin-form').dataset.rowid = row ? row._rowId : '';
-  openModal('modal-admin-form');
+  if (tab === 'preview') {
+    preview.innerHTML = editor.value || '<p class="text-slate-400 italic">Belum ada konten untuk dipratinjau.</p>';
+    preview.classList.remove('hidden');
+    editor.classList.add('hidden');
+    if (toolbar) toolbar.classList.add('hidden');
+    if (tabEdit) { tabEdit.classList.remove('bg-white', 'text-slate-800', 'shadow-2xs'); tabEdit.classList.add('text-slate-500'); }
+    if (tabPrev) { tabPrev.classList.add('bg-white', 'text-slate-800', 'shadow-2xs'); tabPrev.classList.remove('text-slate-500'); }
+  } else {
+    preview.classList.add('hidden');
+    editor.classList.remove('hidden');
+    if (toolbar) toolbar.classList.remove('hidden');
+    if (tabEdit) { tabEdit.classList.add('bg-white', 'text-slate-800', 'shadow-2xs'); tabEdit.classList.remove('text-slate-500'); }
+    if (tabPrev) { tabPrev.classList.remove('bg-white', 'text-slate-800', 'shadow-2xs'); tabPrev.classList.add('text-slate-500'); }
+    editor.focus();
+  }
 }
 
-// Tambah satu/lebih foto baru (dipilih dari tombol "+") -> tiap file
-// langsung dipreview jadi thumbnail lokal (belum diupload) dan
-// disimpan di wrap._pendingFiles, diproses saat submitAdminForm.
+function adminInsertFormat(field, before, after) {
+  const ta = document.getElementById('editor-' + field);
+  if (!ta) return;
+  const start = ta.selectionStart;
+  const end = ta.selectionEnd;
+  const sel = ta.value.substring(start, end);
+  const rep = before + (sel || 'teks') + after;
+  ta.value = ta.value.substring(0, start) + rep + ta.value.substring(end);
+  ta.focus();
+  ta.setSelectionRange(start + before.length, start + before.length + (sel.length || 4));
+}
+
+function adminRenderFormField_(f, val, row) {
+  const isLogoValue = adminActiveSheet.key === 'pengaturan' && f === 'value' && row && (row.key || '').toString().trim().toLowerCase() === 'logo';
+  const isPhoto = PHOTO_FIELDS.indexOf(f) !== -1 || isLogoValue;
+
+  if (isPhoto) {
+    const urls = (val || '').toString().split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+    const thumbs = urls.map(function (u) {
+      return '<div class="relative group/thumb w-20 h-20 flex-shrink-0" data-thumb>' +
+        (_pdfAk(u)
+          ? '<div data-existing-url="' + u.replace(/"/g, '&quot;') + '" class="w-20 h-20 rounded-xl bg-red-50 border border-red-200 flex flex-col items-center justify-center text-red-600 shadow-xs"><i class="fas fa-file-pdf text-2xl"></i><span class="text-[9px] font-bold mt-1">PDF</span></div>'
+          : '<img src="' + u + '" data-existing-url="' + u.replace(/"/g, '&quot;') + '" class="w-20 h-20 rounded-xl object-cover bg-slate-100 border border-slate-200 shadow-xs cursor-pointer hover:ring-2 hover:ring-emerald-500" onclick="bukaPreviewFoto(\'' + u.replace(/'/g, "\\'") + '\')" title="Klik untuk perbesar">') +
+        '<button type="button" onclick="adminHapusThumbFoto(this)" class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500 hover:bg-red-600 text-white text-xs flex items-center justify-center shadow-md transition-colors" title="Hapus foto"><i class="fas fa-times"></i></button>' +
+        '</div>';
+    }).join('');
+
+    return '<div class="space-y-3" data-foto-wrap>' +
+      '<label class="text-xs font-black uppercase tracking-wider text-slate-700 block flex items-center justify-between">' +
+        '<span>' + formatAdminFieldLabel_(f) + '</span>' +
+        '<span class="text-[10px] font-semibold text-slate-400 lowercase">(bisa pilih banyak foto)</span>' +
+      '</label>' +
+      '<div class="flex flex-wrap gap-3 items-center" data-foto-thumbs>' +
+        thumbs +
+        '<label class="w-20 h-20 rounded-xl border-2 border-dashed border-slate-300 hover:border-emerald-600 hover:bg-emerald-50/40 flex flex-col items-center justify-center text-slate-400 hover:text-emerald-700 cursor-pointer flex-shrink-0 transition-all group" title="Tambah foto baru">' +
+          '<i class="fas fa-cloud-arrow-up text-lg group-hover:scale-110 transition-transform"></i>' +
+          '<span class="text-[9px] font-bold mt-1">Unggah</span>' +
+          '<input type="file" accept="' + (f === 'file' ? 'image/*,application/pdf' : 'image/*') + '" multiple data-photo-field="' + f + '" onchange="adminTambahFotoBaru(this)" class="hidden">' +
+        '</label>' +
+      '</div>' +
+      '<input type="hidden" data-field="' + f + '" value="' + (val + '').replace(/"/g, '&quot;') + '">' +
+      '<p class="text-[11px] text-slate-400 leading-tight">Format: JPG, PNG, WEBP' + (f === 'file' ? ', PDF' : '') + '. Foto lama tetap tersimpan kecuali dihapus dengan tanda silang.</p>' +
+    '</div>';
+  }
+
+  // Khusus Kegiatan: tanggal & jam
+  if (['kegiatan', 'kalender_akademik', 'jadwal_ujian', 'donasi'].indexOf(adminActiveSheet.key) !== -1 && ['tanggal', 'tanggal_mulai', 'tanggal_selesai', 'jam'].indexOf(f) !== -1) {
+    const tipeInput = f === 'jam' ? 'time' : 'date';
+    const valInput = f === 'jam' ? jamKeInputTime_(val) : tanggalKeInputDate_(val);
+    return '<div class="space-y-1.5">' +
+      '<label class="text-xs font-black uppercase tracking-wider text-slate-700 block">' + formatAdminFieldLabel_(f) + '</label>' +
+      '<input type="' + tipeInput + '" data-field="' + f + '" value="' + valInput + '" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all">' +
+    '</div>';
+  }
+
+  // Khusus Kategori Kegiatan
+  if (adminActiveSheet.key === 'kegiatan' && f === 'kategori') {
+    const daftarKategoriAgenda = Array.from(new Set(
+      KATEGORI_AGENDA_DEFAULT.concat(
+        (DB.kegiatan || []).map(function (k) { return (k.kategori || '').toString().trim(); }).filter(Boolean)
+      )
+    ));
+    const opsiKategori = daftarKategoriAgenda.map(function (kt) {
+      return '<option value="' + kt.replace(/"/g, '&quot;') + '"' + (val === kt ? ' selected' : '') + '>' + kt + '</option>';
+    }).join('');
+    return '<div class="space-y-1.5">' +
+      '<label class="text-xs font-black uppercase tracking-wider text-slate-700 block">' + formatAdminFieldLabel_(f) + '</label>' +
+      '<select data-field="' + f + '" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all">' +
+        '<option value="">Pilih kategori...</option>' + opsiKategori +
+      '</select>' +
+    '</div>';
+  }
+
+  // Dropdown Akademik
+  const opsiAk = (OPSI_ADMIN_AKADEMIK[adminActiveSheet.key] || {})[f];
+  if (opsiAk) {
+    const daftar = opsiAk.indexOf(val) === -1 && val ? opsiAk.concat([val]) : opsiAk;
+    return '<div class="space-y-1.5">' +
+      '<label class="text-xs font-black uppercase tracking-wider text-slate-700 block">' + formatAdminFieldLabel_(f) + '</label>' +
+      '<select data-field="' + f + '" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all"><option value="">Pilih...</option>' +
+        daftar.map(function (o) { return '<option value="' + _ak(o) + '"' + (val === o ? ' selected' : '') + '>' + _ak(o) + '</option>'; }).join('') +
+      '</select>' +
+    '</div>';
+  }
+
+  // Konten Lengkap / Isi Utama (Rich Editor)
+  if (['konten', 'isi', 'isi_karya'].indexOf(f) !== -1) {
+    return '<div class="space-y-2">' +
+      '<div class="flex items-center justify-between">' +
+        '<label class="text-xs font-black uppercase tracking-wider text-slate-700">' + formatAdminFieldLabel_(f) + '</label>' +
+        '<div class="flex items-center gap-1 text-xs bg-slate-100 p-0.5 rounded-lg">' +
+          '<button type="button" onclick="adminToggleEditorTab(\'' + f + '\', \'edit\')" id="tab-edit-' + f + '" class="px-3 py-1 rounded-md font-bold bg-white text-slate-800 shadow-2xs">Tulis</button>' +
+          '<button type="button" onclick="adminToggleEditorTab(\'' + f + '\', \'preview\')" id="tab-prev-' + f + '" class="px-3 py-1 rounded-md font-bold text-slate-500 hover:text-slate-800">Pratinjau</button>' +
+        '</div>' +
+      '</div>' +
+      '<div id="toolbar-' + f + '" class="flex flex-wrap items-center gap-1 p-2 bg-slate-50 border border-slate-200 border-b-0 rounded-t-xl text-slate-600 text-xs">' +
+        '<button type="button" onclick="adminInsertFormat(\'' + f + '\', \'**\', \'**\')" class="w-7 h-7 rounded hover:bg-slate-200 font-black" title="Tebal (Bold)">B</button>' +
+        '<button type="button" onclick="adminInsertFormat(\'' + f + '\', \'*\', \'*\')" class="w-7 h-7 rounded hover:bg-slate-200 italic font-serif" title="Miring (Italic)">I</button>' +
+        '<div class="w-px h-4 bg-slate-300 mx-1"></div>' +
+        '<button type="button" onclick="adminInsertFormat(\'' + f + '\', \'<h3>\', \'</h3>\')" class="px-2 h-7 rounded hover:bg-slate-200 text-xs font-bold" title="Subjudul (H3)">H3</button>' +
+        '<button type="button" onclick="adminInsertFormat(\'' + f + '\', \'<blockquote>\', \'</blockquote>\')" class="w-7 h-7 rounded hover:bg-slate-200 text-xs" title="Kutipan"><i class="fas fa-quote-left"></i></button>' +
+        '<button type="button" onclick="adminInsertFormat(\'' + f + '\', \'<ul>\\n<li>\', \'</li>\\n</ul>\')" class="w-7 h-7 rounded hover:bg-slate-200 text-xs" title="Daftar"><i class="fas fa-list-ul"></i></button>' +
+        '<button type="button" onclick="adminInsertFormat(\'' + f + '\', \'<p>\', \'</p>\')" class="px-1.5 h-7 rounded hover:bg-slate-200 text-xs font-mono" title="Paragraf">&lt;p&gt;</button>' +
+      '</div>' +
+      '<textarea data-field="' + f + '" id="editor-' + f + '" placeholder="Ketik ' + formatAdminFieldLabel_(f).toLowerCase() + ' di sini..." class="w-full border border-slate-200 rounded-b-xl px-4 py-3 text-sm font-sans min-h-[300px] focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all leading-relaxed">' + (val || '') + '</textarea>' +
+      '<div id="preview-' + f + '" class="hidden w-full border border-slate-200 rounded-b-xl p-5 min-h-[300px] bg-slate-50/50 prose prose-slate max-w-none"></div>' +
+    '</div>';
+  }
+
+  // Teks Sedang (ringkasan, deskripsi, testimoni, keterangan)
+  if (['deskripsi', 'ringkasan', 'keterangan', 'testimoni'].indexOf(f) !== -1) {
+    return '<div class="space-y-1.5">' +
+      '<label class="text-xs font-black uppercase tracking-wider text-slate-700 block">' + formatAdminFieldLabel_(f) + '</label>' +
+      '<textarea data-field="' + f + '" placeholder="Masukkan ' + formatAdminFieldLabel_(f).toLowerCase() + '..." class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm h-28 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all">' + (val || '') + '</textarea>' +
+    '</div>';
+  }
+
+  // Input Judul / Nama Utama
+  if (['judul', 'judul_karya', 'nama_program', 'nama_prestasi', 'nama_fasilitas'].indexOf(f) !== -1) {
+    return '<div class="space-y-1.5">' +
+      '<label class="text-xs font-black uppercase tracking-wider text-slate-700 block">' + formatAdminFieldLabel_(f) + '</label>' +
+      '<input type="text" data-field="' + f + '" placeholder="Masukkan ' + formatAdminFieldLabel_(f).toLowerCase() + '..." value="' + (val + '').replace(/"/g, '&quot;') + '" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-base font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all">' +
+    '</div>';
+  }
+
+  // Input biasa
+  return '<div class="space-y-1.5">' +
+    '<label class="text-xs font-black uppercase tracking-wider text-slate-700 block">' + formatAdminFieldLabel_(f) + '</label>' +
+    '<input type="text" data-field="' + f + '" placeholder="Masukkan ' + formatAdminFieldLabel_(f).toLowerCase() + '..." value="' + (val + '').replace(/"/g, '&quot;') + '" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all">' +
+  '</div>';
+}
+
+function openAdminForm(row) {
+  adminInFormView_ = true;
+  const body = document.getElementById('admin-panel-body');
+  if (!body) return;
+
+  const isRich = ['artikel', 'kegiatan', 'karya', 'program', 'sejarah', 'fasilitas', 'prestasi', 'alumni', 'galeri', 'galeri_video', 'virtual_tour', 'live_streaming'].indexOf(adminActiveSheet.key) !== -1;
+  const fields = adminActiveSheet.fields;
+
+  // Header Bar
+  let html = '<div class="space-y-6 pb-12">' +
+    '<div class="sticky -top-5 z-20 bg-slate-100/95 backdrop-blur-sm pt-1 pb-4 -mx-5 px-5 flex flex-wrap items-center justify-between gap-3 border-b border-slate-200/80">' +
+      '<div class="flex items-center gap-3">' +
+        '<button type="button" onclick="renderAdminTable()" class="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold shadow-xs transition-colors flex items-center gap-2">' +
+          '<i class="fas fa-arrow-left text-slate-400"></i>' +
+          '<span>Kembali ke Tabel</span>' +
+        '</button>' +
+        '<div>' +
+          '<div class="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-slate-400">' +
+            '<span>' + _ak(adminActiveSheet.label) + '</span>' +
+            '<span>&bull;</span>' +
+            '<span>' + (row ? 'Baris #' + row._rowId : 'Data Baru') + '</span>' +
+          '</div>' +
+          '<h2 class="text-base font-black text-slate-800 tracking-tight">' +
+            (row ? ('Edit ' + _ak(adminActiveSheet.label)) : ('Tambah ' + _ak(adminActiveSheet.label) + ' Baru')) +
+          '</h2>' +
+        '</div>' +
+      '</div>' +
+      '<div class="flex items-center gap-2">' +
+        '<button type="button" onclick="renderAdminTable()" class="px-4 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 font-bold text-xs transition-colors">Batal</button>' +
+        '<button type="button" onclick="document.getElementById(\'admin-form-submit-btn\').click()" id="admin-form-submit-btn-top" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center gap-2">' +
+          '<i class="fas fa-floppy-disk"></i>' +
+          '<span>Simpan Data</span>' +
+        '</button>' +
+      '</div>' +
+    '</div>';
+
+  html += '<form id="admin-form" onsubmit="submitAdminForm(event);return false;" data-rowid="' + (row ? row._rowId : '') + '" class="space-y-6">';
+
+  if (isRich) {
+    const mainKeys = ['judul', 'judul_karya', 'nama_prestasi', 'nama_fasilitas', 'nama_program', 'nama_ekskul', 'ringkasan', 'deskripsi', 'konten', 'isi', 'isi_karya', 'testimoni'];
+    const mainFields = fields.filter(function (f) { return mainKeys.indexOf(f) !== -1; });
+    const sideFields = fields.filter(function (f) { return mainKeys.indexOf(f) === -1; });
+
+    html += '<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">' +
+      '<div class="lg:col-span-8 space-y-6">' +
+        '<div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs space-y-5">' +
+          '<h3 class="font-black text-sm text-slate-800 border-b border-slate-100 pb-3 flex items-center gap-2">' +
+            '<i class="fas fa-pen-nib text-emerald-600"></i>' +
+            '<span>Informasi & Konten Utama</span>' +
+          '</h3>' +
+          mainFields.map(function (f) { return adminRenderFormField_(f, row ? row[f] : '', row); }).join('') +
+        '</div>' +
+      '</div>' +
+      '<div class="lg:col-span-4 space-y-6">' +
+        sideFields.map(function (f) {
+          const isPhoto = PHOTO_FIELDS.indexOf(f) !== -1;
+          return '<div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs space-y-3">' +
+            '<h4 class="font-black text-xs text-slate-700 uppercase tracking-wider flex items-center gap-2 border-b border-slate-100 pb-2.5">' +
+              '<i class="' + (isPhoto ? 'fas fa-image text-emerald-600' : 'fas fa-sliders text-slate-400') + '"></i>' +
+              '<span>' + formatAdminFieldLabel_(f) + '</span>' +
+            '</h4>' +
+            adminRenderFormField_(f, row ? row[f] : '', row) +
+          '</div>';
+        }).join('') +
+      '</div>' +
+    '</div>';
+  } else {
+    html += '<div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs space-y-6 max-w-4xl">' +
+      '<h3 class="font-black text-sm text-slate-800 border-b border-slate-100 pb-3 flex items-center gap-2">' +
+        '<i class="fas fa-table-list text-emerald-600"></i>' +
+        '<span>Rincian Data ' + _ak(adminActiveSheet.label) + '</span>' +
+      '</h3>' +
+      '<div class="grid grid-cols-1 md:grid-cols-2 gap-5">' +
+      fields.map(function (f) {
+        const isWide = PHOTO_FIELDS.indexOf(f) !== -1 || ['deskripsi', 'keterangan', 'isi', 'alamat'].indexOf(f) !== -1;
+        return '<div class="' + (isWide ? 'col-span-1 md:col-span-2' : 'col-span-1') + '">' +
+          adminRenderFormField_(f, row ? row[f] : '', row) +
+        '</div>';
+      }).join('') +
+      '</div></div>';
+  }
+
+  html += '<div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-200/80 max-w-4xl">' +
+    '<button type="button" onclick="renderAdminTable()" class="px-5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 font-bold text-xs transition-colors">Batal</button>' +
+    '<button type="submit" id="admin-form-submit-btn" class="px-7 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center gap-2">' +
+      '<i class="fas fa-check"></i>' +
+      '<span>Simpan Perubahan</span>' +
+    '</button>' +
+  '</div></form></div>';
+
+  body.innerHTML = html;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function adminTambahFotoBaru(inputEl) {
   const wrap = inputEl.closest('[data-foto-wrap]');
+  if (!wrap) return;
   const thumbsWrap = wrap.querySelector('[data-foto-thumbs]');
   const addLabel = inputEl.closest('label');
   if (!wrap._pendingFiles) wrap._pendingFiles = [];
+
   Array.prototype.slice.call(inputEl.files || []).forEach(function (file) {
     wrap._pendingFiles.push(file);
     const reader = new FileReader();
     reader.onload = function () {
       const div = document.createElement('div');
-      div.className = 'relative w-16 h-16 flex-shrink-0';
+      div.className = 'relative group/thumb w-20 h-20 flex-shrink-0';
       div.setAttribute('data-thumb', '');
-      div.innerHTML = (file.type === 'application/pdf' ? '<div class="w-16 h-16 rounded-xl bg-red-50 border border-secondary flex items-center justify-center"><i class="fas fa-file-pdf text-red-500 text-2xl"></i></div>' : '<img src="' + reader.result + '" class="w-16 h-16 rounded-xl object-cover bg-slate-100 border border-secondary">') +
-        '<button type="button" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] flex items-center justify-center shadow"><i class="fas fa-times"></i></button>';
+      div.innerHTML = (file.type === 'application/pdf'
+        ? '<div class="w-20 h-20 rounded-xl bg-red-50 border border-red-200 flex flex-col items-center justify-center text-red-600 shadow-xs"><i class="fas fa-file-pdf text-2xl"></i><span class="text-[9px] font-bold mt-1">PDF</span></div>'
+        : '<img src="' + reader.result + '" class="w-20 h-20 rounded-xl object-cover bg-slate-100 border border-slate-200 shadow-xs cursor-pointer hover:ring-2 hover:ring-emerald-500" title="' + _ak(file.name) + '">') +
+        '<button type="button" class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500 hover:bg-red-600 text-white text-xs flex items-center justify-center shadow-md transition-colors" title="Batal unggah"><i class="fas fa-times"></i></button>';
       div.querySelector('button').onclick = function () {
         wrap._pendingFiles = (wrap._pendingFiles || []).filter(function (f) { return f !== file; });
         div.remove();
@@ -8233,17 +8612,11 @@ function adminTambahFotoBaru(inputEl) {
   inputEl.value = '';
 }
 
-// Hapus satu thumbnail foto (baik foto lama yang sudah tersimpan
-// maupun foto baru yang belum diupload) dari form.
 function adminHapusThumbFoto(btn) {
   const div = btn.closest('[data-thumb]');
   if (div) div.remove();
 }
 
-// Proses satu field foto: gabungkan URL foto lama yang masih
-// dipertahankan (thumbnail yang tidak dihapus) + upload semua foto
-// baru yang dipilih ke Google Drive, lalu gabung semua URL dipisah
-// koma ke input hidden field-nya.
 function prosesFotoWrap_(wrap) {
   return new Promise(function (resolve, reject) {
     const keptUrls = Array.prototype.map.call(wrap.querySelectorAll('[data-existing-url]'), function (img) {
@@ -8269,35 +8642,55 @@ function prosesFotoWrap_(wrap) {
 }
 
 function submitAdminForm(e) {
+  if (e && e.preventDefault) e.preventDefault();
   const form = document.getElementById('admin-form');
+  if (!form) return;
   const rowId = form.dataset.rowid ? parseInt(form.dataset.rowid) : null;
   const btn = document.getElementById('admin-form-submit-btn');
+  const btnTop = document.getElementById('admin-form-submit-btn-top');
   const fotoWraps = Array.prototype.slice.call(form.querySelectorAll('[data-foto-wrap]'));
 
-  if (btn) { btn.disabled = true; btn.dataset.teksAsli = btn.innerHTML; btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Mengunggah foto...'; }
+  function setSimpanLoading(loading, teks) {
+    [btn, btnTop].forEach(function (b) {
+      if (!b) return;
+      b.disabled = loading;
+      if (loading) {
+        b.dataset.teksAsli = b.innerHTML;
+        b.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>' + (teks || 'Menyimpan...');
+      } else if (b.dataset.teksAsli) {
+        b.innerHTML = b.dataset.teksAsli;
+      }
+    });
+  }
 
-  function pulihkanTombol() { if (btn) { btn.disabled = false; btn.innerHTML = btn.dataset.teksAsli; } }
+  setSimpanLoading(true, 'Mengunggah berkas...');
 
-  // Unggah dulu semua foto baru di tiap field (bisa lebih dari satu),
-  // gabungkan dengan foto lama yang masih dipertahankan, baru setelah
-  // itu simpan datanya ke spreadsheet.
   Promise.all(fotoWraps.map(prosesFotoWrap_)).then(function () {
+    setSimpanLoading(true, 'Menyimpan data...');
     const dataObj = {};
     form.querySelectorAll('[data-field]').forEach(function (el) { dataObj[el.dataset.field] = el.value; });
+
     google.script.run.withSuccessHandler(function () {
-      closeModal('modal-admin-form');
-      Swal.fire({ icon: 'success', title: 'Tersimpan', timer: 1000, showConfirmButton: false });
+      setSimpanLoading(false);
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil Disimpan',
+        text: 'Data ' + adminActiveSheet.label + ' berhasil diperbarui.',
+        timer: 1500,
+        showConfirmButton: false
+      });
       loadDataSilent();
-      pulihkanTombol();
+      adminInFormView_ = false;
+      renderAdminTable();
     }).withFailureHandler(function (err) {
-      pulihkanTombol();
+      setSimpanLoading(false);
       if (_sesiAdminBerakhir_(err)) return;
-      Swal.fire({ icon: 'error', title: 'Gagal', text: err.message || err });
+      Swal.fire({ icon: 'error', title: 'Gagal Menyimpan', text: (err && err.message) || String(err) });
     }).saveData(adminActiveSheet.sheet, dataObj, rowId, _tokenAdmin_());
   }).catch(function (err) {
-    pulihkanTombol();
+    setSimpanLoading(false);
     if (_sesiAdminBerakhir_(err)) return;
-    Swal.fire({ icon: 'error', title: 'Gagal unggah foto', text: (err && err.message) ? err.message : String(err) });
+    Swal.fire({ icon: 'error', title: 'Gagal Mengunggah Berkas', text: (err && err.message) ? err.message : String(err) });
   });
 }
 
@@ -8327,7 +8720,7 @@ function terapkanDataSenyap_(data) {
     if (adminActiveSheet.khusus === 'splash') { renderSplashAdminPanel(); }
     else if (adminActiveSheet.khusus === 'pendaftaran') { renderPendaftaranAdminPanel(); }
     else if (adminActiveSheet.khusus === 'donasi_masuk') { /* panel ini memuat datanya sendiri dari server */ }
-    else { renderAdminTable(); }
+    else { if (!adminInFormView_) renderAdminTable(); }
   }
 }
 function loadDataSilent() {
