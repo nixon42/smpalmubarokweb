@@ -3479,20 +3479,20 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       <div class="md:col-span-2">
         <span class="font-mono text-xs uppercase tracking-widest text-[#062116] block mb-4 font-bold">[ INDEKS PROFIL ]</span>
         <div class="text-xs space-y-2.5">
-          <div><a href="#" onclick="showSection('sambutan');return false;" class="hover:text-[#c39328]">Sambutan &amp; Visi</a></div>
-          <div><a href="#" onclick="showSection('sejarah');return false;" class="hover:text-[#c39328]">Sejarah Lembaga</a></div>
-          <div><a href="#" onclick="showSection('guru');return false;" class="hover:text-[#c39328]">Dewan Asatidz</a></div>
-          <div><a href="#" onclick="showSection('fasilitas');return false;" class="hover:text-[#c39328]">Fasilitas Kampus</a></div>
-          <div><a href="#" onclick="showSection('prestasi');return false;" class="hover:text-[#c39328]">Prestasi Santri</a></div>
+          <div><a href="#" onclick="showSection('sambutan');return false;" class="text-[#52665a] hover:text-[#c39328] transition-colors">Sambutan &amp; Visi</a></div>
+          <div><a href="#" onclick="showSection('sejarah');return false;" class="text-[#52665a] hover:text-[#c39328] transition-colors">Sejarah Lembaga</a></div>
+          <div><a href="#" onclick="showSection('guru');return false;" class="text-[#52665a] hover:text-[#c39328] transition-colors">Dewan Asatidz</a></div>
+          <div><a href="#" onclick="showSection('fasilitas');return false;" class="text-[#52665a] hover:text-[#c39328] transition-colors">Fasilitas Kampus</a></div>
+          <div><a href="#" onclick="showSection('prestasi');return false;" class="text-[#52665a] hover:text-[#c39328] transition-colors">Prestasi Santri</a></div>
         </div>
       </div>
       <div class="md:col-span-2">
         <span class="font-mono text-xs uppercase tracking-widest text-[#062116] block mb-4 font-bold">[ DIREKTORI ]</span>
         <div class="text-xs space-y-2.5 font-mono">
-          <div><a href="#" onclick="showSection('aplikasi');return false;" class="hover:text-[#c39328]">18 Aplikasi</a></div>
-          <div><a href="#" onclick="showSection('kalender');return false;" class="hover:text-[#c39328]">Kalender Akademik</a></div>
-          <div><a href="#" onclick="showSection('donasi');return false;" class="hover:text-[#c39328]">Wakaf &amp; Donasi</a></div>
-          <div><a href="#" onclick="klikPendaftaran();return false;" class="hover:text-[#c39328] text-[#c39328]">Pendaftaran</a></div>
+          <div><a href="#" onclick="showSection('aplikasi');return false;" class="text-[#52665a] hover:text-[#c39328] transition-colors">18 Aplikasi</a></div>
+          <div><a href="#" onclick="showSection('kalender');return false;" class="text-[#52665a] hover:text-[#c39328] transition-colors">Kalender Akademik</a></div>
+          <div><a href="#" onclick="showSection('donasi');return false;" class="text-[#52665a] hover:text-[#c39328] transition-colors">Wakaf &amp; Donasi</a></div>
+          <div><a href="#" onclick="klikPendaftaran();return false;" class="text-[#c39328] font-bold hover:underline transition-colors">Pendaftaran PPDB</a></div>
         </div>
       </div>
       <div class="md:col-span-3">
@@ -3508,7 +3508,7 @@ window.SPLASH_BG_DEFAULT_B64 = "splash-bg.webp";
       <div>&copy; <span id="footer-year">2026</span> SMPI YAMBU'UL QUR'AN. Hak cipta dilindungi.</div>
       <div class="flex items-center gap-4">
         <span>Varian: Swiss Editorial (V2)</span>
-        <a href="#" onclick="showSection('cms');return false;" class="hover:text-[#062116]">CMS</a>
+        <a href="#" onclick="showSection('cms');return false;" class="text-[#7a8e82] hover:text-[#062116] transition-colors">CMS</a>
       </div>
     </div>
   </div>
@@ -5734,7 +5734,7 @@ function renderArtikelTerkait_(a) {
 let currentArtikelRowId_ = null;
 let sukaAktifArtikel_ = false;
 function openArtikelDetail(rowId) {
-  const a = (DB.artikel || []).find(function (x) { return x._rowId === rowId; });
+  const a = (DB.artikel || []).find(function (x) { return String(x._rowId) === String(rowId); });
   if (!a) return;
   currentArtikelRowId_ = rowId;
   sukaAktifArtikel_ = false;
@@ -5770,7 +5770,7 @@ function toggleSukaArtikel() {
 // ---------------------------------------------------------------
 function shareArtikel(platform) {
   if (!currentArtikelRowId_) return;
-  const a = (DB.artikel || []).find(function (x) { return x._rowId === currentArtikelRowId_; });
+  const a = (DB.artikel || []).find(function (x) { return String(x._rowId) === String(currentArtikelRowId_); });
   if (!a) return;
 
   const judul = a.judul || 'Artikel';
@@ -5848,7 +5848,7 @@ const DETAIL_UMUM_CONFIG = {
 function bukaDetailUmum(jenis, rowId) {
   const cfg = DETAIL_UMUM_CONFIG[jenis];
   if (!cfg) return;
-  const r = (DB[jenis] || []).find(function (x) { return x._rowId === rowId; });
+  const r = (DB[jenis] || []).find(function (x) { return String(x._rowId) === String(rowId); });
   if (!r) return;
 
   currentDetailUmum = { sheet: cfg.sheet, rowId: r._rowId };
@@ -6972,6 +6972,7 @@ window.addEventListener('scroll', function () {
 // ---------------------------------------------------------------
 function terapkanModeGelap(aktif) {
   document.body.classList.toggle('mode-gelap', aktif);
+  document.documentElement.classList.toggle('dark', aktif);
   document.querySelectorAll('[id^="tombol-mode-gelap"] i').forEach(function (icon) {
     icon.className = aktif ? 'fas fa-sun' : 'fas fa-moon';
   });
@@ -7192,7 +7193,7 @@ document.addEventListener('keydown', function (e) {
 // KARYA: BOOK READER + LIKE + KOMENTAR
 // ---------------------------------------------------------------
 function openBookReader(rowId) {
-  const k = (DB.karya || []).find(function (x) { return x._rowId === rowId; });
+  const k = (DB.karya || []).find(function (x) { return String(x._rowId) === String(rowId); });
   if (!k) return;
   currentKarya = k;
   document.getElementById('book-title').textContent = k.judul_karya || '-';

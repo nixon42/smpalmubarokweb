@@ -5039,7 +5039,7 @@ function renderArtikelTerkait_(a) {
 let currentArtikelRowId_ = null;
 let sukaAktifArtikel_ = false;
 function openArtikelDetail(rowId) {
-  const a = (DB.artikel || []).find(function (x) { return x._rowId === rowId; });
+  const a = (DB.artikel || []).find(function (x) { return String(x._rowId) === String(rowId); });
   if (!a) return;
   currentArtikelRowId_ = rowId;
   sukaAktifArtikel_ = false;
@@ -5075,7 +5075,7 @@ function toggleSukaArtikel() {
 // ---------------------------------------------------------------
 function shareArtikel(platform) {
   if (!currentArtikelRowId_) return;
-  const a = (DB.artikel || []).find(function (x) { return x._rowId === currentArtikelRowId_; });
+  const a = (DB.artikel || []).find(function (x) { return String(x._rowId) === String(currentArtikelRowId_); });
   if (!a) return;
 
   const judul = a.judul || 'Artikel';
@@ -5153,7 +5153,7 @@ const DETAIL_UMUM_CONFIG = {
 function bukaDetailUmum(jenis, rowId) {
   const cfg = DETAIL_UMUM_CONFIG[jenis];
   if (!cfg) return;
-  const r = (DB[jenis] || []).find(function (x) { return x._rowId === rowId; });
+  const r = (DB[jenis] || []).find(function (x) { return String(x._rowId) === String(rowId); });
   if (!r) return;
 
   currentDetailUmum = { sheet: cfg.sheet, rowId: r._rowId };
@@ -6103,6 +6103,7 @@ window.addEventListener('scroll', function () {
 // ---------------------------------------------------------------
 function terapkanModeGelap(aktif) {
   document.body.classList.toggle('mode-gelap', aktif);
+  document.documentElement.classList.toggle('dark', aktif);
   document.querySelectorAll('[id^="tombol-mode-gelap"] i').forEach(function (icon) {
     icon.className = aktif ? 'fas fa-sun' : 'fas fa-moon';
   });
@@ -6323,7 +6324,7 @@ document.addEventListener('keydown', function (e) {
 // KARYA: BOOK READER + LIKE + KOMENTAR
 // ---------------------------------------------------------------
 function openBookReader(rowId) {
-  const k = (DB.karya || []).find(function (x) { return x._rowId === rowId; });
+  const k = (DB.karya || []).find(function (x) { return String(x._rowId) === String(rowId); });
   if (!k) return;
   currentKarya = k;
   document.getElementById('book-title').textContent = k.judul_karya || '-';
