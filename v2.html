@@ -4376,9 +4376,30 @@ function _jalankanBertahap_(tugas, selesai) {
   })();
 }
 
+function normalizeDB_(d) {
+  if (!d) return d;
+  const pairs = [
+    ['herobanner', 'hero_banner'],
+    ['galerivideo', 'galeri_video'],
+    ['virtualtour360', 'virtual_tour'],
+    ['livestreaming', 'live_streaming'],
+    ['rekeningdonasi', 'rekening_donasi'],
+    ['kalenderakademik', 'kalender_akademik'],
+    ['jadwalpelajaran', 'jadwal_pelajaran'],
+    ['jadwalujian', 'jadwal_ujian'],
+    ['dokumenakademik', 'dokumen_akademik']
+  ];
+  pairs.forEach(function (p) {
+    const a = p[0], b = p[1];
+    if (d[a] !== undefined && d[b] === undefined) d[b] = d[a];
+    if (d[b] !== undefined && d[a] === undefined) d[a] = d[b];
+  });
+  return d;
+}
+
 function onDataLoaded(data) {
   if (!data || data.error) { onDataError({ message: data ? data.error : 'Data kosong' }); return; }
-  DB = data;
+  DB = normalizeDB_(data);
   // TAHAP 1: yang langsung terlihat di layar
   renderHeroSlider();
   renderJadwalSholat();
@@ -4627,28 +4648,7 @@ function renderMenuAplikasi() {
   const btnSelengkapnya = document.getElementById('btn-aplikasi-selengkapnya');
   if (!el || !wrap) return;
 
-  const DEFAULT_APLIKASI_ = [
-    { nama_menu: 'JURNAL DIGITAL', link: 'https://nixon42.github.io/jurnal/', deskripsi: 'Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru secara terstruktur.', urutan: 1, tampil: 'ya' },
-    { nama_menu: 'LMS', link: 'https://nixon42.github.io/lms/', deskripsi: 'Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas terpadu.', urutan: 2, tampil: 'ya' },
-    { nama_menu: 'Absensi', link: 'https://nixon42.github.io/absen/', deskripsi: 'Absensi berbasis face recognition, pencatatan secara realtime dan akurat.', urutan: 3, tampil: 'ya' },
-    { nama_menu: 'TU & Persuratan Online', link: 'https://administrasi.smpitalmubarok.sch.id/', deskripsi: 'Digitalisasi pengarsipan, permintaan surat, dan tata kelola administrasi surat-menyurat sekolah.', urutan: 4, tampil: 'ya' },
-    { nama_menu: 'Supervisi', link: 'https://supervisi.smpitalmubarok.sch.id/', deskripsi: 'Platform digital yang dirancang untuk mempermudah, mempercepat, dan mengoptimalkan proses pemantauan, evaluasi, serta pembinaan kinerja secara real-time dari mana saja.', urutan: 5, tampil: 'ya' },
-    { nama_menu: 'Buku Inventaris Barang', link: 'https://inventaris.smpitalmubarok.sch.id/', deskripsi: 'Digitalisasi pendataan dan pemantauan kondisi serta aset sarana-prasarana sekolah.', urutan: 6, tampil: 'ya' },
-    { nama_menu: 'Layanan Perpustakaan', link: 'https://perpustakaan.smpitalmubarok.sch.id/', deskripsi: 'Sistem katalog, peminjaman, dan pengembalian buku fisik sekolah.', urutan: 7, tampil: 'ya' },
-    { nama_menu: 'E-Rapor Tahfidz', link: 'https://eraportahfidz.smpitalmubarok.sch.id/', deskripsi: 'Laporan capaian hafalan Al-Qur\'an dan perkembangan Tahsin siswa secara transparan.', urutan: 8, tampil: 'ya' },
-    { nama_menu: 'Al-Qur\'an Digital', link: 'https://quran.smpitalmubarok.sch.id/', deskripsi: 'Akses teks dan bacaan Al-Qur\'an interaktif untuk mendukung kegiatan keagamaan.', urutan: 9, tampil: 'ya' },
-    { nama_menu: 'Buku Induk Siswa', link: 'https://edosis.disdikkedirikab.com/auth/login', deskripsi: 'Database rekam jejak biodata dan histori akademis siswa terlengkap secara digital.', urutan: 10, tampil: 'ya' },
-    { nama_menu: 'Sistem Mutasi Siswa', link: 'https://mutasi.disdikkedirikab.com/auth/login', deskripsi: 'Pengelolaan proses kepindahan siswa (masuk/keluar) yang tertib administrasi.', urutan: 11, tampil: 'ya' },
-    { nama_menu: 'Ujian Online', link: 'https://app.e-ujian.com/SMPIT_AlMubarok/login', deskripsi: 'Platform ujian dan evaluasi belajar digital yang praktis, fleksibel, dan aman.', urutan: 12, tampil: 'ya' },
-    { nama_menu: 'Portal TKA', link: 'https://tka.onedumind.com/', deskripsi: 'Pelaksanaan dan analisis hasil pemetaan potensi akademik siswa.', urutan: 13, tampil: 'ya' },
-    { nama_menu: 'Buku Digital', link: 'https://buku.kemendikdasmen.go.id/daftar-katalog', deskripsi: 'Perpustakaan digital berisi koleksi modul dan buku paket pembelajaran elektronik.', urutan: 14, tampil: 'ya' },
-    { nama_menu: 'Cek NISN', link: 'https://nisn.data.kemendikdasmen.go.id/', deskripsi: 'Fitur validasi dan verifikasi Nomor Induk Siswa Nasional secara instan.', urutan: 15, tampil: 'ya' },
-    { nama_menu: 'Layanan PIP', link: 'https://pip.kemendikdasmen.go.id/home_v1', deskripsi: 'Pengelolaan data dan bantuan Program Indonesia Pintar bagi siswa penerima manfaat.', urutan: 16, tampil: 'ya' },
-    { nama_menu: 'Portal Admin Belajar id', link: 'https://akun.belajar.id/sso/login?flow=2a90194c-a623-44d5-ae60-45bd0d988c35', deskripsi: 'Integrasi dan pengelolaan akun pembelajaran resmi dari Kemendikbudristek.', urutan: 17, tampil: 'ya' },
-    { nama_menu: 'Menejemen E-Ijazah', link: 'https://ijazah.data.kemendikdasmen.go.id/manajemen/#/sign-in', deskripsi: 'Penerbitan, pengarsipan, dan verifikasi keabsahan ijazah kelulusan digital.', urutan: 18, tampil: 'ya' }
-  ];
-
-  let rawList = (DB.menu && DB.menu.length) ? DB.menu : DEFAULT_APLIKASI_;
+  let rawList = (DB.menu && DB.menu.length) ? DB.menu : [];
   let rows = rawList.filter(function (m) {
     const t = (m.tampil || '').toString().toLowerCase();
     return t !== 'tidak' && t !== 'no' && t !== '0' && t !== 'false';
@@ -5947,59 +5947,8 @@ function toggleSukaDetailUmum() {
 // ---------------------------------------------------------------
 // RENDER: GALERI FOTO
 // ---------------------------------------------------------------
-const DEFAULT_GALERI_V2_ = [
-  {
-    judul: "Halaqah Tahfidz Al-Qur'an Santri Pagi Hari",
-    kategori: "Tahfidz",
-    tanggal: "12 Nov 2026",
-    gambar: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    judul: "Praktikum Sains di Laboratorium Terpadu",
-    kategori: "Akademik",
-    tanggal: "08 Nov 2026",
-    gambar: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    judul: "Sholat Berjamaah di Masjid Jami' Yambu'ul Qur'an",
-    kategori: "Ibadah",
-    tanggal: "04 Nov 2026",
-    gambar: "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    judul: "Latihan Rutin Seni Hadrah Banjari Santri",
-    kategori: "Ekstrakurikuler",
-    tanggal: "30 Okt 2026",
-    gambar: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    judul: "Upacara Bendera & Pembinaan Karakter Santri",
-    kategori: "Kesiswaan",
-    tanggal: "25 Okt 2026",
-    gambar: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    judul: "Kompetisi Olahraga Futsal Antar Kelas",
-    kategori: "Olahraga",
-    tanggal: "18 Okt 2026",
-    gambar: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    judul: "Pojok Literasi & Perpustakaan Digital Kampus",
-    kategori: "Literasi",
-    tanggal: "12 Okt 2026",
-    gambar: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    judul: "Kajian Kitab Kuning Bersama Dewan Asatidz",
-    kategori: "Keagamaan",
-    tanggal: "05 Okt 2026",
-    gambar: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80"
-  }
-];
-
 function renderGaleri() {
-  let rows = (DB && DB.galeri && DB.galeri.length) ? DB.galeri.slice().reverse() : DEFAULT_GALERI_V2_;
+  const dbData = (DB && DB.galeri && DB.galeri.length) ? DB.galeri.slice().reverse() : [];
   const track = document.getElementById('beranda-galeri-carousel');
   const fullGrid = document.getElementById('galeri-grid');
 
@@ -6013,7 +5962,7 @@ function renderGaleri() {
     }
     return s;
   };
-  const cardHtml = function (g, i) {
+  const cardHtml = function(g, i) {
     const num = String(i + 1).padStart(2, '0');
     const img = g.gambar || g.foto || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80';
     const tgl = formatTgl_(g.tanggal);
@@ -6030,30 +5979,48 @@ function renderGaleri() {
     '</div>';
   };
 
-  if (track) {
-    track.innerHTML = rows.slice(0, 10).map(cardHtml).join('');
-  }
-  if (fullGrid) {
-    fullGrid.innerHTML = rows.map(function (g, i) {
-      const num = String(i + 1).padStart(2, '0');
-      const img = g.gambar || g.foto || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80';
-      return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
-        '<div>' +
-          '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-3 relative">' +
-            '<img src="' + img + '" data-fallback="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" onerror="this.onerror=null;this.src=this.dataset.fallback;" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (g.judul || '') + '">' +
+  if (dbData.length > 0) {
+    if (track) {
+      track.innerHTML = dbData.slice(0, 10).map(cardHtml).join('');
+    }
+    if (fullGrid) {
+      fullGrid.innerHTML = dbData.map(function(g, i) {
+        const num = String(i + 1).padStart(2, '0');
+        const img = g.gambar || g.foto || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80';
+        return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+          '<div>' +
+            '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-3 relative">' +
+              '<img src="' + img + '" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (g.judul || '') + '">' +
+            '</div>' +
+            '<div class="flex items-center justify-between text-[11px] font-mono text-[#c39328] mb-1.5">' +
+              '<span>[ DOKUMEN ' + num + ' ]</span>' +
+              '<span class="text-[#7a8e82]">' + (g.tanggal || '2026') + '</span>' +
+            '</div>' +
+            '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug">' + (g.judul || '-') + '</h3>' +
           '</div>' +
-          '<div class="flex items-center justify-between text-[11px] font-mono text-[#c39328] mb-1.5">' +
-            '<span>[ DOKUMEN ' + num + ' ]</span>' +
-            '<span class="text-[#7a8e82]">' + formatTgl_(g.tanggal) + '</span>' +
+          '<div class="mt-4 pt-2.5 border-t border-[#e2ece6] flex items-center justify-between font-mono text-[10px] text-[#7a8e82]">' +
+            '<span>KATEGORI: ' + (g.kategori || 'UMUM') + '</span>' +
+            '<span class="text-[#062116] font-bold">ARSIP KAMPUS</span>' +
           '</div>' +
-          '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug">' + (g.judul || '-') + '</h3>' +
-        '</div>' +
-        '<div class="mt-4 pt-2.5 border-t border-[#e2ece6] flex items-center justify-between font-mono text-[10px] text-[#7a8e82]">' +
-          '<span>KATEGORI: ' + (g.kategori || 'UMUM') + '</span>' +
-          '<span class="text-[#062116] font-bold">ARSIP KAMPUS</span>' +
-        '</div>' +
+        '</div>';
+      }).join('');
+    }
+  } else {
+    if (track) {
+      track.innerHTML = '<div class="w-full border border-[#e2ece6] bg-white p-8 md:p-12 text-center flex-shrink-0">' +
+        '<div class="w-12 h-12 mx-auto mb-3 bg-[#faf9f5] border border-[#e2ece6] text-[#c39328] flex items-center justify-center text-lg"><i class="fas fa-images"></i></div>' +
+        '<span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest block mb-1">[ DOKUMENTASI &bull; GALERI FOTO ]</span>' +
+        '<h3 class="font-serif text-lg font-bold text-[#062116] mb-1.5">Belum Ada Dokumentasi Foto</h3>' +
+        '<p class="text-xs text-[#52665a] max-w-md mx-auto leading-relaxed font-light">Dokumentasi kegiatan santri dan sarana madrasah akan ditampilkan di sini setelah diunggah melalui panel admin CMS.</p>' +
       '</div>';
-    }).join('');
+    }
+    if (fullGrid) {
+      fullGrid.innerHTML = '<div class="col-span-full border border-dashed border-[#e2ece6] bg-[#faf9f5] p-12 text-center">' +
+        '<span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest block mb-1">[ ARSIP FOTO &bull; BELUM ADA DATA ]</span>' +
+        '<h3 class="font-serif text-xl font-bold text-[#062116] mb-2">Belum Ada Data Galeri Foto</h3>' +
+        '<p class="text-xs text-[#52665a] max-w-md mx-auto leading-relaxed font-light">Belum ada foto kegiatan yang diunggah ke galeri.</p>' +
+      '</div>';
+    }
   }
 }
 // ---------------------------------------------------------------
@@ -6099,117 +6066,88 @@ document.addEventListener('click', function (e) {
   f.setAttribute('title', 'Video');
   b.replaceWith(f);
 });
-const DEFAULT_VIDEO_V2_ = [
-  {
-    judul: "Profil Lengkap SMPI Yambu'ul Qur'an Plosoklaten Kediri",
-    deskripsi: "Mengenal lebih dekat ekosistem pesantren tahfidzul Qur'an dan kurikulum terpadu.",
-    url_video: "https://www.youtube.com/watch?v=ScMzIvxBSi4",
-    youtube_id: "ScMzIvxBSi4",
-    durasi: "04:12",
-    kategori: "PROFIL RESMI"
-  },
-  {
-    judul: "Wisuda & Khotmil Qur'an Santri Tahfidz 30 Juz Bersanad",
-    deskripsi: "Prosesi khidmat pelepasan santri hafiz & hafizah berprestasi tinggi.",
-    url_video: "https://www.youtube.com/watch?v=ysz5S6PUM-U",
-    youtube_id: "ysz5S6PUM-U",
-    durasi: "06:45",
-    kategori: "WISUDA SANTRI"
-  },
-  {
-    judul: "Kemandirian Santri Boarding School: Aktivitas Fajar Hingga Malam",
-    deskripsi: "Disiplin pembinaan akhlak, sholat berjamaah, dan pola belajar mandiri.",
-    url_video: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
-    youtube_id: "jNQXAC9IVRw",
-    durasi: "05:18",
-    kategori: "KEGIATAN SANTRI"
-  },
-  {
-    judul: "Asesmen Digital Berbasis CBT Mandiri & Smart-Campus",
-    deskripsi: "Implementasi ujian online terpadu di laboratorium komputer modern.",
-    url_video: "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
-    youtube_id: "kJQP7kiw5Fk",
-    durasi: "03:50",
-    kategori: "AKADEMIK DIGITAL"
-  },
-  {
-    judul: "Kajian Kitab Kuning & Tausiyah Bersama Dewan Asatidz",
-    deskripsi: "Kupasan fiqih dan akhlakul karimah untuk membekali generasi masa depan.",
-    url_video: "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-    youtube_id: "3JZ_D3ELwOQ",
-    durasi: "08:30",
-    kategori: "KAJIAN ASATIDZ"
-  },
-  {
-    judul: "Juara Seni Hadrah Banjari Santri SMPI Yambu'ul Qur'an",
-    deskripsi: "Penampilan kreasi seni sholawat rebana kontemporer santri.",
-    url_video: "https://www.youtube.com/watch?v=L_LUpnjgPso",
-    youtube_id: "L_LUpnjgPso",
-    durasi: "04:55",
-    kategori: "PRESTASI SENI"
-  }
-];
-
 function renderGaleriVideo() {
-  let rows = (DB && DB.galeri_video && DB.galeri_video.length) ? DB.galeri_video.slice().reverse() : DEFAULT_VIDEO_V2_;
+  const dbData = (DB && (DB.galeri_video || DB.galerivideo) && (DB.galeri_video || DB.galerivideo).length)
+    ? (DB.galeri_video || DB.galerivideo).slice().reverse()
+    : [];
   const elGridBeranda = document.getElementById('beranda-galerivideo-grid');
   const elGridFull = document.getElementById('galerivideo-grid');
 
-  const cardVideoHtml = function (v, i) {
-    const num = String(i + 1).padStart(2, '0');
-    const ytId = v.youtube_id || (v.url_video.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{6,})/) || [])[1] || 'ScMzIvxBSi4';
-    const thumb = 'https://img.youtube.com/vi/' + ytId + '/hqdefault.jpg';
-    return '<div class="border border-[#e2ece6] p-3 bg-white flex-shrink-0 w-72 md:w-80 snap-start hover:border-[#062116] transition-colors">' +
-      '<div class="aspect-video bg-black relative overflow-hidden mb-3 group cursor-pointer" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' +
-        '<img src="' + thumb + '" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" alt="' + (v.judul || '') + '">' +
-        '<div class="absolute inset-0 bg-black/30 flex items-center justify-center">' +
-          '<div class="w-12 h-12 rounded-none bg-[#062116] text-[#c39328] border border-[#c39328] flex items-center justify-center shadow-lg group-hover:bg-[#c39328] group-hover:text-[#062116] transition-colors">' +
-            '<i class="fas fa-play text-sm ml-0.5"></i>' +
-          '</div>' +
-        '</div>' +
-        '<span class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[9px] px-2 py-0.5">' + (v.durasi || 'VIDEO') + '</span>' +
-      '</div>' +
-      '<div class="flex items-center justify-between text-[10px] font-mono text-[#c39328] mb-1">' +
-        '<span>[ VIDEO ' + num + ' ]</span>' +
-        '<span class="text-[#7a8e82]">' + (v.kategori || 'LIPUTAN') + '</span>' +
-      '</div>' +
-      '<h4 class="font-serif text-sm font-bold text-[#062116] leading-snug line-clamp-2 cursor-pointer hover:text-[#c39328]" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' + (v.judul || 'Video Liputan') + '</h4>' +
-      '<p class="text-[11px] text-[#52665a] font-light mt-1 line-clamp-1">' + (v.deskripsi || '') + '</p>' +
-    '</div>';
-  };
-
-  if (elGridBeranda) {
-    elGridBeranda.innerHTML = rows.slice(0, 8).map(cardVideoHtml).join('');
-  }
-  if (elGridFull) {
-    elGridFull.innerHTML = rows.map(function (v, i) {
+  if (dbData.length > 0) {
+    const cardVideoHtml = function (v, i) {
       const num = String(i + 1).padStart(2, '0');
-      const ytId = v.youtube_id || (v.url_video.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{6,})/) || [])[1] || 'ScMzIvxBSi4';
+      const ytId = v.youtube_id || (v.url_video ? (v.url_video.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{6,})/) || [])[1] : '') || 'ScMzIvxBSi4';
       const thumb = 'https://img.youtube.com/vi/' + ytId + '/hqdefault.jpg';
-      return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
-        '<div>' +
-          '<div class="aspect-video bg-black relative overflow-hidden mb-3 group cursor-pointer" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' +
-            '<img src="' + thumb + '" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" alt="' + (v.judul || '') + '">' +
-            '<div class="absolute inset-0 bg-black/30 flex items-center justify-center">' +
-              '<div class="w-12 h-12 rounded-none bg-[#062116] text-[#c39328] border border-[#c39328] flex items-center justify-center shadow-lg group-hover:bg-[#c39328] group-hover:text-[#062116] transition-colors">' +
-                '<i class="fas fa-play text-sm ml-0.5"></i>' +
-              '</div>' +
+      return '<div class="border border-[#e2ece6] p-3 bg-white flex-shrink-0 w-72 md:w-80 snap-start hover:border-[#062116] transition-colors">' +
+        '<div class="aspect-video bg-black relative overflow-hidden mb-3 group cursor-pointer" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' +
+          '<img src="' + thumb + '" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" alt="' + (v.judul || '') + '">' +
+          '<div class="absolute inset-0 bg-black/30 flex items-center justify-center">' +
+            '<div class="w-12 h-12 rounded-none bg-[#062116] text-[#c39328] border border-[#c39328] flex items-center justify-center shadow-lg group-hover:bg-[#c39328] group-hover:text-[#062116] transition-colors">' +
+              '<i class="fas fa-play text-sm ml-0.5"></i>' +
             '</div>' +
-            '<span class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[9px] px-2 py-0.5">' + (v.durasi || 'VIDEO') + '</span>' +
           '</div>' +
-          '<div class="flex items-center justify-between text-[11px] font-mono text-[#c39328] mb-1.5">' +
-            '<span>[ LIPUTAN ' + num + ' ]</span>' +
-            '<span class="text-[#7a8e82]">' + (v.durasi || '05:00') + '</span>' +
-          '</div>' +
-          '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug mb-1 cursor-pointer hover:text-[#c39328]" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' + (v.judul || '-') + '</h3>' +
-          '<p class="text-xs text-[#52665a] font-light leading-relaxed line-clamp-2">' + (v.deskripsi || '') + '</p>' +
+          '<span class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[9px] px-2 py-0.5">' + (v.durasi || 'VIDEO') + '</span>' +
         '</div>' +
-        '<div class="mt-4 pt-2.5 border-t border-[#e2ece6] flex items-center justify-between font-mono text-[10px] text-[#7a8e82]">' +
-          '<span>KATEGORI: ' + (v.kategori || 'VIDEO') + '</span>' +
-          '<button data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)" class="text-[#062116] hover:text-[#c39328] font-bold uppercase tracking-wider">PUTAR SEKARANG &rarr;</button>' +
+        '<div class="flex items-center justify-between text-[10px] font-mono text-[#c39328] mb-1">' +
+          '<span>[ VIDEO ' + num + ' ]</span>' +
+          '<span class="text-[#7a8e82]">' + (v.kategori || 'LIPUTAN') + '</span>' +
         '</div>' +
+        '<h4 class="font-serif text-sm font-bold text-[#062116] leading-snug line-clamp-2 cursor-pointer hover:text-[#c39328]" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' + (v.judul || 'Video Liputan') + '</h4>' +
+        '<p class="text-[11px] text-[#52665a] font-light mt-1 line-clamp-1">' + (v.deskripsi || '') + '</p>' +
       '</div>';
-    }).join('');
+    };
+
+    if (elGridBeranda) {
+      elGridBeranda.innerHTML = dbData.slice(0, 8).map(cardVideoHtml).join('');
+    }
+    if (elGridFull) {
+      elGridFull.innerHTML = dbData.map(function (v, i) {
+        const num = String(i + 1).padStart(2, '0');
+        const ytId = v.youtube_id || (v.url_video ? (v.url_video.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{6,})/) || [])[1] : '') || 'ScMzIvxBSi4';
+        const thumb = 'https://img.youtube.com/vi/' + ytId + '/hqdefault.jpg';
+        return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+          '<div>' +
+            '<div class="aspect-video bg-black relative overflow-hidden mb-3 group cursor-pointer" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' +
+              '<img src="' + thumb + '" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" alt="' + (v.judul || '') + '">' +
+              '<div class="absolute inset-0 bg-black/30 flex items-center justify-center">' +
+                '<div class="w-12 h-12 rounded-none bg-[#062116] text-[#c39328] border border-[#c39328] flex items-center justify-center shadow-lg group-hover:bg-[#c39328] group-hover:text-[#062116] transition-colors">' +
+                  '<i class="fas fa-play text-sm ml-0.5"></i>' +
+                '</div>' +
+              '</div>' +
+              '<span class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[9px] px-2 py-0.5">' + (v.durasi || 'VIDEO') + '</span>' +
+            '</div>' +
+            '<div class="flex items-center justify-between text-[11px] font-mono text-[#c39328] mb-1.5">' +
+              '<span>[ LIPUTAN ' + num + ' ]</span>' +
+              '<span class="text-[#7a8e82]">' + (v.durasi || '05:00') + '</span>' +
+            '</div>' +
+            '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug mb-1 cursor-pointer hover:text-[#c39328]" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' + (v.judul || '-') + '</h3>' +
+            '<p class="text-xs text-[#52665a] font-light leading-relaxed line-clamp-2">' + (v.deskripsi || '') + '</p>' +
+          '</div>' +
+          '<div class="mt-4 pt-2.5 border-t border-[#e2ece6] flex items-center justify-between font-mono text-[10px] text-[#7a8e82]">' +
+            '<span>KATEGORI: ' + (v.kategori || 'VIDEO') + '</span>' +
+            '<button data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)" class="text-[#062116] hover:text-[#c39328] font-bold uppercase tracking-wider">PUTAR SEKARANG &rarr;</button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+  } else {
+    if (elGridBeranda) {
+      elGridBeranda.innerHTML = '<div class="w-full border border-[#e2ece6] bg-white p-8 md:p-12 text-center flex-shrink-0">' +
+        '<div class="w-12 h-12 mx-auto mb-3 bg-[#faf9f5] border border-[#e2ece6] text-[#c39328] flex items-center justify-center text-lg">' +
+          '<i class="fas fa-video"></i>' +
+        '</div>' +
+        '<span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest block mb-1">[ KANAL VIDEO &bull; ARSIP DIGITAL ]</span>' +
+        '<h3 class="font-serif text-lg font-bold text-[#062116] mb-1.5">Belum Ada Video Liputan</h3>' +
+        '<p class="text-xs text-[#52665a] max-w-md mx-auto leading-relaxed font-light">Dokumentasi video kegiatan santri, kajian asatidz, dan liputan kampus akan ditampilkan di sini setelah ditambahkan melalui panel admin CMS.</p>' +
+      '</div>';
+    }
+    if (elGridFull) {
+      elGridFull.innerHTML = '<div class="col-span-full border border-dashed border-[#e2ece6] bg-[#faf9f5] p-12 text-center">' +
+        '<span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest block mb-1">[ ARSIP VIDEO &bull; BELUM ADA DATA ]</span>' +
+        '<h3 class="font-serif text-xl font-bold text-[#062116] mb-2">Belum Ada Data Galeri Video</h3>' +
+        '<p class="text-xs text-[#52665a] max-w-md mx-auto leading-relaxed font-light">Belum ada video kegiatan yang diunggah. Silakan tambahkan tautan video YouTube melalui menu Galeri Video di panel admin CMS.</p>' +
+      '</div>';
+    }
   }
 }
 // ---------------------------------------------------------------
@@ -8067,6 +8005,11 @@ function simpanPendaftaranAdmin_() {
 }
 
 function adminDataKey(sheetKey) {
+  if (DB && DB[sheetKey] !== undefined) return sheetKey;
+  if (adminActiveSheet && adminActiveSheet.sheet) {
+    const sLow = adminActiveSheet.sheet.toLowerCase();
+    if (DB && DB[sLow] !== undefined) return sLow;
+  }
   return sheetKey;
 }
 
@@ -8707,7 +8650,7 @@ function adminDeleteRow(rowId) {
 function terapkanDataSenyap_(data) {
   if (!data || data.error) return;
   simpanCacheData_(data);
-  DB = data;
+  DB = normalizeDB_(data);
   if (lastYoutubeData) {
     DB.galeri_video_otomatis = lastYoutubeData.galeri_video_otomatis || [];
     DB.live_streaming_otomatis = lastYoutubeData.live_streaming_otomatis || [];
@@ -9728,36 +9671,28 @@ setTimeout(function () {
 // ============================================================================
 (function() {
   function getDB() {
-    if (typeof DB !== 'undefined' && DB && Object.keys(DB).length) return DB;
-    if (typeof window !== 'undefined' && window.DB && Object.keys(window.DB).length) return window.DB;
-    if (typeof window !== 'undefined' && window.__INITIAL_DATA__) {
-      return window.__INITIAL_DATA__.__hasil || window.__INITIAL_DATA__;
+    let d = {};
+    if (typeof DB !== 'undefined' && DB && Object.keys(DB).length) d = DB;
+    else if (typeof window !== 'undefined' && window.DB && Object.keys(window.DB).length) d = window.DB;
+    else if (typeof window !== 'undefined' && window.__INITIAL_DATA__) {
+      d = window.__INITIAL_DATA__.__hasil || window.__INITIAL_DATA__;
     }
-    return {};
+    if (d) {
+      if (d.galerivideo && !d.galeri_video) d.galeri_video = d.galerivideo;
+      if (d.galeri_video && !d.galerivideo) d.galerivideo = d.galeri_video;
+      if (d.herobanner && !d.hero_banner) d.hero_banner = d.herobanner;
+      if (d.virtualtour360 && !d.virtual_tour) d.virtual_tour = d.virtualtour360;
+      if (d.livestreaming && !d.live_streaming) d.live_streaming = d.livestreaming;
+      if (d.rekeningdonasi && !d.rekening_donasi) d.rekening_donasi = d.rekeningdonasi;
+      if (d.kalenderakademik && !d.kalender_akademik) d.kalender_akademik = d.kalenderakademik;
+      if (d.jadwalpelajaran && !d.jadwal_pelajaran) d.jadwal_pelajaran = d.jadwalpelajaran;
+      if (d.jadwalujian && !d.jadwal_ujian) d.jadwal_ujian = d.jadwalujian;
+      if (d.dokumenakademik && !d.dokumen_akademik) d.dokumen_akademik = d.dokumenakademik;
+    }
+    return d || {};
   }
-  const DEFAULT_APLIKASI_ = [
-    { nama_menu: 'JURNAL DIGITAL', link: 'https://nixon42.github.io/jurnal/', deskripsi: 'Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru secara terstruktur.', urutan: 1, kategori: 'AKADEMIK' },
-    { nama_menu: 'LMS', link: 'https://nixon42.github.io/lms/', deskripsi: 'Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas terpadu.', urutan: 2, kategori: 'AKADEMIK' },
-    { nama_menu: 'Absensi', link: 'https://nixon42.github.io/absen/', deskripsi: 'Absensi berbasis face recognition, pencatatan secara realtime dan akurat.', urutan: 3, kategori: 'AKADEMIK' },
-    { nama_menu: 'TU & Persuratan Online', link: 'https://administrasi.smpitalmubarok.sch.id/', deskripsi: 'Digitalisasi pengarsipan, permintaan surat, dan tata kelola administrasi surat-menyurat.', urutan: 4, kategori: 'MANAJEMEN' },
-    { nama_menu: 'Supervisi', link: 'https://supervisi.smpitalmubarok.sch.id/', deskripsi: 'Platform digital untuk pemantauan, evaluasi, serta pembinaan kinerja secara real-time.', urutan: 5, kategori: 'MANAJEMEN' },
-    { nama_menu: 'Buku Inventaris Barang', link: 'https://inventaris.smpitalmubarok.sch.id/', deskripsi: 'Digitalisasi pendataan dan pemantauan kondisi serta aset sarana-prasarana sekolah.', urutan: 6, kategori: 'SARANA' },
-    { nama_menu: 'Layanan Perpustakaan', link: 'https://perpustakaan.smpitalmubarok.sch.id/', deskripsi: 'Sistem katalog, peminjaman, dan pengembalian buku fisik sekolah.', urutan: 7, kategori: 'LITERASI' },
-    { nama_menu: 'E-Rapor Tahfidz', link: 'https://eraportahfidz.smpitalmubarok.sch.id/', deskripsi: "Laporan capaian hafalan Al-Qur'an dan perkembangan Tahsin siswa secara transparan.", urutan: 8, kategori: 'QURAN' },
-    { nama_menu: "Al-Qur'an Digital", link: 'https://quran.smpitalmubarok.sch.id/', deskripsi: "Akses teks dan bacaan Al-Qur'an interaktif untuk mendukung kegiatan keagamaan.", urutan: 9, kategori: 'QURAN' },
-    { nama_menu: 'Buku Induk Siswa', link: 'https://edosis.disdikkedirikab.com/auth/login', deskripsi: 'Database rekam jejak biodata dan histori akademis siswa terlengkap secara digital.', urutan: 10, kategori: 'KEMDIKBUD' },
-    { nama_menu: 'Sistem Mutasi Siswa', link: 'https://mutasi.disdikkedirikab.com/auth/login', deskripsi: 'Pengelolaan proses kepindahan siswa (masuk/keluar) yang tertib administrasi.', urutan: 11, kategori: 'KEMDIKBUD' },
-    { nama_menu: 'Ujian Online', link: 'https://app.e-ujian.com/SMPIT_AlMubarok/login', deskripsi: 'Platform ujian dan evaluasi belajar digital yang praktis, fleksibel, dan aman.', urutan: 12, kategori: 'AKADEMIK' },
-    { nama_menu: 'Portal TKA', link: 'https://tka.onedumind.com/', deskripsi: 'Pelaksanaan dan analisis hasil pemetaan potensi akademik siswa.', urutan: 13, kategori: 'AKADEMIK' },
-    { nama_menu: 'Buku Digital', link: 'https://buku.kemendikdasmen.go.id/daftar-katalog', deskripsi: 'Perpustakaan digital berisi koleksi modul dan buku paket pembelajaran elektronik.', urutan: 14, kategori: 'LITERASI' },
-    { nama_menu: 'Cek NISN', link: 'https://nisn.data.kemendikdasmen.go.id/', deskripsi: 'Fitur validasi dan verifikasi Nomor Induk Siswa Nasional secara instan.', urutan: 15, kategori: 'KEMDIKBUD' },
-    { nama_menu: 'Layanan PIP', link: 'https://pip.kemendikdasmen.go.id/home_v1', deskripsi: 'Pengelolaan data dan bantuan Program Indonesia Pintar bagi siswa penerima manfaat.', urutan: 16, kategori: 'KEMDIKBUD' },
-    { nama_menu: 'Portal Admin Belajar id', link: 'https://akun.belajar.id/sso/login?flow=2a90194c-a623-44d5-ae60-45bd0d988c35', deskripsi: 'Integrasi dan pengelolaan akun pembelajaran resmi dari Kemendikbudristek.', urutan: 17, kategori: 'KEMDIKBUD' },
-    { nama_menu: 'Menejemen E-Ijazah', link: 'https://ijazah.data.kemendikdasmen.go.id/manajemen/#/sign-in', deskripsi: 'Penerbitan, pengarsipan, dan verifikasi keabsahan ijazah kelulusan digital.', urutan: 18, kategori: 'KEMDIKBUD' }
-  ];
-
   function getApps() {
-    let raw = (getDB().menu && getDB().menu.length) ? getDB().menu : DEFAULT_APLIKASI_;
+    let raw = (getDB().menu && getDB().menu.length) ? getDB().menu : [];
     return raw.filter(function(m) {
       const t = (m.tampil || '').toString().toLowerCase();
       return t !== 'tidak' && t !== 'no' && t !== '0' && t !== 'false';
@@ -10029,73 +9964,22 @@ setTimeout(function () {
   };
 
 
-  // 8. CURATED EDITORIAL PLACEHOLDERS & OVERRIDES FOR GALERI FOTO
-  const DEFAULT_GALERI_ = [
-    {
-      judul: "Halaqah Tahfidz Al-Qur'an Santri Pagi Hari",
-      kategori: "Tahfidz",
-      tanggal: "12 Nov 2026",
-      gambar: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      judul: "Praktikum Sains di Laboratorium Terpadu",
-      kategori: "Akademik",
-      tanggal: "08 Nov 2026",
-      gambar: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      judul: "Sholat Berjamaah di Masjid Jami' Yambu'ul Qur'an",
-      kategori: "Ibadah",
-      tanggal: "04 Nov 2026",
-      gambar: "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      judul: "Latihan Rutin Seni Hadrah Banjari Santri",
-      kategori: "Ekstrakurikuler",
-      tanggal: "30 Okt 2026",
-      gambar: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      judul: "Upacara Bendera & Pembinaan Karakter Santri",
-      kategori: "Kesiswaan",
-      tanggal: "25 Okt 2026",
-      gambar: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      judul: "Kompetisi Olahraga Futsal Antar Kelas",
-      kategori: "Olahraga",
-      tanggal: "18 Okt 2026",
-      gambar: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      judul: "Pojok Literasi & Perpustakaan Digital Kampus",
-      kategori: "Literasi",
-      tanggal: "12 Okt 2026",
-      gambar: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      judul: "Kajian Kitab Kuning Bersama Dewan Asatidz",
-      kategori: "Keagamaan",
-      tanggal: "05 Okt 2026",
-      gambar: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80"
-    }
-  ];
-
+    // 8. OVERRIDE GALERI FOTO (STRICT BACKEND DATA)
   window.renderGaleri = function() {
-    let rows = (getDB().galeri && getDB().galeri.length) ? getDB().galeri.slice().reverse() : DEFAULT_GALERI_;
+    const dbData = (getDB().galeri && getDB().galeri.length) ? getDB().galeri.slice().reverse() : [];
     const elCarousel = document.getElementById('beranda-galeri-carousel');
     const elGrid = document.getElementById('galeri-grid');
 
-  const formatTgl_ = function(d) {
-    if (!d) return '2026';
-    const s = String(d).split('T')[0];
-    const p = s.split('-');
-    if (p.length === 3) {
-      const bln = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-      return parseInt(p[2], 10) + ' ' + (bln[parseInt(p[1], 10)] || p[1]) + ' ' + p[0];
-    }
-    return s;
-  };
+    const formatTgl_ = function(d) {
+      if (!d) return '2026';
+      const s = String(d).split('T')[0];
+      const p = s.split('-');
+      if (p.length === 3) {
+        const bln = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+        return parseInt(p[2], 10) + ' ' + (bln[parseInt(p[1], 10)] || p[1]) + ' ' + p[0];
+      }
+      return s;
+    };
     const cardHtml = function(g, i) {
       const num = String(i + 1).padStart(2, '0');
       const img = g.gambar || g.foto || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80';
@@ -10113,147 +9997,138 @@ setTimeout(function () {
       '</div>';
     };
 
-    if (elCarousel) {
-      elCarousel.innerHTML = rows.slice(0, 10).map(cardHtml).join('');
-    }
-    if (elGrid) {
-      elGrid.innerHTML = rows.map(function(g, i) {
-        const num = String(i + 1).padStart(2, '0');
-        const img = g.gambar || g.foto || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80';
-        return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
-          '<div>' +
-            '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-3 relative">' +
-              '<img src="' + img + '" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (g.judul || '') + '">' +
+    if (dbData.length > 0) {
+      if (elCarousel) {
+        elCarousel.innerHTML = dbData.slice(0, 10).map(cardHtml).join('');
+      }
+      if (elGrid) {
+        elGrid.innerHTML = dbData.map(function(g, i) {
+          const num = String(i + 1).padStart(2, '0');
+          const img = g.gambar || g.foto || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80';
+          return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+            '<div>' +
+              '<div class="aspect-[16/10] overflow-hidden bg-[#e2ece6] mb-3 relative">' +
+                '<img src="' + img + '" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" alt="' + (g.judul || '') + '">' +
+              '</div>' +
+              '<div class="flex items-center justify-between text-[11px] font-mono text-[#c39328] mb-1.5">' +
+                '<span>[ DOKUMEN ' + num + ' ]</span>' +
+                '<span class="text-[#7a8e82]">' + (g.tanggal || '2026') + '</span>' +
+              '</div>' +
+              '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug">' + (g.judul || '-') + '</h3>' +
             '</div>' +
-            '<div class="flex items-center justify-between text-[11px] font-mono text-[#c39328] mb-1.5">' +
-              '<span>[ DOKUMEN ' + num + ' ]</span>' +
-              '<span class="text-[#7a8e82]">' + (g.tanggal || '2026') + '</span>' +
+            '<div class="mt-4 pt-2.5 border-t border-[#e2ece6] flex items-center justify-between font-mono text-[10px] text-[#7a8e82]">' +
+              '<span>KATEGORI: ' + (g.kategori || 'UMUM') + '</span>' +
+              '<span class="text-[#062116] font-bold">ARSIP KAMPUS</span>' +
             '</div>' +
-            '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug">' + (g.judul || '-') + '</h3>' +
-          '</div>' +
-          '<div class="mt-4 pt-2.5 border-t border-[#e2ece6] flex items-center justify-between font-mono text-[10px] text-[#7a8e82]">' +
-            '<span>KATEGORI: ' + (g.kategori || 'UMUM') + '</span>' +
-            '<span class="text-[#062116] font-bold">ARSIP KAMPUS</span>' +
-          '</div>' +
+          '</div>';
+        }).join('');
+      }
+    } else {
+      if (elCarousel) {
+        elCarousel.innerHTML = '<div class="w-full border border-[#e2ece6] bg-white p-8 md:p-12 text-center flex-shrink-0">' +
+          '<div class="w-12 h-12 mx-auto mb-3 bg-[#faf9f5] border border-[#e2ece6] text-[#c39328] flex items-center justify-center text-lg"><i class="fas fa-images"></i></div>' +
+          '<span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest block mb-1">[ DOKUMENTASI &bull; GALERI FOTO ]</span>' +
+          '<h3 class="font-serif text-lg font-bold text-[#062116] mb-1.5">Belum Ada Dokumentasi Foto</h3>' +
+          '<p class="text-xs text-[#52665a] max-w-md mx-auto leading-relaxed font-light">Dokumentasi kegiatan santri dan sarana madrasah akan ditampilkan di sini setelah diunggah melalui panel admin CMS.</p>' +
         '</div>';
-      }).join('');
+      }
+      if (elGrid) {
+        elGrid.innerHTML = '<div class="col-span-full border border-dashed border-[#e2ece6] bg-[#faf9f5] p-12 text-center">' +
+          '<span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest block mb-1">[ ARSIP FOTO &bull; BELUM ADA DATA ]</span>' +
+          '<h3 class="font-serif text-xl font-bold text-[#062116] mb-2">Belum Ada Data Galeri Foto</h3>' +
+          '<p class="text-xs text-[#52665a] max-w-md mx-auto leading-relaxed font-light">Belum ada foto kegiatan yang diunggah ke galeri.</p>' +
+        '</div>';
+      }
     }
   };
 
-  // 9. CURATED EDITORIAL PLACEHOLDERS & OVERRIDES FOR GALERI VIDEO
-  const DEFAULT_VIDEO_ = [
-    {
-      judul: "Profil Lengkap SMPI Yambu'ul Qur'an Plosoklaten Kediri",
-      deskripsi: "Mengenal lebih dekat ekosistem pesantren tahfidzul Qur'an dan kurikulum terpadu.",
-      url_video: "https://www.youtube.com/watch?v=ScMzIvxBSi4",
-      youtube_id: "ScMzIvxBSi4",
-      durasi: "04:12",
-      kategori: "PROFIL RESMI"
-    },
-    {
-      judul: "Wisuda & Khotmil Qur'an Santri Tahfidz 30 Juz Bersanad",
-      deskripsi: "Prosesi khidmat pelepasan santri hafiz & hafizah berprestasi tinggi.",
-      url_video: "https://www.youtube.com/watch?v=ysz5S6PUM-U",
-      youtube_id: "ysz5S6PUM-U",
-      durasi: "06:45",
-      kategori: "WISUDA SANTRI"
-    },
-    {
-      judul: "Kemandirian Santri Boarding School: Aktivitas Fajar Hingga Malam",
-      deskripsi: "Disiplin pembinaan akhlak, sholat berjamaah, dan pola belajar mandiri.",
-      url_video: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
-      youtube_id: "jNQXAC9IVRw",
-      durasi: "05:18",
-      kategori: "KEGIATAN SANTRI"
-    },
-    {
-      judul: "Asesmen Digital Berbasis CBT Mandiri & Smart-Campus",
-      deskripsi: "Implementasi ujian online terpadu di laboratorium komputer modern.",
-      url_video: "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
-      youtube_id: "kJQP7kiw5Fk",
-      durasi: "03:50",
-      kategori: "AKADEMIK DIGITAL"
-    },
-    {
-      judul: "Kajian Kitab Kuning & Tausiyah Bersama Dewan Asatidz",
-      deskripsi: "Kupasan fiqih dan akhlakul karimah untuk membekali generasi masa depan.",
-      url_video: "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      youtube_id: "3JZ_D3ELwOQ",
-      durasi: "08:30",
-      kategori: "KAJIAN ASATIDZ"
-    },
-    {
-      judul: "Juara Seni Hadrah Banjari Santri SMPI Yambu'ul Qur'an",
-      deskripsi: "Penampilan kreasi seni sholawat rebana kontemporer santri.",
-      url_video: "https://www.youtube.com/watch?v=L_LUpnjgPso",
-      youtube_id: "L_LUpnjgPso",
-      durasi: "04:55",
-      kategori: "PRESTASI SENI"
-    }
-  ];
-
+    // 9. OVERRIDE GALERI VIDEO (STRICT BACKEND DATA)
   window.renderGaleriVideo = function() {
-    let rows = (getDB().galeri_video && getDB().galeri_video.length) ? getDB().galeri_video.slice().reverse() : DEFAULT_VIDEO_;
+    const db = getDB();
+    const rows = (db && (db.galeri_video || db.galerivideo) && (db.galeri_video || db.galerivideo).length)
+      ? (db.galeri_video || db.galerivideo).slice().reverse()
+      : [];
     const elGridBeranda = document.getElementById('beranda-galerivideo-grid');
     const elGridFull = document.getElementById('galerivideo-grid');
 
-    const cardVideoHtml = function(v, i) {
-      const num = String(i + 1).padStart(2, '0');
-      const ytId = v.youtube_id || (v.url_video.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{6,})/) || [])[1] || 'ScMzIvxBSi4';
-      const thumb = 'https://img.youtube.com/vi/' + ytId + '/hqdefault.jpg';
-      return '<div class="border border-[#e2ece6] p-3 bg-white flex-shrink-0 w-72 md:w-80 snap-start hover:border-[#062116] transition-colors">' +
-        '<div class="aspect-video bg-black relative overflow-hidden mb-3 group cursor-pointer" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' +
-          '<img src="' + thumb + '" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" alt="' + (v.judul || '') + '">' +
-          '<div class="absolute inset-0 bg-black/30 flex items-center justify-center">' +
-            '<div class="w-12 h-12 rounded-none bg-[#062116] text-[#c39328] border border-[#c39328] flex items-center justify-center shadow-lg group-hover:bg-[#c39328] group-hover:text-[#062116] transition-colors">' +
-              '<i class="fas fa-play text-sm ml-0.5"></i>' +
-            '</div>' +
-          '</div>' +
-          '<span class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[9px] px-2 py-0.5">' + (v.durasi || 'VIDEO') + '</span>' +
-        '</div>' +
-        '<div class="flex items-center justify-between text-[10px] font-mono text-[#c39328] mb-1">' +
-          '<span>[ VIDEO ' + num + ' ]</span>' +
-          '<span class="text-[#7a8e82]">' + (v.kategori || 'LIPUTAN') + '</span>' +
-        '</div>' +
-        '<h4 class="font-serif text-sm font-bold text-[#062116] leading-snug line-clamp-2 cursor-pointer hover:text-[#c39328]" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' + (v.judul || 'Video Liputan') + '</h4>' +
-        '<p class="text-[11px] text-[#52665a] font-light mt-1 line-clamp-1">' + (v.deskripsi || '') + '</p>' +
-      '</div>';
-    };
-
-    if (elGridBeranda) {
-      elGridBeranda.innerHTML = rows.slice(0, 8).map(cardVideoHtml).join('');
-    }
-    if (elGridFull) {
-      elGridFull.innerHTML = rows.map(function(v, i) {
+    if (rows.length > 0) {
+      const cardVideoHtml = function(v, i) {
         const num = String(i + 1).padStart(2, '0');
-        const ytId = v.youtube_id || (v.url_video.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{6,})/) || [])[1] || 'ScMzIvxBSi4';
+        const ytId = v.youtube_id || (v.url_video ? (v.url_video.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{6,})/) || [])[1] : '') || 'ScMzIvxBSi4';
         const thumb = 'https://img.youtube.com/vi/' + ytId + '/hqdefault.jpg';
-        return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
-          '<div>' +
-            '<div class="aspect-video bg-black relative overflow-hidden mb-3 group cursor-pointer" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' +
-              '<img src="' + thumb + '" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" alt="' + (v.judul || '') + '">' +
-              '<div class="absolute inset-0 bg-black/30 flex items-center justify-center">' +
-                '<div class="w-12 h-12 rounded-none bg-[#062116] text-[#c39328] border border-[#c39328] flex items-center justify-center shadow-lg group-hover:bg-[#c39328] group-hover:text-[#062116] transition-colors">' +
-                  '<i class="fas fa-play text-sm ml-0.5"></i>' +
-                '</div>' +
+        return '<div class="border border-[#e2ece6] p-3 bg-white flex-shrink-0 w-72 md:w-80 snap-start hover:border-[#062116] transition-colors">' +
+          '<div class="aspect-video bg-black relative overflow-hidden mb-3 group cursor-pointer" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' +
+            '<img src="' + thumb + '" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" alt="' + (v.judul || '') + '">' +
+            '<div class="absolute inset-0 bg-black/30 flex items-center justify-center">' +
+              '<div class="w-12 h-12 rounded-none bg-[#062116] text-[#c39328] border border-[#c39328] flex items-center justify-center shadow-lg group-hover:bg-[#c39328] group-hover:text-[#062116] transition-colors">' +
+                '<i class="fas fa-play text-sm ml-0.5"></i>' +
               '</div>' +
-              '<span class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[9px] px-2 py-0.5">' + (v.durasi || 'VIDEO') + '</span>' +
             '</div>' +
-            '<div class="flex items-center justify-between text-[11px] font-mono text-[#c39328] mb-1.5">' +
-              '<span>[ LIPUTAN ' + num + ' ]</span>' +
-              '<span class="text-[#7a8e82]">' + (v.durasi || '05:00') + '</span>' +
-            '</div>' +
-            '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug mb-1 cursor-pointer hover:text-[#c39328]" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' + (v.judul || '-') + '</h3>' +
-            '<p class="text-xs text-[#52665a] font-light leading-relaxed line-clamp-2">' + (v.deskripsi || '') + '</p>' +
+            '<span class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[9px] px-2 py-0.5">' + (v.durasi || 'VIDEO') + '</span>' +
           '</div>' +
-          '<div class="mt-4 pt-2.5 border-t border-[#e2ece6] flex items-center justify-between font-mono text-[10px] text-[#7a8e82]">' +
-            '<span>KATEGORI: ' + (v.kategori || 'VIDEO') + '</span>' +
-            '<button data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)" class="text-[#062116] hover:text-[#c39328] font-bold uppercase tracking-wider">PUTAR SEKARANG &rarr;</button>' +
+          '<div class="flex items-center justify-between text-[10px] font-mono text-[#c39328] mb-1">' +
+            '<span>[ VIDEO ' + num + ' ]</span>' +
+            '<span class="text-[#7a8e82]">' + (v.kategori || 'LIPUTAN') + '</span>' +
           '</div>' +
+          '<h4 class="font-serif text-sm font-bold text-[#062116] leading-snug line-clamp-2 cursor-pointer hover:text-[#c39328]" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' + (v.judul || 'Video Liputan') + '</h4>' +
+          '<p class="text-[11px] text-[#52665a] font-light mt-1 line-clamp-1">' + (v.deskripsi || '') + '</p>' +
         '</div>';
-      }).join('');
+      };
+
+      if (elGridBeranda) {
+        elGridBeranda.innerHTML = rows.slice(0, 8).map(cardVideoHtml).join('');
+      }
+      if (elGridFull) {
+        elGridFull.innerHTML = rows.map(function(v, i) {
+          const num = String(i + 1).padStart(2, '0');
+          const ytId = v.youtube_id || (v.url_video ? (v.url_video.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{6,})/) || [])[1] : '') || 'ScMzIvxBSi4';
+          const thumb = 'https://img.youtube.com/vi/' + ytId + '/hqdefault.jpg';
+          return '<div class="border border-[#e2ece6] p-4 bg-white flex flex-col justify-between hover:border-[#062116] transition-colors">' +
+            '<div>' +
+              '<div class="aspect-video bg-black relative overflow-hidden mb-3 group cursor-pointer" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' +
+                '<img src="' + thumb + '" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" alt="' + (v.judul || '') + '">' +
+                '<div class="absolute inset-0 bg-black/30 flex items-center justify-center">' +
+                  '<div class="w-12 h-12 rounded-none bg-[#062116] text-[#c39328] border border-[#c39328] flex items-center justify-center shadow-lg group-hover:bg-[#c39328] group-hover:text-[#062116] transition-colors">' +
+                    '<i class="fas fa-play text-sm ml-0.5"></i>' +
+                  '</div>' +
+                '</div>' +
+                '<span class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[9px] px-2 py-0.5">' + (v.durasi || 'VIDEO') + '</span>' +
+              '</div>' +
+              '<div class="flex items-center justify-between text-[11px] font-mono text-[#c39328] mb-1.5">' +
+                '<span>[ LIPUTAN ' + num + ' ]</span>' +
+                '<span class="text-[#7a8e82]">' + (v.durasi || '05:00') + '</span>' +
+              '</div>' +
+              '<h3 class="font-serif text-base font-bold text-[#062116] leading-snug mb-1 cursor-pointer hover:text-[#c39328]" data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)">' + (v.judul || '-') + '</h3>' +
+              '<p class="text-xs text-[#52665a] font-light leading-relaxed line-clamp-2">' + (v.deskripsi || '') + '</p>' +
+            '</div>' +
+            '<div class="mt-4 pt-2.5 border-t border-[#e2ece6] flex items-center justify-between font-mono text-[10px] text-[#7a8e82]">' +
+              '<span>KATEGORI: ' + (v.kategori || 'VIDEO') + '</span>' +
+              '<button data-ytid="' + ytId + '" data-title="' + encodeURIComponent(v.judul || '') + '" onclick="putarVideoModal_(this.dataset.ytid, this.dataset.title)" class="text-[#062116] hover:text-[#c39328] font-bold uppercase tracking-wider">PUTAR SEKARANG &rarr;</button>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+      }
+    } else {
+      if (elGridBeranda) {
+        elGridBeranda.innerHTML = '<div class="w-full border border-[#e2ece6] bg-white p-8 md:p-12 text-center flex-shrink-0">' +
+          '<div class="w-12 h-12 mx-auto mb-3 bg-[#faf9f5] border border-[#e2ece6] text-[#c39328] flex items-center justify-center text-lg">' +
+            '<i class="fas fa-video"></i>' +
+          '</div>' +
+          '<span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest block mb-1">[ KANAL VIDEO &bull; ARSIP DIGITAL ]</span>' +
+          '<h3 class="font-serif text-lg font-bold text-[#062116] mb-1.5">Belum Ada Video Liputan</h3>' +
+          '<p class="text-xs text-[#52665a] max-w-md mx-auto leading-relaxed font-light">Dokumentasi video kegiatan santri, kajian asatidz, dan liputan kampus akan ditampilkan di sini setelah ditambahkan melalui panel admin CMS.</p>' +
+        '</div>';
+      }
+      if (elGridFull) {
+        elGridFull.innerHTML = '<div class="col-span-full border border-dashed border-[#e2ece6] bg-[#faf9f5] p-12 text-center">' +
+          '<span class="font-mono text-[10px] text-[#c39328] uppercase tracking-widest block mb-1">[ ARSIP VIDEO &bull; BELUM ADA DATA ]</span>' +
+          '<h3 class="font-serif text-xl font-bold text-[#062116] mb-2">Belum Ada Data Galeri Video</h3>' +
+          '<p class="text-xs text-[#52665a] max-w-md mx-auto leading-relaxed font-light">Belum ada video kegiatan yang diunggah. Silakan tambahkan tautan video YouTube melalui menu Galeri Video di panel admin CMS.</p>' +
+        '</div>';
+      }
     }
   };
+
 
   // Helper video modal player
   window.putarVideoModal_ = function(ytId, encTitle) {

@@ -4156,9 +4156,30 @@ function _jalankanBertahap_(tugas, selesai) {
   })();
 }
 
+function normalizeDB_(d) {
+  if (!d) return d;
+  const pairs = [
+    ['herobanner', 'hero_banner'],
+    ['galerivideo', 'galeri_video'],
+    ['virtualtour360', 'virtual_tour'],
+    ['livestreaming', 'live_streaming'],
+    ['rekeningdonasi', 'rekening_donasi'],
+    ['kalenderakademik', 'kalender_akademik'],
+    ['jadwalpelajaran', 'jadwal_pelajaran'],
+    ['jadwalujian', 'jadwal_ujian'],
+    ['dokumenakademik', 'dokumen_akademik']
+  ];
+  pairs.forEach(function (p) {
+    const a = p[0], b = p[1];
+    if (d[a] !== undefined && d[b] === undefined) d[b] = d[a];
+    if (d[b] !== undefined && d[a] === undefined) d[a] = d[b];
+  });
+  return d;
+}
+
 function onDataLoaded(data) {
   if (!data || data.error) { onDataError({ message: data ? data.error : 'Data kosong' }); return; }
-  DB = data;
+  DB = normalizeDB_(data);
   // TAHAP 1: yang langsung terlihat di layar
   renderHeroSlider();
   renderJadwalSholat();
@@ -4407,28 +4428,7 @@ function renderMenuAplikasi() {
   const btnSelengkapnya = document.getElementById('btn-aplikasi-selengkapnya');
   if (!el || !wrap) return;
 
-  const DEFAULT_APLIKASI_ = [
-    { nama_menu: 'JURNAL DIGITAL', link: 'https://nixon42.github.io/jurnal/', deskripsi: 'Rekapitulasi agenda pembelajaran dan catatan aktivitas harian guru secara terstruktur.', urutan: 1, tampil: 'ya' },
-    { nama_menu: 'LMS', link: 'https://nixon42.github.io/lms/', deskripsi: 'Wadah pembelajaran online, distribusi materi, dan pengumpulan tugas terpadu.', urutan: 2, tampil: 'ya' },
-    { nama_menu: 'Absensi', link: 'https://nixon42.github.io/absen/', deskripsi: 'Absensi berbasis face recognition, pencatatan secara realtime dan akurat.', urutan: 3, tampil: 'ya' },
-    { nama_menu: 'TU & Persuratan Online', link: 'https://administrasi.smpitalmubarok.sch.id/', deskripsi: 'Digitalisasi pengarsipan, permintaan surat, dan tata kelola administrasi surat-menyurat sekolah.', urutan: 4, tampil: 'ya' },
-    { nama_menu: 'Supervisi', link: 'https://supervisi.smpitalmubarok.sch.id/', deskripsi: 'Platform digital yang dirancang untuk mempermudah, mempercepat, dan mengoptimalkan proses pemantauan, evaluasi, serta pembinaan kinerja secara real-time dari mana saja.', urutan: 5, tampil: 'ya' },
-    { nama_menu: 'Buku Inventaris Barang', link: 'https://inventaris.smpitalmubarok.sch.id/', deskripsi: 'Digitalisasi pendataan dan pemantauan kondisi serta aset sarana-prasarana sekolah.', urutan: 6, tampil: 'ya' },
-    { nama_menu: 'Layanan Perpustakaan', link: 'https://perpustakaan.smpitalmubarok.sch.id/', deskripsi: 'Sistem katalog, peminjaman, dan pengembalian buku fisik sekolah.', urutan: 7, tampil: 'ya' },
-    { nama_menu: 'E-Rapor Tahfidz', link: 'https://eraportahfidz.smpitalmubarok.sch.id/', deskripsi: 'Laporan capaian hafalan Al-Qur\'an dan perkembangan Tahsin siswa secara transparan.', urutan: 8, tampil: 'ya' },
-    { nama_menu: 'Al-Qur\'an Digital', link: 'https://quran.smpitalmubarok.sch.id/', deskripsi: 'Akses teks dan bacaan Al-Qur\'an interaktif untuk mendukung kegiatan keagamaan.', urutan: 9, tampil: 'ya' },
-    { nama_menu: 'Buku Induk Siswa', link: 'https://edosis.disdikkedirikab.com/auth/login', deskripsi: 'Database rekam jejak biodata dan histori akademis siswa terlengkap secara digital.', urutan: 10, tampil: 'ya' },
-    { nama_menu: 'Sistem Mutasi Siswa', link: 'https://mutasi.disdikkedirikab.com/auth/login', deskripsi: 'Pengelolaan proses kepindahan siswa (masuk/keluar) yang tertib administrasi.', urutan: 11, tampil: 'ya' },
-    { nama_menu: 'Ujian Online', link: 'https://app.e-ujian.com/SMPIT_AlMubarok/login', deskripsi: 'Platform ujian dan evaluasi belajar digital yang praktis, fleksibel, dan aman.', urutan: 12, tampil: 'ya' },
-    { nama_menu: 'Portal TKA', link: 'https://tka.onedumind.com/', deskripsi: 'Pelaksanaan dan analisis hasil pemetaan potensi akademik siswa.', urutan: 13, tampil: 'ya' },
-    { nama_menu: 'Buku Digital', link: 'https://buku.kemendikdasmen.go.id/daftar-katalog', deskripsi: 'Perpustakaan digital berisi koleksi modul dan buku paket pembelajaran elektronik.', urutan: 14, tampil: 'ya' },
-    { nama_menu: 'Cek NISN', link: 'https://nisn.data.kemendikdasmen.go.id/', deskripsi: 'Fitur validasi dan verifikasi Nomor Induk Siswa Nasional secara instan.', urutan: 15, tampil: 'ya' },
-    { nama_menu: 'Layanan PIP', link: 'https://pip.kemendikdasmen.go.id/home_v1', deskripsi: 'Pengelolaan data dan bantuan Program Indonesia Pintar bagi siswa penerima manfaat.', urutan: 16, tampil: 'ya' },
-    { nama_menu: 'Portal Admin Belajar id', link: 'https://akun.belajar.id/sso/login?flow=2a90194c-a623-44d5-ae60-45bd0d988c35', deskripsi: 'Integrasi dan pengelolaan akun pembelajaran resmi dari Kemendikbudristek.', urutan: 17, tampil: 'ya' },
-    { nama_menu: 'Menejemen E-Ijazah', link: 'https://ijazah.data.kemendikdasmen.go.id/manajemen/#/sign-in', deskripsi: 'Penerbitan, pengarsipan, dan verifikasi keabsahan ijazah kelulusan digital.', urutan: 18, tampil: 'ya' }
-  ];
-
-  let rawList = (DB.menu && DB.menu.length) ? DB.menu : DEFAULT_APLIKASI_;
+  let rawList = (DB.menu && DB.menu.length) ? DB.menu : [];
   let rows = rawList.filter(function (m) {
     const t = (m.tampil || '').toString().toLowerCase();
     return t !== 'tidak' && t !== 'no' && t !== '0' && t !== 'false';
@@ -7672,6 +7672,11 @@ function simpanPendaftaranAdmin_() {
 }
 
 function adminDataKey(sheetKey) {
+  if (DB && DB[sheetKey] !== undefined) return sheetKey;
+  if (adminActiveSheet && adminActiveSheet.sheet) {
+    const sLow = adminActiveSheet.sheet.toLowerCase();
+    if (DB && DB[sLow] !== undefined) return sLow;
+  }
   return sheetKey;
 }
 
@@ -8312,7 +8317,7 @@ function adminDeleteRow(rowId) {
 function terapkanDataSenyap_(data) {
   if (!data || data.error) return;
   simpanCacheData_(data);
-  DB = data;
+  DB = normalizeDB_(data);
   if (lastYoutubeData) {
     DB.galeri_video_otomatis = lastYoutubeData.galeri_video_otomatis || [];
     DB.live_streaming_otomatis = lastYoutubeData.live_streaming_otomatis || [];
