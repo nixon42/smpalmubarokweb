@@ -7870,9 +7870,9 @@ function renderAdminTable() {
   let html = '<div class="space-y-4">' +
     '<div class="flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs">' +
       '<div class="flex items-center gap-3">' +
-        '<div class="relative">' +
-          '<i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>' +
-          '<input type="text" id="admin-table-search" oninput="adminFilterTable(this.value)" value="' + (adminSearchQuery_ || '').replace(/"/g, '&quot;') + '" placeholder="Cari di ' + _ak(adminActiveSheet.label) + '..." class="pl-9 pr-3.5 py-2 rounded-xl border border-slate-200 text-xs w-48 sm:w-64 bg-slate-50/60 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all">' +
+        '<div class="relative flex items-center">' +
+          '<i class="fas fa-search absolute left-3.5 text-slate-400 text-xs pointer-events-none"></i>' +
+          '<input type="text" id="admin-table-search" oninput="adminFilterTable(this.value)" value="' + (adminSearchQuery_ || '').replace(/"/g, '&quot;') + '" placeholder="Cari di ' + _ak(adminActiveSheet.label) + '..." style="padding-left: 2.25rem !important; padding-right: 0.85rem !important;" class="py-2 rounded-xl border border-slate-200 text-xs w-48 sm:w-64 bg-slate-50/60 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all">' +
         '</div>' +
         '<span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 font-bold text-xs border border-slate-200/60">' + filteredRows.length + ' / ' + rows.length + ' data</span>' +
       '</div>' +
