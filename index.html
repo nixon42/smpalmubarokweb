@@ -1310,6 +1310,22 @@ footer button:not(.dn-topbtn):hover, footer a:hover {
 <!-- Gaya khusus MODE CMS (?page=cms). Semua selektor diawali html.mode-cms / #cms-gate,
      jadi tidak berpengaruh sama sekali pada tampilan website publik. -->
 <style id="css-cms">
+  /* CMS Form Textarea & Rich Editor Expansion */
+  #admin-form textarea[id^="editor-"],
+  #admin-form div[id^="preview-"],
+  .admin-rich-editor {
+    min-height: 480px !important;
+    height: 480px;
+    resize: vertical !important;
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+  }
+  #admin-form textarea:not([id^="editor-"]) {
+    min-height: 140px !important;
+    resize: vertical !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
   /* Admin Buttons & Colors (Ensures 100% visibility for Tambah & Simpan buttons) */
   .bg-emerald-600,
   .admin-btn-tambah,
@@ -7623,8 +7639,8 @@ function adminRenderFormField_(f, val, row) {
         '<button type="button" onclick="adminInsertFormat(\'' + f + '\', \'<ul>\\n<li>\', \'</li>\\n</ul>\')" class="w-7 h-7 rounded hover:bg-slate-200 text-xs" title="Daftar"><i class="fas fa-list-ul"></i></button>' +
         '<button type="button" onclick="adminInsertFormat(\'' + f + '\', \'<p>\', \'</p>\')" class="px-1.5 h-7 rounded hover:bg-slate-200 text-xs font-mono" title="Paragraf">&lt;p&gt;</button>' +
       '</div>' +
-      '<textarea data-field="' + f + '" id="editor-' + f + '" placeholder="Ketik ' + formatAdminFieldLabel_(f).toLowerCase() + ' di sini..." class="w-full border border-slate-200 rounded-b-xl px-4 py-3 text-sm font-sans min-h-[300px] focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all leading-relaxed">' + (val || '') + '</textarea>' +
-      '<div id="preview-' + f + '" class="hidden w-full border border-slate-200 rounded-b-xl p-5 min-h-[300px] bg-slate-50/50 prose prose-slate max-w-none"></div>' +
+      '<textarea data-field="' + f + '" id="editor-' + f + '" placeholder="Ketik ' + formatAdminFieldLabel_(f).toLowerCase() + ' di sini..." style="min-height:480px !important; height:480px; resize:vertical !important;" class="admin-rich-editor w-full border border-slate-200 rounded-b-xl px-4 py-3.5 text-sm font-sans min-h-[480px] focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all leading-relaxed">' + (val || '') + '</textarea>' +
+      '<div id="preview-' + f + '" style="min-height:480px !important;" class="hidden w-full border border-slate-200 rounded-b-xl p-5 min-h-[480px] bg-slate-50/50 prose prose-slate max-w-none"></div>' +
     '</div>';
   }
 
@@ -7632,7 +7648,7 @@ function adminRenderFormField_(f, val, row) {
   if (['deskripsi', 'ringkasan', 'keterangan', 'testimoni'].indexOf(f) !== -1) {
     return '<div class="space-y-1.5">' +
       '<label class="text-xs font-black uppercase tracking-wider text-slate-700 block">' + formatAdminFieldLabel_(f) + '</label>' +
-      '<textarea data-field="' + f + '" placeholder="Masukkan ' + formatAdminFieldLabel_(f).toLowerCase() + '..." class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm h-28 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all">' + (val || '') + '</textarea>' +
+      '<textarea data-field="' + f + '" placeholder="Masukkan ' + formatAdminFieldLabel_(f).toLowerCase() + '..." style="min-height:140px !important; resize:vertical !important;" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm min-h-[140px] focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all">' + (val || '') + '</textarea>' +
     '</div>';
   }
 
